@@ -84,8 +84,6 @@ INTRANET.InIt = function () {
     INTRANET.Constant.TenantId = _spPageContextInfo.aadTenantId;
 }
 
-
-
 INTRANET.CreateGuid = function () {
     function CreateNewGuid(s) {
         var p = (Math.random().toString(16) + "000000000").substr(2, 8);
@@ -93,8 +91,6 @@ INTRANET.CreateGuid = function () {
     }
     return CreateNewGuid() + CreateNewGuid(true) + CreateNewGuid(true) + CreateNewGuid();
 }
-
-
 
 //Set Host web url in Local Storage
 INTRANET.SetHostWebURlInSession = function () {
@@ -2039,6 +2035,7 @@ INTRANET.ReadFromAppWebAndProvisionToHost = function (appPageUrl, folderPath, ho
         alert("Request for page in app web failed: " + textStatus);
     });
 }
+
 INTRANET.uploadFileToHostWebViaCSOM = function (folderPath, filename, contents) {
     var createInfo = new SP.FileCreationInformation();
     createInfo.set_content(new SP.Base64EncodedByteArray());
@@ -2062,8 +2059,6 @@ INTRANET.uploadFileToHostWebViaCSOM = function (folderPath, filename, contents) 
     });
 }
 
-
-
 INTRANET.SetAsDefaultMasterPage = function (masterPageUrl) {
     var hostWeb = hostWebContext.get_web();
     hostWeb.set_masterUrl(masterPageUrl);
@@ -2077,6 +2072,7 @@ INTRANET.SetAsDefaultMasterPage = function (masterPageUrl) {
         alert('Failed to update master page on host web. Error:' + args.get_message());
     });
 }
+
 INTRANET.UploadAllJSFiles = function () {
     try {
 
@@ -2146,6 +2142,7 @@ INTRANET.UploadAllCSSFiles = function () {
     }
 
 }
+
 INTRANET.UploadAllTextFiles = function () {
     try {
 
@@ -2209,6 +2206,7 @@ INTRANET.UploadAllPageFiles = function(listtitle,fileArray, uploadUrl, type, rea
         INTRANET.Log(INTRANET.LogType.Error, "Error in Uploading files. Error: " + ex.message);
     }
 }
+
 INTRANET.UploadAllFiles = function (listtitle,fileArray, uploadUrl, type, readUrl,fileExtension) {
     try {
         var tempFileArray = fileArray,
@@ -2239,6 +2237,7 @@ INTRANET.UploadAllFiles = function (listtitle,fileArray, uploadUrl, type, readUr
         INTRANET.Log(INTRANET.LogType.Error, "Error in Uploading Text files. Error: " + ex.message);
     }
 }
+
 INTRANET.CreateAllFolders = function (listTitle, folderUrl) {
     try {
         var list = hostWeb.get_lists().getByTitle(listTitle);
@@ -2271,6 +2270,7 @@ INTRANET.CreateAllFolders = function (listTitle, folderUrl) {
     }
 
 }
+
 INTRANET.UploadFile = function (listtitle,filename, contents, path) {
     try {
         var createInfo = new SP.FileCreationInformation();
@@ -2300,6 +2300,7 @@ INTRANET.UploadFile = function (listtitle,filename, contents, path) {
         INTRANET.Log(INTRANET.LogType.Info, 'Error in uploading File. Error: ' + ex.message);
     }
 }
+
 
 INTRANET.UploadAllDisplayTemplates = function (fileArray, uploadUrl, type, readUrl) {
     try {
@@ -2331,6 +2332,7 @@ INTRANET.UploadAllDisplayTemplates = function (fileArray, uploadUrl, type, readU
         INTRANET.Log(INTRANET.LogType.Error, "Error in Uploading Text files. Error: " + ex.message);
     }
 }
+
 
 INTRANET.UploadFileToMasterPageGallery = function (folderPath, filename, contents) {
     var createInfo = new SP.FileCreationInformation();
