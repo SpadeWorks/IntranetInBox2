@@ -1,0 +1,355 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{226F6451-0A97-41D8-99F4-3BD1BED39CD3}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>IntranetDeployment</RootNamespace>
+    <AssemblyName>IntranetDeployment</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetOfficeVersion>15.0</TargetOfficeVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{C1CDDADD-2546-481F-9697-4EA41081F2FC};{14822709-B5A1-4724-98CA-57A101D1B079};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <MinimumVisualStudioVersion>11.0</MinimumVisualStudioVersion>
+    <MinimumOfficeToolsVersion>11.1</MinimumOfficeToolsVersion>
+    <IncludeAssemblyInPackage>False</IncludeAssemblyInPackage>
+    <ProjectMode>SharePointApp</ProjectMode>
+    <AppFeaturePartId>{7f7e4aab-72e6-4637-86c8-cd918d5b8525}</AppFeaturePartId>
+    <WspPartId>{823c2240-0bca-4950-8d1f-7daf6b906d63}</WspPartId>
+    <WorkflowPartId>{4a834b76-bd00-4402-8cb4-b82ed49dc98d}</WorkflowPartId>
+    <CspkgPartId>{daed7e17-ea5b-4bb7-87bd-618966b418db}</CspkgPartId>
+    <SqlPackagePartId>{91f3d112-56e5-4d2b-8696-6453acd1a4f7}</SqlPackagePartId>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+  </PropertyGroup>
+  <ItemGroup>
+    <None Include="fonts\facebook-workplace.eot" />
+    <None Include="fonts\facebook-workplace.ttf" />
+    <None Include="fonts\facebook-workplace.woff" />
+    <None Include="fonts\fontawesome-webfont.eot" />
+    <None Include="fonts\fontawesome-webfont.ttf" />
+    <None Include="fonts\fontawesome-webfont.woff" />
+    <None Include="fonts\fontawesome-webfont.woff2" />
+    <None Include="fonts\FontAwesome.otf" />
+    <None Include="fonts\glyphicons-halflings-regular.eot" />
+    <None Include="fonts\glyphicons-halflings-regular.ttf" />
+    <None Include="fonts\glyphicons-halflings-regular.woff" />
+    <None Include="fonts\glyphicons-halflings-regular.woff2" />
+    <None Include="fonts\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{dd2f2ebe-d41a-4152-b498-77d4d6df8a96}</SharePointProjectItemId>
+    </None>
+    <None Include="fonts\titillium-black-webfont.ttf" />
+    <None Include="fonts\titillium-black-webfont.woff" />
+    <None Include="fonts\titillium-black-webfont.woff2" />
+    <None Include="fonts\titillium-bold-webfont.ttf" />
+    <None Include="fonts\titillium-bold-webfont.woff" />
+    <None Include="fonts\titillium-bold-webfont.woff2" />
+    <None Include="fonts\titillium-bolditalic-webfont.ttf" />
+    <None Include="fonts\titillium-bolditalic-webfont.woff" />
+    <None Include="fonts\titillium-bolditalic-webfont.woff2" />
+    <None Include="fonts\titillium-light-webfont.ttf" />
+    <None Include="fonts\titillium-light-webfont.woff" />
+    <None Include="fonts\titillium-light-webfont.woff2" />
+    <None Include="fonts\titillium-lightitalic-webfont.ttf" />
+    <None Include="fonts\titillium-lightitalic-webfont.woff" />
+    <None Include="fonts\titillium-lightitalic-webfont.woff2" />
+    <None Include="fonts\titillium-lightupright-webfont.ttf" />
+    <None Include="fonts\titillium-lightupright-webfont.woff" />
+    <None Include="fonts\titillium-lightupright-webfont.woff2" />
+    <None Include="fonts\titillium-regular-webfont.ttf" />
+    <None Include="fonts\titillium-regular-webfont.woff" />
+    <None Include="fonts\titillium-regular-webfont.woff2" />
+    <None Include="fonts\titillium-regularitalic-webfont.ttf" />
+    <None Include="fonts\titillium-regularitalic-webfont.woff" />
+    <None Include="fonts\titillium-regularitalic-webfont.woff2" />
+    <None Include="fonts\titillium-semibold-webfont.ttf" />
+    <None Include="fonts\titillium-semibold-webfont.woff" />
+    <None Include="fonts\titillium-semibold-webfont.woff2" />
+    <None Include="fonts\titillium-semibolditalic-webfont.ttf" />
+    <None Include="fonts\titillium-semibolditalic-webfont.woff" />
+    <None Include="fonts\titillium-semibolditalic-webfont.woff2" />
+    <None Include="fonts\titillium-thin-webfont.ttf" />
+    <None Include="fonts\titillium-thin-webfont.woff" />
+    <None Include="fonts\titillium-thin-webfont.woff2" />
+    <None Include="fonts\titillium-thinitalic-webfont.ttf" />
+    <None Include="fonts\titillium-thinitalic-webfont.woff" />
+    <None Include="fonts\titillium-thinitalic-webfont.woff2" />
+    <None Include="IntranetAllPagesFiles\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{8e753186-b12c-4619-8cb6-e5170195e0f8}</SharePointProjectItemId>
+    </None>
+    <None Include="IntranetCSSFiles\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{7e0bab5f-2d2d-4637-9e15-312539915ea2}</SharePointProjectItemId>
+    </None>
+    <None Include="IntranetDisplayTemplateFiles\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{6dad6cb9-8a4f-4dae-bb23-9cd1d57eb4e7}</SharePointProjectItemId>
+    </None>
+    <None Include="IntranetFontsFiles\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{34054fd2-cc42-445b-b67a-0b463db02e55}</SharePointProjectItemId>
+    </None>
+    <None Include="IntranetImagesFIles\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{ed719b01-9720-4d74-8a40-06330660ff62}</SharePointProjectItemId>
+    </None>
+    <None Include="IntranetJSFiles\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{ded2c411-e29a-46b6-94f8-1104bf6bba90}</SharePointProjectItemId>
+    </None>
+    <None Include="IntranetPageLayoutsFiles\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{0e3d9076-3e6b-4c90-b267-740cc9424733}</SharePointProjectItemId>
+    </None>
+    <None Include="IntranetTextFiles\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{ad6be2a5-cdc2-4ec5-bc36-b2a51e7bb65b}</SharePointProjectItemId>
+    </None>
+    <None Include="IntranetWebFontsFiles\fontawesome-webfont.eot" />
+    <None Include="IntranetWebFontsFiles\fontawesome-webfont.ttf" />
+    <None Include="IntranetWebFontsFiles\fontawesome-webfont.woff" />
+    <None Include="IntranetWebFontsFiles\fontawesome-webfont.woff2" />
+    <None Include="IntranetWebFontsFiles\FontAwesome.otf" />
+    <None Include="IntranetWebFontsFiles\Gill Sans MT Bold.eot" />
+    <None Include="IntranetWebFontsFiles\Gill Sans MT Bold.woff" />
+    <None Include="IntranetWebFontsFiles\Gill Sans MT Bold.woff2" />
+    <None Include="IntranetWebFontsFiles\Gill Sans MT.eot" />
+    <None Include="IntranetWebFontsFiles\Gill Sans MT.woff" />
+    <None Include="IntranetWebFontsFiles\Gill Sans MT.woff2" />
+    <None Include="IntranetWebFontsFiles\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{160b0d31-d759-4410-be94-888f515a2468}</SharePointProjectItemId>
+    </None>
+    <None Include="IntranetMasterPagesFiles\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{be47bfeb-eeb5-406a-bcdc-6736b1afb02b}</SharePointProjectItemId>
+    </None>
+    <None Include="IntranetWebPartFiles\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{29f837d4-44f3-4938-b144-cba244f1e98d}</SharePointProjectItemId>
+    </None>
+    <None Include="packages.config" />
+    <None Include="Pages\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{5814e024-85aa-4714-a0cd-d7dc36eb43c6}</SharePointProjectItemId>
+    </None>
+    <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\font-awesome.min.css" />
+    <Content Include="fonts\Elements.xml" />
+    <Content Include="fonts\facebook-workplace.svg" />
+    <Content Include="fonts\fontawesome-webfont.svg" />
+    <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="fonts\titillium-black-demo.html" />
+    <Content Include="fonts\titillium-black-webfont.svg" />
+    <Content Include="fonts\titillium-bold-demo.html" />
+    <Content Include="fonts\titillium-bold-webfont.svg" />
+    <Content Include="fonts\titillium-bolditalic-demo.html" />
+    <Content Include="fonts\titillium-bolditalic-webfont.svg" />
+    <Content Include="fonts\titillium-light-demo.html" />
+    <Content Include="fonts\titillium-light-webfont.svg" />
+    <Content Include="fonts\titillium-lightitalic-demo.html" />
+    <Content Include="fonts\titillium-lightitalic-webfont.svg" />
+    <Content Include="fonts\titillium-lightupright-demo.html" />
+    <Content Include="fonts\titillium-lightupright-webfont.svg" />
+    <Content Include="fonts\titillium-regular-demo.html" />
+    <Content Include="fonts\titillium-regular-webfont.svg" />
+    <Content Include="fonts\titillium-regularitalic-demo.html" />
+    <Content Include="fonts\titillium-regularitalic-webfont.svg" />
+    <Content Include="fonts\titillium-semibold-demo.html" />
+    <Content Include="fonts\titillium-semibold-webfont.svg" />
+    <Content Include="fonts\titillium-semibolditalic-demo.html" />
+    <Content Include="fonts\titillium-semibolditalic-webfont.svg" />
+    <Content Include="fonts\titillium-thin-demo.html" />
+    <Content Include="fonts\titillium-thin-webfont.svg" />
+    <Content Include="fonts\titillium-thinitalic-demo.html" />
+    <Content Include="fonts\titillium-thinitalic-webfont.svg" />
+    <Content Include="IntranetAllPagesFiles\AllArticles.txt" />
+    <Content Include="IntranetAllPagesFiles\AllLatestNews.txt" />
+    <Content Include="IntranetAllPagesFiles\CompliancePortal.txt" />
+    <Content Include="IntranetAllPagesFiles\Elements.xml" />
+    <Content Include="IntranetAllPagesFiles\Home.txt" />
+    <Content Include="IntranetAllPagesFiles\IntranetSurvey.txt" />
+    <Content Include="IntranetAllPagesFiles\LatestUpdateDetails.txt" />
+    <Content Include="IntranetAllPagesFiles\LatestUpdates.txt" />
+    <Content Include="IntranetAllPagesFiles\MarkYourCalendar.txt" />
+    <Content Include="IntranetAllPagesFiles\NBB-FamilyUpdates.txt" />
+    <Content Include="IntranetAllPagesFiles\NBB-FamilyUpdatesDetailedPage.txt" />
+    <Content Include="IntranetAllPagesFiles\NBB-FamilyUpdatesNew.txt" />
+    <Content Include="IntranetAllPagesFiles\NBBFamilyUpdates.txt" />
+    <Content Include="IntranetAllPagesFiles\OrgAnnouncementDetails.txt" />
+    <Content Include="IntranetAllPagesFiles\OrgAnnouncements.txt" />
+    <Content Include="IntranetAllPagesFiles\QuickLinks.txt" />
+    <Content Include="IntranetAllPagesFiles\Sample.txt" />
+    <Content Include="IntranetAllPagesFiles\Test.txt" />
+    <Content Include="IntranetCSSFiles\bootstrap.txt" />
+    <Content Include="IntranetCSSFiles\chart.txt" />
+    <Content Include="IntranetCSSFiles\Elements.xml" />
+    <Content Include="IntranetCSSFiles\fontawesome.txt" />
+    <Content Include="IntranetCSSFiles\NBBMain.txt" />
+    <Content Include="IntranetCSSFiles\NBBResponsive.txt" />
+    <Content Include="IntranetCSSFiles\owlcarouselmin.txt" />
+    <Content Include="IntranetCSSFiles\owlthemedefaultmin.txt" />
+    <Content Include="IntranetCSSFiles\Sample.txt" />
+    <Content Include="IntranetDisplayTemplateFiles\Control_AllNBBFamilypdates.txt" />
+    <Content Include="IntranetDisplayTemplateFiles\control_DepartmentMarkCalendar.txt" />
+    <Content Include="IntranetDisplayTemplateFiles\Control_ImpAnnouncement.txt" />
+    <Content Include="IntranetDisplayTemplateFiles\Control_LatestUpdateDetails.txt" />
+    <Content Include="IntranetDisplayTemplateFiles\Control_LatestUpdates.txt" />
+    <Content Include="IntranetDisplayTemplateFiles\control_Latest_News.txt" />
+    <Content Include="IntranetDisplayTemplateFiles\control_MarkYourCalendar.txt" />
+    <Content Include="IntranetDisplayTemplateFiles\Control_NBBFamilyUpdatesDetailedPage.txt" />
+    <Content Include="IntranetDisplayTemplateFiles\Control_NBBFamilyUpdatesNew.txt" />
+    <Content Include="IntranetDisplayTemplateFiles\Control_NBBTaskWebPart.txt" />
+    <Content Include="IntranetDisplayTemplateFiles\Control_OrgAnnouncementDetails.txt" />
+    <Content Include="IntranetDisplayTemplateFiles\Control_QuickLinks.txt" />
+    <Content Include="IntranetDisplayTemplateFiles\Control_VoiceOfMgtPaging.txt" />
+    <Content Include="IntranetDisplayTemplateFiles\Elements.xml" />
+    <Content Include="IntranetDisplayTemplateFiles\Item_AllNBFamilyUpdate.txt" />
+    <Content Include="IntranetDisplayTemplateFiles\item_ArticleDetails.txt" />
+    <Content Include="IntranetDisplayTemplateFiles\Item_DepartmentMarkYourCalendar.txt" />
+    <Content Include="IntranetDisplayTemplateFiles\Item_FamilyUpdates.txt" />
+    <Content Include="IntranetDisplayTemplateFiles\Item_Important_Announcements.txt" />
+    <Content Include="IntranetDisplayTemplateFiles\Item_LargePicture.txt" />
+    <Content Include="IntranetDisplayTemplateFiles\item_LatestUpdate.txt" />
+    <Content Include="IntranetDisplayTemplateFiles\Item_LatestUpdatesDetails.txt" />
+    <Content Include="IntranetDisplayTemplateFiles\Item_Latest_News_Home.txt" />
+    <Content Include="IntranetDisplayTemplateFiles\Item_MarkYourCalendar.txt" />
+    <Content Include="IntranetDisplayTemplateFiles\Item_NBBFamilyUpdatesHomePage.txt" />
+    <Content Include="IntranetDisplayTemplateFiles\Item_NBBItemsDetaildView.txt" />
+    <Content Include="IntranetDisplayTemplateFiles\Item_OrgAnnouncement.txt" />
+    <Content Include="IntranetDisplayTemplateFiles\Item_QuickLinks.txt" />
+    <Content Include="IntranetDisplayTemplateFiles\Item_VoiceOfManagement.txt" />
+    <Content Include="IntranetDisplayTemplateFiles\Item_VoiceOfMgt.txt" />
+    <Content Include="IntranetDisplayTemplateFiles\Sample.txt" />
+    <Content Include="IntranetFontsFiles\Elements.xml" />
+    <Content Include="IntranetFontsFiles\Sample.txt" />
+    <Content Include="IntranetImagesFIles\Default-profile-pic.jpg" />
+    <Content Include="IntranetImagesFIles\Elements.xml" />
+    <Content Include="IntranetImagesFIles\ic-all-issues.png" />
+    <Content Include="IntranetImagesFIles\ic-issues-closed-and-verified.png" />
+    <Content Include="IntranetImagesFIles\ic-issues-closed-but-not-verified.png" />
+    <Content Include="IntranetImagesFIles\ic-Issues-closed-by-owner.png" />
+    <Content Include="IntranetImagesFIles\ic-issues-closed-by-risk-acceptance.png" />
+    <Content Include="IntranetImagesFIles\ic-issues-not-due-yet.png" />
+    <Content Include="IntranetImagesFIles\ic-issues-past-due.png" />
+    <Content Include="IntranetImagesFIles\ic-outstanding-issues.png" />
+    <Content Include="IntranetImagesFIles\NBB-intranet-logo.jpg" />
+    <Content Include="IntranetImagesFIles\NBB-logo.jpg" />
+    <Content Include="IntranetImagesFIles\profile-pic.jpg" />
+    <Content Include="IntranetImagesFIles\Sample.txt" />
+    <Content Include="IntranetImagesFIles\voiceofmgt_photo.jpg" />
+    <Content Include="IntranetJSFiles\bootstrap.min.txt" />
+    <Content Include="IntranetJSFiles\CarouselKO.txt" />
+    <Content Include="IntranetJSFiles\chart.txt" />
+    <Content Include="IntranetJSFiles\Elements.xml" />
+    <Content Include="IntranetJSFiles\IntranetSurveyJSLink.txt" />
+    <Content Include="IntranetJSFiles\IntranetSurveyNewItem.txt" />
+    <Content Include="IntranetJSFiles\jquery-3.1.0.min.txt" />
+    <Content Include="IntranetJSFiles\jquery.dialog.min.txt" />
+    <Content Include="IntranetJSFiles\jquery.slimscroll.min.txt" />
+    <Content Include="IntranetJSFiles\knockout-3.2.0.txt" />
+    <Content Include="IntranetJSFiles\ko.sp-1.0.txt" />
+    <Content Include="IntranetJSFiles\LatestUpdatesJSLink.txt" />
+    <Content Include="IntranetJSFiles\moment.txt" />
+    <Content Include="IntranetJSFiles\NBBCommonFunctions.txt" />
+    <Content Include="IntranetJSFiles\npm.txt" />
+    <Content Include="IntranetJSFiles\OrgAnnouncementJSLink.txt" />
+    <Content Include="IntranetJSFiles\owl.carousel.min.txt" />
+    <Content Include="IntranetJSFiles\perfect-scrollbar.txt" />
+    <Content Include="IntranetJSFiles\PollKO.txt" />
+    <Content Include="IntranetJSFiles\Sample.txt" />
+    <Content Include="IntranetJSFiles\WelcomeControl.txt" />
+    <Content Include="IntranetPageLayoutsFiles\DepartmentGenricPageLayout.txt" />
+    <Content Include="IntranetPageLayoutsFiles\Elements.xml" />
+    <Content Include="IntranetPageLayoutsFiles\NBBHomePageLayout.txt" />
+    <Content Include="IntranetPageLayoutsFiles\NBBLearningPageLayout.txt" />
+    <Content Include="IntranetPageLayoutsFiles\NBBOneColPageLayout.txt" />
+    <Content Include="IntranetPageLayoutsFiles\Sample.txt" />
+    <Content Include="IntranetTextFiles\carousel.txt" />
+    <Content Include="IntranetTextFiles\chart.html" />
+    <Content Include="IntranetTextFiles\Elements.xml" />
+    <Content Include="IntranetTextFiles\IntranetSurveyJSLink.txt" />
+    <Content Include="IntranetTextFiles\IntranetSurveyNewItem.txt" />
+    <Content Include="IntranetTextFiles\LatestUpdatesJSLink.txt" />
+    <Content Include="IntranetTextFiles\OrgAnnouncementJSLink.txt" />
+    <Content Include="IntranetTextFiles\Poll.txt" />
+    <Content Include="IntranetTextFiles\Sample.txt" />
+    <Content Include="IntranetTextFiles\WelcomeControl.txt" />
+    <Content Include="IntranetWebFontsFiles\Elements.xml" />
+    <Content Include="IntranetWebFontsFiles\fontawesome-webfont.svg" />
+    <Content Include="IntranetWebFontsFiles\Gill Sans MT Bold.svg" />
+    <Content Include="IntranetWebFontsFiles\Gill Sans MT.svg" />
+    <Content Include="IntranetWebFontsFiles\Sample.txt" />
+    <Content Include="IntranetMasterPagesFiles\Elements.xml" />
+    <Content Include="IntranetMasterPagesFiles\MasterPage.txt" />
+    <Content Include="IntranetWebPartFiles\Elements.xml" />
+    <Content Include="IntranetWebPartFiles\Latest News Home Content Search.txt" />
+    <Content Include="IntranetWebPartFiles\Sample.txt" />
+    <Content Include="Pages\Elements.xml" />
+    <Content Include="Pages\Default.aspx" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Scripts\jquery-1.9.1.min.map" />
+    <None Include="Scripts\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{91f3d112-56e5-4d2b-8696-6453acd1a4f7}</SharePointProjectItemId>
+    </None>
+    <Content Include="Scripts\Elements.xml" />
+    <Content Include="Scripts\App.js" />
+    <Content Include="Scripts\IntranetApp.js" />
+    <Content Include="Scripts\IntranetCommon.js" />
+    <Content Include="Scripts\jquery-1.9.1.intellisense.js" />
+    <Content Include="Scripts\jquery-1.9.1.js" />
+    <Content Include="Scripts\jquery-1.9.1.min.js" />
+    <Content Include="Scripts\_references.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Content\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{6b359f8e-4210-426d-be10-74125f05bd01}</SharePointProjectItemId>
+    </None>
+    <Content Include="Content\Elements.xml" />
+    <Content Include="Content\App.css" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Images\AppIcon.png">
+      <OpcRelationship>manifest-icon</OpcRelationship>
+    </Content>
+    <Content Include="Images\Elements.xml" />
+    <None Include="Images\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{c1336ff4-6ba6-46bd-88ec-7382347f574d}</SharePointProjectItemId>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Package\Package.package">
+      <PackageId>{ba7c0608-cf73-4368-bc01-6db8148a8731}</PackageId>
+    </None>
+    <None Include="Package\Package.Template.xml">
+      <DependentUpon>Package.package</DependentUpon>
+    </None>
+    <None Include="Features\Feature1\Feature1.feature">
+      <FeatureId>{f0bb85b3-ed45-4a57-a766-7f8c9ae0cce1}</FeatureId>
+    </None>
+    <None Include="Features\Feature1\Feature1.Template.xml">
+      <DependentUpon>Feature1.feature</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <AppManifestFile Include="AppManifest.xml">
+      <SubType>Designer</SubType>
+    </AppManifestFile>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(VSToolsPath)\SharePointTools\Microsoft.VisualStudio.SharePoint.targets" Condition="'$(VSToolsPath)' != ''" />
+</Project>

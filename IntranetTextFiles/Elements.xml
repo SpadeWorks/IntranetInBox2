@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Elements xmlns="http://schemas.microsoft.com/sharepoint/">
+  <Module Name="IntranetTextFiles">
+    <File Path="IntranetTextFiles\Sample.txt" Url="IntranetTextFiles/Sample.txt" ReplaceContent="TRUE" />
+    <File Path="IntranetTextFiles\carousel.txt" Url="IntranetTextFiles/carousel.txt" ReplaceContent="TRUE" />
+    <File Path="IntranetTextFiles\chart.html" Url="IntranetTextFiles/chart.html" ReplaceContent="TRUE" />
+    <File Path="IntranetTextFiles\IntranetSurveyJSLink.txt" Url="IntranetTextFiles/IntranetSurveyJSLink.txt" ReplaceContent="TRUE" />
+    <File Path="IntranetTextFiles\IntranetSurveyNewItem.txt" Url="IntranetTextFiles/IntranetSurveyNewItem.txt" ReplaceContent="TRUE" />
+    <File Path="IntranetTextFiles\LatestUpdatesJSLink.txt" Url="IntranetTextFiles/LatestUpdatesJSLink.txt" ReplaceContent="TRUE" />
+    <File Path="IntranetTextFiles\OrgAnnouncementJSLink.txt" Url="IntranetTextFiles/OrgAnnouncementJSLink.txt" ReplaceContent="TRUE" />
+    <File Path="IntranetTextFiles\Poll.txt" Url="IntranetTextFiles/Poll.txt" ReplaceContent="TRUE" />
+    <File Path="IntranetTextFiles\WelcomeControl.txt" Url="IntranetTextFiles/WelcomeControl.txt" ReplaceContent="TRUE" />
+  </Module>
+</Elements>

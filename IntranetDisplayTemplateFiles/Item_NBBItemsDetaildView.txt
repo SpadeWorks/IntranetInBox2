@@ -1,0 +1,133 @@
+﻿<html xmlns:mso="urn:schemas-microsoft-com:office:office" xmlns:msdt="uuid:C2F41010-65B3-11d1-A29F-00AA00C14882"> 
+<head>
+<title>NBB Family Update Items Detailed</title>
+
+<!--[if gte mso 9]><xml>
+<mso:CustomDocumentProperties>
+<mso:TemplateHidden msdt:dt="string">0</mso:TemplateHidden>
+<mso:ManagedPropertyMapping msdt:dt="string">&#39;Picture URL&#39;{Picture URL}:&#39;PublishingImage;PictureURL;PictureThumbnailURL&#39;,&#39;Link URL&#39;{Link URL}:&#39;Path&#39;,&#39;Line 1&#39;{Line 1}:&#39;EmployeeName&#39;,&#39;Line 2&#39;{Line 2}:StartTime,&#39;Line 3&#39;{Line 3}:&#39;EventStartDate&#39;,&#39;SecondaryFileExtension&#39;,&#39;ContentType&#39;{ContentType}:&#39;ContentType&#39;</mso:ManagedPropertyMapping>
+<mso:MasterPageDescription msdt:dt="string">This Item Display Template will show a 304x100 picture of the item on top. The title and the default item description will display to the bottom of the picture with an additional line that is available for a custom managed property.</mso:MasterPageDescription>
+<mso:ContentTypeId msdt:dt="string">0x0101002039C03B61C64EC4A04F5361F385106603</mso:ContentTypeId>
+<mso:TargetControlType msdt:dt="string">;#Content Web Parts;#</mso:TargetControlType>
+<mso:HtmlDesignAssociated msdt:dt="string">1</mso:HtmlDesignAssociated>
+<mso:HtmlDesignConversionSucceeded msdt:dt="string">True</mso:HtmlDesignConversionSucceeded>
+<mso:HtmlDesignStatusAndPreview msdt:dt="string">http://icsp2016dev102:8081/_catalogs/masterpage/Display%20Templates/Content%20Web%20Parts/Item_NBBItemsDetaildView.html, Conversion successful.</mso:HtmlDesignStatusAndPreview>
+</mso:CustomDocumentProperties>
+</xml><![endif]-->
+</head>
+
+<body>
+
+    <!--
+            Warning: Do not try to add HTML to this section. Only the contents of the first <div>
+            inside the <body> tag will be used while executing Display Template code. Any HTML that
+            you add to this section will NOT become part of your Display Template.
+    -->
+    <script>
+        $includeLanguageScript(this.url, "~sitecollection/_catalogs/masterpage/Display Templates/Language Files/{Locale}/CustomStrings.js");
+    </script>
+
+    <!--
+        Use the div below to author your Display Template. Here are some things to keep in mind:
+        * Surround any JavaScript logic as shown below using a "pound underscore" (#_ ... _#) token
+        inside a comment.
+
+        * Use the values assigned to your variables using an "underscore pound equals"
+        (_#= ... =#_) token.
+    -->
+
+    <div id="Item_PictureOnTop">
+<!--#_
+var encodedId = $htmlEncode(ctx.ClientControl.get_nextUniqueId() + "_pictureOnTop_");
+
+var linkURL = $getItemValue(ctx, "Link URL");
+linkURL.overrideValueRenderer($urlHtmlEncodeValueObject);
+
+var line1 = $getItemValue(ctx, "Line 1");
+var setLineHeightRenderer = function(valueInfoObj)
+{
+    if(!$isNull(valueInfoObj) && !valueInfoObj.isEmpty)
+    {
+        if(!$isNull(valueInfoObj.defaultValueRenderer))
+        {
+            return valueInfoObj.defaultValueRenderer(valueInfoObj);
+        }
+        else
+        {
+            return valueInfoObj.toString();
+        }
+    }
+    else
+    {
+        return "&nbsp;";
+    }
+}
+var line2 = $getItemValue(ctx, "Line 2");
+
+line2.overrideValueRenderer(setLineHeightRenderer);
+
+var Date="'"+line2.value+"'";
+
+//line2=Date.split(" ")[1] +" "+ Date.split(" ")[2];
+line2=Date +" "+ Date;
+
+var ContentType= $getItemValue(ctx, "ContentType");
+
+var line3 = $getItemValue(ctx, "Line 3");
+line3.overrideValueRenderer(setLineHeightRenderer);
+
+var pictureURL = $getItemValue(ctx, "Picture URL");
+var pictureId = encodedId + "picture";
+var pictureMarkup = Srch.ContentBySearch.getPictureMarkup(pictureURL, 304, 100, ctx.CurrentItem, "cbs-pictureOnTopImg", line1, pictureId);
+
+var containerId = encodedId + "container";
+var pictureLinkId = encodedId + "pictureLink";
+var pictureContainerId = encodedId + "pictureContainer";
+var dataContainerId = encodedId + "dataContainer";
+var line1LinkId = encodedId + "line1Link";
+var line1Id = encodedId + "line1";
+var line2Id = encodedId + "line2";
+var line3Id = encodedId + "line3";
+//var userName = line1.inputValue.split("|");
+var userName = line1;
+ 
+var userProperties = NBB.GetUserProfileProperties(userName[3]);
+var profilePic = "",designation="";
+for(var i=0;i<userProperties.UserProfileProperties.results.length;i++)
+{
+                if (userProperties.UserProfileProperties.results[i].Key === "PictureURL") 
+                { 
+                                profilePic = userProperties.UserProfileProperties.results[i].Value; 
+                }
+
+                if(profilePic == "")
+                {
+                                profilePic ="http://icsp2016dev102:20165/sites/NBB/Style%20Library/NBB/Images/voiceofmgt_photo.jpg";
+                }
+}
+_#-->
+                                   
+                                               <div class="nbb-familyupdates-emp">
+                                               		<div class="tab-content">
+                                               		<div role="tabpanel" class="tab-pane active" id="all">
+                                                <div class="nbb-familyupdates-empwrapper">
+                                                                <div class="nbb-familyupdates-empphoto">
+                                                   <img src="_#= $htmlEncode(profilePic) =#_" width="101" height="93" alt=""/> </div>
+                                                    <div class="nbb-familyupdates-empdetails nbb-familyupdates-bluebox">
+                                                                <div class="nbb-familyupdates-empname">
+                                                                _#= userName[0]=#_                                               
+                                                        </div>
+                                                        <div class="nbb-familyupdates-empdate">
+                                                                _#= ContentType.inputValue =#_            _#= line2 =#_
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            
+                                            
+                                                </div>
+                                                                </div>
+                                                                                                                                                </div>
+                                       
+</body>
+</html>

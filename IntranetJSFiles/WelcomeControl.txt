@@ -1,0 +1,55 @@
+﻿function EmployeeKOLandingRender() {
+    var LandingView = new EmployeeKOModel.EmployeeViewModel();
+    var viewModelDiv = document.getElementById("welcomeControl");
+    ko.applyBindings(LandingView, viewModelDiv);
+}
+
+$(document).ready(function () {
+    EmployeeKOLandingRender();
+    createPieCharts();
+
+});
+
+var EmployeeKOModel = (function () {
+    var EmployeeKOModel = {};
+    var surveyListName;
+    var isPoll;
+    var object = {};
+    EmployeeKOModel.EmployeeViewModel = function () {
+
+        var self = this;
+        self.Employees = ko.observableArray();
+        self.checkUserCountry = function () {
+            $.ajax({
+                url: _spPageContextInfo.webAbsoluteUrl + "/_api/SP.UserProfiles.PeopleManager/GetMyProperties",
+                headers: { Accept: "application/json;odata=verbose" },
+                success: function (data) {
+                    try {
+                        var ProfilepicUrl = data.d.PictureUrl;
+
+                        if (data.d.PictureUrl == null) {
+                            ProfilepicUrl = "http://icsp2016dev102:20165/sites/NBB/Style%20Library/NBB/Images/Default-profile-pic.jpg";
+                        }
+                        self.Employees.push(new EmployeeList(data.d.DisplayName, ProfilepicUrl, "", ""));
+                    } catch (err2) {
+                    }
+                },
+                error: function (jQxhr, errorCode, errorThrown) {
+                    alert(errorThrown);
+                }
+            });
+        }
+
+        function EmployeeList(name, Profilepicurl, department, location) {
+            var self = this;
+            self.Name = name;
+            self.ProfilepicUrl = Profilepicurl;
+            self.Department = department;
+            self.Location = location;
+        }
+
+        
+        self.checkUserCountry();
+    };
+    return EmployeeKOModel;
+})();

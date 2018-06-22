@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Elements xmlns="http://schemas.microsoft.com/sharepoint/">
+  <Module Name="IntranetWebFontsFiles">
+    <File Path="IntranetWebFontsFiles\Sample.txt" Url="IntranetWebFontsFiles/Sample.txt" ReplaceContent="TRUE" />
+    <File Path="IntranetWebFontsFiles\fontawesome-webfont.eot" Url="IntranetWebFontsFiles/fontawesome-webfont.eot" ReplaceContent="TRUE" />
+    <File Path="IntranetWebFontsFiles\fontawesome-webfont.svg" Url="IntranetWebFontsFiles/fontawesome-webfont.svg" ReplaceContent="TRUE" />
+    <File Path="IntranetWebFontsFiles\fontawesome-webfont.ttf" Url="IntranetWebFontsFiles/fontawesome-webfont.ttf" ReplaceContent="TRUE" />
+    <File Path="IntranetWebFontsFiles\fontawesome-webfont.woff" Url="IntranetWebFontsFiles/fontawesome-webfont.woff" ReplaceContent="TRUE" />
+    <File Path="IntranetWebFontsFiles\fontawesome-webfont.woff2" Url="IntranetWebFontsFiles/fontawesome-webfont.woff2" ReplaceContent="TRUE" />
+    <File Path="IntranetWebFontsFiles\FontAwesome.otf" Url="IntranetWebFontsFiles/FontAwesome.otf" ReplaceContent="TRUE" />
+    <File Path="IntranetWebFontsFiles\Gill Sans MT Bold.eot" Url="IntranetWebFontsFiles/Gill Sans MT Bold.eot" ReplaceContent="TRUE" />
+    <File Path="IntranetWebFontsFiles\Gill Sans MT Bold.svg" Url="IntranetWebFontsFiles/Gill Sans MT Bold.svg" ReplaceContent="TRUE" />
+    <File Path="IntranetWebFontsFiles\Gill Sans MT Bold.woff" Url="IntranetWebFontsFiles/Gill Sans MT Bold.woff" ReplaceContent="TRUE" />
+    <File Path="IntranetWebFontsFiles\Gill Sans MT Bold.woff2" Url="IntranetWebFontsFiles/Gill Sans MT Bold.woff2" ReplaceContent="TRUE" />
+    <File Path="IntranetWebFontsFiles\Gill Sans MT.eot" Url="IntranetWebFontsFiles/Gill Sans MT.eot" ReplaceContent="TRUE" />
+    <File Path="IntranetWebFontsFiles\Gill Sans MT.svg" Url="IntranetWebFontsFiles/Gill Sans MT.svg" ReplaceContent="TRUE" />
+    <File Path="IntranetWebFontsFiles\Gill Sans MT.woff" Url="IntranetWebFontsFiles/Gill Sans MT.woff" ReplaceContent="TRUE" />
+    <File Path="IntranetWebFontsFiles\Gill Sans MT.woff2" Url="IntranetWebFontsFiles/Gill Sans MT.woff2" ReplaceContent="TRUE" />
+  </Module>
+</Elements>

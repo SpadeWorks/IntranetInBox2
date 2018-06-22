@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ProjectItem Type="Microsoft.VisualStudio.SharePoint.Module" DefaultFile="Elements.xml" SupportedTrustLevels="All" SupportedDeploymentScopes="Web, Site" xmlns="http://schemas.microsoft.com/VisualStudio/2010/SharePointTools/SharePointProjectItemModel">
+  <Files>
+    <ProjectItemFile Source="Elements.xml" Target="IntranetPageLayoutsFiles\" Type="ElementManifest" />
+    <ProjectItemFile Source="Sample.txt" Target="IntranetPageLayoutsFiles\" Type="ElementFile" />
+    <ProjectItemFile Source="DepartmentGenricPageLayout.txt" Target="IntranetPageLayoutsFiles\" Type="ElementFile" />
+    <ProjectItemFile Source="NBBHomePageLayout.txt" Target="IntranetPageLayoutsFiles\" Type="ElementFile" />
+    <ProjectItemFile Source="NBBLearningPageLayout.txt" Target="IntranetPageLayoutsFiles\" Type="ElementFile" />
+    <ProjectItemFile Source="NBBOneColPageLayout.txt" Target="IntranetPageLayoutsFiles\" Type="ElementFile" />
+  </Files>
+</ProjectItem>

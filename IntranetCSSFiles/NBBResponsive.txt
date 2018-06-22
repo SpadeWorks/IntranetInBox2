@@ -1,0 +1,43 @@
+﻿/*************************Production**************************************************************************************
+Company: Spadeworx Solution Services Inc.
+Author: Mahesh
+Description: This CSS contains styling properties for the project VICI. The screen sizes targeted as follows
+			@media only screen and (max-width: 1280px) range from 1280px and above
+			@media only screen and (max-width: 1024px) range from 1024px to 1279px
+			@media only screen and (max-width: 720px) range from 720px to 1023px
+			@media only screen and (max-width: 568px) range from 568px to 719px
+			@media only screen and (max-width: 320px) range from 320px to 567px
+Version: 1.0
+Date: 7-Oct-2016
+Updated On: 7-Oct-2016
+Updated By: Mahesh Powar
+
+Requirement DESKTOPS & LAPTOPS
+• layout max width = 1280px if device width is >/=1280px for 14’’ notebook / 15”, 15.6’’ laptop / 18.5’’, 19’’, 20”, 21.5’’, 22”, 24” monitors / Etc
+• layout max width = 1024px if device width is <1280px or >/= 1024px for 15’’ monitors / Etc
+TABLETS
+• layout max width = 1280px if CSS width is >/=1280px for Galaxy Tab 10” landscape, Samsung Nexus 10 landscape / Etc
+• layout max width = 1024px if CSS width is <1280px or >/= 1024px for iPad 1, 2, 3, 4, Air, Mini landscape / Etc
+• layout max width = 720px if CSS width is <1024 or >/= 720px for Galaxy Tab 10” portrait, iPad 1, 2, 3, 4, Air, Mini portrait / Etc
+• layout max width = 568px if CSS width is <720 or >/= 568px for Galaxy Tab portrait / Etc
+SMARTPHONES & PHABLETS
+• layout max width = 720px if CSS width is <1024 or >/= 720px for iPhone 6 Plus landscape / Etc
+• layout max width = 568px if CSS width is <720 or >/= 568px for iPhone 5 & 6 landscape, Samsung Galaxy S3, S4, S5 landscape / Etc
+• layout max width = 320px if CSS width is <568 iPhone 6 & 5 portrait, iPhone 4 & 3 portrait & landscape, Samsung Galaxy portrait / Etc
+**************************************************************************************************************/
+
+@media  (min-width:1200px) {
+}
+
+/* Desktop Portrait and Landscape */
+@media (min-width: 992px) {
+		
+}
+
+/* iPad Portrait and Landscape */
+@media (min-width: 768px){
+}
+
+/* Mobile Portrait and Landscape */
+@media only screen 
+  and (max-width: 767px) {

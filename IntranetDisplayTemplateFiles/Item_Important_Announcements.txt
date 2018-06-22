@@ -1,0 +1,193 @@
+﻿<html xmlns:mso="urn:schemas-microsoft-com:office:office" xmlns:msdt="uuid:C2F41010-65B3-11d1-A29F-00AA00C14882"> 
+<head>
+<title>Important Announcements</title>
+
+<!--[if gte mso 9]><xml>
+<mso:CustomDocumentProperties>
+<mso:TemplateHidden msdt:dt="string">0</mso:TemplateHidden>
+<mso:ManagedPropertyMapping msdt:dt="string">&#39;Link URL&#39;{Link URL}:&#39;Path&#39;,&#39;Line 1&#39;{Line 1}:&#39;Title&#39;,&#39;Line 2&#39;{Line 2}:&#39;DiscussionPost&#39;,&#39;Line 3&#39;{Line 3}:&#39;&#39;,&#39;FileExtension&#39;,&#39;SecondaryFileExtension&#39;,&#39;ExpirationTime&#39;{ExpirationTime}:&#39;ExpirationTime&#39;,&#39;ExpiresOWSDATE&#39;{ExpiresOWSDATE}:&#39;ExpiresOWSDATE&#39;,&#39;EmployeeDepartment&#39;{EmployeeDepartment}:&#39;EmployeeDepartment&#39;</mso:ManagedPropertyMapping>
+<mso:MasterPageDescription msdt:dt="string">This Item Display Template will show a small thumbnail icon next to a hyperlink of the item title, with an additional line that is available for a custom managed property.</mso:MasterPageDescription>
+<mso:ContentTypeId msdt:dt="string">0x0101002039C03B61C64EC4A04F5361F385106603</mso:ContentTypeId>
+<mso:TargetControlType msdt:dt="string">;#Content Web Parts;#</mso:TargetControlType>
+<mso:HtmlDesignAssociated msdt:dt="string">1</mso:HtmlDesignAssociated>
+<mso:HtmlDesignConversionSucceeded msdt:dt="string">True</mso:HtmlDesignConversionSucceeded>
+<mso:HtmlDesignStatusAndPreview msdt:dt="string">http://icsp2016dev102:8081/_catalogs/masterpage/Display%20Templates/Content%20Web%20Parts/Item_Important_Announcements.html, Conversion successful.</mso:HtmlDesignStatusAndPreview>
+</mso:CustomDocumentProperties>
+</xml><![endif]-->
+</head>
+
+<body>
+
+    <!--
+            Warning: Do not try to add HTML to this section. Only the contents of the first <div>
+            inside the <body> tag will be used while executing Display Template code. Any HTML that
+            you add to this section will NOT become part of your Display Template.
+    -->
+    <script>
+        $includeLanguageScript(this.url, "~sitecollection/_catalogs/masterpage/Display Templates/Language Files/{Locale}/CustomStrings.js");
+    </script>
+
+    <!--
+        Use the div below to author your Display Template. Here are some things to keep in mind:
+        * Surround any JavaScript logic as shown below using a "pound underscore" (#_ ... _#) token
+        inside a comment.
+
+        * Use the values assigned to your variables using an "underscore pound equals"
+        (_#= ... =#_) token.
+    -->
+
+    <div id="TwoLines">
+<!--#_
+var encodedId = $htmlEncode(ctx.ClientControl.get_nextUniqueId() + "_2lines_");
+var DatewithSuffix;
+var month;
+var year;
+var monthNames = ["January", "February", "March", "April", "May", "June",
+  "July", "August", "September", "October", "November", "December"
+];
+var days = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+
+var linkURL = $getItemValue(ctx, "Link URL");
+linkURL.overrideValueRenderer($urlHtmlEncode);
+var iconURL = Srch.ContentBySearch.getIconSourceFromItem(ctx.CurrentItem);
+
+var line1 = $getItemValue(ctx, "Line 1");
+var line2 = $getItemValue(ctx, "Line 2");
+var line3 = $getItemValue(ctx, "Line 3");
+
+line1.overrideValueRenderer($contentLineText);
+line2.overrideValueRenderer($contentLineText);
+line3.overrideValueRenderer($contentLineText);
+
+
+var containerId = encodedId + "container";
+var pictureLinkId = encodedId + "pictureLink";
+var pictureId = encodedId + "picture";
+var dataContainerId = encodedId + "dataContainer";
+var line1LinkId = encodedId + "line1Link";
+
+var line1Id = encodedId + "line1";
+var line2Id = encodedId + "line2";
+var line3Id = encodedId + "line3";
+var ExpireDate = '';
+
+ExpireDate = $getItemValue(ctx, "ExpirationTime");
+if(ExpireDate == "" )
+{
+ExpireDate = $getItemValue(ctx, "ExpiresOWSDATE");
+}
+var date1 = new Date(ExpireDate);
+var hrs = date1.getHours();
+
+
+// To get Expire Date
+var yearExpire='',monthExpire='',dateExpire=''
+if(typeof(ExpireDate.value)!='object' && ExpireDate.value!=null){
+	yearExpire=ExpireDate.value!=null?new Date(ExpireDate.value.split('Z')[0] + "Z").getFullYear():'';
+	monthExpire=ExpireDate.value!=null?monthNames[new Date(ExpireDate.value.split('Z')[0] + "Z").getMonth()]:'';
+	dateExpire=ExpireDate.value!=null?new Date(ExpireDate.value.split('Z')[0] + "Z").getDate():'';
+	
+}else if(typeof(ExpireDate.value)=='object')
+{
+	yearExpire=ExpireDate.value!=null?ExpireDate.value.getFullYear():'';
+	monthExpire=ExpireDate.value!=null?monthNames[ExpireDate.value.getMonth()]:'';
+	dateExpire=ExpireDate.value!=null?new Date((ExpireDate.value).toLocaleString()).getDate():'';
+}
+var DatewithSuffixAnnouncement=SuffixFordate(dateExpire);
+
+var min=((date1.getMinutes()<10?'0':'') + date1.getMinutes());
+
+	month=monthExpire;
+	year=yearExpire;
+
+function SuffixFordate(date) {
+	if(date>3 && date<21) return date+'th';
+	switch (date % 10) {
+	case 1:  return date+"st";
+	case 2:  return date+"nd";
+	case 3:  return date+"rd";
+	default: return date+"th";
+	}
+};
+var actualhrs = (hrs >= 12) ? hrs -12 : hrs;
+var ampm = (hrs >= 12) ? "PM" : "AM";
+
+
+if(actualhrs == 0)
+{
+  actualhrs= 12;
+}
+var department="";
+if (!$isEmptyString(ctx.CurrentItem.EmployeeDepartment)) { 
+				var Department =Srch.U.getArray(ctx.CurrentItem.EmployeeDepartment);
+				var shortDept;
+				var FormattedDepartment="";
+				for(var i=0 ; i < Department.length ; i++)
+				{
+					shortDept=Department[i];
+					if(department.length>0)
+					{
+						if (!$isEmptyString(shortDept))
+							department =department+", "+shortDept.split("|")[3];
+					}
+					else
+					{
+						if (!$isEmptyString(shortDept))
+							department =shortDept.split("|")[3].split("GTSet")[0];
+					}
+				
+				}
+			}
+
+if (!$isEmptyString(ctx.CurrentItem.DiscussionPost))
+ { 
+var copyWithoutHTML = ctx.CurrentItem.DiscussionPost.replace(/<(?:.|\n)*?>/gm, '');
+var shortCopy;
+if(copyWithoutHTML.length > 120) 
+{
+shortCopy = copyWithoutHTML.substring(0, 120)+ "... ";
+}
+else {
+shortCopy = copyWithoutHTML;
+}
+}
+  var currentRowindex = ctx.CurrentItemIdx;  
+
+ 	if(currentRowindex ==0)	
+		    {   
+_#-->
+		
+		
+						<div class="newsbulltin-row">
+					
+					<div class="newsbulletin-content">
+						<i class="fa fa-bullhorn" aria-hidden="true"></i>
+						<a class="it_announceTitle" href="_#= linkURL =#_" title="_#= $htmlEncode(line1.defaultValueRenderer(line1)) =#_" id="_#= line1LinkId =#_">_#= line1 =#_						
+						 on <span>_#= month=#_ _#=dateExpire=#_, _#= year=#_</span>. <span>_#=department=#_ </span></a>
+				                                                                                        </div>
+                                                </div>                                             
+                                           
+                                      
+			
+<!--#_	
+}		
+			else
+{
+_#-->
+				<div class="newsbulltin-row">
+					
+					<div class="newsbulletin-content">
+						<i class="fa fa-bullhorn" aria-hidden="true"></i>
+						<a class="it_announceTitle" href="_#= linkURL =#_" title="_#= $htmlEncode(line1.defaultValueRenderer(line1)) =#_" id="_#= line1LinkId =#_">_#= line1 =#_
+						 on <span>_#= month=#_ _#=dateExpire=#_, _#= year=#_</span>. <span>_#=department=#_ </span></a>
+				                                                                                        </div>
+                                                </div>
+			
+			
+<!--#_
+}
+
+_#-->
+		</div>
+</body>
+</html>

@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Elements xmlns="http://schemas.microsoft.com/sharepoint/">
+  <Module Name="IntranetWebPartFiles">
+    <File Path="IntranetWebPartFiles\Sample.txt" Url="IntranetWebPartFiles/Sample.txt" ReplaceContent="TRUE" />
+    <File Path="IntranetWebPartFiles\Latest News Home Content Search.txt" Url="IntranetWebPartFiles/Latest News Home Content Search.txt" ReplaceContent="TRUE" />
+  </Module>
+</Elements>

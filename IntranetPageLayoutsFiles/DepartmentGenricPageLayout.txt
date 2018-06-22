@@ -1,0 +1,354 @@
+<?xml version="1.0" encoding="utf-8"?><!--SPG:
+
+This HTML file has been associated with a SharePoint Page Layout (.aspx file) carrying the same name.  While the files remain associated, you will not be allowed to edit the .aspx file, and any rename, move, or deletion operations will be reciprocated.
+
+To build the page layout directly from this HTML file, simply fill in the contents of content placeholders.  Use the Snippet Generator at http://icsp2016dev102:20165/sites/NBB/_layouts/15/ComponentHome.aspx?Url=http%3A%2F%2Ficsp2016dev102%3A20165%2Fsites%2FNBB%2F%5Fcatalogs%2Fmasterpage%2FDepartmentGenricPageLayout%2Easpx to create and customize additional content placeholders and other useful SharePoint entities, then copy and paste them as HTML snippets into your HTML code.   All updates to this file within content placeholders will automatically sync to the associated page layout.
+
+-->
+<!-- _lcid="1033" _version="16.0.4351" _dal="1" -->
+<!-- _LocalBinding -->
+<!--SPM:<%@Master language="C#"%>-->
+<!--SPM:<%@ Register Tagprefix="SharePoint" Namespace="Microsoft.SharePoint.WebControls" Assembly="Microsoft.SharePoint, Version=16.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c" %>-->
+<!--SPM:<%@ Register Tagprefix="Utilities" Namespace="Microsoft.SharePoint.Utilities" Assembly="Microsoft.SharePoint, Version=16.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c" %>-->
+<!--SPM:<%@ Import Namespace="Microsoft.SharePoint" %>-->
+<!--SPM:<%@ Assembly Name="Microsoft.Web.CommandUI, Version=16.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c" %>-->
+<!--SPM:<%@ Import Namespace="Microsoft.SharePoint.ApplicationPages" %>-->
+<!--SPM:<%@ Register Tagprefix="WebPartPages" Namespace="Microsoft.SharePoint.WebPartPages" Assembly="Microsoft.SharePoint, Version=16.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c" %>-->
+<!--SPM:<%@ Register TagPrefix="wssuc" TagName="Welcome" src="~/_controltemplates/15/Welcome.ascx" %>-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"[]>
+<html xmlns:mso="urn:schemas-microsoft-com:office:office" xmlns:msdt="uuid:C2F41010-65B3-11d1-A29F-00AA00C14882">
+    <head runat="server">
+        <!--MS:<asp:ContentPlaceHolder id="PlaceHolderPageTitle" runat="server">-->
+            <!--CS: Start Page Field: Title Snippet-->
+            <!--SPM:<%@Register Tagprefix="PageFieldFieldValue" Namespace="Microsoft.SharePoint.WebControls" Assembly="Microsoft.SharePoint, Version=16.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c"%>-->
+            <!--MS:<PageFieldFieldValue:FieldValue FieldName="fa564e0f-0c70-4ab9-b863-0177e6ddd247" runat="server">-->
+            <!--ME:</PageFieldFieldValue:FieldValue>-->
+            <!--CE: End Page Field: Title Snippet-->
+        <!--ME:</asp:ContentPlaceHolder>-->
+        <link href="http://icsp2016dev102:8081/_layouts/15/1033/styles/corev15.css" type="text/css" rel="stylesheet" />
+        <link href="http://icsp2016dev102:8081/_layouts/15/1033/styles/searchv15.css" type="text/css" rel="stylesheet" />
+        <!--MS:<asp:ContentPlaceHolder id="PlaceHolderAdditionalPageHead" runat="server">-->
+            <!--CS: Start Edit Mode Panel Snippet-->
+            <!--SPM:<%@Register Tagprefix="SharePoint" Namespace="Microsoft.SharePoint.WebControls" Assembly="Microsoft.SharePoint, Version=16.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c"%>-->
+            <!--SPM:<%@Register Tagprefix="Publishing" Namespace="Microsoft.SharePoint.Publishing.WebControls" Assembly="Microsoft.SharePoint.Publishing, Version=16.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c"%>-->
+            <!--MS:<Publishing:EditModePanel runat="server" id="editmodestyles">-->
+                <!--MS:<SharePoint:CssRegistration name="&#60;% $SPUrl:~sitecollection/Style Library/~language/Themable/Core Styles/editmode15.css %&#62;" After="&#60;% $SPUrl:~sitecollection/Style Library/~language/Themable/Core Styles/pagelayouts15.css %&#62;" runat="server">-->
+                <!--ME:</SharePoint:CssRegistration>-->
+            <!--ME:</Publishing:EditModePanel>-->
+            <!--CE: End Edit Mode Panel Snippet-->
+        <!--ME:</asp:ContentPlaceHolder>-->
+        <link href="../../sites/Style%20Library/NBB/CSS/bootstrap.min.css" rel="stylesheet" type="text/css" />
+        <link href="../../sites/Style%20Library/NBB/CSS/owl.carousel.min.css" rel="stylesheet" type="text/css" />
+        <link href="../../sites/Style%20Library/NBB/CSS/owl.theme.default.min.css" rel="stylesheet" type="text/css" />
+        <link href="../../sites/Style%20Library/NBB/CSS/font-awesome.min.css" rel="stylesheet" type="text/css" />
+        <link href="../../sites/Style%20Library/NBB/CSS/NBB_Main.css" rel="stylesheet" type="text/css" />
+        <style type="text/css">//<![CDATA[
+    .ms-core-animation-transparent
+    {
+        opacity:0;
+    }
+    .ms-isBot .ms-core-animation-transparent
+    {
+        opacity:1;
+    }
+        
+        
+        
+        //]]>
+        </style>
+        <script type="text/javascript">//<![CDATA[
+        var g_pageLoadAnimationParams = { elementSlideIn : "sideNavBox", elementSlideInPhase2 : "contentBox" };
+    
+        
+        
+        
+        
+        //]]>
+        </script>
+        <script type="text/javascript" src="../../sites/Style%20Library/NBB/JS/jquery-3.1.0.min.js">//<![CDATA[
+        
+        
+        
+        
+        //]]>
+        </script>
+        <script type="text/javascript" src="../../sites/Style%20Library/NBB/JS/bootstrap.min.js">//<![CDATA[
+        
+        
+        
+        
+        //]]>
+        </script>
+        <script type="text/javascript" src="../../sites/Style%20Library/NBB/JS/owl.carousel.min.js">//<![CDATA[
+        
+        
+        
+        
+        //]]>
+        </script>
+        <script type="text/javascript" src="../../sites/Style%20Library/NBB/JS/knockout-3.2.0.js">//<![CDATA[
+        
+        
+        
+        
+        //]]>
+        </script>
+        <script type="text/javascript" src="../../sites/Style%20Library/NBB/JS/WelcomeControl.js">//<![CDATA[
+        
+        
+        
+        
+        //]]>
+        </script>
+        <script type="text/javascript" src="../../sites/Style%20Library/NBB/JS/ko.sp-1.0.js">//<![CDATA[
+        
+        
+        
+        
+        //]]>
+        </script>
+        <!--[if gte mso 9]><xml>
+<mso:CustomDocumentProperties>
+
+<mso:ContentPlaceHolderHashPlaceHolderMain msdt:dt="string">1</mso:ContentPlaceHolderHashPlaceHolderMain>
+<mso:HtmlDesignStatusAndPreview msdt:dt="string">http://icsp2016dev102:8081/_catalogs/masterpage/DepartmentGenricPageLayout.html, Warnings and Errors.</mso:HtmlDesignStatusAndPreview>
+<mso:ContentTypeId msdt:dt="string">0x01010007FF3E057FA8AB4AA42FCB67B453FFC100E214EEE741181F4E9F7ACC43278EE8110003D357F861E29844953D5CAA1D4D8A3B</mso:ContentTypeId>
+<mso:MasterHash msdt:dt="string">223917476</mso:MasterHash>
+<mso:ContentPlaceHolderHashPlaceHolderPageTitle msdt:dt="string">1</mso:ContentPlaceHolderHashPlaceHolderPageTitle>
+<mso:ContentPlaceHolderHashPlaceHolderAdditionalPageHead msdt:dt="string">1</mso:ContentPlaceHolderHashPlaceHolderAdditionalPageHead>
+<mso:HtmlDesignFromMaster msdt:dt="string">http://icsp2016dev102:8081/_catalogs/masterpage/NBB/NBB_Site.html, http://icsp2016dev102:20165/sites/NBB/_catalogs/masterpage/NBB/NBB_Site.html</mso:HtmlDesignFromMaster>
+<mso:PublishingAssociatedContentType msdt:dt="string">;#Welcome Page;#0x010100C568DB52D9D0A14D9B2FDCC96666E9F2007948130EC3DB064584E219954237AF390064DEA0F50FC8C147B0B6EA0636C4A7D4;#</mso:PublishingAssociatedContentType>
+<mso:HtmlDesignAssociated msdt:dt="string">1</mso:HtmlDesignAssociated>
+<mso:ContentPlaceHolderChangedPlaceHolderPageTitle msdt:dt="string">True</mso:ContentPlaceHolderChangedPlaceHolderPageTitle>
+<mso:ContentPlaceHolderChangedPlaceHolderMain msdt:dt="string">True</mso:ContentPlaceHolderChangedPlaceHolderMain>
+<mso:ContentPlaceHolderChangedPlaceHolderAdditionalPageHead msdt:dt="string">True</mso:ContentPlaceHolderChangedPlaceHolderAdditionalPageHead>
+
+
+
+<mso:HtmlDesignPreviewUrl msdt:dt="string"></mso:HtmlDesignPreviewUrl>
+
+
+
+
+<mso:ContentPlaceHolderHashPlaceHolderFormDigest msdt:dt="string">1833940137</mso:ContentPlaceHolderHashPlaceHolderFormDigest>
+<mso:ContentPlaceHolderHashPlaceHolderBodyAreaClass msdt:dt="string">1974311338</mso:ContentPlaceHolderHashPlaceHolderBodyAreaClass>
+</mso:CustomDocumentProperties>
+</xml><![endif]-->
+    </head>
+    <body>
+        <script type="text/javascript">//<![CDATA[ var submitHook = function () { return false; }; theForm._spOldSubmit = theForm.submit; theForm.submit = function () { if (!submitHook()) { this._spOldSubmit(); } }; 
+        
+        
+        
+        
+        //]]>
+        </script>
+        <!--MS:<asp:ContentPlaceHolder id="PlaceHolderMain" runat="server">-->
+            <div class="nbb-DeptLayout">
+                <div class="nbb-DeptWrapper">
+                    <div class="row">
+                        <!-- Starts Page Description Section -->
+                        <div class="col-md-12 col-sm-12 col-xs-12">
+                            <!-- Starts Breadcrumb-->
+                            <!-- Custom BreadCrumb Section Starts here -->
+                            <!-- Refiner Icon Section Starts here -->
+                            <div class="em-RefinerImg">
+                            </div>
+                            <!-- Refiner Icon Section Ends here -->
+                            <div id="breadcrumb-pub" class="breadcrumb-cont breadcrumb_refiner">
+                            	Breadcrumb
+                            </div>
+                            <!-- Ends Breadcrumb-->
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-9 col-sm-12 col-xs-12">
+                            <div class="nbbdept-contentwrap shadowbgBox">
+                                <div class="row">
+                                    <div class="col-md-6 col-sm-12 col-xs-12">
+                                        <!-- Starts Deparment Image Web Zone -->
+                                        <div class="nbbdept-image">
+                                            <div data-name="Page Field: Page Image">
+                                                <!--CS: Start Page Field: Page Image Snippet-->
+                                                <!--SPM:<%@Register Tagprefix="PageFieldRichImageField" Namespace="Microsoft.SharePoint.Publishing.WebControls" Assembly="Microsoft.SharePoint.Publishing, Version=16.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c"%>-->
+                                                <!--MS:<PageFieldRichImageField:RichImageField FieldName="3de94b06-4120-41a5-b907-88773e493458" runat="server">-->
+                                                    <!--PS: Start of READ-ONLY PREVIEW (do not modify)--><div id="ctl02_label" style="display:none">Page Image</div><div id="ctl02__ControlWrapper_RichImageField" class="ms-rtestate-field" style="display:inline" aria-labelledby="ctl02_label"><div align="left" class="ms-formfieldcontainer"><div class="ms-formfieldlabelcontainer" nowrap="nowrap"><span class="ms-formfieldlabel" nowrap="nowrap">Page Image</span></div><div class="ms-formfieldvaluecontainer"><div class="ms-rtestate-field"><img alt="" src="/_layouts/images/home.gif" style="BORDER: px solid; " /></div></div></div></div><!--PE: End of READ-ONLY PREVIEW-->
+                                                <!--ME:</PageFieldRichImageField:RichImageField>-->
+                                                <!--CE: End Page Field: Page Image Snippet-->
+                                            </div>
+                                        </div>
+                                        <!-- Ends Deparment Image Web Zone -->
+                                    </div>
+                                    <div class="col-md-6 col-sm-12 col-xs-12">
+                                    	<div class="nbbdept-deptcontent">
+	                                        <!-- Starts Deparment Description Web Zone -->
+	                                        <div class="nbbdept-title">
+	                                        	<div class="nbb-titleleftbar"></div>
+	                                            <div data-name="Page Field: Title">
+	                                                <!--CS: Start Page Field: Title Snippet-->
+	                                                <!--SPM:<%@Register Tagprefix="PageFieldTextField" Namespace="Microsoft.SharePoint.WebControls" Assembly="Microsoft.SharePoint, Version=16.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c"%>-->
+	                                                <!--MS:<PageFieldTextField:TextField FieldName="fa564e0f-0c70-4ab9-b863-0177e6ddd247" runat="server">-->
+	                                                    <!--PS: Start of READ-ONLY PREVIEW (do not modify)--><div align="left" class="ms-formfieldcontainer"><div class="ms-formfieldlabelcontainer" nowrap="nowrap"><span class="ms-formfieldlabel" nowrap="nowrap">Title</span></div><div class="ms-formfieldvaluecontainer">DepartmentGenricPageLayout </div></div><!--PE: End of READ-ONLY PREVIEW-->
+	                                                <!--ME:</PageFieldTextField:TextField>-->
+	                                                <!--CE: End Page Field: Title Snippet-->
+	                                            </div>
+	                                        </div>
+	                                        <div class="nbbdept-Description nbbdept-descptscroll">
+	                                            <div data-name="Page Field: Page Content">
+	                                                <!--CS: Start Page Field: Page Content Snippet-->
+	                                                <!--SPM:<%@Register Tagprefix="PageFieldRichHtmlField" Namespace="Microsoft.SharePoint.Publishing.WebControls" Assembly="Microsoft.SharePoint.Publishing, Version=16.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c"%>-->
+	                                                <!--MS:<PageFieldRichHtmlField:RichHtmlField FieldName="f55c4d88-1f2e-4ad9-aaa8-819af4ee7ee8" runat="server">-->
+	                                                    <!--PS: Start of READ-ONLY PREVIEW (do not modify)--><div id="ctl02_label" style="display:none">Page Content</div><div id="ctl02__ControlWrapper_RichHtmlField" class="ms-rtestate-field" style="display:inline" aria-labelledby="ctl02_label"><div align="left" class="ms-formfieldcontainer"><div class="ms-formfieldlabelcontainer" nowrap="nowrap"><span class="ms-formfieldlabel" nowrap="nowrap">Page Content</span></div><div class="ms-formfieldvaluecontainer"><div class="ms-rtestate-field">Page Content field value. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</div></div></div></div><!--PE: End of READ-ONLY PREVIEW-->
+	                                                <!--ME:</PageFieldRichHtmlField:RichHtmlField>-->
+	                                                <!--CE: End Page Field: Page Content Snippet-->
+	                                            </div>
+	                                        </div>
+	                                        <!-- Ends Deparment Description Web Zone -->
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                            	<div class="col-md-6 col-sm-12 col-xs-12">
+	                                <div class="nbbdept-tasklist">
+	                                    <!-- Starts Dept Task List Web Zone -->
+	                                    <div data-name="WebPartZone">
+	                                        <!--CS: Start Web Part Zone Snippet-->
+	                                        <!--SPM:<%@Register Tagprefix="WebPartPages" Namespace="Microsoft.SharePoint.WebPartPages" Assembly="Microsoft.SharePoint, Version=16.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c"%>-->
+	                                        <div xmlns:ie="ie">
+	                                            <!--MS:<WebPartPages:WebPartZone runat="server" AllowPersonalization="false" ID="x42970ca641644615966aff7681d1a137" FrameType="TitleBarOnly" Orientation="Vertical">-->
+	                                                <!--MS:<ZoneTemplate>-->
+	                                                    <!--DC: Replace this comment with default web parts for new pages. -->
+	                                                <!--ME:</ZoneTemplate>-->
+	                                            <!--ME:</WebPartPages:WebPartZone>-->
+	                                        </div>
+	                                        <!--CE: End Web Part Zone Snippet-->
+	                                    </div>
+	                                    <!-- Ends Dept Task List Web Zone -->
+	                                </div>
+                            	</div>
+                            	<div class="col-md-6 col-sm-12 col-xs-12">
+	                                <div class="nbbdept-latestnews-wrapper">
+	                                    <!-- Starts Dept Latest News Web Zone -->
+	                                    <div data-name="WebPartZone">
+	                                        <!--CS: Start Web Part Zone Snippet-->
+	                                        <!--SPM:<%@Register Tagprefix="WebPartPages" Namespace="Microsoft.SharePoint.WebPartPages" Assembly="Microsoft.SharePoint, Version=16.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c"%>-->
+	                                        <div xmlns:ie="ie">
+	                                            <!--MS:<WebPartPages:WebPartZone runat="server" AllowPersonalization="false" ID="x9399607e8de3411fb43761ffbfb09c0e" FrameType="TitleBarOnly" Orientation="Vertical">-->
+	                                                <!--MS:<ZoneTemplate>-->
+	                                                    <!--DC: Replace this comment with default web parts for new pages. -->
+	                                                <!--ME:</ZoneTemplate>-->
+	                                            <!--ME:</WebPartPages:WebPartZone>-->
+	                                        </div>
+	                                        <!--CE: End Web Part Zone Snippet-->
+	                                    </div>
+	                                    <!-- Ends Dept Latest News Web Zone -->
+	                                </div>
+                            	</div>
+                            	<div class="col-md-12 col-sm-12 col-xs-12">
+	                                <div class="nbbdept-documentlibrary-wrapper nbb-tablebg dept-shadowbgBox">
+	                                    <!-- Starts Dept Document Library Web Zone -->
+	                                    <div data-name="WebPartZone">
+	                                        <!--CS: Start Web Part Zone Snippet-->
+	                                        <!--SPM:<%@Register Tagprefix="WebPartPages" Namespace="Microsoft.SharePoint.WebPartPages" Assembly="Microsoft.SharePoint, Version=16.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c"%>-->
+	                                        <div xmlns:ie="ie">
+	                                            <!--MS:<WebPartPages:WebPartZone runat="server" AllowPersonalization="false" ID="xaa4e475b1c9341eba28e57e24ab0a490" FrameType="TitleBarOnly" Orientation="Vertical">-->
+	                                                <!--MS:<ZoneTemplate>-->
+	                                                    <!--DC: Replace this comment with default web parts for new pages. -->
+	                                                <!--ME:</ZoneTemplate>-->
+	                                            <!--ME:</WebPartPages:WebPartZone>-->
+	                                        </div>
+	                                        <!--CE: End Web Part Zone Snippet-->
+	                                    </div>
+	                                    <!-- Ends Dept Document Library Web Zone -->
+	                                </div>
+                            	</div>
+                            	<div class="col-md-12 col-sm-12 col-xs-12">
+	                                <div class="nbbdept-medialibrary-wrapper nbb-tablebg dept-shadowbgBox">
+	                                    <!-- Starts Dept Document Library Web Zone -->
+	                                    	<div data-name="WebPartZone">
+											    <!--CS: Start Web Part Zone Snippet-->
+											    <!--SPM:<%@Register Tagprefix="WebPartPages" Namespace="Microsoft.SharePoint.WebPartPages" Assembly="Microsoft.SharePoint, Version=16.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c"%>-->
+											    <div xmlns:ie="ie">
+											        <!--MS:<WebPartPages:WebPartZone runat="server" AllowPersonalization="false" ID="xb1690ebd96e84ff3bd6e407c56e73981" FrameType="TitleBarOnly" Orientation="Vertical">-->
+											            <!--MS:<ZoneTemplate>-->
+											                <!--DC: Replace this comment with default web parts for new pages. -->
+											            <!--ME:</ZoneTemplate>-->
+											        <!--ME:</WebPartPages:WebPartZone>-->
+											    </div>
+											    <!--CE: End Web Part Zone Snippet-->
+											</div>
+	                                    <!-- Ends Dept Document Library Web Zone -->
+	                                </div>
+                            	</div>
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-sm-12 col-xs-12">
+                            <div class="row">
+                                <div class="col-md-12 col-sm-6 col-xs-12">
+                                    <div class="nbbdept-quicklinks">
+                                        <!--Quick Links Web Zone Started-->
+                                        <!--CS: Start Content Search Snippet--><!--SPM:<%@Register Tagprefix="SharePoint"  Namespace="Microsoft.SharePoint.WebControls" Assembly="Microsoft.SharePoint, Version=16.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c" %>--><!--SPM:<%@Register Tagprefix="WebPartPages"  Namespace="Microsoft.SharePoint.WebPartPages" Assembly="Microsoft.SharePoint, Version=16.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c" %>--><!--SPM:<%@Register Tagprefix="PWA"  Namespace="Microsoft.Office.Project.PWA.CommonControls" Assembly="Microsoft.Office.Project.Server.PWA, Version=16.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c" %>--><!--SPM:<%@Register Tagprefix="spsswc"  Namespace="Microsoft.Office.Server.Search.WebControls" Assembly="Microsoft.Office.Server.Search, Version=16.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c" %>--><!--SPM:<%@Register Tagprefix="af25e94ec"  Namespace="Microsoft.Office.Server.Search.WebControls" Assembly="Microsoft.Office.Server.Search, Version=16.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c" %>--><!--MS:<spsswc:ContentBySearchWebPart runat="server" AlwaysRenderOnServer="False" ResultType="" NumberOfItems="20" DataProviderJSON="{&quot;QueryGroupName&quot;:&quot;Default&quot;,&quot;Properties&quot;:{&quot;TryCache&quot;:true,&quot;Scope&quot;:&quot;{Site.URL}&quot;,&quot;UpdateLinksForCatalogItems&quot;:true,&quot;EnableStacking&quot;:true,&quot;ListId&quot;:&quot;00000000-0000-0000-0000-000000000000&quot;},&quot;QueryPropertiesTemplateUrl&quot;:&quot;sitesearch://webroot&quot;,&quot;PropertiesJson&quot;:&quot;{\&quot;TryCache\&quot;:true,\&quot;Scope\&quot;:\&quot;{Site.URL}\&quot;,\&quot;UpdateLinksForCatalogItems\&quot;:true,\&quot;EnableStacking\&quot;:true,\&quot;ListId\&quot;:\&quot;00000000-0000-0000-0000-000000000000\&quot;}&quot;,&quot;IgnoreQueryPropertiesTemplateUrl&quot;:false,&quot;SourceID&quot;:&quot;8413cd39-2156-4e00-b54d-11efd9abdb89&quot;,&quot;SourceName&quot;:&quot;Local SharePoint Results&quot;,&quot;SourceLevel&quot;:&quot;Ssa&quot;,&quot;CollapseSpecification&quot;:&quot;&quot;,&quot;QueryTemplate&quot;:&quot;(contentclass:STS_ListItem OR IsDocument:True) ContentType:\&quot;Link\&quot;&quot;,&quot;FallbackSort&quot;:[{&quot;p&quot;:&quot;LastModifiedTime&quot;,&quot;d&quot;:1}],&quot;FallbackSortJson&quot;:&quot;[{\&quot;p\&quot;:\&quot;LastModifiedTime\&quot;,\&quot;d\&quot;:1}]&quot;,&quot;RankRules&quot;:null,&quot;RankRulesJson&quot;:&quot;null&quot;,&quot;AsynchronousResultRetrieval&quot;:false,&quot;SendContentBeforeQuery&quot;:true,&quot;BatchClientQuery&quot;:true,&quot;FallbackLanguage&quot;:-1,&quot;FallbackRankingModelID&quot;:&quot;&quot;,&quot;EnableStemming&quot;:true,&quot;EnablePhonetic&quot;:false,&quot;EnableNicknames&quot;:false,&quot;EnableInterleaving&quot;:false,&quot;EnableQueryRules&quot;:true,&quot;EnableOrderingHitHighlightedProperty&quot;:false,&quot;HitHighlightedMultivaluePropertyLimit&quot;:-1,&quot;IgnoreContextualScope&quot;:true,&quot;ScopeResultsToCurrentSite&quot;:false,&quot;TrimDuplicates&quot;:false,&quot;ClientType&quot;:&quot;ContentSearchRegular&quot;,&quot;UpdateAjaxNavigate&quot;:true,&quot;SummaryLength&quot;:180,&quot;DesiredSnippetLength&quot;:90,&quot;PersonalizedQuery&quot;:false,&quot;FallbackRefinementFilters&quot;:null,&quot;IgnoreStaleServerQuery&quot;:false,&quot;RenderTemplateId&quot;:&quot;DefaultDataProvider&quot;,&quot;AlternateErrorMessage&quot;:null,&quot;Title&quot;:&quot;&quot;}" BypassResultTypes="True" ItemTemplateId="~sitecollection/_catalogs/masterpage/Display Templates/Content Web Parts/Item_QuickLinks.js" GroupTemplateId="~sitecollection/_catalogs/masterpage/Display Templates/Content Web Parts/Group_Content.js" ResultsPerPage="20" SelectedPropertiesJson="[&quot;OpenLinkInNewWindow&quot;,&quot;OpenLinkInNewWindowOWSBOOL&quot;,&quot;LinkURLOWSURLH&quot;,&quot;QuickLinkURL&quot;,&quot;Title&quot;,&quot;EmployeeDepartment&quot;,&quot;LinkURL&quot;,&quot;Description&quot;]" HitHighlightedPropertiesJson="[&quot;Title&quot;,&quot;Path&quot;,&quot;Author&quot;,&quot;SectionNames&quot;,&quot;SiteDescription&quot;]" AvailableSortsJson="null" ShowBestBets="False" ShowPersonalFavorites="False" ShowDefinitions="False" ShowDidYouMean="False" PreloadedItemTemplateIdsJson="null" ShowAlertMe="False" QueryGroupName="Default" RenderTemplateId="~sitecollection/_catalogs/masterpage/Display Templates/Content Web Parts/Control_QuickLinks.js" StatesJson="{}" ServerIncludeScriptsJson="null" Title="Content Search" FrameType="None" SuppressWebPartChrome="False" Description="&lt;%$Resources:Microsoft.Office.Server.Search,CBS_Description;%&gt;" IsIncluded="True" ZoneID="ImportedPartZone" PartOrder="0" FrameState="Normal" AllowRemove="True" AllowZoneChange="True" AllowMinimize="True" AllowConnect="True" AllowEdit="True" AllowHide="True" IsVisible="True" DetailLink="" HelpLink="" HelpMode="Modeless" Dir="Default" PartImageSmall="" MissingAssembly="&lt;%$Resources:core,ImportErrorMessage;%&gt;" ImportErrorMessage="&lt;%$Resources:core,ImportErrorMessage;%&gt;" PartImageLarge="" IsIncludedFilter="" ExportControlledProperties="True" ConnectionID="00000000-0000-0000-0000-000000000000" ID="g_ffea49b2_d47d_4390_9063_a25642cdf5e4" ChromeType="None" ExportMode="All" __MarkupType="vsattributemarkup" __WebPartId="{ffea49b2-d47d-4390-9063-a25642cdf5e4}" WebPart="true" Height="" Width="">--><!--ME:</spsswc:ContentBySearchWebPart>--><!--PS: Start of READ-ONLY PREVIEW (do not modify)-->
+		                                <div class="ms-webpart-chrome ms-webpart-chrome-fullWidth ">
+		                                <div webpartid="00000000-0000-0000-0000-000000000000" haspers="true" id="WebPartWPQ1" width="100%" class="ms-WPBody noindex " onlyformepart="true" allowdelete="false" style=""><div componentid="ctl00_ctl00_PlaceHolderMain_ComponentMain_ComponentPropertyGrids_g_ffea49b2_d47d_4390_9063_a25642cdf5e4_csr" id="ctl00_ctl00_PlaceHolderMain_ComponentMain_ComponentPropertyGrids_g_ffea49b2_d47d_4390_9063_a25642cdf5e4_csr"></div><noscript>&lt;div id="ctl00_ctl00_PlaceHolderMain_ComponentMain_ComponentPropertyGrids_g_ffea49b2_d47d_4390_9063_a25642cdf5e4_noscript"&gt;It looks like your browser does not have JavaScript enabled. Please turn on JavaScript and try again.&lt;/div&gt;</noscript><div id="ctl00_ctl00_PlaceHolderMain_ComponentMain_ComponentPropertyGrids_g_ffea49b2_d47d_4390_9063_a25642cdf5e4">
+		                                                <div class="display-none">
+		                                                                <div class="ms-webpart-chrome-title" id="WebPartWPQ2_ChromeTitle">
+		                                                                                <span title="" id="WebPartTitleWPQ2" class="js-webpart-titleCell"><h2 style="text-align:justify;" class="ms-webpart-titleText"><nobr><span></span><span id="WebPartCaptionWPQ2"></span></nobr></h2></span>
+		                                                                </div><div webpartid="00000000-0000-0000-0000-000000000000" haspers="true" id="WebPartWPQ2" width="100%" class="ms-WPBody ms-WPBorder noindex ms-wpContentDivSpace " onlyformepart="true" allowdelete="false" style=""><div componentid="ctl00_ctl00_PlaceHolderMain_ComponentMain_ComponentPropertyGrids_g_ffea49b2_d47d_4390_9063_a25642cdf5e4_ctl00_csr" id="ctl00_ctl00_PlaceHolderMain_ComponentMain_ComponentPropertyGrids_g_ffea49b2_d47d_4390_9063_a25642cdf5e4_ctl00_csr"><div class="ms-srch-dataProvider" id="DataProvider" name="Control"></div></div><noscript>&lt;div id="ctl00_ctl00_PlaceHolderMain_ComponentMain_ComponentPropertyGrids_g_ffea49b2_d47d_4390_9063_a25642cdf5e4_ctl00_noscript"&gt;It looks like your browser does not have JavaScript enabled. Please turn on JavaScript and try again.&lt;/div&gt;</noscript><div id="ctl00_ctl00_PlaceHolderMain_ComponentMain_ComponentPropertyGrids_g_ffea49b2_d47d_4390_9063_a25642cdf5e4_ctl00">
+		
+		                                                                </div><div class="ms-clear"></div></div>
+		                                                </div>
+		                                </div><div class="ms-clear"></div></div>
+		                				</div><!--PE: End of READ-ONLY PREVIEW--><!--CE: End Content Search Snippet-->
+                                        <!--Quick Links Web Zone Ended-->
+                                    </div>
+                                </div>
+                                <div class="col-md-12 col-sm-6 col-xs-12">
+                                    <div class="nbbdept-calendar">
+                                        <!-- Starts Inner Quick Links Web Zone -->
+                                        <div data-name="WebPartZone">
+                                            <!--CS: Start Web Part Zone Snippet-->
+                                            <!--SPM:<%@Register Tagprefix="WebPartPages" Namespace="Microsoft.SharePoint.WebPartPages" Assembly="Microsoft.SharePoint, Version=16.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c"%>-->
+                                            <div xmlns:ie="ie">
+                                                <!--MS:<WebPartPages:WebPartZone runat="server" AllowPersonalization="false" ID="x81efba2ac1c04b0984a611ff1c8c7ffb" FrameType="TitleBarOnly" Orientation="Vertical">-->
+                                                    <!--MS:<ZoneTemplate>-->
+                                                        <!--DC: Replace this comment with default web parts for new pages. -->
+                                                    <!--ME:</ZoneTemplate>-->
+                                                <!--ME:</WebPartPages:WebPartZone>-->
+                                            </div>
+                                            <!--CE: End Web Part Zone Snippet-->
+                                        </div>
+                                        <!-- Ends Inner Quick Links Web Zone -->
+                                    </div>
+                                </div>
+                                <div class="col-md-12 col-sm-6 col-xs-12">
+                                    <div class="nbbdept-mediagallery">
+                                        <!-- Starts Inner Quick Links Web Zone -->
+                                        <div data-name="WebPartZone">
+                                            <!--CS: Start Web Part Zone Snippet-->
+                                            <!--SPM:<%@Register Tagprefix="WebPartPages" Namespace="Microsoft.SharePoint.WebPartPages" Assembly="Microsoft.SharePoint, Version=16.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c"%>-->
+                                            <div xmlns:ie="ie">
+                                                <!--MS:<WebPartPages:WebPartZone runat="server" AllowPersonalization="false" ID="x4fbab550d3eb4fd9a97666c46e24afc5" FrameType="TitleBarOnly" Orientation="Vertical">-->
+                                                    <!--MS:<ZoneTemplate>-->
+                                                        <!--DC: Replace this comment with default web parts for new pages. -->
+                                                    <!--ME:</ZoneTemplate>-->
+                                                <!--ME:</WebPartPages:WebPartZone>-->
+                                            </div>
+                                            <!--CE: End Web Part Zone Snippet-->
+                                        </div>
+                                        <!-- Ends Inner Quick Links Web Zone -->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        <!--ME:</asp:ContentPlaceHolder>-->
+        <!--MS:<asp:ContentPlaceHolder id="PlaceHolderFormDigest" runat="server">-->
+            <!--SPM:<SharePoint:FormDigest runat="server"/>-->
+        <!--ME:</asp:ContentPlaceHolder>-->
+        <!--MS:<asp:ContentPlaceHolder id="PlaceHolderBodyAreaClass" runat="server" Visible="true">-->
+        <!--ME:</asp:ContentPlaceHolder>-->
+    </body>
+</html>

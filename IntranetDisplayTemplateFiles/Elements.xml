@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Elements xmlns="http://schemas.microsoft.com/sharepoint/">
+  <Module Name="IntranetDisplayTemplateFiles">
+    <File Path="IntranetDisplayTemplateFiles\Sample.txt" Url="IntranetDisplayTemplateFiles/Sample.txt" ReplaceContent="TRUE" />
+    <File Path="IntranetDisplayTemplateFiles\Control_AllNBBFamilypdates.txt" Url="IntranetDisplayTemplateFiles/Control_AllNBBFamilypdates.txt" ReplaceContent="TRUE" />
+    <File Path="IntranetDisplayTemplateFiles\control_DepartmentMarkCalendar.txt" Url="IntranetDisplayTemplateFiles/control_DepartmentMarkCalendar.txt" ReplaceContent="TRUE" />
+    <File Path="IntranetDisplayTemplateFiles\Control_ImpAnnouncement.txt" Url="IntranetDisplayTemplateFiles/Control_ImpAnnouncement.txt" ReplaceContent="TRUE" />
+    <File Path="IntranetDisplayTemplateFiles\control_Latest_News.txt" Url="IntranetDisplayTemplateFiles/control_Latest_News.txt" ReplaceContent="TRUE" />
+    <File Path="IntranetDisplayTemplateFiles\Control_LatestUpdateDetails.txt" Url="IntranetDisplayTemplateFiles/Control_LatestUpdateDetails.txt" ReplaceContent="TRUE" />
+    <File Path="IntranetDisplayTemplateFiles\Control_LatestUpdates.txt" Url="IntranetDisplayTemplateFiles/Control_LatestUpdates.txt" ReplaceContent="TRUE" />
+    <File Path="IntranetDisplayTemplateFiles\control_MarkYourCalendar.txt" Url="IntranetDisplayTemplateFiles/control_MarkYourCalendar.txt" ReplaceContent="TRUE" />
+    <File Path="IntranetDisplayTemplateFiles\Control_NBBFamilyUpdatesDetailedPage.txt" Url="IntranetDisplayTemplateFiles/Control_NBBFamilyUpdatesDetailedPage.txt" ReplaceContent="TRUE" />
+    <File Path="IntranetDisplayTemplateFiles\Control_NBBFamilyUpdatesNew.txt" Url="IntranetDisplayTemplateFiles/Control_NBBFamilyUpdatesNew.txt" ReplaceContent="TRUE" />
+    <File Path="IntranetDisplayTemplateFiles\Control_NBBTaskWebPart.txt" Url="IntranetDisplayTemplateFiles/Control_NBBTaskWebPart.txt" ReplaceContent="TRUE" />
+    <File Path="IntranetDisplayTemplateFiles\Control_OrgAnnouncementDetails.txt" Url="IntranetDisplayTemplateFiles/Control_OrgAnnouncementDetails.txt" ReplaceContent="TRUE" />
+    <File Path="IntranetDisplayTemplateFiles\Control_QuickLinks.txt" Url="IntranetDisplayTemplateFiles/Control_QuickLinks.txt" ReplaceContent="TRUE" />
+    <File Path="IntranetDisplayTemplateFiles\Control_VoiceOfMgtPaging.txt" Url="IntranetDisplayTemplateFiles/Control_VoiceOfMgtPaging.txt" ReplaceContent="TRUE" />
+    <File Path="IntranetDisplayTemplateFiles\Item_AllNBFamilyUpdate.txt" Url="IntranetDisplayTemplateFiles/Item_AllNBFamilyUpdate.txt" ReplaceContent="TRUE" />
+    <File Path="IntranetDisplayTemplateFiles\item_ArticleDetails.txt" Url="IntranetDisplayTemplateFiles/item_ArticleDetails.txt" ReplaceContent="TRUE" />
+    <File Path="IntranetDisplayTemplateFiles\Item_DepartmentMarkYourCalendar.txt" Url="IntranetDisplayTemplateFiles/Item_DepartmentMarkYourCalendar.txt" ReplaceContent="TRUE" />
+    <File Path="IntranetDisplayTemplateFiles\Item_FamilyUpdates.txt" Url="IntranetDisplayTemplateFiles/Item_FamilyUpdates.txt" ReplaceContent="TRUE" />
+    <File Path="IntranetDisplayTemplateFiles\Item_Important_Announcements.txt" Url="IntranetDisplayTemplateFiles/Item_Important_Announcements.txt" ReplaceContent="TRUE" />
+    <File Path="IntranetDisplayTemplateFiles\Item_LargePicture.txt" Url="IntranetDisplayTemplateFiles/Item_LargePicture.txt" ReplaceContent="TRUE" />
+    <File Path="IntranetDisplayTemplateFiles\Item_Latest_News_Home.txt" Url="IntranetDisplayTemplateFiles/Item_Latest_News_Home.txt" ReplaceContent="TRUE" />
+    <File Path="IntranetDisplayTemplateFiles\item_LatestUpdate.txt" Url="IntranetDisplayTemplateFiles/item_LatestUpdate.txt" ReplaceContent="TRUE" />
+    <File Path="IntranetDisplayTemplateFiles\Item_LatestUpdatesDetails.txt" Url="IntranetDisplayTemplateFiles/Item_LatestUpdatesDetails.txt" ReplaceContent="TRUE" />
+    <File Path="IntranetDisplayTemplateFiles\Item_MarkYourCalendar.txt" Url="IntranetDisplayTemplateFiles/Item_MarkYourCalendar.txt" ReplaceContent="TRUE" />
+    <File Path="IntranetDisplayTemplateFiles\Item_NBBFamilyUpdatesHomePage.txt" Url="IntranetDisplayTemplateFiles/Item_NBBFamilyUpdatesHomePage.txt" ReplaceContent="TRUE" />
+    <File Path="IntranetDisplayTemplateFiles\Item_NBBItemsDetaildView.txt" Url="IntranetDisplayTemplateFiles/Item_NBBItemsDetaildView.txt" ReplaceContent="TRUE" />
+    <File Path="IntranetDisplayTemplateFiles\Item_OrgAnnouncement.txt" Url="IntranetDisplayTemplateFiles/Item_OrgAnnouncement.txt" ReplaceContent="TRUE" />
+    <File Path="IntranetDisplayTemplateFiles\Item_QuickLinks.txt" Url="IntranetDisplayTemplateFiles/Item_QuickLinks.txt" ReplaceContent="TRUE" />
+    <File Path="IntranetDisplayTemplateFiles\Item_VoiceOfManagement.txt" Url="IntranetDisplayTemplateFiles/Item_VoiceOfManagement.txt" ReplaceContent="TRUE" />
+    <File Path="IntranetDisplayTemplateFiles\Item_VoiceOfMgt.txt" Url="IntranetDisplayTemplateFiles/Item_VoiceOfMgt.txt" ReplaceContent="TRUE" />
+  </Module>
+</Elements>

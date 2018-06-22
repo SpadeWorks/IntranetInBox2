@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Elements xmlns="http://schemas.microsoft.com/sharepoint/">
+  <Module Name="IntranetPageLayoutsFiles">
+    <File Path="IntranetPageLayoutsFiles\Sample.txt" Url="IntranetPageLayoutsFiles/Sample.txt" ReplaceContent="TRUE" />
+    <File Path="IntranetPageLayoutsFiles\DepartmentGenricPageLayout.txt" Url="IntranetPageLayoutsFiles/DepartmentGenricPageLayout.txt" ReplaceContent="TRUE" />
+    <File Path="IntranetPageLayoutsFiles\NBBHomePageLayout.txt" Url="IntranetPageLayoutsFiles/NBBHomePageLayout.txt" ReplaceContent="TRUE" />
+    <File Path="IntranetPageLayoutsFiles\NBBLearningPageLayout.txt" Url="IntranetPageLayoutsFiles/NBBLearningPageLayout.txt" ReplaceContent="TRUE" />
+    <File Path="IntranetPageLayoutsFiles\NBBOneColPageLayout.txt" Url="IntranetPageLayoutsFiles/NBBOneColPageLayout.txt" ReplaceContent="TRUE" />
+  </Module>
+</Elements>

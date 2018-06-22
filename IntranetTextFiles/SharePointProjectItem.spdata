@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ProjectItem Type="Microsoft.VisualStudio.SharePoint.Module" DefaultFile="Elements.xml" SupportedTrustLevels="All" SupportedDeploymentScopes="Web, Site" xmlns="http://schemas.microsoft.com/VisualStudio/2010/SharePointTools/SharePointProjectItemModel">
+  <Files>
+    <ProjectItemFile Source="Elements.xml" Target="IntranetTextFiles\" Type="ElementManifest" />
+    <ProjectItemFile Source="Sample.txt" Target="IntranetTextFiles\" Type="ElementFile" />
+    <ProjectItemFile Source="carousel.txt" Target="IntranetTextFiles\" Type="ElementFile" />
+    <ProjectItemFile Source="chart.html" Target="IntranetTextFiles\" Type="ElementFile" />
+    <ProjectItemFile Source="IntranetSurveyJSLink.txt" Target="IntranetTextFiles\" Type="ElementFile" />
+    <ProjectItemFile Source="IntranetSurveyNewItem.txt" Target="IntranetTextFiles\" Type="ElementFile" />
+    <ProjectItemFile Source="LatestUpdatesJSLink.txt" Target="IntranetTextFiles\" Type="ElementFile" />
+    <ProjectItemFile Source="OrgAnnouncementJSLink.txt" Target="IntranetTextFiles\" Type="ElementFile" />
+    <ProjectItemFile Source="Poll.txt" Target="IntranetTextFiles\" Type="ElementFile" />
+    <ProjectItemFile Source="WelcomeControl.txt" Target="IntranetTextFiles\" Type="ElementFile" />
+  </Files>
+</ProjectItem>

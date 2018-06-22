@@ -1,0 +1,47 @@
+<html>
+<link rel="stylesheet" type="text/css" href="../Style Library/NBB/CSS/chart.css">
+<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+<body>
+  <div class="nbb-latestnews shadowbgBox" id="poll" style="display:none;">
+    <div class="nbb-titleleftbar"></div>
+    <div class="nbb-componenttitle">
+      <h2 class="pull-left">Poll</h2>
+    </div>
+    <div data-bind="visible:pollVisible">
+      <div>
+        <h3 style="display: inline;">Q:</h3>
+        <h4 style="display: inline;" data-bind="text:question"></h4>
+      </div>
+      <div data-bind="foreach:answers" style="margin-left:25px;">
+        <input type="radio" name="gender" data-bind="value:answer,checked: $root.userResponse">
+        <span data-bind="text:answer"></span>
+        <br>
+      </div>
+      <div>
+        <input type="button" name="Vote" value="Vote" data-bind="click:saveUserResponse">
+      </div>
+    </div>
+    <div class="chart_wrap" data-bind="visible:chartVisible">
+      <div id="piechart_3d" style="width:330px;"></div>
+    </div>
+    <div data-bind="visible:pollVisible() != chartVisible() ? false :true">
+        <div>Please <a data-bind="attr{href:surveyLink}">Click Here</a> to participate in survey</div>
+        <div>Please <a data-bind="attr{href:ViewResponseLink}">Click Here</a> to View Survey Responses</div>
+      </div>
+       
+  </div>
+  
+</body>
+<script type="text/javascript" src="../Style Library/NBB/JS/chart.js"></script>
+<script type="text/javascript" src="../Style Library/NBB/JS/PollKO.js"></script>
+<script type="text/javascript">
+  document.onreadystatechange = function () {
+    if (document.readyState === "complete") {
+      $("#poll").css("display", "block");
+      createPieCharts();
+      $("#carouselDiv").delay(500).animate({ "opacity": "1" }, 700);
+
+    }
+  }
+</script>
+</html>

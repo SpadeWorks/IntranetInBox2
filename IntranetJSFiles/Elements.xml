@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Elements xmlns="http://schemas.microsoft.com/sharepoint/">
+  <Module Name="IntranetJSFiles">
+    <File Path="IntranetJSFiles\Sample.txt" Url="IntranetJSFiles/Sample.txt" ReplaceContent="TRUE" />
+    <File Path="IntranetJSFiles\bootstrap.min.txt" Url="IntranetJSFiles/bootstrap.min.txt" ReplaceContent="TRUE" />
+    <File Path="IntranetJSFiles\CarouselKO.txt" Url="IntranetJSFiles/CarouselKO.txt" ReplaceContent="TRUE" />
+    <File Path="IntranetJSFiles\chart.txt" Url="IntranetJSFiles/chart.txt" ReplaceContent="TRUE" />
+    <File Path="IntranetJSFiles\IntranetSurveyJSLink.txt" Url="IntranetJSFiles/IntranetSurveyJSLink.txt" ReplaceContent="TRUE" />
+    <File Path="IntranetJSFiles\IntranetSurveyNewItem.txt" Url="IntranetJSFiles/IntranetSurveyNewItem.txt" ReplaceContent="TRUE" />
+    <File Path="IntranetJSFiles\jquery-3.1.0.min.txt" Url="IntranetJSFiles/jquery-3.1.0.min.txt" ReplaceContent="TRUE" />
+    <File Path="IntranetJSFiles\jquery.dialog.min.txt" Url="IntranetJSFiles/jquery.dialog.min.txt" ReplaceContent="TRUE" />
+    <File Path="IntranetJSFiles\jquery.slimscroll.min.txt" Url="IntranetJSFiles/jquery.slimscroll.min.txt" ReplaceContent="TRUE" />
+    <File Path="IntranetJSFiles\knockout-3.2.0.txt" Url="IntranetJSFiles/knockout-3.2.0.txt" ReplaceContent="TRUE" />
+    <File Path="IntranetJSFiles\ko.sp-1.0.txt" Url="IntranetJSFiles/ko.sp-1.0.txt" ReplaceContent="TRUE" />
+    <File Path="IntranetJSFiles\LatestUpdatesJSLink.txt" Url="IntranetJSFiles/LatestUpdatesJSLink.txt" ReplaceContent="TRUE" />
+    <File Path="IntranetJSFiles\moment.txt" Url="IntranetJSFiles/moment.txt" ReplaceContent="TRUE" />
+    <File Path="IntranetJSFiles\NBBCommonFunctions.txt" Url="IntranetJSFiles/NBBCommonFunctions.txt" ReplaceContent="TRUE" />
+    <File Path="IntranetJSFiles\npm.txt" Url="IntranetJSFiles/npm.txt" ReplaceContent="TRUE" />
+    <File Path="IntranetJSFiles\OrgAnnouncementJSLink.txt" Url="IntranetJSFiles/OrgAnnouncementJSLink.txt" ReplaceContent="TRUE" />
+    <File Path="IntranetJSFiles\owl.carousel.min.txt" Url="IntranetJSFiles/owl.carousel.min.txt" ReplaceContent="TRUE" />
+    <File Path="IntranetJSFiles\perfect-scrollbar.txt" Url="IntranetJSFiles/perfect-scrollbar.txt" ReplaceContent="TRUE" />
+    <File Path="IntranetJSFiles\PollKO.txt" Url="IntranetJSFiles/PollKO.txt" ReplaceContent="TRUE" />
+    <File Path="IntranetJSFiles\WelcomeControl.txt" Url="IntranetJSFiles/WelcomeControl.txt" ReplaceContent="TRUE" />
+  </Module>
+</Elements>

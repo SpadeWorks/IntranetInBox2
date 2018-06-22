@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ProjectItem Type="Microsoft.VisualStudio.SharePoint.Module" DefaultFile="Elements.xml" SupportedTrustLevels="All" SupportedDeploymentScopes="Web, Site" xmlns="http://schemas.microsoft.com/VisualStudio/2010/SharePointTools/SharePointProjectItemModel">
+  <Files>
+    <ProjectItemFile Source="Elements.xml" Target="IntranetAllPagesFiles\" Type="ElementManifest" />
+    <ProjectItemFile Source="Sample.txt" Target="IntranetAllPagesFiles\" Type="ElementFile" />
+    <ProjectItemFile Source="AllArticles.txt" Target="IntranetAllPagesFiles\" Type="ElementFile" />
+    <ProjectItemFile Source="AllLatestNews.txt" Target="IntranetAllPagesFiles\" Type="ElementFile" />
+    <ProjectItemFile Source="CompliancePortal.txt" Target="IntranetAllPagesFiles\" Type="ElementFile" />
+    <ProjectItemFile Source="Home.txt" Target="IntranetAllPagesFiles\" Type="ElementFile" />
+    <ProjectItemFile Source="IntranetSurvey.txt" Target="IntranetAllPagesFiles\" Type="ElementFile" />
+    <ProjectItemFile Source="LatestUpdateDetails.txt" Target="IntranetAllPagesFiles\" Type="ElementFile" />
+    <ProjectItemFile Source="LatestUpdates.txt" Target="IntranetAllPagesFiles\" Type="ElementFile" />
+    <ProjectItemFile Source="MarkYourCalendar.txt" Target="IntranetAllPagesFiles\" Type="ElementFile" />
+    <ProjectItemFile Source="NBB-FamilyUpdates.txt" Target="IntranetAllPagesFiles\" Type="ElementFile" />
+    <ProjectItemFile Source="NBB-FamilyUpdatesDetailedPage.txt" Target="IntranetAllPagesFiles\" Type="ElementFile" />
+    <ProjectItemFile Source="NBB-FamilyUpdatesNew.txt" Target="IntranetAllPagesFiles\" Type="ElementFile" />
+    <ProjectItemFile Source="NBBFamilyUpdates.txt" Target="IntranetAllPagesFiles\" Type="ElementFile" />
+    <ProjectItemFile Source="OrgAnnouncementDetails.txt" Target="IntranetAllPagesFiles\" Type="ElementFile" />
+    <ProjectItemFile Source="OrgAnnouncements.txt" Target="IntranetAllPagesFiles\" Type="ElementFile" />
+    <ProjectItemFile Source="QuickLinks.txt" Target="IntranetAllPagesFiles\" Type="ElementFile" />
+    <ProjectItemFile Source="Test.txt" Target="IntranetAllPagesFiles\" Type="ElementFile" />
+  </Files>
+</ProjectItem>

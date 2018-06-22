@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Elements xmlns="http://schemas.microsoft.com/sharepoint/">
+  <Module Name="IntranetImagesFIles">
+    <File Path="IntranetImagesFIles\Sample.txt" Url="IntranetImagesFIles/Sample.txt" ReplaceContent="TRUE" />
+    <File Path="IntranetImagesFIles\Default-profile-pic.jpg" Url="IntranetImagesFIles/Default-profile-pic.jpg" ReplaceContent="TRUE" />
+    <File Path="IntranetImagesFIles\ic-all-issues.png" Url="IntranetImagesFIles/ic-all-issues.png" ReplaceContent="TRUE" />
+    <File Path="IntranetImagesFIles\ic-issues-closed-and-verified.png" Url="IntranetImagesFIles/ic-issues-closed-and-verified.png" ReplaceContent="TRUE" />
+    <File Path="IntranetImagesFIles\ic-issues-closed-but-not-verified.png" Url="IntranetImagesFIles/ic-issues-closed-but-not-verified.png" ReplaceContent="TRUE" />
+    <File Path="IntranetImagesFIles\ic-Issues-closed-by-owner.png" Url="IntranetImagesFIles/ic-Issues-closed-by-owner.png" ReplaceContent="TRUE" />
+    <File Path="IntranetImagesFIles\ic-issues-closed-by-risk-acceptance.png" Url="IntranetImagesFIles/ic-issues-closed-by-risk-acceptance.png" ReplaceContent="TRUE" />
+    <File Path="IntranetImagesFIles\ic-issues-not-due-yet.png" Url="IntranetImagesFIles/ic-issues-not-due-yet.png" ReplaceContent="TRUE" />
+    <File Path="IntranetImagesFIles\ic-issues-past-due.png" Url="IntranetImagesFIles/ic-issues-past-due.png" ReplaceContent="TRUE" />
+    <File Path="IntranetImagesFIles\ic-outstanding-issues.png" Url="IntranetImagesFIles/ic-outstanding-issues.png" ReplaceContent="TRUE" />
+    <File Path="IntranetImagesFIles\NBB-intranet-logo.jpg" Url="IntranetImagesFIles/NBB-intranet-logo.jpg" ReplaceContent="TRUE" />
+    <File Path="IntranetImagesFIles\NBB-logo.jpg" Url="IntranetImagesFIles/NBB-logo.jpg" ReplaceContent="TRUE" />
+    <File Path="IntranetImagesFIles\profile-pic.jpg" Url="IntranetImagesFIles/profile-pic.jpg" ReplaceContent="TRUE" />
+    <File Path="IntranetImagesFIles\voiceofmgt_photo.jpg" Url="IntranetImagesFIles/voiceofmgt_photo.jpg" ReplaceContent="TRUE" />
+  </Module>
+</Elements>

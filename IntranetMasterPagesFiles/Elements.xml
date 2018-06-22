@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Elements xmlns="http://schemas.microsoft.com/sharepoint/">
+  <Module Name="IntranetMasterPagesFiles">
+    <File Path="IntranetMasterPagesFiles\MasterPage.txt" Url="IntranetMasterPagesFiles/MasterPage.txt" ReplaceContent="TRUE" />
+  </Module>
+</Elements>

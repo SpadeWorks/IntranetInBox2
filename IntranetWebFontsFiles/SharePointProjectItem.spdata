@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ProjectItem Type="Microsoft.VisualStudio.SharePoint.Module" DefaultFile="Elements.xml" SupportedTrustLevels="All" SupportedDeploymentScopes="Web, Site" xmlns="http://schemas.microsoft.com/VisualStudio/2010/SharePointTools/SharePointProjectItemModel">
+  <Files>
+    <ProjectItemFile Source="Elements.xml" Target="IntranetWebFontsFiles\" Type="ElementManifest" />
+    <ProjectItemFile Source="Sample.txt" Target="IntranetWebFontsFiles\" Type="ElementFile" />
+    <ProjectItemFile Source="fontawesome-webfont.eot" Target="IntranetWebFontsFiles\" Type="ElementFile" />
+    <ProjectItemFile Source="fontawesome-webfont.svg" Target="IntranetWebFontsFiles\" Type="ElementFile" />
+    <ProjectItemFile Source="fontawesome-webfont.ttf" Target="IntranetWebFontsFiles\" Type="ElementFile" />
+    <ProjectItemFile Source="fontawesome-webfont.woff" Target="IntranetWebFontsFiles\" Type="ElementFile" />
+    <ProjectItemFile Source="fontawesome-webfont.woff2" Target="IntranetWebFontsFiles\" Type="ElementFile" />
+    <ProjectItemFile Source="FontAwesome.otf" Target="IntranetWebFontsFiles\" Type="ElementFile" />
+    <ProjectItemFile Source="Gill Sans MT Bold.eot" Target="IntranetWebFontsFiles\" Type="ElementFile" />
+    <ProjectItemFile Source="Gill Sans MT Bold.svg" Target="IntranetWebFontsFiles\" Type="ElementFile" />
+    <ProjectItemFile Source="Gill Sans MT Bold.woff" Target="IntranetWebFontsFiles\" Type="ElementFile" />
+    <ProjectItemFile Source="Gill Sans MT Bold.woff2" Target="IntranetWebFontsFiles\" Type="ElementFile" />
+    <ProjectItemFile Source="Gill Sans MT.eot" Target="IntranetWebFontsFiles\" Type="ElementFile" />
+    <ProjectItemFile Source="Gill Sans MT.svg" Target="IntranetWebFontsFiles\" Type="ElementFile" />
+    <ProjectItemFile Source="Gill Sans MT.woff" Target="IntranetWebFontsFiles\" Type="ElementFile" />
+    <ProjectItemFile Source="Gill Sans MT.woff2" Target="IntranetWebFontsFiles\" Type="ElementFile" />
+  </Files>
+</ProjectItem>

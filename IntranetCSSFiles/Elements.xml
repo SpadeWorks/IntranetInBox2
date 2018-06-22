@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Elements xmlns="http://schemas.microsoft.com/sharepoint/">
+  <Module Name="IntranetCSSFiles">
+    <File Path="IntranetCSSFiles\Sample.txt" Url="IntranetCSSFiles/Sample.txt" ReplaceContent="TRUE" />
+    <File Path="IntranetCSSFiles\bootstrap.txt" Url="IntranetCSSFiles/bootstrap.txt" ReplaceContent="TRUE" />
+    <File Path="IntranetCSSFiles\chart.txt" Url="IntranetCSSFiles/chart.txt" ReplaceContent="TRUE" />
+    <File Path="IntranetCSSFiles\fontawesome.txt" Url="IntranetCSSFiles/fontawesome.txt" ReplaceContent="TRUE" />
+    <File Path="IntranetCSSFiles\NBBMain.txt" Url="IntranetCSSFiles/NBBMain.txt" ReplaceContent="TRUE" />
+    <File Path="IntranetCSSFiles\NBBResponsive.txt" Url="IntranetCSSFiles/NBBResponsive.txt" ReplaceContent="TRUE" />
+    <File Path="IntranetCSSFiles\owlcarouselmin.txt" Url="IntranetCSSFiles/owlcarouselmin.txt" ReplaceContent="TRUE" />
+    <File Path="IntranetCSSFiles\owlthemedefaultmin.txt" Url="IntranetCSSFiles/owlthemedefaultmin.txt" ReplaceContent="TRUE" />
+  </Module>
+</Elements>

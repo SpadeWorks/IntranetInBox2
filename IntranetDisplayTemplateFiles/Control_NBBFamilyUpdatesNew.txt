@@ -1,0 +1,439 @@
+﻿<html xmlns:mso="urn:schemas-microsoft-com:office:office" xmlns:msdt="uuid:C2F41010-65B3-11d1-A29F-00AA00C14882"> 
+<head>
+<title>NBB Family Update New</title>
+
+<!--[if gte mso 9]><xml>
+<mso:CustomDocumentProperties>
+<mso:TemplateHidden msdt:dt="string">0</mso:TemplateHidden>
+<mso:MasterPageDescription msdt:dt="string">This is the default Control Display Template that will list the items. It does not allow the user to page through items.</mso:MasterPageDescription>
+<mso:ContentTypeId msdt:dt="string">0x0101002039C03B61C64EC4A04F5361F385106601</mso:ContentTypeId>
+<mso:TargetControlType msdt:dt="string">;#Content Web Parts;#</mso:TargetControlType>
+<mso:HtmlDesignAssociated msdt:dt="string">1</mso:HtmlDesignAssociated>
+<mso:HtmlDesignStatusAndPreview msdt:dt="string">http://icsp2016dev102:8081/_catalogs/masterpage/Display%20Templates/Content%20Web%20Parts/Control_NBBFamilyUpdatesNew.html, Conversion successful.</mso:HtmlDesignStatusAndPreview>
+<mso:HtmlDesignConversionSucceeded msdt:dt="string">True</mso:HtmlDesignConversionSucceeded>
+<mso:CrawlerXSLFile msdt:dt="string"></mso:CrawlerXSLFile>
+<mso:HtmlDesignPreviewUrl msdt:dt="string"></mso:HtmlDesignPreviewUrl>
+</mso:CustomDocumentProperties>
+</xml><![endif]-->
+</head>
+
+
+<body>
+
+    <script>
+       // $includeLanguageScript(this.url, "~sitecollection/_catalogs/masterpage/Display Templates/Language Files/{Locale}/CustomStrings.js");
+       // $includeScript(this.url, "~sitecollection/Style Library/JS/jquery-1.9.0.min.js");
+    </script>
+
+<div id="Control_RecognitionsMain">
+
+<style type="text/css">
+.nbb-RecognitionCount-tab{
+	background-image: "/SiteCollectionImages/red_dot.png";
+	width:36px;
+	height:36px;
+}
+</style>
+<!--#_   
+var effectiveDeviceChannel="Default";	
+     	var RegcountMagicKeepPromises = "RegcountMagicKeepPromises";
+     	var RegcountAll = "RegcountAll";
+     	var RegcountMagicOpenMind = "RegcountMagicOpenMind";
+     	var RegcountMagicSpeakUp = "RegcountMagicSpeakUp";
+     	var RegcountMagicEnergySupplier= "RegcountMagicEnergySupplier";
+		var RegcountMagicWeBeforeMe= "RegcountMagicWeBeforeMe";
+		var RegcountMagicBetterWay= "RegcountMagicBetterWay";
+		var RegcountMagicKeepGrowing= "RegcountMagicKeepGrowing";
+		var RegcountMagicServeOthers= "RegcountMagicServeOthers";
+     	//var RecognizeBtn = "RecognizeBtn";
+     	var name = "name";
+     	var recognitionContentTitle = "recognitionContentTitle";
+     	//var titleAnchorHref = "javascript:void(0)";
+_#-->	
+<div class="nbb-familyupdates-wrap shadowbgBox">
+<div class="row">
+						<div class="col-md-4 col-sm-4 col-xs-12">
+	                        <div class="nbb-titleleftbar"></div>
+                        	<div class="nbb-componenttitle">
+                            	<h2>NBB Family Updates</h2>
+                            </div>
+                        </div>
+                        <div class="col-md-8 col-sm-8 col-xs-12">
+                        
+                            <div class="nbb-familyupdates-tabs">
+                                <ul class="nav nav-tabs" role="tablist">
+                                    <li id="All_Tab" ><a href="#all" aria-controls="all" role="tab" data-toggle="tab">All</a></li>
+                                    <li id="Birthdays_Tab"><a href="#birthdays" aria-controls="birthdays" role="tab" data-toggle="tab">Birthdays</a></li>
+                                    <li id="Anniversaries_Tab"  role="presentation"><a href="#Anniversaries" aria-controls="Anniversaries" role="tab"  data-toggle="tab">Anniversaries</a></li>
+                                    <li id="New_Joinee_Tab"><a href="#newjoinee" aria-controls="newjoinee" role="tab" data-toggle="tab">New Joinee</a></li>
+                                    <li id="Farewells_Tab"><a href="#farewells" aria-controls="farewells" role="tab" data-toggle="tab">Farewells</a></li>
+                                </ul>
+                            </div>
+	                    </div>
+                    </div>
+                       
+						
+	  
+		 
+		
+		<div class="recentRecognitionContent">
+			
+<div class="ms-srch-result" id="Result">
+<!--#_ 	
+	
+	window.setSearchResultsVariable = function()
+			{
+				var loaderLoadMore =document.getElementById("imgLoaderLoadMore");
+				loaderLoadMore.style.display = "block";
+				hiddenSearchResults = $("#Groups").html();
+			}
+
+  window.reloadFirstPage = function (){
+            	var loader =document.getElementById("imgLoaderRefresh");
+				loader.style.display = "block";
+	     		var encodedURL = window.location.href;
+				var encodedNewURL = encodedURL;
+				
+				if(encodedURL.indexOf("#s=") != -1) {
+					encodedNewURL = encodedURL.substr(0,encodedURL.indexOf("#s="));
+				}
+				
+				else {
+				
+					var encodedPart1;
+					var encodedPart2;
+					if(encodedURL.indexOf("#Default=") != -1) {
+						var strSplit = encodedURL.split("#Default=");
+						encodedPart1 = strSplit[0]+ "#Default=";
+						encodedPart2 = strSplit[1];
+					
+						var decodedURL = decodeURIComponent(encodedPart2.replace(/\+/g,  " "));
+						
+					    var decodedArray = decodedURL.split(",");
+						
+						var isFirstPage = true;
+						var pageIndex;
+						
+						for (index = 0; index < decodedArray.length; ++index) {
+						    if(decodedArray[index].indexOf("\"s\":") != -1){
+								pageIndex = index;
+								isFirstPage = false;
+								break;
+							}
+						} 
+						
+						if(!isFirstPage){
+							decodedArray.splice(PageIndex, 1);
+						}
+						
+						encodedPart2 = decodedArray.join();
+						encodedPart2 = encodeURIComponent(encodedPart2).replace(/'/g,"%27").replace(/"/g,"%22");
+						
+						encodedNewURL = encodedPart1 + encodedPart2;
+					}	
+					
+				}
+				
+				var delay=5000; //5 seconds
+				setTimeout(function(){
+				    window.location.href = encodedNewURL;
+					$('html, body').animate({ scrollTop: 0 }, 'fast');
+				}, delay); 
+								
+            }
+
+
+	if (!$isNull(ctx.ClientControl) &&
+		!$isNull(ctx.ClientControl.shouldRenderControl) &&
+		!ctx.ClientControl.shouldRenderControl())
+	{
+		return "";
+	}
+	ctx.ListDataJSONGroupsKey = "ResultTables";
+	var $noResults = Srch.ContentBySearch.getControlTemplateEncodedNoResultsMessage(ctx.ClientControl);
+
+	var isRollupPageInDisplayMode = Srch.ContentBySearch.isRollupPage(ctx.ClientControl) && !Srch.U.isPageInEditMode();
+	var noResultsClassName = isRollupPageInDisplayMode ? "ms-attractMode ms-uppercase ms-alignCenter" : "ms-srch-result-noResults";
+
+	var ListRenderRenderWrapper = function(itemRenderResult, inCtx, tpl)
+	{
+	
+		var iStr = [];
+		iStr.push('<li>');
+		iStr.push(itemRenderResult);
+		iStr.push('</li>');
+		return iStr.join('');
+	}
+
+	ctx['ItemRenderWrapper'] = ListRenderRenderWrapper;
+_#-->
+    <ul id="Groups" class="cbs-List nbb-familyupdateslist">
+<!--#_
+		if(effectiveDeviceChannel == "Default")
+		{
+_#-->
+		_#= ctx.RenderGroups(ctx) =#_
+<!--#_		
+		}
+_#-->	
+		 </ul>
+		 <a id="moreClick" class="morelink pull-right">More</a>
+
+<!--#_
+		 AddPostRenderCallback(ctx, function(){
+		 
+		if(effectiveDeviceChannel != "Default"){			
+				if (ctx.ClientControl.get_currentPageNumber() != 1 )
+					$("#Groups").html( hiddenSearchResults + ctx.RenderGroups(ctx));
+				else
+					$("#Groups").html(ctx.RenderGroups(ctx));
+					
+				hiddenSearchResults = $("#Groups").html();
+			
+		}
+		$('.nbb-recognitionProfileDetails a').click(function(event){	
+			event.stopPropagation();
+		});
+	});
+
+
+		
+				var pagingInfo = ctx.ClientControl.get_pagingInfo();
+				if(!$isEmptyArray(pagingInfo)){ 
+			
+					if (effectiveDeviceChannel != "Phone" && effectiveDeviceChannel != "Tablet") 
+            		{ 
+_#-->
+                        
+                        
+<!--#_ 
+					}
+					 
+					else
+					{
+_#-->
+						<table id="Paging" class="ms-srch-Paging eq-feedLoadRfrsh" style="float:right">
+<!--#_ 
+                        for (var i = 0; i < pagingInfo.length; i++) {
+                            var pl = pagingInfo[i];
+                            if(!$isNull(pl)) {
+                                var imagesUrl = GetThemedImageUrl('searchresultui.png');
+                                if(pl.startItem == -1) { 
+                                    var selfLinkId = "SelfLink_" + pl.pageNumber;
+									
+_#-->
+								<tr>
+                                    <td style="display:none" id="PagingSelf"><a id="_#= $htmlEncode(selfLinkId) =#_">_#= $htmlEncode(pl.pageNumber) =#_</a></td>
+                                </tr>    
+<!--#_ 
+                                } else if(pl.pageNumber == -1) { 
+                                    var iconClass = Srch.U.isRTL() ? "ms-srch-pagingNext" : "ms-srch-pagingPrev";                                    
+_#-->							<tr>
+                                    <td style="display:none" id="PagingImageLink"><a id="PageLinkPrev" href="#" class="ms-commandLink ms-promlink-button ms-promlink-button-enabled ms-verticalAlignMiddle" title="_#= $htmlEncode(pl.title) =#_" onclick="$getClientControl(this).page(_#= $htmlEncode(pl.startItem) =#_);return Srch.U.cancelEvent(event);">
+                                        <span class="ms-promlink-button-image">
+                                            <img src="_#= $urlHtmlEncode(imagesUrl) =#_" class="_#= $htmlEncode(iconClass) =#_" alt="_#= $htmlEncode(pl.title) =#_" />
+                                        </span>
+                                    </a></td>
+                                </tr>    
+<!--#_ 
+                                } else if(pl.pageNumber == -2) { 
+                                    var iconClass = Srch.U.isRTL() ? "ms-srch-pagingPrev" : "ms-srch-pagingNext";
+_#-->
+								<tr class="eq-LoadRefrshWrap">
+                                    <td id="PagingImageLink">
+                                    	<div class="eq-LoadRefrshWrap1">
+                                    		<span class="eq-LoadBloack">
+                                    		<a id="PageLinkNext" href="#" class="em-cmmntSeeMore" style="float:left;" title="_#= $htmlEncode(pl.title) =#_" onclick="window.setSearchResultsVariable(); $getClientControl(this).page(_#= $htmlEncode(pl.startItem) =#_);return Srch.U.cancelEvent(event);">
+                                        		Load More
+                                     		</a>
+                                     		<span class="em-Refreshprogress">
+		                        				<img id="imgLoaderLoadMore" src="/_layouts/15/images/PROGRESS-CIRCLE-24.gif" alt="" style="display:none">
+		                        		    </span>
+                                     		</span>
+<!--#_ 
+                                } else { 
+                                    var pageLinkId = "PageLink_" + pl.pageNumber;
+_#-->
+                                    <div style="display:none" id="PagingLink"><a id="_#= $htmlEncode(pageLinkId) =#_" href="#" title="_#= $htmlEncode(pl.title) =#_" onclick="$getClientControl(this).page(_#= $htmlEncode(pl.startItem) =#_);return Srch.U.cancelEvent(event);">_#= $htmlEncode(pl.pageNumber) =#_</a></div>
+<!--#_ 
+                                }
+                            }
+                        } 
+_#-->
+									<span>
+	                        			<a href="javascript:void(0);" onclick="window.reloadFirstPage();" class="eq-Refresh"> Refresh </a>
+	                        			<span class="em-Refreshprogress">
+		                        			<img id="imgLoaderRefresh" src="/_layouts/15/images/PROGRESS-CIRCLE-24.gif" alt="" style="display:none">
+		                        		</span>	
+	                        		</span>	
+	                        		
+	                        		</div>
+	                        	</td>
+	                        </tr> 
+                        </table>
+                        </div>
+
+<!--#_ 					 
+					}
+                }
+ 	var id = ctx.ClientControl.get_nextUniqueId();
+
+	var RecognizeMessageDiv= id + "_RecognizeMessageDiv";
+
+	var itemaccountname = GetUrlKeyValue('accountname');
+	itemaccountname = itemaccountname.toLowerCase();
+	
+	function ct_successRecognitionData() {				
+		this.ct_deferred.resolve(this.ct_PersonProperties, this.ct_currentUser);			   
+	}
+	
+	function ct_failRecognitionData(sender, args) {
+	   this.ct_deferred.reject(args);
+	}
+	
+	function ct_getValuesData(){			
+		var ct_deferred = $.Deferred();
+		
+		var ct_PersonProperties;
+		var ct_clientContext;
+		var ct_currentUser;
+		
+		
+		// Get the current client context and PeopleManager instance.
+		ct_clientContext = new SP.ClientContext("/");
+		var ct_peopleManager = new SP.UserProfiles.PeopleManager(ct_clientContext);
+		
+		// Get user properties for the target user.
+		// To get the PersonProperties object for the current user, use the getMyProperties method.
+		ct_PersonProperties = ct_peopleManager.getPropertiesFor(itemaccountname);
+		
+		// Load the PersonProperties object and send the request.
+		ct_clientContext.load(ct_PersonProperties);
+		
+		ct_currentUser = ct_clientContext.get_web().get_currentUser();
+		ct_clientContext.load(ct_currentUser);
+		
+		var ct_oRecognitionData = {ct_deferred:ct_deferred, ct_PersonProperties:ct_PersonProperties, ct_currentUser:ct_currentUser };
+		ct_clientContext.executeQueryAsync(Function.createDelegate(ct_oRecognitionData, ct_successRecognitionData), Function.createDelegate(ct_oRecognitionData, ct_failRecognitionData));
+				
+		
+		return ct_deferred.promise();
+	}
+	
+	
+	if (ctx.ClientControl.get_shouldShowNoResultMessage() && ctx.DataProvider.get_totalRows() == 0)
+	{		
+_#-->
+	  <div id="ErrorMsg">
+      	<div class="nbb-NoResultsMessage" id="_#= RecognizeMessageDiv=#_"></div>
+      </div>
+<!--#_
+
+	}
+
+	
+	AddPostRenderCallback(ctx, function(){
+
+		$(".eqmyProfileTabs li").removeClass('eqmyTabActive');
+        $(".eqmyProfileTabs li:nth-child(2)").addClass('eqmyTabActive');
+        
+        
+        //$("#titleAnchorHref")[0].href = $(".logo-hub")[0].firstElementChild.href.split("/pages")[0] + "/Pages/IT/How Do I/How-Do-I-Recognize-a-Colleague.aspx";
+        
+		var Original_queryTemplate = ctx.DataProvider.get_queryTemplate();
+		//alert(Original_queryTemplate);
+		var queryTemplate = Original_queryTemplate.replace(/Anniversary/gi, "*");
+		//alert(activeTabName);
+		
+		if(activeTab)
+		{
+			$('#'+activeTab).addClass('nbb-FamilyUpdateActiveTab');
+			
+			 
+		}else{
+			$('.nav-tabs li:first-child').addClass('nbb-FamilyUpdateActiveTab');
+			activeTab= $('.nav-tabs li:first-child').attr('id');
+		}		
+		
+		$("#Anniversaries_Tab").on('click', function(){ 	
+			
+			var tab=Original_queryTemplate.split('STS_ListItem") ')[1];
+			
+			queryTemplate = Original_queryTemplate.replace(tab, "ContentType:Anniversary");
+			$getClientControl(this).page("1");
+			ctx.DataProvider.set_queryTemplate(queryTemplate);
+			ctx.DataProvider.issueQuery();
+			$('.nbb-familyupdates-tabs li').removeClass('nbb-FamilyUpdateActiveTab');
+			activeTab = this.id;
+			activeTabName = $('#'+ activeTab).attr('title');
+		
+		});
+		
+			$("#New_Joinee_Tab").on('click', function(){ 	
+			
+			var tab=Original_queryTemplate.split('STS_ListItem") ')[1];
+			queryTemplate = Original_queryTemplate.replace(tab, "ContentType:New_Joinee");
+			$getClientControl(this).page("1");
+			ctx.DataProvider.set_queryTemplate(queryTemplate);
+			ctx.DataProvider.issueQuery();
+			$('.nbb-familyupdates-tabs li').removeClass('nbb-FamilyUpdateActiveTab');
+			activeTab = this.id;
+			activeTabName = $('#'+ activeTab).attr('title');
+		
+		});
+		
+			$("#All_Tab").on('click', function(){ 	
+			
+			var tab=Original_queryTemplate.split('STS_ListItem") ')[1];
+			queryTemplate = Original_queryTemplate.replace(tab, "ContentType:Anniversary ContentType:Farewell ContentType:New_Joinee ContentType:Birthday");
+			$getClientControl(this).page("1");
+			ctx.DataProvider.set_queryTemplate(queryTemplate);
+			ctx.DataProvider.issueQuery();
+			$('.nbb-familyupdates-tabs li').removeClass('nbb-FamilyUpdateActiveTab');
+			activeTab = this.id;
+			activeTabName = $('#'+ activeTab).attr('title');
+		
+		});
+
+		
+
+	$("#Birthdays_Tab").on('click', function(){ 	
+			
+			var tab=Original_queryTemplate.split('STS_ListItem") ')[1];
+
+			queryTemplate = Original_queryTemplate.replace(tab, "ContentType:Birthday");
+			$getClientControl(this).page("1");
+			ctx.DataProvider.set_queryTemplate(queryTemplate);
+			ctx.DataProvider.issueQuery();
+			$('.nbb-familyupdates-tabs li').removeClass('nbb-FamilyUpdateActiveTab');
+			activeTab = this.id;
+			activeTabName = $('#'+ activeTab).attr('title');
+		
+		});
+
+	$("#Farewells_Tab").on('click', function(){ 	
+			
+			var tab=Original_queryTemplate.split('STS_ListItem") ')[1];
+			
+			queryTemplate = Original_queryTemplate.replace(tab, "ContentType:Farewell");
+			$getClientControl(this).page("1");
+			ctx.DataProvider.set_queryTemplate(queryTemplate);
+			ctx.DataProvider.issueQuery();
+			$('.nbb-familyupdates-tabs li').removeClass('nbb-FamilyUpdateActiveTab');
+			activeTab = this.id;
+			activeTabName = $('#'+ activeTab).attr('title');
+		
+		});
+
+		var moreLink='../Pages/NBB-FamilyUpdatesDetailedPage.aspx?activeTab='+activeTab;
+		
+		$("#moreClick").attr("href", moreLink);
+			 
+	});
+	
+_#-->
+		</div>
+    </div>
+    </div>
+</body>
+</html>

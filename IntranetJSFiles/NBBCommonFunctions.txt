@@ -1,0 +1,84 @@
+﻿var NBB = (function(window, undefined) 
+{
+	var userProfileProperties,currentUserProperties,curUserdepartment;
+	
+	function perfectScrollWrapper() {
+		var ps = new PerfectScrollbar('#quicklinks_Wrapper');
+	}
+	function getUserProperties(userName) 
+	{	
+		var siteURL = _spPageContextInfo.webAbsoluteUrl+"/_api/SP.UserProfiles.PeopleManager/GetPropertiesFor(accountName=@v)?@v='"+userName+"'";
+		$.ajax({
+			url:siteURL,
+			method:'GET',
+			headers:{'Accept':'application/json;odata=verbose'},
+			async:false,
+			success:function(data)
+			{
+				userProfileProperties=data.d;
+			},
+			error:function(error){
+			}
+		});	
+		
+		return userProfileProperties;
+    }
+    function getCurrentUserProperties()
+    {
+    	$.ajax({  
+  
+            url: _spPageContextInfo.webAbsoluteUrl + "/_api/SP.UserProfiles.PeopleManager/GetMyProperties",  
+            headers: { Accept: "application/json;odata=verbose" },
+            async:false,
+            success: function (data) { 
+				  currentUserProperties = data.d;
+            },  
+            error: function(error) {  
+                console.log(error); 
+            }  
+        });
+        
+        return currentUserProperties;
+    }
+    
+    function getCurrentUserDepartment()
+    {
+    	$.ajax({  
+  
+            url: _spPageContextInfo.webAbsoluteUrl + "/_api/SP.UserProfiles.PeopleManager/GetMyProperties",  
+            headers: { Accept: "application/json;odata=verbose" },
+            async:false,
+            success: function (data) { 
+            	if (data.d.UserProfileProperties.results.length > 0) {
+            		for(var i=0;i<data.d.UserProfileProperties.results.length;i++)
+            		{
+            			if (data.d.UserProfileProperties.results[i].Key === "Department") 
+            			{ 
+            				curUserdepartment = data.d.UserProfileProperties.results[i].Value; 
+            			}
+            		}
+            	} 
+            },  
+            error: function(error) {  
+                console.log(error); 
+            }  
+        });
+        
+        return curUserdepartment;
+    }
+	function getUserPictureUrl(webUrl,accountName,size){
+	    return webUrl + "/_layouts/15/userphoto.aspx?size=" + size + "&accountname=" + accountName;
+	}
+
+return {
+    PerfectScrollWrapper: perfectScrollWrapper,
+    GetUserProfileProperties: getUserProperties,
+    UserProfileProperties:userProfileProperties,
+    GetCurrentUserProperties:getCurrentUserProperties,
+    GetCurrentUserDepartment:getCurrentUserDepartment,
+    GetUserPictureUrl:getUserPictureUrl
+  };
+})(window);
+function sliceSize(dataNum, dataTotal) {
+  return (dataNum / dataTotal) * 360;
+}

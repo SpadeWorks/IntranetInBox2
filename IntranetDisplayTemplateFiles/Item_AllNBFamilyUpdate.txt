@@ -1,0 +1,154 @@
+﻿<html xmlns:mso="urn:schemas-microsoft-com:office:office" xmlns:msdt="uuid:C2F41010-65B3-11d1-A29F-00AA00C14882"> 
+<head>
+<title>All NBB Family Updates</title>
+
+<!--[if gte mso 9]><xml>
+<mso:CustomDocumentProperties>
+<mso:TemplateHidden msdt:dt="string">0</mso:TemplateHidden>
+<mso:ManagedPropertyMapping msdt:dt="string">&#39;EmployeeName&#39;{EmployeeName}:&#39;EmployeeName&#39;,&#39;StartTime&#39;{StartTime}:&#39;StartTime&#39;,&#39;EmployeeDepartment&#39;{EmployeeDepartment}:&#39;EmployeeDepartment&#39;,&#39;UniqueID&#39;{UniqueID}:&#39;UniqueID&#39;,&#39;ContentType&#39;{ContentType}:&#39;ContentType&#39;</mso:ManagedPropertyMapping>
+<mso:MasterPageDescription msdt:dt="string">This Item Display Template will show a 304x100 picture of the item on top. The title and the default item description will display to the bottom of the picture with an additional line that is available for a custom managed property.</mso:MasterPageDescription>
+<mso:ContentTypeId msdt:dt="string">0x0101002039C03B61C64EC4A04F5361F385106603</mso:ContentTypeId>
+<mso:TargetControlType msdt:dt="string">;#Content Web Parts;#</mso:TargetControlType>
+<mso:HtmlDesignAssociated msdt:dt="string">1</mso:HtmlDesignAssociated>
+<mso:HtmlDesignConversionSucceeded msdt:dt="string">True</mso:HtmlDesignConversionSucceeded>
+<mso:HtmlDesignStatusAndPreview msdt:dt="string">http://icsp2016dev102:8081/_catalogs/masterpage/Display Templates/Content Web Parts/Item_AllNBFamilyUpdate.html, Conversion successful.</mso:HtmlDesignStatusAndPreview>
+</mso:CustomDocumentProperties>
+</xml><![endif]-->
+</head>
+
+<body>
+
+    <!--
+            Warning: Do not try to add HTML to this section. Only the contents of the first <div>
+            inside the <body> tag will be used while executing Display Template code. Any HTML that
+            you add to this section will NOT become part of your Display Template.
+    -->
+    <script>
+        $includeLanguageScript(this.url, "~sitecollection/_catalogs/masterpage/Display Templates/Language Files/{Locale}/CustomStrings.js");
+    </script>
+
+    <!--
+        Use the div below to author your Display Template. Here are some things to keep in mind:
+        * Surround any JavaScript logic as shown below using a "pound underscore" (#_ ... _#) token
+        inside a comment.
+
+        * Use the values assigned to your variables using an "underscore pound equals"
+        (_#= ... =#_) token.
+    -->
+
+     <div id="Item_RecognitionDept">
+        <!--#_
+
+                var id = ctx.ClientControl.get_nextUniqueId();
+
+                var RecognitionGUID;
+                var EmployeeName;
+                var EmployeeBy;
+                var Employee_Loginname;
+               
+                if (!$isEmptyString(ctx.CurrentItem.EmployeeName))
+                {
+                  EmployeeName=Srch.U.getDisplayNameFromAuthorField(ctx.CurrentItem.EmployeeName);
+                  Employee_Loginname= Srch.U.getUsernameFromAuthorField(ctx.CurrentItem.EmployeeName);
+                }             
+
+                var contentType=ctx.CurrentItem.ContentType;
+                 if(contentType.indexOf('New_Joinee')>=0)
+	                {
+	                contentType="New Joinee";
+	                }
+                var EventDate = Srch.U.toFormattedDate(ctx.CurrentItem.StartTime);
+                var RecognizedPersonPic = "RecognizedPersonPic_"+ id;
+                var RecognizedName = "RecognizedName_"+ id;
+                var RecognizedJobtitle = "RecognizedJobtitle_"+ id;
+                var RecognizedByName = "RecognizedByName_"+ id;
+                var RecognizedByJobtitle = "RecognizedByJobtitle_"+ id;
+                var RecognitionBatch = "RecognitionBatch_"+ id;
+                var RecognizedByProfileURL ="RecognizedByProfileURL_"+ id;
+                var RecognizedProfileURL = "RecognizedProfileURL_"+ id;
+                var AnchorId = "AnchorId_"+ id;
+                var likeCountDiv="likeCountDiv_" +id;
+                var commentCountDiv="commentCountDiv_" +id;
+                var MoblikeCountDiv="MoblikeCountDiv_" +id;
+                var MobcommentCountDiv="MobcommentCountDiv_" +id;
+                var RecognitionGUID=ctx.CurrentItem.UniqueID;
+                //RecognitionGUID=RecognitionGUID.replace(/[{}]/g, "");
+
+                var recProfileURL = "javascript:void(0)";
+                var recProfilePhotoURL = "";
+                var recByProfileURL ="javascript:void(0)";
+
+                           
+
+                    if (!$isEmptyString(ctx.CurrentItem.EmployeeDepartment)) {
+                        var Department =Srch.U.getArray(ctx.CurrentItem.EmployeeDepartment);
+                        var shortDept;
+                        var FormattedDepartment="";
+                        for(var i=1 ; i < Department.length ; i=i+2)
+                        {
+                            if(i<4 && i>1)
+                            {
+                                i=4;
+                            }
+                            shortDept=Department[i];
+                            if(FormattedDepartment.length>0)
+                            {
+                                if (!$isEmptyString(shortDept))
+                                    FormattedDepartment=FormattedDepartment+", "+shortDept.split("|")[2];
+                            }
+                            else
+                            {
+                                if (!$isEmptyString(shortDept))
+                                    FormattedDepartment=shortDept.split("|")[2];
+                            }
+
+                        }
+                    }
+                    var EventDate = ctx.CurrentItem.StartTime;
+                    if(EventDate !=null)
+                    {
+                        EventDate = EventDate.format("MMM d");
+                    }
+                  
+      var userProperties = '';
+      if(Employee_Loginname.indexOf('|')>=0)
+      {
+      userProperties =NBB.GetUserProfileProperties(Employee_Loginname.split("|")[1]);
+      }
+      else
+      {
+       userProperties =NBB.GetUserProfileProperties(Employee_Loginname);
+      }
+
+var profilePic = "",designation="";
+profilePic = NBB.GetUserPictureUrl(_spPageContextInfo.webAbsoluteUrl,Employee_Loginname,"L");
+      
+
+        _#-->
+        
+        
+        <div class="nbb-familyupdates-emp">
+                                                                                                                                
+					<div class="tab-content">
+						<div role="tabpanel" class="tab-pane active" id="all">
+                                <div class="nbb-familyupdates-empwrapper">
+                                                <div class="nbb-familyupdates-empphoto">
+                                   <img src="_#= $htmlEncode(profilePic) =#_" width="101" height="93" alt=""/> </div>
+                                    <div class="nbb-familyupdates-empdetails nbb-familyupdates-bluebox">
+                                                <div class="nbb-familyupdates-empname">
+                                                _#= EmployeeName=#_                                               
+                                        </div>
+                                        <div class="nbb-familyupdates-empdate">
+                                                _#= contentType =#_            _#= EventDate=#_
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                                            
+                                            
+						</div>
+				</div>
+           
+    </div>
+</body>
+</html>

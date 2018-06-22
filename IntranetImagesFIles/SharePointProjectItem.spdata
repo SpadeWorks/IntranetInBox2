@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ProjectItem Type="Microsoft.VisualStudio.SharePoint.Module" DefaultFile="Elements.xml" SupportedTrustLevels="All" SupportedDeploymentScopes="Web, Site" xmlns="http://schemas.microsoft.com/VisualStudio/2010/SharePointTools/SharePointProjectItemModel">
+  <Files>
+    <ProjectItemFile Source="Elements.xml" Target="IntranetImagesFIles\" Type="ElementManifest" />
+    <ProjectItemFile Source="Sample.txt" Target="IntranetImagesFIles\" Type="ElementFile" />
+    <ProjectItemFile Source="Default-profile-pic.jpg" Target="IntranetImagesFIles\" Type="ElementFile" />
+    <ProjectItemFile Source="ic-all-issues.png" Target="IntranetImagesFIles\" Type="ElementFile" />
+    <ProjectItemFile Source="ic-issues-closed-and-verified.png" Target="IntranetImagesFIles\" Type="ElementFile" />
+    <ProjectItemFile Source="ic-issues-closed-but-not-verified.png" Target="IntranetImagesFIles\" Type="ElementFile" />
+    <ProjectItemFile Source="ic-Issues-closed-by-owner.png" Target="IntranetImagesFIles\" Type="ElementFile" />
+    <ProjectItemFile Source="ic-issues-closed-by-risk-acceptance.png" Target="IntranetImagesFIles\" Type="ElementFile" />
+    <ProjectItemFile Source="ic-issues-not-due-yet.png" Target="IntranetImagesFIles\" Type="ElementFile" />
+    <ProjectItemFile Source="ic-issues-past-due.png" Target="IntranetImagesFIles\" Type="ElementFile" />
+    <ProjectItemFile Source="ic-outstanding-issues.png" Target="IntranetImagesFIles\" Type="ElementFile" />
+    <ProjectItemFile Source="NBB-intranet-logo.jpg" Target="IntranetImagesFIles\" Type="ElementFile" />
+    <ProjectItemFile Source="NBB-logo.jpg" Target="IntranetImagesFIles\" Type="ElementFile" />
+    <ProjectItemFile Source="profile-pic.jpg" Target="IntranetImagesFIles\" Type="ElementFile" />
+    <ProjectItemFile Source="voiceofmgt_photo.jpg" Target="IntranetImagesFIles\" Type="ElementFile" />
+  </Files>
+</ProjectItem>

@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ProjectItem Type="Microsoft.VisualStudio.SharePoint.Module" DefaultFile="Elements.xml" SupportedTrustLevels="All" SupportedDeploymentScopes="Web, Site" xmlns="http://schemas.microsoft.com/VisualStudio/2010/SharePointTools/SharePointProjectItemModel">
+  <Files>
+    <ProjectItemFile Source="Elements.xml" Target="IntranetDisplayTemplateFiles\" Type="ElementManifest" />
+    <ProjectItemFile Source="Sample.txt" Target="IntranetDisplayTemplateFiles\" Type="ElementFile" />
+    <ProjectItemFile Source="Control_AllNBBFamilypdates.txt" Target="IntranetDisplayTemplateFiles\" Type="ElementFile" />
+    <ProjectItemFile Source="control_DepartmentMarkCalendar.txt" Target="IntranetDisplayTemplateFiles\" Type="ElementFile" />
+    <ProjectItemFile Source="Control_ImpAnnouncement.txt" Target="IntranetDisplayTemplateFiles\" Type="ElementFile" />
+    <ProjectItemFile Source="control_Latest_News.txt" Target="IntranetDisplayTemplateFiles\" Type="ElementFile" />
+    <ProjectItemFile Source="Control_LatestUpdateDetails.txt" Target="IntranetDisplayTemplateFiles\" Type="ElementFile" />
+    <ProjectItemFile Source="Control_LatestUpdates.txt" Target="IntranetDisplayTemplateFiles\" Type="ElementFile" />
+    <ProjectItemFile Source="control_MarkYourCalendar.txt" Target="IntranetDisplayTemplateFiles\" Type="ElementFile" />
+    <ProjectItemFile Source="Control_NBBFamilyUpdatesDetailedPage.txt" Target="IntranetDisplayTemplateFiles\" Type="ElementFile" />
+    <ProjectItemFile Source="Control_NBBFamilyUpdatesNew.txt" Target="IntranetDisplayTemplateFiles\" Type="ElementFile" />
+    <ProjectItemFile Source="Control_NBBTaskWebPart.txt" Target="IntranetDisplayTemplateFiles\" Type="ElementFile" />
+    <ProjectItemFile Source="Control_OrgAnnouncementDetails.txt" Target="IntranetDisplayTemplateFiles\" Type="ElementFile" />
+    <ProjectItemFile Source="Control_QuickLinks.txt" Target="IntranetDisplayTemplateFiles\" Type="ElementFile" />
+    <ProjectItemFile Source="Control_VoiceOfMgtPaging.txt" Target="IntranetDisplayTemplateFiles\" Type="ElementFile" />
+    <ProjectItemFile Source="Item_AllNBFamilyUpdate.txt" Target="IntranetDisplayTemplateFiles\" Type="ElementFile" />
+    <ProjectItemFile Source="item_ArticleDetails.txt" Target="IntranetDisplayTemplateFiles\" Type="ElementFile" />
+    <ProjectItemFile Source="Item_DepartmentMarkYourCalendar.txt" Target="IntranetDisplayTemplateFiles\" Type="ElementFile" />
+    <ProjectItemFile Source="Item_FamilyUpdates.txt" Target="IntranetDisplayTemplateFiles\" Type="ElementFile" />
+    <ProjectItemFile Source="Item_Important_Announcements.txt" Target="IntranetDisplayTemplateFiles\" Type="ElementFile" />
+    <ProjectItemFile Source="Item_LargePicture.txt" Target="IntranetDisplayTemplateFiles\" Type="ElementFile" />
+    <ProjectItemFile Source="Item_Latest_News_Home.txt" Target="IntranetDisplayTemplateFiles\" Type="ElementFile" />
+    <ProjectItemFile Source="item_LatestUpdate.txt" Target="IntranetDisplayTemplateFiles\" Type="ElementFile" />
+    <ProjectItemFile Source="Item_LatestUpdatesDetails.txt" Target="IntranetDisplayTemplateFiles\" Type="ElementFile" />
+    <ProjectItemFile Source="Item_MarkYourCalendar.txt" Target="IntranetDisplayTemplateFiles\" Type="ElementFile" />
+    <ProjectItemFile Source="Item_NBBFamilyUpdatesHomePage.txt" Target="IntranetDisplayTemplateFiles\" Type="ElementFile" />
+    <ProjectItemFile Source="Item_NBBItemsDetaildView.txt" Target="IntranetDisplayTemplateFiles\" Type="ElementFile" />
+    <ProjectItemFile Source="Item_OrgAnnouncement.txt" Target="IntranetDisplayTemplateFiles\" Type="ElementFile" />
+    <ProjectItemFile Source="Item_QuickLinks.txt" Target="IntranetDisplayTemplateFiles\" Type="ElementFile" />
+    <ProjectItemFile Source="Item_VoiceOfManagement.txt" Target="IntranetDisplayTemplateFiles\" Type="ElementFile" />
+    <ProjectItemFile Source="Item_VoiceOfMgt.txt" Target="IntranetDisplayTemplateFiles\" Type="ElementFile" />
+  </Files>
+</ProjectItem>

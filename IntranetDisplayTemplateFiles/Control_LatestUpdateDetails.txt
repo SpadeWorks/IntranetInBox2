@@ -1,0 +1,102 @@
+﻿<html xmlns:mso="urn:schemas-microsoft-com:office:office" xmlns:msdt="uuid:C2F41010-65B3-11d1-A29F-00AA00C14882"> 
+<head>
+<title>Control Latest Update Details</title>
+
+<!--[if gte mso 9]><xml>
+<mso:CustomDocumentProperties>
+<mso:TemplateHidden msdt:dt="string">0</mso:TemplateHidden>
+<mso:MasterPageDescription msdt:dt="string">This is the default Control Display Template that will list the items. It does not allow the user to page through items.</mso:MasterPageDescription>
+<mso:ContentTypeId msdt:dt="string">0x0101002039C03B61C64EC4A04F5361F385106601</mso:ContentTypeId>
+<mso:TargetControlType msdt:dt="string">;#Content Web Parts;#</mso:TargetControlType>
+<mso:HtmlDesignAssociated msdt:dt="string">1</mso:HtmlDesignAssociated>
+
+<mso:HtmlDesignStatusAndPreview msdt:dt="string">http://icsp2016dev102:8081/_catalogs/masterpage/Display%20Templates/Content%20Web%20Parts/Control_LatestUpdateDetails.html, Conversion successful.</mso:HtmlDesignStatusAndPreview>
+<mso:CrawlerXSLFile msdt:dt="string"></mso:CrawlerXSLFile>
+<mso:HtmlDesignPreviewUrl msdt:dt="string"></mso:HtmlDesignPreviewUrl>
+<mso:HtmlDesignConversionSucceeded msdt:dt="string">True</mso:HtmlDesignConversionSucceeded>
+</mso:CustomDocumentProperties>
+</xml><![endif]-->
+</head>
+<body>
+
+    <!--
+            Warning: Do not try to add HTML to this section. Only the contents of the first <div>
+            inside the <body> tag will be used while executing Display Template code. Any HTML that
+            you add to this section will NOT become part of your Display Template.
+    -->
+    <script>
+        $includeLanguageScript(this.url, "~sitecollection/_catalogs/masterpage/Display Templates/Language Files/{Locale}/CustomStrings.js");
+    </script>
+
+    <!--
+        Use the div below to author your Display Template. Here are some things to keep in mind:
+        * Surround any JavaScript logic as shown below using a "pound underscore" (#_ ... _#) token
+        inside a comment.
+
+        * Use the values assigned to your variables using an "underscore pound equals"
+        (_#= ... =#_) token.
+    -->
+
+    <div id="Control_List">
+	<!--#_ 
+	if (!$isNull(ctx.ClientControl) &&
+	    !$isNull(ctx.ClientControl.shouldRenderControl) &&
+	    !ctx.ClientControl.shouldRenderControl())
+	{
+	    return "";
+	}
+	ctx.ListDataJSONGroupsKey = "ResultTables";
+	var $noResults = Srch.ContentBySearch.getControlTemplateEncodedNoResultsMessage(ctx.ClientControl);	
+	var noResultsClassName = "ms-srch-result-noResults";
+	ctx["CurrentItems"] = ctx.ListData.ResultTables[0].ResultRows;	
+	var ListRenderRenderWrapper = function(itemRenderResult, inCtx, tpl)
+	{
+	    var iStr = [];
+	    iStr.push('<li>');
+	    iStr.push(itemRenderResult);
+	    iStr.push('</li>');
+	    return iStr.join('');
+	}
+	ctx['ItemRenderWrapper'] = ListRenderRenderWrapper;
+	AddPostRenderCallback(ctx, function() {
+		if ($(".slim_scroll").length > 0) {
+			$('.slim_scroll').slimScroll({
+				railVisible: true,
+				alwaysVisible: false,
+				height: 'auto',
+				size: '10px',
+				borderRadius: '0px',
+				railBorderRadius: '0px',
+				distance: '0px'
+			});
+			$(".slimScrollDiv").css("height", "auto");
+		}
+	});
+	_#-->
+		<div class="nbb-articledetails">
+			<div class="articledetails-wrapper">
+	                <ul class="list-group">
+					<!--#_
+					//Checking count of current Items.	 
+					if (ctx["CurrentItems"].length > 0)
+					{
+					_#-->
+					   		_#= ctx.RenderGroups(ctx) =#_ 
+					<!--#_
+					}
+					else
+					{
+					//Display the no data message
+					_#-->
+				        <div class="no-data-msg">No data is currently available.</div>
+					<!--#_
+					
+					}
+					_#-->
+					</ul>
+			</div>
+			<div><a class="nbb-links" href="/Pages/LatestUpdates.aspx">View All Updates</a>&nbsp;|&nbsp;<a class="nbb-links" href="/Lists/LatestUpdates/NewForm.aspx">Submit An Update</a></div>
+		</div>
+	</div>
+</body>
+</html>

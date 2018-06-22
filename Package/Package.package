@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package dslVersion="1.0.0.0" 
+        Id="ba7c0608-cf73-4368-bc01-6db8148a8731" 
+        solutionId="ba7c0608-cf73-4368-bc01-6db8148a8731" 
+        xmlns="http://schemas.microsoft.com/VisualStudio/2008/SharePointTools/PackageModel" 
+        name="IntranetDeployment"
+        sharePointProductVersion="15.0">
+  <features>
+        <featureReference itemId="f0bb85b3-ed45-4a57-a766-7f8c9ae0cce1" />
+  </features>
+</package>
