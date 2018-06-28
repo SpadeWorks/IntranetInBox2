@@ -16,6 +16,7 @@ var collFields;
 var collRemoveContentType = [];
 var collRemoveFields = [];
 var counterDeletedLists = 0;
+var addFieldsPromise = $.Deferred();
 
 $(window).load(function () {
     // executes when complete page is fully loaded, including all frames, objects and images
@@ -125,19 +126,70 @@ INTRANET.CreateSiteStructure = function () {
 
     //INTRANET.CheckConfigListExist();
     //INTRANET.CreateNewTenant();
-    INTRANET.CreateSiteColumns();
+    INTRANET.CreateSiteColumns().then(function () {
+        INTRANET.CreateContentTypes().then(function () {
+            //Add fields in COntent Type
+            INTRANET.AddFieldsInContentType();
+            addFieldsPromise.promise().then(function () {
+                INTRANET.LoadAllContentTypes().then(function () {
+                    INTRANET.AddContentTypeToList().then(function () {
+                        INTRANET.SetAsDefaultContentType().then(function () {
+                            INTRANET.AddFieldsDirectlyInList().then(function () {
+                                INTRANET.BreakInheritedPermissions().then(function () {
+                                    INTRANET.AddItemsInList().then(function () {
+                                        INTRANET.InitiateMigration().then(function () {
+                                            INTRANET.UploadMasterLookUpData().then(function () {
+                                                INTRANET.UploadMasterPage();
+                                                INTRANET.CreateAllFolders("Style Library", "NBB/CSS");
+                                                var uploadUrl = INTRANET.GetRelativeUrlFromAbsolute(hostWebUrl) + "Style Library/NBB/",
+                                                    readUrl = _spPageContextInfo.webAbsoluteUrl + "/IntranetJSFiles/";
+
+                                                INTRANET.UploadAllFiles("Style Library", INTRANET.Schema.AllJS, uploadUrl, "JS", readUrl, ".js");
+                                                readUrl = _spPageContextInfo.webAbsoluteUrl + "/IntranetCSSFiles/";
+                                                INTRANET.UploadAllFiles("Style Library", INTRANET.Schema.AllCSS, uploadUrl, "CSS", readUrl, ".css");
+                                                readUrl = _spPageContextInfo.webAbsoluteUrl + "/IntranetTextFiles/";
+                                                INTRANET.UploadAllFiles("Style Library", INTRANET.Schema.AllTextFiles, uploadUrl, "Text", readUrl, ".txt");
+                                                readUrl = _spPageContextInfo.webAbsoluteUrl + "/IntranetDisplayTemplateFiles/";
+                                                INTRANET.UploadAllDisplayTemplates(INTRANET.Schema.AllTemplateFiles, "_catalogs/masterpage/Display Templates/Content Web Parts", "js", readUrl);
+                                                readUrl = _spPageContextInfo.webAbsoluteUrl + "/IntranetPageLayoutsFiles/";
+                                                INTRANET.UploadAllDisplayTemplates(INTRANET.Schema.AllPageLayouts, "_catalogs/masterpage", "aspx", readUrl);
+                                                readUrl = _spPageContextInfo.webAbsoluteUrl + "/IntranetWebPartFiles/";
+                                                INTRANET.UploadAllDisplayTemplates(INTRANET.Schema.AllWebParts, "_catalogs/wp", "webpart", readUrl);
+
+                                                uploadUrl = INTRANET.GetRelativeUrlFromAbsolute(hostWebUrl) + "Pages/",
+                                                    readUrl = _spPageContextInfo.webAbsoluteUrl + "/IntranetAllPagesFiles/";
+                                                INTRANET.UploadAllPageFiles("Pages", INTRANET.Schema.AllPages, uploadUrl, "aspx", readUrl);
+                                                INTRANET.EndExecution();
+                                            });
+                                        });
+                                    });
+                                });
+                            });
+                        });
+                    });
+                });
+            });
+        });
+    });
 }
 
 //Execution for Look Up columns, content types and lists
 INTRANET.CreateSiteStructureForLookUp = function () {
+    var deferred = $.Deferred();
     countContentType = 0;
     INTRANET.App.IsLookUpExecution = true;
     $(".loader").show();
-    INTRANET.CreateSiteColumns();
+    INTRANET.CreateSiteColumns().then(function () {
+        deferred.resolve();
+    }, function () {
+        deferred.resolve();
+    });
+    return deferred.promise();
 }
 
 //Create Site Columns on Host Web  
 INTRANET.CreateSiteColumns = function () {
+    var deferred = $.Deferred();
     try {
         INTRANET.Log(INTRANET.LogType.Info, "-----Creating Site Columns------");
         INTRANET.IncreaseProgressCounter("Configuring site columns... ");
@@ -193,24 +245,27 @@ INTRANET.CreateSiteColumns = function () {
         //Below code will execute once all async call completed.
         $.when.apply($, asyncMethods).done(function (results) {
             console.log("-----Created Site Columns------");
-
+            deferred.resolve();
             //Create Content Types
-            INTRANET.CreateContentTypes();
+
             //$.each(arguments, function (k, v) {
             //alert(v.get_count().toString());
             //})
         }).fail(function (e) {
             INTRANET.Log(INTRANET.LogType.Error, "Error in CreateSiteColumns. Error: " + e.get_message());
-
+            deferred.reject();
         });
     }
+
     catch (ex) {
         INTRANET.Log(INTRANET.LogType.Error, "Error in CreateSiteColumns. Error: " + ex.message);
     }
+    return deferred.promise();
 }
 
 //Create Content Types on Host Web  
 INTRANET.CreateContentTypes = function () {
+    var deferred = $.Deferred();
     try {
         INTRANET.Log(INTRANET.LogType.Info, "-----Creating Content Types------");
         INTRANET.IncreaseProgressCounter("Configuring content types... ");
@@ -267,21 +322,21 @@ INTRANET.CreateContentTypes = function () {
         //Below code will execute once all async call completed.
         $.when.apply($, asyncMethods).done(function (results) {
             INTRANET.Log(INTRANET.LogType.Info, "-----Created Content Types------");
-
-            //Add fields in COntent Type
-            INTRANET.AddFieldsInContentType();
+            deferred.resolve();
 
         }).fail(function (e) {
             INTRANET.Log(INTRANET.LogType.Error, "Error in CreateContentTypes. Error: " + e.get_message());
+            deferred.reject();
         });
+        return deferred.promise();
     }
     catch (ex) {
         INTRANET.Log(INTRANET.LogType.Error, "Error in CreateContentTypes. Error: " + ex.message);
     }
 }
-
 //Add Fields in Content Type
 INTRANET.AddFieldsInContentType = function () {
+
     try {
 
         INTRANET.Log(INTRANET.LogType.Info, "-----Add fields in Content Types------");
@@ -456,16 +511,17 @@ INTRANET.CreateLists = function () {
                 INTRANET.SetListGUID();
             }
 
-            //Load all Content Types
-            INTRANET.LoadAllContentTypes();
+            addFieldsPromise.resolve();
 
         }).fail(function (e) {
             INTRANET.Log(INTRANET.LogType.Error, "Error in CreateLists. Error: " + e.get_message());
+            addFieldsPromise.resolve();
         });
     }
     catch (ex) {
         INTRANET.Log(INTRANET.LogType.Error, "Error in CreateLists. Error: " + ex.message);
     }
+    return addFieldsPromise.promise();
 }
 
 INTRANET.SetListGUID = function () {
@@ -503,7 +559,7 @@ INTRANET.SetListGUID = function () {
 
 //Load All Content Types
 INTRANET.LoadAllContentTypes = function () {
-
+    var deferred = $.Deferred();
     try {
         INTRANET.IncreaseProgressCounter("Configuring load content types... ");
 
@@ -524,8 +580,7 @@ INTRANET.LoadAllContentTypes = function () {
                     }
                 });
             }
-
-            INTRANET.AddContentTypeToList();
+            deferred.resolve();
         },
             function (sender, args) {
                 console.error("Error in LoadAllContentTypes. Error: " + e.get_message());
@@ -534,10 +589,12 @@ INTRANET.LoadAllContentTypes = function () {
     catch (ex) {
         INTRANET.Log(INTRANET.LogType.Error, "Error in LoadAllContentTypes. Error: " + ex.message);
     }
+    return deferred.promise();
 }
 
 //Attach Content Types to List
 INTRANET.AddContentTypeToList = function () {
+    var deferred = $.Deferred();
     try {
 
         INTRANET.Log(INTRANET.LogType.Info, "-----Attaching content type to Lists------");
@@ -589,20 +646,22 @@ INTRANET.AddContentTypeToList = function () {
         //Below code will execute once all async call completed.
         $.when.apply($, asyncMethods).done(function (results) {
             INTRANET.Log(INTRANET.LogType.Info, "-----Attached content type to Lists------");
-
-            INTRANET.SetAsDefaultContentType();
-
+            deferred.resolve();
         }).fail(function (e) {
             INTRANET.Log(INTRANET.LogType.Error, "Error in AddContentTypeToList. Error: " + e.get_message());
+            deferred.resolve();
         });
 
     } catch (ex) {
         INTRANET.Log(INTRANET.LogType.Error, "Error in AddContentTypeToList. Error: " + ex.message);
     }
+
+    return deferred.resolve();
 }
 
 //Change default contend type (this code will reverse the current content type order, so our recently added content type will come first)
 INTRANET.SetAsDefaultContentType = function () {
+    var deferred = $.Deferred();
     try {
 
         INTRANET.Log(INTRANET.LogType.Info, "-----Attaching content type to Lists------");
@@ -673,7 +732,7 @@ INTRANET.SetAsDefaultContentType = function () {
         $.when.apply($, asyncMethods).done(function (results) {
             INTRANET.Log(INTRANET.LogType.Info, "-----Default content type set to all Lists------");
 
-            INTRANET.AddFieldsDirectlyInList();
+            deferred.resolve();
 
         }).fail(function (e) {
             INTRANET.Log(INTRANET.LogType.Error, "Error in SetAsDefaultContentType. Error: " + e.get_message());
@@ -682,10 +741,13 @@ INTRANET.SetAsDefaultContentType = function () {
     } catch (ex) {
         INTRANET.Log(INTRANET.LogType.Error, "Error in SetAsDefaultContentType. Error: " + ex.message);
     }
+
+    return deferred.promise();
 }
 
 //Add column directly in List - List level columns
 INTRANET.AddFieldsDirectlyInList = function () {
+    var deferred = $.Deferred();
     try {
 
         INTRANET.Log(INTRANET.LogType.Info, "-----Adding List level columns------");
@@ -733,9 +795,8 @@ INTRANET.AddFieldsDirectlyInList = function () {
             else {
                 INTRANET.Log(INTRANET.LogType.Info, "-----Added List level columns for Look Up------");
                 INTRANET.Log(INTRANET.LogType.Info, "-----END Execution for Look Up------");
-
-                INTRANET.BreakInheritedPermissions();
             }
+            deferred.resolve();
 
         }).fail(function (e) {
             INTRANET.Log(INTRANET.LogType.Error, "Error in AddFieldsDirectlyInList. Error: " + e.get_message());
@@ -744,10 +805,13 @@ INTRANET.AddFieldsDirectlyInList = function () {
     } catch (ex) {
         INTRANET.Log(INTRANET.LogType.Error, "Error in AddFieldsDirectlyInList. Error: " + ex.message);
     }
+
+    return deferred.promise();
 }
 
 //Break Inherited permissions of Lists
 INTRANET.BreakInheritedPermissions = function () {
+    var deferred = $.Deferred();
     try {
         $(".loader").show();
 
@@ -790,10 +854,7 @@ INTRANET.BreakInheritedPermissions = function () {
             INTRANET.Log(INTRANET.LogType.Info, "-----Done Break List Permissions------");
             INTRANET.Log(INTRANET.LogType.Info, "-----END Execution for Break List Permissions------");
 
-            $(".loader").hide();
-
-            INTRANET.AddItemsInList();
-
+            deferred.resolve();
         }).fail(function (e) {
             INTRANET.Log(INTRANET.LogType.Error, "Error in BreakInheritedPermissions. Error: " + e.get_message());
         });
@@ -801,10 +862,13 @@ INTRANET.BreakInheritedPermissions = function () {
     } catch (ex) {
         INTRANET.Log(INTRANET.LogType.Error, "Error in BreakInheritedPermissions. Error: " + ex.message);
     }
+
+    return deferred.promise()
 }
 
 //Add Default Items in List
 INTRANET.AddItemsInList = function () {
+    var deferred = $.Deferred();
     try {
         $(".loader").show();
         INTRANET.IncreaseProgressCounter("Configuring default config items... ");
@@ -883,14 +947,14 @@ INTRANET.AddItemsInList = function () {
             //$("#configureRead").css("display", "block");
 
             //Initiate Migration
-            INTRANET.InitiateMigration();
-
+            deferred.resolve();
         }).fail(function (e) {
             INTRANET.Log(INTRANET.LogType.Error, "Error in AddItemsInList. Error: " + e.get_message());
         });
     } catch (ex) {
         INTRANET.Log(INTRANET.LogType.Error, "Error in AddItemsInList. Error: " + ex.message);
     }
+    return deferred.promise();
 }
 
 INTRANET.SetConfigSectionReadOnly = function () {
@@ -902,6 +966,7 @@ INTRANET.SetConfigSectionReadOnly = function () {
 
 //Start Migration activity - Upload data in master Lists
 INTRANET.InitiateMigration = function () {
+    var deferred = $.Deferred();
     try {
         INTRANET.UpdateInstallationState(INTRANET.App.APPState.Initialization, INTRANET.App.Done);
         //Set list as Hidden
@@ -916,8 +981,7 @@ INTRANET.InitiateMigration = function () {
         hostWebContextFile.executeQueryAsync(
             function () {
                 INTRANET.Log(INTRANET.LogType.Info, "Context Created");
-
-                INTRANET.UploadMasterLookUpData();
+                deferred.resolve();
             },
             function (sender, args) {
                 INTRANET.Log(INTRANET.LogType.Error, "Error in InitiateMigration AJAX. Error: " + args.get_errorDetails());
@@ -926,13 +990,13 @@ INTRANET.InitiateMigration = function () {
     catch (ex) {
         INTRANET.Log(INTRANET.LogType.Error, "Error in InitiateMigration. Error: " + ex.message);
     }
+    return deferred.promise();
 }
 
 //Migrate Look Up column contains Master List data
 INTRANET.UploadMasterLookUpData = function () {
+    var deferred = $.Deferred();
     try {
-
-        $(".loader").show();
         INTRANET.IncreaseProgressCounter("Configuring sample data...");
 
         INTRANET.Log(INTRANET.LogType.Info, "-----Master List data look Up uploading------");
@@ -1044,28 +1108,7 @@ INTRANET.UploadMasterLookUpData = function () {
                 INTRANET.LoadAllCategories();
             }
             else {
-                INTRANET.UploadMasterPage();
-                INTRANET.CreateAllFolders("Style Library", "NBB/CSS");
-
-                var uploadUrl = INTRANET.GetRelativeUrlFromAbsolute(hostWebUrl) + "Style Library/NBB/",
-                    readUrl = _spPageContextInfo.webAbsoluteUrl + "/IntranetJSFiles/";
-
-                INTRANET.UploadAllFiles("Style Library",INTRANET.Schema.AllJS, uploadUrl, "JS", readUrl,".js");
-                readUrl = _spPageContextInfo.webAbsoluteUrl + "/IntranetCSSFiles/";
-                INTRANET.UploadAllFiles("Style Library", INTRANET.Schema.AllCSS, uploadUrl, "CSS", readUrl,".css");
-                readUrl = _spPageContextInfo.webAbsoluteUrl + "/IntranetTextFiles/";
-                INTRANET.UploadAllFiles("Style Library", INTRANET.Schema.AllTextFiles, uploadUrl, "Text", readUrl,".txt");
-                readUrl = _spPageContextInfo.webAbsoluteUrl + "/IntranetDisplayTemplateFiles/";
-                INTRANET.UploadAllDisplayTemplates(INTRANET.Schema.AllTemplateFiles, "_catalogs/masterpage/Display Templates/Content Web Parts", "html", readUrl);
-                readUrl = _spPageContextInfo.webAbsoluteUrl + "/IntranetPageLayoutsFiles/";
-                INTRANET.UploadAllDisplayTemplates(INTRANET.Schema.AllPageLayouts, "_catalogs/masterpage", "js", readUrl);
-                readUrl = _spPageContextInfo.webAbsoluteUrl + "/IntranetWebPartFiles/";
-                INTRANET.UploadAllDisplayTemplates(INTRANET.Schema.AllWebParts, "_catalogs/wp", "webpart", readUrl);
-
-                uploadUrl = INTRANET.GetRelativeUrlFromAbsolute(hostWebUrl) + "Pages/",
-                readUrl = _spPageContextInfo.webAbsoluteUrl + "/IntranetAllPagesFiles/";
-                INTRANET.UploadAllPageFiles("Pages", INTRANET.Schema.AllPages, uploadUrl, "aspx", readUrl);
-                INTRANET.EndExecution();
+                deferred.resolve();
             }
 
         }).fail(function (e) {
@@ -1083,7 +1126,7 @@ INTRANET.UploadMasterLookUpData = function () {
 
 
                 var uploadUrl = INTRANET.GetRelativeUrlFromAbsolute(hostWebUrl) + "Style Library/NBB/",
-                readUrl = _spPageContextInfo.webAbsoluteUrl + "/IntranetJSFiles/";
+                    readUrl = _spPageContextInfo.webAbsoluteUrl + "/IntranetJSFiles/";
                 INTRANET.UploadAllFiles(INTRANET.Schema.AllJS, uploadUrl, "js", readUrl);
                 readUrl = _spPageContextInfo.webAbsoluteUrl + "/IntranetCSSFiles/";
                 INTRANET.UploadAllFiles(INTRANET.Schema.AllCSS, uploadUrl, "css", readUrl);
@@ -1097,6 +1140,7 @@ INTRANET.UploadMasterLookUpData = function () {
 
         INTRANET.Log(INTRANET.LogType.Error, "Error in UploadMasterLookUpData. Error: " + ex.message);
     }
+    return deferred.promise();
 }
 
 //Load All Categories
@@ -2014,29 +2058,46 @@ INTRANET.VerifyLicense = function (encodedTopLicense) {
 }
 
 INTRANET.UploadMasterPage = function () {
-    INTRANET.ReadFromAppWebAndProvisionToHost(_spPageContextInfo.webAbsoluteUrl + '/IntranetMasterPagesFiles/MasterPage.txt', '_catalogs/masterpage', 'NBB_Site.master');
+    INTRANET.ReadFromAppWebAndProvisionToHost(_spPageContextInfo.webAbsoluteUrl +
+        '/IntranetMasterPagesFiles/MasterPage.txt',
+        '_catalogs/masterpage', 'NBB_Site.master').then(function () {
+            INTRANET.SetAsDefaultMasterPage(_spPageContextInfo.siteServerRelativeUrl +
+                '/_catalogs/masterpage/NBB_Site.master');
+
+        });
 }
 
 INTRANET.ReadFromAppWebAndProvisionToHost = function (appPageUrl, folderPath, hostWebFileName) {
+    var deferred = $.Deferred();
     var destinationServerRelativeUrl = hostWebUrl,
-    destinationFileName = hostWebFileName;
+        destinationFileName = hostWebFileName;
     var req = $.ajax({
         url: appPageUrl,
         type: "GET",
         cache: false
     }).done(function (fileContents) {
         if (fileContents !== undefined && fileContents.length > 0) {
-            INTRANET.uploadFileToHostWebViaCSOM(folderPath, destinationFileName, fileContents);
+            INTRANET.UploadFileToHostWebViaCSOM(folderPath, destinationFileName, fileContents).then(function () {
+                deferred.resolve();
+            }, function () {
+                deferred.reject();
+            });
         }
         else {
             alert('Failed to read file from app web, so not uploading to host web..');
         }
+
+        deferred.resolve();
     }).fail(function (jqXHR, textStatus) {
         alert("Request for page in app web failed: " + textStatus);
+        deferred.reject();
     });
+
+    return deferred.promise();
 }
 
-INTRANET.uploadFileToHostWebViaCSOM = function (folderPath, filename, contents) {
+INTRANET.UploadFileToHostWebViaCSOM = function (folderPath, filename, contents) {
+    var deferred = $.Deferred();
     var createInfo = new SP.FileCreationInformation();
     createInfo.set_content(new SP.Base64EncodedByteArray());
 
@@ -2049,18 +2110,39 @@ INTRANET.uploadFileToHostWebViaCSOM = function (folderPath, filename, contents) 
     var hostWeb = hostWebContext.get_web();
     var files = hostWeb.getFolderByServerRelativeUrl(INTRANET.GetRelativeUrlFromAbsolute(hostWebUrl) + folderPath).get_files();
     context.load(files);
-    files.add(createInfo);
 
+    files.add(createInfo);
     context.executeQueryAsync(function (data) {
-        console.log('File uploaded successfully: ' + INTRANET.GetRelativeUrlFromAbsolute(hostWebUrl) + '/' + filename);
+        INTRANET.PublishFile(INTRANET.GetRelativeUrlFromAbsolute(hostWebUrl) + folderPath + '/' + filename).then(function () {
+            console.log('File uploaded successfully: ' + INTRANET.GetRelativeUrlFromAbsolute(hostWebUrl) + '/' + filename);
+            deferred.resolve();
+        }, function (error) {
+            deferred.reject();
+        });
     },
-    function (sender, args) {
-        console.log('Failed uploadation fail:' + sender.statusCode);
+        function (sender, args) {
+            console.log('Failed uploadation fail:' + sender.statusCode);
+        });
+
+    return deferred.promise();
+}
+
+INTRANET.PublishFile = function(fileRelativeUrl){
+    var deferred = $.Deferred();
+    var file = hostWeb.getFileByServerRelativeUrl(fileRelativeUrl);
+    file.publish();
+    context.load(file);
+    context.executeQueryAsync(function (data) {
+        deferred.resolve();
+    }, function (err, sender) {
+        console.log('Error publishing file:', err, sender);
     });
+    return deferred.promise();
 }
 
 INTRANET.SetAsDefaultMasterPage = function (masterPageUrl) {
     var hostWeb = hostWebContext.get_web();
+    hostWeb.set_customMasterUrl(masterPageUrl);
     hostWeb.set_masterUrl(masterPageUrl);
     hostWeb.update();
 
@@ -2068,9 +2150,9 @@ INTRANET.SetAsDefaultMasterPage = function (masterPageUrl) {
     context.executeQueryAsync(function (data) {
         console.log('Master page updated successfully..');
     },
-    function (sender, args) {
-        alert('Failed to update master page on host web. Error:' + args.get_message());
-    });
+        function (sender, args) {
+            alert('Failed to update master page on host web. Error:' + args.get_message());
+        });
 }
 
 INTRANET.UploadAllJSFiles = function () {
@@ -2086,19 +2168,19 @@ INTRANET.UploadAllJSFiles = function () {
             asyncmethods = $.map(tempFileArray, function (fileName) {
                 var txtName = fileName + ".js",
                     fileNameUrl = _spPageContextInfo.webAbsoluteUrl + "/IntranetJSFiles/" + fileName + ".txt",
-                readFile = $.ajax({
-                    url: fileNameUrl,
-                    type: "GET",
-                    cache: false,
-                    success: function (fileContents) {
-                        if (fileContents !== undefined && fileContents.length > 0) {
-                            INTRANET.UploadFile(txtName, fileContents, path);
+                    readFile = $.ajax({
+                        url: fileNameUrl,
+                        type: "GET",
+                        cache: false,
+                        success: function (fileContents) {
+                            if (fileContents !== undefined && fileContents.length > 0) {
+                                INTRANET.UploadFile(txtName, fileContents, path);
+                            }
+                        },
+                        error: function (error) {
+                            console.log(error);
                         }
-                    },
-                    error: function (error) {
-                        console.log(error);
-                    }
-                });
+                    });
             });
         }
     }
@@ -2120,19 +2202,19 @@ INTRANET.UploadAllCSSFiles = function () {
             asyncmethods = $.map(tempCSSArray, function (cssName) {
                 var txtName = cssName + ".css",
                     cssNameUrl = _spPageContextInfo.webAbsoluteUrl + "/IntranetCSS/" + cssName + ".txt",
-                readFile = $.ajax({
-                    url: cssNameUrl,
-                    type: "GET",
-                    cache: false,
-                    success: function (fileContents) {
-                        if (fileContents !== undefined && fileContents.length > 0) {
-                            INTRANET.UploadFile(txtName, fileContents, path);
+                    readFile = $.ajax({
+                        url: cssNameUrl,
+                        type: "GET",
+                        cache: false,
+                        success: function (fileContents) {
+                            if (fileContents !== undefined && fileContents.length > 0) {
+                                INTRANET.UploadFile(txtName, fileContents, path);
+                            }
+                        },
+                        error: function (error) {
+                            console.log(error);
                         }
-                    },
-                    error: function (error) {
-                        console.log(error);
-                    }
-                });
+                    });
             });
         }
 
@@ -2155,19 +2237,19 @@ INTRANET.UploadAllTextFiles = function () {
             asyncmethods = $.map(tempFileArray, function (fileName) {
                 var txtName = fileName,
                     fileNameUrl = _spPageContextInfo.webAbsoluteUrl + "/IntranetTextFiles/" + fileName,
-                readFile = $.ajax({
-                    url: fileNameUrl,
-                    type: "GET",
-                    cache: false,
-                    success: function (fileContents) {
-                        if (fileContents !== undefined && fileContents.length > 0) {
-                            INTRANET.UploadFile(txtName, fileContents, path);
+                    readFile = $.ajax({
+                        url: fileNameUrl,
+                        type: "GET",
+                        cache: false,
+                        success: function (fileContents) {
+                            if (fileContents !== undefined && fileContents.length > 0) {
+                                INTRANET.UploadFile(txtName, fileContents, path);
+                            }
+                        },
+                        error: function (error) {
+                            console.log(error);
                         }
-                    },
-                    error: function (error) {
-                        console.log(error);
-                    }
-                });
+                    });
             });
         }
     }
@@ -2176,7 +2258,7 @@ INTRANET.UploadAllTextFiles = function () {
     }
 }
 
-INTRANET.UploadAllPageFiles = function(listtitle,fileArray, uploadUrl, type, readUrl){
+INTRANET.UploadAllPageFiles = function (listtitle, fileArray, uploadUrl, type, readUrl) {
     try {
         var tempFileArray = fileArray,
             url = uploadUrl;
@@ -2186,19 +2268,19 @@ INTRANET.UploadAllPageFiles = function(listtitle,fileArray, uploadUrl, type, rea
             asyncmethods = $.map(tempFileArray, function (fileName) {
                 var txtName = fileName + "." + type,
                     fileNameUrl = readUrl + fileName + ".txt",
-                readFile = $.ajax({
-                    url: fileNameUrl,
-                    type: "GET",
-                    cache: false,
-                    success: function (fileContents) {
-                        if (fileContents !== undefined && fileContents.length > 0) {
-                            INTRANET.UploadFile(listtitle,txtName, fileContents, url);
+                    readFile = $.ajax({
+                        url: fileNameUrl,
+                        type: "GET",
+                        cache: false,
+                        success: function (fileContents) {
+                            if (fileContents !== undefined && fileContents.length > 0) {
+                                INTRANET.UploadFile(listtitle, txtName, fileContents, url);
+                            }
+                        },
+                        error: function (error) {
+                            console.log(error);
                         }
-                    },
-                    error: function (error) {
-                        console.log(error);
-                    }
-                });
+                    });
             });
         }
     }
@@ -2207,35 +2289,44 @@ INTRANET.UploadAllPageFiles = function(listtitle,fileArray, uploadUrl, type, rea
     }
 }
 
-INTRANET.UploadAllFiles = function (listtitle,fileArray, uploadUrl, type, readUrl,fileExtension) {
+INTRANET.UploadAllFiles = function (listtitle, fileArray, uploadUrl, type, readUrl, fileExtension) {
+    var deferred = $.Deferred();
     try {
         var tempFileArray = fileArray,
-            url = uploadUrl +type+"/";
+            url = uploadUrl + type + "/";
         INTRANET.Log(INTRANET.LogType.Info, type + " Files Uploading");
         var asyncmethods = [];
         if (tempFileArray) {
             asyncmethods = $.map(tempFileArray, function (fileName) {
                 var txtName = fileName + fileExtension,
                     fileNameUrl = readUrl + fileName + ".txt",
-                readFile = $.ajax({
-                    url: fileNameUrl,
-                    type: "GET",
-                    cache: false,
-                    success: function (fileContents) {
-                        if (fileContents !== undefined && fileContents.length > 0) {
-                            INTRANET.UploadFile(listtitle,txtName, fileContents, url);
+                    readFile = $.ajax({
+                        url: fileNameUrl,
+                        type: "GET",
+                        cache: false,
+                        success: function (fileContents) {
+                            if (fileContents !== undefined && fileContents.length > 0) {
+                                INTRANET.UploadFile(listtitle, txtName, fileContents, url);
+                            }
+                        },
+                        error: function (error) {
+                            console.log(error);
                         }
-                    },
-                    error: function (error) {
-                        console.log(error);
-                    }
-                });
+                    });
             });
         }
+
+        $.when.apply($, asyncMethods).done(function (results) {
+            deferred.resolve();
+        }, function (err) {
+            deferred.reject();
+        });
     }
     catch (ex) {
         INTRANET.Log(INTRANET.LogType.Error, "Error in Uploading Text files. Error: " + ex.message);
     }
+
+    return deferred.promise();
 }
 
 INTRANET.CreateAllFolders = function (listTitle, folderUrl) {
@@ -2249,20 +2340,20 @@ INTRANET.CreateAllFolders = function (listTitle, folderUrl) {
             var curFolder = parentFolder.get_folders().add(folderName);
             ctx.load(curFolder);
             ctx.executeQueryAsync(
-            function () {
-                INTRANET.Log(INTRANET.LogType.Info, "Folder Created." + curFolder);
-                if (folderNames.length > 1) {
-                    //var subFolderUrl = folderNames.slice(1, folderNames.length).join('/');
-                    createFolderInternal(curFolder, "CSS");
-                    createFolderInternal(curFolder, "JS");
-                    createFolderInternal(curFolder, "Text");
-                    createFolderInternal(curFolder, "fonts");
-                    createFolderInternal(curFolder, "images");
-                }
-            },
-            function (sender, args) {
-                INTRANET.Log(INTRANET.LogType.Info, "Error in creatin a folder. Error:" + args.get_message);
-            });
+                function () {
+                    INTRANET.Log(INTRANET.LogType.Info, "Folder Created." + curFolder);
+                    if (folderNames.length > 1) {
+                        //var subFolderUrl = folderNames.slice(1, folderNames.length).join('/');
+                        createFolderInternal(curFolder, "CSS");
+                        createFolderInternal(curFolder, "JS");
+                        createFolderInternal(curFolder, "Text");
+                        createFolderInternal(curFolder, "fonts");
+                        createFolderInternal(curFolder, "images");
+                    }
+                },
+                function (sender, args) {
+                    INTRANET.Log(INTRANET.LogType.Info, "Error in creatin a folder. Error:" + args.get_message);
+                });
         };
         createFolderInternal(list.get_rootFolder(), folderUrl);
     } catch (ex) {
@@ -2271,7 +2362,7 @@ INTRANET.CreateAllFolders = function (listTitle, folderUrl) {
 
 }
 
-INTRANET.UploadFile = function (listtitle,filename, contents, path) {
+INTRANET.UploadFile = function (listtitle, filename, contents, path) {
     try {
         var createInfo = new SP.FileCreationInformation();
         createInfo.set_content(new SP.Base64EncodedByteArray());
@@ -2287,14 +2378,15 @@ INTRANET.UploadFile = function (listtitle,filename, contents, path) {
 
         this.newFile = list.get_rootFolder().get_files().add(createInfo);
         this.newFile.checkIn();
+        this.newFile.publish();
         context.load(this.newFile);
         context.executeQueryAsync(function (data) {
             INTRANET.Log(INTRANET.LogType.Info, 'File uploaded successfully: ' + path + filename);
         },
-        function (sender, args) {
-            INTRANET.Log(INTRANET.LogType.Info, 'File upload Failed. Error: ' + args.get_message);
-            
-        });
+            function (sender, args) {
+                INTRANET.Log(INTRANET.LogType.Info, 'File upload Failed. Error: ' + args.get_message);
+
+            });
     }
     catch (ex) {
         INTRANET.Log(INTRANET.LogType.Info, 'Error in uploading File. Error: ' + ex.message);
@@ -2312,19 +2404,19 @@ INTRANET.UploadAllDisplayTemplates = function (fileArray, uploadUrl, type, readU
             asyncmethods = $.map(tempFileArray, function (fileName) {
                 var txtName = fileName + "." + type,
                     fileNameUrl = readUrl + fileName + ".txt",
-                readFile = $.ajax({
-                    url: fileNameUrl,
-                    type: "GET",
-                    cache: false,
-                    success: function (fileContents) {
-                        if (fileContents !== undefined && fileContents.length > 0) {
-                            INTRANET.UploadFileToMasterPageGallery(url,txtName, fileContents);
+                    readFile = $.ajax({
+                        url: fileNameUrl,
+                        type: "GET",
+                        cache: false,
+                        success: function (fileContents) {
+                            if (fileContents !== undefined && fileContents.length > 0) {
+                                INTRANET.UploadFileToHostWebViaCSOM(url, txtName, fileContents);
+                            }
+                        },
+                        error: function (error) {
+                            console.log(error);
                         }
-                    },
-                    error: function (error) {
-                        console.log(error);
-                    }
-                });
+                    });
             });
         }
     }
@@ -2334,27 +2426,58 @@ INTRANET.UploadAllDisplayTemplates = function (fileArray, uploadUrl, type, readU
 }
 
 
-INTRANET.UploadFileToMasterPageGallery = function (folderPath, filename, contents) {
-    var createInfo = new SP.FileCreationInformation();
-    createInfo.set_content(new SP.Base64EncodedByteArray());
-
-    for (var i = 0; i < contents.length; i++) {
-
-        createInfo.get_content().append(contents.charCodeAt(i));
+INTRANET.UploadAllPageLayouts = function (fileArray, uploadUrl, type, readUrl) {
+    try {
+        var tempFileArray = fileArray,
+            url = uploadUrl;
+        INTRANET.Log(INTRANET.LogType.Info, type + " Files Uploading");
+        var asyncmethods = [];
+        if (tempFileArray) {
+            asyncmethods = $.map(tempFileArray, function (fileName) {
+                var txtName = fileName + "." + type,
+                    fileNameUrl = readUrl + fileName + ".txt",
+                    readFile = $.ajax({
+                        url: fileNameUrl,
+                        type: "GET",
+                        cache: false,
+                        success: function (fileContents) {
+                            if (fileContents !== undefined && fileContents.length > 0) {
+                                INTRANET.UploadFileToHostWebViaCSOM(url, txtName, fileContents).then(function () {
+                                    INTRANET.SetPageLayoutContentType(INTRANET.GetRelativeUrlFromAbsolute(hostWebUrl) + url + '/' + txtName);  
+                                });
+                            }
+                        },
+                        error: function (error) {
+                            console.log(error);
+                        }
+                    });
+            });
+        }
     }
-    createInfo.set_overwrite(true);
-    createInfo.set_url(filename);
-    var hostWeb = hostWebContext.get_web();
-    var files = hostWeb.getFolderByServerRelativeUrl(INTRANET.GetRelativeUrlFromAbsolute(hostWebUrl) + folderPath).get_files();
-    context.load(files);
-    files.add(createInfo);
+    catch (ex) {
+        INTRANET.Log(INTRANET.LogType.Error, "Error in Uploading Text files. Error: " + ex.message);
+    }
+}
 
+
+INTRANET.SetPageLayoutContentType = function (pageLayoutUrl) {
+    var deferred = $.Deferred();
+    var file = hostWeb.getFileByServerRelativeUrl(pageLayoutUrl);
+    var item = file.get_listItemAllFields();;
+    context.load(item);
     context.executeQueryAsync(function (data) {
-        console.log('File uploaded successfully: ' + INTRANET.GetRelativeUrlFromAbsolute(hostWebUrl) + '/' + filename);
-    },
-    function (sender, args) {
-        console.log('Failed uploadation fail:' + sender.statusCode);
+        item["ContentTypeId"] = "0x01010007FF3E057FA8AB4AA42FCB67B453FFC100E214EEE741181F4E9F7ACC43278EE8110003D357F861E29844953D5CAA1D4D8A3B",
+            item["PublishingAssociatedContentType"] = "#Article Page;#0x010100C568DB52D9D0A14D9B2FDCC96666E9F2007948130EC3DB064584E219954237AF3900242457EFB8B24247815D688C526CD44D;#",
+            item.update();
+        context.executeQueryAsync(function (data) {
+            deferred.resolve();
+        }, function (err, sender) {
+            deferred.reject();
+        });
+    }, function (err, sender) {
+        debugger;
     });
+    deferred.resolve();
 }
 
 

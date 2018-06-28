@@ -172,6 +172,10 @@
     <Content Include="fonts\titillium-thin-webfont.svg" />
     <Content Include="fonts\titillium-thinitalic-demo.html" />
     <Content Include="fonts\titillium-thinitalic-webfont.svg" />
+    <Content Include="Images\intranet-icon-displaying-19-gallery-images-intranet-icon-15988.jpg" />
+    <Content Include="Images\intranet.png">
+      <OpcRelationship>manifest-icon</OpcRelationship>
+    </Content>
     <Content Include="IntranetAllPagesFiles\AllArticles.txt" />
     <Content Include="IntranetAllPagesFiles\AllLatestNews.txt" />
     <Content Include="IntranetAllPagesFiles\CompliancePortal.txt" />
@@ -319,9 +323,7 @@
     <Content Include="Content\App.css" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Images\AppIcon.png">
-      <OpcRelationship>manifest-icon</OpcRelationship>
-    </Content>
+    <Content Include="Images\AppIcon.png" />
     <Content Include="Images\Elements.xml" />
     <None Include="Images\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{c1336ff4-6ba6-46bd-88ec-7382347f574d}</SharePointProjectItemId>
