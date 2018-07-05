@@ -8,7 +8,7 @@ var hostWebUrl, hostWebContext, hostWeb, hostWebContextFile, appWebUrl;
 var countContentType = 0;
 var countTotalMasterLookUpLists = 0;
 var hostWebContentTypes;
-var ctColumns = new Array();
+var ctColumns = [];
 var counterInstallation = 0;
 var collAppStateItems;
 var collContentTypes;
@@ -83,7 +83,7 @@ INTRANET.InIt = function () {
     INTRANET.Constant.AppWebURL = _spPageContextInfo.webAbsoluteUrl;
     //INTRANET.Constant.EmailDomain = INTRANET.RetrieveEmailDomain(_spPageContextInfo.userEmail);
     INTRANET.Constant.TenantId = _spPageContextInfo.aadTenantId;
-}
+};
 
 INTRANET.CreateGuid = function () {
     function CreateNewGuid(s) {
@@ -91,13 +91,13 @@ INTRANET.CreateGuid = function () {
         return s ? "-" + p.substr(0, 4) + "-" + p.substr(4, 4) : p;
     }
     return CreateNewGuid() + CreateNewGuid(true) + CreateNewGuid(true) + CreateNewGuid();
-}
+};
 
 //Set Host web url in Local Storage
 INTRANET.SetHostWebURlInSession = function () {
     var url = decodeURIComponent(INTRANET.GetQueryStringParameter("SPHostUrl"));
     localStorage.setItem("hostWebURL", url);
-}
+};
 
 // Retrieve a query string value.  
 INTRANET.GetQueryStringParameter = function (paramToRetrieve) {
@@ -106,7 +106,7 @@ INTRANET.GetQueryStringParameter = function (paramToRetrieve) {
         var singleParam = params[i].split("=");
         if (singleParam[0] == paramToRetrieve) return singleParam[1];
     }
-}
+};
 
 //Validation for Organization Name
 INTRANET.CheckOrgName = function () {
@@ -116,7 +116,7 @@ INTRANET.CheckOrgName = function () {
     if (orgName.trim() == "") {
         $("#lblError").css("display", "block");
     }
-}
+};
 
 //Initial method for Creating INTRANET Site structure
 INTRANET.CreateSiteStructure = function () {
@@ -151,15 +151,18 @@ INTRANET.CreateSiteStructure = function () {
                                                 INTRANET.UploadAllFiles("Style Library", INTRANET.Schema.AllTextFiles, uploadUrl, "Text", readUrl, ".txt");
                                                 readUrl = _spPageContextInfo.webAbsoluteUrl + "/IntranetDisplayTemplateFiles/";
                                                 INTRANET.UploadAllDisplayTemplates(INTRANET.Schema.AllTemplateFiles, "_catalogs/masterpage/Display Templates/Content Web Parts", "js", readUrl);
-                                                readUrl = _spPageContextInfo.webAbsoluteUrl + "/IntranetPageLayoutsFiles/";
-                                                INTRANET.UploadAllDisplayTemplates(INTRANET.Schema.AllPageLayouts, "_catalogs/masterpage", "aspx", readUrl);
                                                 readUrl = _spPageContextInfo.webAbsoluteUrl + "/IntranetWebPartFiles/";
                                                 INTRANET.UploadAllDisplayTemplates(INTRANET.Schema.AllWebParts, "_catalogs/wp", "webpart", readUrl);
-
-                                                uploadUrl = INTRANET.GetRelativeUrlFromAbsolute(hostWebUrl) + "Pages/",
+                                                readUrl = _spPageContextInfo.webAbsoluteUrl + "/IntranetPageLayoutsFiles/";
+                                                INTRANET.UploadAllPageLayouts(INTRANET.Schema.AllPageLayouts, "_catalogs/masterpage", "html", readUrl).then(function () {
+                                                    uploadUrl = INTRANET.GetRelativeUrlFromAbsolute(hostWebUrl) + "Pages/";
                                                     readUrl = _spPageContextInfo.webAbsoluteUrl + "/IntranetAllPagesFiles/";
-                                                INTRANET.UploadAllPageFiles("Pages", INTRANET.Schema.AllPages, uploadUrl, "aspx", readUrl);
-                                                INTRANET.EndExecution();
+                                                    INTRANET.UploadAllPageFiles("Pages", INTRANET.Schema.AllPages, uploadUrl, "aspx", readUrl).then(function () {
+                                                        readUrl = INTRANET.GetRelativeUrlFromAbsolute(hostWebUrl) + "/Pages/Home.aspx";
+                                                        INTRANET.AddWebPartsToPage(readUrl);
+                                                        INTRANET.EndExecution();
+                                                    });
+                                                });
                                             });
                                         });
                                     });
@@ -171,7 +174,7 @@ INTRANET.CreateSiteStructure = function () {
             });
         });
     });
-}
+};
 
 //Execution for Look Up columns, content types and lists
 INTRANET.CreateSiteStructureForLookUp = function () {
@@ -185,7 +188,7 @@ INTRANET.CreateSiteStructureForLookUp = function () {
         deferred.resolve();
     });
     return deferred.promise();
-}
+};
 
 //Create Site Columns on Host Web  
 INTRANET.CreateSiteColumns = function () {
@@ -234,8 +237,7 @@ INTRANET.CreateSiteColumns = function () {
                         //if (error.indexOf("A duplicate field name") >= 0) {
                         if (errorCode == -2146232832) {
                             dfd.resolve();
-                        }
-                        else {
+                        } else {
                             dfd.reject(args);
                         }
                     });
@@ -255,13 +257,11 @@ INTRANET.CreateSiteColumns = function () {
             INTRANET.Log(INTRANET.LogType.Error, "Error in CreateSiteColumns. Error: " + e.get_message());
             deferred.reject();
         });
-    }
-
-    catch (ex) {
+    } catch (ex) {
         INTRANET.Log(INTRANET.LogType.Error, "Error in CreateSiteColumns. Error: " + ex.message);
     }
     return deferred.promise();
-}
+};
 
 //Create Content Types on Host Web  
 INTRANET.CreateContentTypes = function () {
@@ -310,8 +310,7 @@ INTRANET.CreateContentTypes = function () {
                         //if (error.indexOf("A duplicate content type") >= 0) {
                         if (errorCode == 183) {
                             dfd.resolve();
-                        }
-                        else {
+                        } else {
                             dfd.reject(args);
                         }
                     });
@@ -329,11 +328,10 @@ INTRANET.CreateContentTypes = function () {
             deferred.reject();
         });
         return deferred.promise();
-    }
-    catch (ex) {
+    } catch (ex) {
         INTRANET.Log(INTRANET.LogType.Error, "Error in CreateContentTypes. Error: " + ex.message);
     }
-}
+};
 //Add Fields in Content Type
 INTRANET.AddFieldsInContentType = function () {
 
@@ -341,7 +339,7 @@ INTRANET.AddFieldsInContentType = function () {
 
         INTRANET.Log(INTRANET.LogType.Info, "-----Add fields in Content Types------");
 
-        ctColumns = new Array();
+        ctColumns = [];
         if (typeof (hostWebContext) != 'undefined' && hostWebContext != null) {
 
             var objCurrentCT = INTRANET.Schema.ContentTypes[countContentType];
@@ -368,16 +366,14 @@ INTRANET.AddFieldsInContentType = function () {
                     function onItemsRefetchedFail(sender, args) {
                         INTRANET.Log(INTRANET.LogType.Error, "Error in AddFieldsInContentType. Error: " + args.get_message() + '\n' + args.get_stackTrace());
                     });
-            }
-            else {
+            } else {
                 countContentType++;
                 if (countContentType == INTRANET.App.TotalSiteContentTypes) {
                     INTRANET.Log(INTRANET.LogType.Info, "-----Added fields in Content Types------");
 
                     //Call List Creation Method
                     INTRANET.CreateLists();
-                }
-                else {
+                } else {
                     //Call recursive function
                     INTRANET.AddFieldsInContentType();
                 }
@@ -386,7 +382,7 @@ INTRANET.AddFieldsInContentType = function () {
     } catch (ex) {
         INTRANET.Log(INTRANET.LogType.Error, "Error in AddFieldsInContentType. Error: " + ex.message);
     }
-}
+};
 
 // Add fields in existing Content Type
 INTRANET.CreateFieldsInContentType = function (ctypeName, fieldsInternalName, createdFields) {
@@ -398,7 +394,7 @@ INTRANET.CreateFieldsInContentType = function (ctypeName, fieldsInternalName, cr
             var contentType = contentTypeEnumerator.get_current();
             if (contentType.get_name() === ctypeName) {
                 createdContentType = contentType;
-                var fieldRef = new Array();
+                var fieldRef = [];
                 for (var iAddFieldsCounter = 0; iAddFieldsCounter < createdFields.length; iAddFieldsCounter++) {
                     fieldRef[iAddFieldsCounter] = new SP.FieldLinkCreationInformation();
                     fieldRef[iAddFieldsCounter].set_field(createdFields[iAddFieldsCounter]);
@@ -415,8 +411,7 @@ INTRANET.CreateFieldsInContentType = function (ctypeName, fieldsInternalName, cr
 
                             //Call List Creation Method
                             INTRANET.CreateLists();
-                        }
-                        else {
+                        } else {
                             //Call recursive function
                             INTRANET.AddFieldsInContentType();
                         }
@@ -430,8 +425,7 @@ INTRANET.CreateFieldsInContentType = function (ctypeName, fieldsInternalName, cr
 
                             //Call List Creation Method
                             INTRANET.CreateLists();
-                        }
-                        else {
+                        } else {
                             //Call recursive function
                             INTRANET.AddFieldsInContentType();
                         }
@@ -441,7 +435,7 @@ INTRANET.CreateFieldsInContentType = function (ctypeName, fieldsInternalName, cr
     } catch (ex) {
         INTRANET.Log(INTRANET.LogType.Error, "Error in CreateFieldsInContentType. Error: " + ex.message);
     }
-}
+};
 
 //Create Custom Lists
 INTRANET.CreateLists = function () {
@@ -494,8 +488,7 @@ INTRANET.CreateLists = function () {
                         var errorCode = args.get_errorCode();
                         if (errorCode == -2130575342) {
                             dfd.resolve();
-                        }
-                        else {
+                        } else {
                             dfd.reject(args);
                         }
                     });
@@ -517,12 +510,11 @@ INTRANET.CreateLists = function () {
             INTRANET.Log(INTRANET.LogType.Error, "Error in CreateLists. Error: " + e.get_message());
             addFieldsPromise.resolve();
         });
-    }
-    catch (ex) {
+    } catch (ex) {
         INTRANET.Log(INTRANET.LogType.Error, "Error in CreateLists. Error: " + ex.message);
     }
     return addFieldsPromise.promise();
-}
+};
 
 INTRANET.SetListGUID = function () {
     try {
@@ -534,8 +526,7 @@ INTRANET.SetListGUID = function () {
                 listName = INTRANET.App.CollLists[i].get_title();
                 listId = INTRANET.App.CollLists[i].get_id();
                 listId = listId.toString();
-            }
-            catch (ex1) { }
+            } catch (ex1) { }
 
             if (INTRANET.Schema.SiteColumnsLookUp && listId != '' && listId != null && typeof (listId) != 'undefined') {
 
@@ -551,11 +542,10 @@ INTRANET.SetListGUID = function () {
                 }
             }
         }
-    }
-    catch (ex) {
+    } catch (ex) {
         INTRANET.Log(INTRANET.LogType.Error, "Error in SetListGUID. Error: " + ex.message);
     }
-}
+};
 
 //Load All Content Types
 INTRANET.LoadAllContentTypes = function () {
@@ -585,12 +575,11 @@ INTRANET.LoadAllContentTypes = function () {
             function (sender, args) {
                 console.error("Error in LoadAllContentTypes. Error: " + e.get_message());
             });
-    }
-    catch (ex) {
+    } catch (ex) {
         INTRANET.Log(INTRANET.LogType.Error, "Error in LoadAllContentTypes. Error: " + ex.message);
     }
     return deferred.promise();
-}
+};
 
 //Attach Content Types to List
 INTRANET.AddContentTypeToList = function () {
@@ -632,8 +621,7 @@ INTRANET.AddContentTypeToList = function () {
                             var errorCode = args.get_errorCode();
                             if (errorCode == 183) {
                                 dfd.resolve();
-                            }
-                            else {
+                            } else {
                                 dfd.reject(args);
                             }
                             dfd.reject(args);
@@ -657,7 +645,7 @@ INTRANET.AddContentTypeToList = function () {
     }
 
     return deferred.resolve();
-}
+};
 
 //Change default contend type (this code will reverse the current content type order, so our recently added content type will come first)
 INTRANET.SetAsDefaultContentType = function () {
@@ -743,7 +731,7 @@ INTRANET.SetAsDefaultContentType = function () {
     }
 
     return deferred.promise();
-}
+};
 
 //Add column directly in List - List level columns
 INTRANET.AddFieldsDirectlyInList = function () {
@@ -791,8 +779,7 @@ INTRANET.AddFieldsDirectlyInList = function () {
 
             if (INTRANET.App.IsLookUpExecution == false) {
                 INTRANET.CreateSiteStructureForLookUp();
-            }
-            else {
+            } else {
                 INTRANET.Log(INTRANET.LogType.Info, "-----Added List level columns for Look Up------");
                 INTRANET.Log(INTRANET.LogType.Info, "-----END Execution for Look Up------");
             }
@@ -807,7 +794,7 @@ INTRANET.AddFieldsDirectlyInList = function () {
     }
 
     return deferred.promise();
-}
+};
 
 //Break Inherited permissions of Lists
 INTRANET.BreakInheritedPermissions = function () {
@@ -864,7 +851,7 @@ INTRANET.BreakInheritedPermissions = function () {
     }
 
     return deferred.promise()
-}
+};
 
 //Add Default Items in List
 INTRANET.AddItemsInList = function () {
@@ -897,15 +884,13 @@ INTRANET.AddItemsInList = function () {
 
                             if (dynamicValue != '' && objListItem.Columns[c]["FieldName"] == "BravoValue") {
                                 oListItem.set_item(objListItem.Columns[c]["FieldName"], dynamicValue);
-                            }
-                            else {
+                            } else {
                                 oListItem.set_item(objListItem.Columns[c]["FieldName"], objListItem.Columns[c]["FieldValue"]);
                             }
 
                             if (objListItem.Columns[c]["FieldValue"] == "HostWebURL") {
                                 dynamicValue = INTRANET.Constant.HostWebURL;
-                            }
-                            else if (objListItem.Columns[c]["FieldValue"] == "TenantId") {
+                            } else if (objListItem.Columns[c]["FieldValue"] == "TenantId") {
                                 dynamicValue = INTRANET.Constant.TenantId;
                             }
                         }
@@ -927,8 +912,7 @@ INTRANET.AddItemsInList = function () {
                             var errorCode = args.get_errorCode();
                             if (errorCode == -2130575169) {
                                 dfd.resolve();
-                            }
-                            else {
+                            } else {
                                 dfd.reject(args);
                             }
                             dfd.reject(args);
@@ -955,14 +939,14 @@ INTRANET.AddItemsInList = function () {
         INTRANET.Log(INTRANET.LogType.Error, "Error in AddItemsInList. Error: " + ex.message);
     }
     return deferred.promise();
-}
+};
 
 INTRANET.SetConfigSectionReadOnly = function () {
     $("#txtOrgName").prop('disabled', true);
     $("#configureBtn").prop('disabled', true);
     $("#txtShortAddress").prop('disabled', true);
     $("#configureBtn").css('opacity', "0.65");
-}
+};
 
 //Start Migration activity - Upload data in master Lists
 INTRANET.InitiateMigration = function () {
@@ -986,12 +970,11 @@ INTRANET.InitiateMigration = function () {
             function (sender, args) {
                 INTRANET.Log(INTRANET.LogType.Error, "Error in InitiateMigration AJAX. Error: " + args.get_errorDetails());
             })
-    }
-    catch (ex) {
+    } catch (ex) {
         INTRANET.Log(INTRANET.LogType.Error, "Error in InitiateMigration. Error: " + ex.message);
     }
     return deferred.promise();
-}
+};
 
 //Migrate Look Up column contains Master List data
 INTRANET.UploadMasterLookUpData = function () {
@@ -1106,8 +1089,7 @@ INTRANET.UploadMasterLookUpData = function () {
             //once all items processed execute next code
             if (countTotalMasterLookUpLists == INTRANET.App.TotalMasterLookUpLists) {
                 INTRANET.LoadAllCategories();
-            }
-            else {
+            } else {
                 deferred.resolve();
             }
 
@@ -1119,12 +1101,9 @@ INTRANET.UploadMasterLookUpData = function () {
 
             if (countTotalMasterLookUpLists == INTRANET.App.TotalMasterLookUpLists) {
                 INTRANET.LoadAllCategories();
-            }
-            else {
+            } else {
                 INTRANET.UploadMasterPage();
                 INTRANET.CreateAllFolders("Style Library", "NBB/CSS");
-
-
                 var uploadUrl = INTRANET.GetRelativeUrlFromAbsolute(hostWebUrl) + "Style Library/NBB/",
                     readUrl = _spPageContextInfo.webAbsoluteUrl + "/IntranetJSFiles/";
                 INTRANET.UploadAllFiles(INTRANET.Schema.AllJS, uploadUrl, "js", readUrl);
@@ -1135,13 +1114,12 @@ INTRANET.UploadMasterLookUpData = function () {
                 INTRANET.EndExecution();
             }
         });
-    }
-    catch (ex) {
+    } catch (ex) {
 
         INTRANET.Log(INTRANET.LogType.Error, "Error in UploadMasterLookUpData. Error: " + ex.message);
     }
     return deferred.promise();
-}
+};
 
 //Load All Categories
 INTRANET.LoadAllCategories = function () {
@@ -1179,11 +1157,10 @@ INTRANET.LoadAllCategories = function () {
             function (sender, args) {
                 INTRANET.Log(INTRANET.LogType.Error, "Error in LoadAllCategories. Error: " + args);
             });
-    }
-    catch (ex) {
+    } catch (ex) {
         INTRANET.Log(INTRANET.LogType.Error, "Error in LoadAllCategories. Error: " + ex.message);
     }
-}
+};
 
 INTRANET.UploadMasterData = function () {
     try {
@@ -1248,8 +1225,7 @@ INTRANET.UploadMasterData = function () {
                             for (var c = 0; c < objListItem.Columns.length; c++) {
                                 if (objListItem.Columns[c]["IsLookUp"] != true) {
                                     objLstItem.set_item(objListItem.Columns[c]["FieldName"], objListItem.Columns[c]["FieldValue"]);
-                                }
-                                else {
+                                } else {
                                     //get list item ID
                                     var itemID = INTRANET.GetListitemID(objListItem.Category, "Categories");
 
@@ -1315,12 +1291,11 @@ INTRANET.UploadMasterData = function () {
 
             INTRANET.Log(INTRANET.LogType.Error, "Error in ReadFileFromAppWeb when apply. Error: " + e.get_message());
         });
-    }
-    catch (ex) {
+    } catch (ex) {
 
         INTRANET.Log(INTRANET.LogType.Error, "Error in UploadMasterData. Error: " + ex.message);
     }
-}
+};
 
 //Upload some items in master List from Azure
 INTRANET.UploadSampleData = function () {
@@ -1347,11 +1322,10 @@ INTRANET.UploadSampleData = function () {
                 INTRANET.Log(INTRANET.LogType.Error, "Error in ajax UploadSampleData. Error: " + xhr.responseText);
             }
         });
-    }
-    catch (ex) {
+    } catch (ex) {
         INTRANET.Log(INTRANET.LogType.Error, "Error in UploadSampleData. Error: " + ex.message);
     }
-}
+};
 
 //Fetch all cards from azure and upload on sharepoint
 INTRANET.GetAllCards = function () {
@@ -1380,11 +1354,10 @@ INTRANET.GetAllCards = function () {
                 $("#idRollBackConfirmation").innerText = "Something went wrong. Please contact to support team.";
             }
         });
-    }
-    catch (ex) {
+    } catch (ex) {
         INTRANET.Log(INTRANET.LogType.Error, "Error in GetAllCards. Error: " + ex.message);
     }
-}
+};
 
 //End Execution
 INTRANET.EndExecution = function () {
@@ -1398,11 +1371,10 @@ INTRANET.EndExecution = function () {
         $("#configureRead").css("display", "block");
         $("#idInstallStatusText").css("display", "none");
         $("#idInstallStatusCount").css("display", "none");
-    }
-    catch (ex) {
+    } catch (ex) {
         INTRANET.Log(INTRANET.LogType.Error, "Error in EndExecution. Error: " + ex.message);
     }
-}
+};
 
 //Fetch List Item id from collection as per category name
 INTRANET.GetListitemID = function (strCategory, steListName) {
@@ -1420,7 +1392,7 @@ INTRANET.GetListitemID = function (strCategory, steListName) {
     }
 
     return itemID;
-}
+};
 
 //Installation Progress
 INTRANET.IncreaseProgressCounter = function (pStatusText) {
@@ -1429,16 +1401,14 @@ INTRANET.IncreaseProgressCounter = function (pStatusText) {
         if (INTRANET.App.IsRollback == true) {
             $("#idInstallRollbackText").html(pStatusText)
             $("#idRollBackCount").html(counterInstallation);
-        }
-        else {
+        } else {
             $("#idInstallStatusText").html(pStatusText)
             $("#idInstallCount").html(counterInstallation);
         }
-    }
-    catch (ex) {
+    } catch (ex) {
         INTRANET.Log(INTRANET.LogType.Error, "Error in IncreaseProgressCounter. Error: " + ex.message);
     }
-}
+};
 
 //Update Installation State of APP
 INTRANET.UpdateInstallationState = function (pKeyword, pCurrentState) {
@@ -1465,7 +1435,7 @@ INTRANET.UpdateInstallationState = function (pKeyword, pCurrentState) {
     } catch (ex) {
         INTRANET.Log(INTRANET.LogType.Error, "Error in UpdateInstallationState. Error: " + ex.message);
     }
-}
+};
 
 //Create SahrePoint Security Group
 //this method is used to create a group  
@@ -1510,11 +1480,10 @@ INTRANET.CreateSharePointGroup = function () {
                 INTRANET.EndExecution();
             }
         });
-    }
-    catch (ex) {
+    } catch (ex) {
         INTRANET.Log(INTRANET.LogType.Error, "Error in CreateSharePointGroup. Error: " + ex.message);
     }
-}
+};
 
 //Create SahrePoint Security Group
 //this method is used to create a group  
@@ -1538,11 +1507,10 @@ INTRANET.InsertCurrentUserSPGroup = function () {
         }, function (sender, args) {
             INTRANET.Log(INTRANET.LogType.Error, "Error in InsertCurrentUserSPGroup execute Query. Error: " + args);
         });
-    }
-    catch (ex) {
+    } catch (ex) {
         INTRANET.Log(INTRANET.LogType.Error, "Error in InsertCurrentUserSPGroup. Error: " + ex.message);
     }
-}
+};
 
 //Set list as hidden
 INTRANET.SetListToHidden = function () {
@@ -1561,11 +1529,10 @@ INTRANET.SetListToHidden = function () {
             function onCreateListFailed(sender, args) {
                 INTRANET.Log(INTRANET.LogType.Info, "SetListToHidden. Error: " + args.get_message());
             });
-    }
-    catch (ex) {
+    } catch (ex) {
         INTRANET.Log(INTRANET.LogType.Error, "Error in SetListToHidden. Error: " + ex.message);
     }
-}
+};
 
 //Set list as hidden
 INTRANET.GetAppStateItems = function () {
@@ -1590,8 +1557,7 @@ INTRANET.GetAppStateItems = function () {
 
                     if (itemKey == INTRANET.App.APPState.Initialization && itemValue == INTRANET.App.Done) {
                         isInitialized = true;
-                    }
-                    else if (itemKey == INTRANET.App.APPState.SiteConfiguration && itemValue == INTRANET.App.Done) {
+                    } else if (itemKey == INTRANET.App.APPState.SiteConfiguration && itemValue == INTRANET.App.Done) {
                         isConfigured = true;
                     }
                 }
@@ -1600,8 +1566,7 @@ INTRANET.GetAppStateItems = function () {
                     $(".configureInputs").hide();
                     $("#divRollBackInfo").show();
                     $("#configureRead").show();
-                }
-                else if (isInitialized == true) {
+                } else if (isInitialized == true) {
                     $(".configureInputs").hide();
                     $("#divRollBackInfo").show();
                     $("#configureRead").show();
@@ -1610,29 +1575,26 @@ INTRANET.GetAppStateItems = function () {
             function onCreateListFailed(sender, args) {
                 INTRANET.Log(INTRANET.LogType.Info, "GetAppStateItems. Error: " + args.get_message());
             });
-    }
-    catch (ex) {
+    } catch (ex) {
         INTRANET.Log(INTRANET.LogType.Error, "Error in GetAppStateItems. Error: " + ex.message);
     }
-}
+};
 
 //Logging
 INTRANET.Log = function (pLogType, PMessage) {
     try {
         if (pLogType == INTRANET.LogType.Error) {
             console.error(PMessage);
-        }
-        else {
+        } else {
             console.log(PMessage);
         }
 
         $('#txtAreaProgress').append("\n" + PMessage);
         document.getElementById("txtAreaProgress").scrollTop = document.getElementById("txtAreaProgress").scrollHeight;
-    }
-    catch (ex) {
+    } catch (ex) {
         console.log("Error in Log method: " + ex.message);
     }
-}
+};
 
 //Set Local Storage
 INTRANET.SetHostWebURlInSession();
@@ -1640,12 +1602,12 @@ INTRANET.SetHostWebURlInSession();
 INTRANET.GetFilenameFromUrl = function (url) {
     var filename = url.substring(url.lastIndexOf('/') + 1);
     return filename;
-}
+};
 
 INTRANET.GetPathFromUrl = function (url) {
     var path = url.substring(1, url.lastIndexOf('/') + 1);
     return path;
-}
+};
 
 INTRANET.ArrayBufferToBase64 = function (buffer) {
     var binary = '';
@@ -1666,7 +1628,7 @@ INTRANET.GetRelativeUrlFromAbsolute = function (absoluteUrl) {
         relativeUrl += parts[i] + '/';
     }
     return relativeUrl;
-}
+};
 
 // Extends jquery ajaxTransport too support binary reading of files
 $.ajaxTransport("+binary", function (options, originalOptions, jqXHR) {
@@ -1731,7 +1693,7 @@ INTRANET.Rollback = function () {
     collRemoveFields = [];
     INTRANET.InIt();
     INTRANET.DeleteLists();
-}
+};
 
 //Delete Custom Lists
 INTRANET.DeleteLists = function () {
@@ -1754,8 +1716,7 @@ INTRANET.DeleteLists = function () {
 
                     if (INTRANET.Schema.Lists.length > counterDeletedLists) {
                         INTRANET.DeleteLists();
-                    }
-                    else {
+                    } else {
                         INTRANET.FetchContentTypes();
                     }
                 },
@@ -1764,17 +1725,15 @@ INTRANET.DeleteLists = function () {
 
                     if (INTRANET.Schema.Lists.length > counterDeletedLists) {
                         INTRANET.DeleteLists();
-                    }
-                    else {
+                    } else {
                         INTRANET.FetchContentTypes();
                     }
                 });
         }
-    }
-    catch (ex) {
+    } catch (ex) {
         INTRANET.Log(INTRANET.LogType.Error, "Error in DeleteLists. Error: " + ex.message);
     }
-}
+};
 
 //Delete Content Types to List
 INTRANET.FetchContentTypes = function () {
@@ -1835,8 +1794,7 @@ INTRANET.DeleteContentType = function () {
                     counterDeletedLists++;
                     if (collRemoveContentType.length > counterDeletedLists) {
                         INTRANET.DeleteContentType();
-                    }
-                    else {
+                    } else {
                         INTRANET.FetchFields();
                     }
                 },
@@ -1844,19 +1802,17 @@ INTRANET.DeleteContentType = function () {
                     counterDeletedLists++;
                     if (collRemoveContentType.length > counterDeletedLists) {
                         INTRANET.DeleteContentType();
-                    }
-                    else {
+                    } else {
                         INTRANET.FetchFields();
                     }
                 });
-        }
-        else {
+        } else {
             INTRANET.FetchFields();
         }
     } catch (ex) {
         INTRANET.Log(INTRANET.LogType.Error, "Error in DeleteContentType. Error: " + ex.message);
     }
-}
+};
 
 // Fetch fields 
 INTRANET.FetchFields = function () {
@@ -1896,7 +1852,7 @@ INTRANET.FetchFields = function () {
     } catch (ex) {
         INTRANET.Log(INTRANET.LogType.Error, "Error in FetchFields. Error: " + ex.message);
     }
-}
+};
 
 INTRANET.DeleteField = function () {
     try {
@@ -1915,8 +1871,7 @@ INTRANET.DeleteField = function () {
                     counterDeletedLists++;
                     if (collRemoveFields.length > counterDeletedLists) {
                         INTRANET.DeleteField();
-                    }
-                    else {
+                    } else {
                         INTRANET.EndRollBack();
                     }
                 },
@@ -1924,20 +1879,17 @@ INTRANET.DeleteField = function () {
                     counterDeletedLists++;
                     if (collRemoveFields.length > counterDeletedLists) {
                         INTRANET.DeleteField();
-                    }
-                    else {
+                    } else {
                         INTRANET.EndRollBack();
                     }
                 });
-        }
-        else {
+        } else {
             INTRANET.EndRollBack();
         }
-    }
-    catch (ex) {
+    } catch (ex) {
         INTRANET.Log(INTRANET.LogType.Error, "Error in DeleteField. Error: " + ex.message);
     }
-}
+};
 
 INTRANET.DeleteSPGroup = function () {
     try {
@@ -1957,7 +1909,7 @@ INTRANET.DeleteSPGroup = function () {
     } catch (ex) {
         INTRANET.Log(INTRANET.LogType.Error, "Error in DeleteSPGroup. Error: " + ex.message);
     }
-}
+};
 
 INTRANET.EndRollBack = function () {
     INTRANET.Log(INTRANET.LogType.Info, "---RollBack Completed---");
@@ -1967,7 +1919,7 @@ INTRANET.EndRollBack = function () {
     $("#idInstallRollbackCount").hide();
 
     $("#idRollBackConfirmation").show();
-}
+};
 
 var licenseCollection;
 var licenseResponse;
@@ -1989,12 +1941,12 @@ INTRANET.RetrieveLicense = function (productID) {
                 var encodedTopLicense = encodeURIComponent(topLicense);
                 INTRANET.VerifyLicense(encodedTopLicense);
 
-            }, function (sender, args) {
+            },
+            function (sender, args) {
                 var errMessage = 'Request failed in RetrieveLicense. ' + args.get_message() + '\n' + args.get_stackTrace();
                 INTRANET.Log(INTRANET.LogType.Error, "Error in RetrieveLicense. Error: " + errMessage);
             });
-    }
-    catch (ex) {
+    } catch (ex) {
         INTRANET.Log(INTRANET.LogType.Error, "Error in RetrieveLicense. Error: " + ex.message);
     }
 };
@@ -2040,19 +1992,18 @@ INTRANET.VerifyLicense = function (encodedTopLicense) {
                             //You can then look at the expiration date on the response
                             break;
                     }
-                }
-                catch (err) {
+                } catch (err) {
                     INTRANET.Log(INTRANET.LogType.Error, "Error in VerifyLicense Fetch details. Error: " + ex.message);
                 }
                 //Create Tenant details
                 INTRANET.CreateTenantInSQL();
 
-            }, function (sender, args) {
+            },
+            function (sender, args) {
                 var errMessage = 'Request failed in VerifyLicense. ' + args.get_message() + '\n' + args.get_stackTrace();
                 INTRANET.Log(INTRANET.LogType.Error, "Error in VerifyLicense. Error: " + errMessage);
             });
-    }
-    catch (ex) {
+    } catch (ex) {
         INTRANET.Log(INTRANET.LogType.Error, "Error in VerifyLicense. Error: " + ex.message);
     }
 }
@@ -2082,8 +2033,7 @@ INTRANET.ReadFromAppWebAndProvisionToHost = function (appPageUrl, folderPath, ho
             }, function () {
                 deferred.reject();
             });
-        }
-        else {
+        } else {
             alert('Failed to read file from app web, so not uploading to host web..');
         }
 
@@ -2127,7 +2077,7 @@ INTRANET.UploadFileToHostWebViaCSOM = function (folderPath, filename, contents) 
     return deferred.promise();
 }
 
-INTRANET.PublishFile = function(fileRelativeUrl){
+INTRANET.PublishFile = function (fileRelativeUrl) {
     var deferred = $.Deferred();
     var file = hostWeb.getFileByServerRelativeUrl(fileRelativeUrl);
     file.publish();
@@ -2143,7 +2093,7 @@ INTRANET.PublishFile = function(fileRelativeUrl){
 INTRANET.SetAsDefaultMasterPage = function (masterPageUrl) {
     var hostWeb = hostWebContext.get_web();
     hostWeb.set_customMasterUrl(masterPageUrl);
-    hostWeb.set_masterUrl(masterPageUrl);
+    //hostWeb.set_masterUrl(masterPageUrl);
     hostWeb.update();
 
     context.load(hostWeb);
@@ -2154,6 +2104,8 @@ INTRANET.SetAsDefaultMasterPage = function (masterPageUrl) {
             alert('Failed to update master page on host web. Error:' + args.get_message());
         });
 }
+
+// INTRANET.SetAsDefaultMasterPage("/sites/IntranetInBoxPublishing/_catalogs/masterpage/NBB_Site.master")
 
 INTRANET.UploadAllJSFiles = function () {
     try {
@@ -2183,8 +2135,7 @@ INTRANET.UploadAllJSFiles = function () {
                     });
             });
         }
-    }
-    catch (ex) {
+    } catch (ex) {
         INTRANET.Log(INTRANET.LogType.Error, "Error in Uploading JS files. Error: " + ex.message);
     }
 }
@@ -2252,13 +2203,13 @@ INTRANET.UploadAllTextFiles = function () {
                     });
             });
         }
-    }
-    catch (ex) {
+    } catch (ex) {
         INTRANET.Log(INTRANET.LogType.Error, "Error in Uploading Text files. Error: " + ex.message);
     }
 }
 
 INTRANET.UploadAllPageFiles = function (listtitle, fileArray, uploadUrl, type, readUrl) {
+    var deferred = $.Deferred();
     try {
         var tempFileArray = fileArray,
             url = uploadUrl;
@@ -2268,25 +2219,37 @@ INTRANET.UploadAllPageFiles = function (listtitle, fileArray, uploadUrl, type, r
             asyncmethods = $.map(tempFileArray, function (fileName) {
                 var txtName = fileName + "." + type,
                     fileNameUrl = readUrl + fileName + ".txt",
-                    readFile = $.ajax({
-                        url: fileNameUrl,
-                        type: "GET",
-                        cache: false,
-                        success: function (fileContents) {
-                            if (fileContents !== undefined && fileContents.length > 0) {
-                                INTRANET.UploadFile(listtitle, txtName, fileContents, url);
-                            }
-                        },
-                        error: function (error) {
-                            console.log(error);
+                    dfd = $.Deferred();
+                $.ajax({
+                    url: fileNameUrl,
+                    type: "GET",
+                    cache: false,
+                    success: function (fileContents) {
+                        if (fileContents !== undefined && fileContents.length > 0) {
+                            INTRANET.UploadFile(listtitle, txtName, fileContents, url).then(function () {
+                                dfd.resolve();
+                            }, function (err) {
+                                dfd.reject(err);
+                            });
                         }
-                    });
+                    },
+                    error: function (error) {
+                        console.log(error);
+                        dfd.reject(err);
+                    }
+                });
+                return dfd.promise();
+            });
+
+            $.when.apply($, asyncmethods).done(function (results) {
+                deferred.resolve();
             });
         }
-    }
-    catch (ex) {
+    } catch (ex) {
         INTRANET.Log(INTRANET.LogType.Error, "Error in Uploading files. Error: " + ex.message);
     }
+
+    return deferred.promise();
 }
 
 INTRANET.UploadAllFiles = function (listtitle, fileArray, uploadUrl, type, readUrl, fileExtension) {
@@ -2321,8 +2284,7 @@ INTRANET.UploadAllFiles = function (listtitle, fileArray, uploadUrl, type, readU
         }, function (err) {
             deferred.reject();
         });
-    }
-    catch (ex) {
+    } catch (ex) {
         INTRANET.Log(INTRANET.LogType.Error, "Error in Uploading Text files. Error: " + ex.message);
     }
 
@@ -2363,6 +2325,7 @@ INTRANET.CreateAllFolders = function (listTitle, folderUrl) {
 }
 
 INTRANET.UploadFile = function (listtitle, filename, contents, path) {
+    var deferred = $.Deferred();
     try {
         var createInfo = new SP.FileCreationInformation();
         createInfo.set_content(new SP.Base64EncodedByteArray());
@@ -2382,15 +2345,17 @@ INTRANET.UploadFile = function (listtitle, filename, contents, path) {
         context.load(this.newFile);
         context.executeQueryAsync(function (data) {
             INTRANET.Log(INTRANET.LogType.Info, 'File uploaded successfully: ' + path + filename);
+            deferred.resolve();
         },
             function (sender, args) {
                 INTRANET.Log(INTRANET.LogType.Info, 'File upload Failed. Error: ' + args.get_message);
-
+                deferred.reject();
             });
-    }
-    catch (ex) {
+    } catch (ex) {
         INTRANET.Log(INTRANET.LogType.Info, 'Error in uploading File. Error: ' + ex.message);
     }
+
+    return deferred.promise();
 }
 
 
@@ -2419,14 +2384,14 @@ INTRANET.UploadAllDisplayTemplates = function (fileArray, uploadUrl, type, readU
                     });
             });
         }
-    }
-    catch (ex) {
+    } catch (ex) {
         INTRANET.Log(INTRANET.LogType.Error, "Error in Uploading Text files. Error: " + ex.message);
     }
 }
 
 
 INTRANET.UploadAllPageLayouts = function (fileArray, uploadUrl, type, readUrl) {
+    var deferred = $.Deferred();
     try {
         var tempFileArray = fileArray,
             url = uploadUrl;
@@ -2436,27 +2401,40 @@ INTRANET.UploadAllPageLayouts = function (fileArray, uploadUrl, type, readUrl) {
             asyncmethods = $.map(tempFileArray, function (fileName) {
                 var txtName = fileName + "." + type,
                     fileNameUrl = readUrl + fileName + ".txt",
-                    readFile = $.ajax({
-                        url: fileNameUrl,
-                        type: "GET",
-                        cache: false,
-                        success: function (fileContents) {
-                            if (fileContents !== undefined && fileContents.length > 0) {
-                                INTRANET.UploadFileToHostWebViaCSOM(url, txtName, fileContents).then(function () {
-                                    INTRANET.SetPageLayoutContentType(INTRANET.GetRelativeUrlFromAbsolute(hostWebUrl) + url + '/' + txtName);  
+                    dfd = $.Deferred();
+                $.ajax({
+                    url: fileNameUrl,
+                    type: "GET",
+                    cache: false,
+                    success: function (fileContents) {
+                        if (fileContents !== undefined && fileContents.length > 0) {
+                            INTRANET.UploadFileToHostWebViaCSOM(url, txtName, fileContents).then(function () {
+                                INTRANET.SetPageLayoutContentType(INTRANET.GetRelativeUrlFromAbsolute(hostWebUrl) + url + '/' + txtName).then(function () {
+                                    dfd.resolve();
+                                }, function (err) {
+                                    console.log(error);
+                                    dfd.resolve();
                                 });
-                            }
-                        },
-                        error: function (error) {
-                            console.log(error);
+                            });
                         }
-                    });
+                    },
+                    error: function (error) {
+                        console.log(error);
+                        dfd.resolve();
+                    }
+                });
+
+                return dfd.promise();
+            });
+
+            $.when.apply($, asyncmethods).done(function (results) {
+                deferred.resolve();
             });
         }
-    }
-    catch (ex) {
+    } catch (ex) {
         INTRANET.Log(INTRANET.LogType.Error, "Error in Uploading Text files. Error: " + ex.message);
     }
+    return deferred.promise();
 }
 
 
@@ -2472,13 +2450,121 @@ INTRANET.SetPageLayoutContentType = function (pageLayoutUrl) {
         context.executeQueryAsync(function (data) {
             deferred.resolve();
         }, function (err, sender) {
-            deferred.reject();
+            deferred.reject(err.sender);
         });
     }, function (err, sender) {
-        debugger;
+        deferred.resolve(err, sender);
     });
-    deferred.resolve();
+    return deferred.resolve();
 }
 
 
+INTRANET.AddWebPartsToPage = function (serverRelativeUrl) {
+    var oFile = hostWebContext.get_web().getFileByServerRelativeUrl(serverRelativeUrl);
+    oFile.checkOut();
+    var limitedWebPartManager = oFile.getLimitedWebPartManager(SP.WebParts.PersonalizationScope.shared);
+    var webPartXml = `<webParts>
+    <webPart xmlns="http://schemas.microsoft.com/WebPart/v3">
+      <metaData>
+        <type name="Microsoft.Office.Server.Search.WebControls.ContentBySearchWebPart, Microsoft.Office.Server.Search, Version=16.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c" />
+        <importErrorMessage>Cannot import this Web Part.</importErrorMessage>
+      </metaData>
+      <data>
+        <properties>
+          <property name="BypassResultTypes" type="bool">True</property>
+          <property name="ItemTemplateId" type="string">~sitecollection/_catalogs/masterpage/Display Templates/KPCU/Item_News.js</property>
+          <property name="PropertyMappings" type="string" />
+          <property name="ChromeState" type="chromestate">Normal</property>
+          <property name="IncludeResultTypeConstraint" type="bool">False</property>
+          <property name="StartingItemIndex" type="int">1</property>
+          <property name="ShowDefinitions" type="bool">False</property>
+          <property name="Height" type="string" />
+          <property name="Hidden" type="bool">False</property>
+          <property name="HitHighlightedPropertiesJson" type="string">["Title","Path","Author","SectionNames","SiteDescription"]</property>
+          <property name="ScrollToTopOnRedraw" type="bool">False</property>
+          <property name="UseSharedDataProvider" type="bool">False</property>
+          <property name="RepositionLanguageDropDown" type="bool">False</property>
+          <property name="AlwaysRenderOnServer" type="bool">False</property>
+          <property name="AllowConnect" type="bool">True</property>
+          <property name="ItemBodyTemplateId" type="string" />
+          <property name="ShowAlertMe" type="bool">True</property>
+          <property name="ExportMode" type="exportmode">All</property>
+          <property name="AddSEOPropertiesFromSearch" type="bool">False</property>
+          <property name="ShowUpScopeMessage" type="bool">False</property>
+          <property name="AllowHide" type="bool">True</property>
+          <property name="AllowClose" type="bool">True</property>
+          <property name="UseSimplifiedQueryBuilder" type="bool">False</property>
+          <property name="ShouldHideControlWhenEmpty" type="bool">False</property>
+          <property name="ResultType" type="string" />
+          <property name="LogAnalyticsViewEvent" type="bool">False</property>
+          <property name="MaxPagesAfterCurrent" type="int">1</property>
+          <property name="TitleUrl" type="string" />
+          <property name="EmptyMessage" type="string" />
+          <property name="AdvancedSearchPageAddress" type="string">advanced.aspx</property>
+          <property name="IsXGeo3SForwardingFlighted" type="bool">True</property>
+          <property name="AllowMinimize" type="bool">True</property>
+          <property name="ShowBestBets" type="bool">False</property>
+          <property name="AllowEdit" type="bool">True</property>
+          <property name="NumberOfItems" type="int">7</property>
+          <property name="HelpUrl" type="string" />
+          <property name="ShowPaging" type="bool">True</property>
+          <property name="ShowViewDuplicates" type="bool">False</property>
+          <property name="SelectedPropertiesJson" type="string">["Path","Title","LastModifiedTime","NewsTitleOWSTEXT","NewsPublishedDateOWSDATE","MPLocation","NewsBannerOWSIMGE","NewsThumbnailOWSIMGE","MPDepartment"]</property>
+          <property name="TargetResultTable" type="string">RelevantResults</property>
+          <property name="HelpMode" type="helpmode">Modeless</property>
+          <property name="ShowXGeoOptions" type="bool">False</property>
+          <property name="IsXGeoFlighted" type="bool">False</property>
+          <property name="ShowPersonalFavorites" type="bool">False</property>
+          <property name="EnableXGeo3SForwarding" type="bool">False</property>
+          <property name="PreloadedItemTemplateIdsJson" type="string">null</property>
+          <property name="Description" type="string">Content Search Web Part will allow you to show items that are results of a search query you specify. When you add it to the page, this Web Part will show recently modified items from the current site. You can change this setting to show items from another site or list by editing the Web Part and changing its search criteria.As new content is discovered by search, this Web Part will display an updated list of items each time the page is viewed.</property>
+          <property name="ShowPreferencesLink" type="bool">True</property>
+          <property name="QueryGroupName" type="string">75ba926c-ec23-4184-b3d9-da70db9fab95</property>
+          <property name="ShowResultCount" type="bool">True</property>
+          <property name="TitleIconImageUrl" type="string" />
+          <property name="Direction" type="direction">NotSet</property>
+          <property name="ResultsPerPage" type="int">7</property>
+          <property name="AvailableSortsJson" type="string">null</property>
+          <property name="ShowResults" type="bool">True</property>
+          <property name="ServerIncludeScriptsJson" type="string">null</property>
+          <property name="SearchCenterXGeoLocations" type="string" />
+          <property name="DataProviderJSON" type="string">{"QueryGroupName":"75ba926c-ec23-4184-b3d9-da70db9fab95","QueryPropertiesTemplateUrl":"sitesearch://webroot","IgnoreQueryPropertiesTemplateUrl":false,"SourceID":"8413cd39-2156-4e00-b54d-11efd9abdb89","SourceName":"Local SharePoint Results","SourceLevel":"Ssa","CollapseSpecification":"","QueryTemplate":"((path:{\\Site.URL}/Pages/) AND (ContentType:KPCU_News) AND (IsDocument:\"True\" OR contentclass:\"STS_ListItem\"))","FallbackSort":[{"p":"LastModifiedTime","d":1}],"FallbackSortJson":"[{\"p\":\"LastModifiedTime\",\"d\":1}]","RankRules":null,"RankRulesJson":"null","AsynchronousResultRetrieval":false,"SendContentBeforeQuery":true,"BatchClientQuery":true,"FallbackLanguage":-1,"FallbackRankingModelID":"","EnableStemming":true,"EnablePhonetic":false,"EnableNicknames":false,"EnableInterleaving":false,"EnableQueryRules":true,"EnableOrderingHitHighlightedProperty":false,"HitHighlightedMultivaluePropertyLimit":-1,"IgnoreContextualScope":true,"ScopeResultsToCurrentSite":false,"TrimDuplicates":false,"Properties":{"TryCache":true,"Scope":"{Site.URL}","UpdateLinksForCatalogItems":true,"EnableStacking":true,"CrossGeoQuery":"false","ListId":"55e27111-388b-411d-87df-351f2b92600f","ListItemId":4},"PropertiesJson":"{\"TryCache\":true,\"Scope\":\"{Site.URL}\",\"UpdateLinksForCatalogItems\":true,\"EnableStacking\":true,\"CrossGeoQuery\":\"false\",\"ListId\":\"55e27111-388b-411d-87df-351f2b92600f\",\"ListItemId\":4}","ClientType":"ContentSearchRegular","ClientFunction":"","ClientFunctionDetails":"","UpdateAjaxNavigate":true,"SummaryLength":180,"DesiredSnippetLength":90,"PersonalizedQuery":false,"FallbackRefinementFilters":null,"IgnoreStaleServerQuery":false,"RenderTemplateId":"DefaultDataProvider","AlternateErrorMessage":null,"Title":""}</property>
+          <property name="ShowAdvancedLink" type="bool">True</property>
+          <property name="ShowDidYouMean" type="bool">False</property>
+          <property name="AllowZoneChange" type="bool">True</property>
+          <property name="ChromeType" type="chrometype">None</property>
+          <property name="GroupTemplateId" type="string">~sitecollection/_catalogs/masterpage/Display Templates/Content Web Parts/Group_Content.js</property>
+          <property name="MissingAssembly" type="string">Cannot import this Web Part.</property>
+          <property name="OverwriteResultPath" type="bool">True</property>
+          <property name="Width" type="string" />
+          <property name="MaxPagesBeforeCurrent" type="int">4</property>
+          <property name="XGeoTenantsInfo" type="string" />
+          <property name="ShowLanguageOptions" type="bool">True</property>
+          <property name="ResultTypeId" type="string" />
+          <property name="AlternateErrorMessage" type="string" null="true" />
+          <property name="Title" type="string">KPCU News</property>
+          <property name="RenderTemplateId" type="string">~sitecollection/_catalogs/masterpage/Display Templates/KPCU/Control_KPCUNews.js</property>
+          <property name="EmitStyleReference" type="bool">True</property>
+          <property name="StatesJson" type="string">{}</property>
+          <property name="ShowSortOptions" type="bool">False</property>
+          <property name="CatalogIconImageUrl" type="string" />
+        </properties>
+      </data>
+    </webPart>
+  </webParts>`;
 
+    var oWebPartDefinition = limitedWebPartManager.importWebPart(webPartXml);
+    var oWebPart = oWebPartDefinition.get_webPart();
+
+    limitedWebPartManager.addWebPart(oWebPart, 'Zone 1', 1);
+
+    oFile.checkIn();
+    oFile.publish();
+    context.load(oWebPart);
+
+    context.executeQueryAsync(Function.createDelegate(this, function onQuerySucceeded() {
+        alert('Web Part added: ' + oWebPart.get_title());
+    }), Function.createDelegate(this, function onQueryFailed(sender, args) {
+        alert('Request failed. ' + args.get_message() + '\n' + args.get_stackTrace());
+    }));
+}

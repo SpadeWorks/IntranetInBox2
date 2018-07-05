@@ -22,6 +22,7 @@
     <WorkflowPartId>{4a834b76-bd00-4402-8cb4-b82ed49dc98d}</WorkflowPartId>
     <CspkgPartId>{daed7e17-ea5b-4bb7-87bd-618966b418db}</CspkgPartId>
     <SqlPackagePartId>{91f3d112-56e5-4d2b-8696-6453acd1a4f7}</SqlPackagePartId>
+    <SearchConfigurationPartId>{a8d331c7-f082-45f3-9983-a63834083533}</SearchConfigurationPartId>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -43,6 +44,10 @@
     <UseVSHostingProcess>false</UseVSHostingProcess>
   </PropertyGroup>
   <ItemGroup>
+    <Content Include="SearchConfiguration1\Elements.xml" />
+    <Content Include="SearchConfiguration1\SearchConfigurationSettings.xml">
+      <SearchConfiguration>True</SearchConfiguration>
+    </Content>
     <None Include="fonts\facebook-workplace.eot" />
     <None Include="fonts\facebook-workplace.ttf" />
     <None Include="fonts\facebook-workplace.woff" />
@@ -300,6 +305,9 @@
     <Content Include="IntranetWebPartFiles\Sample.txt" />
     <Content Include="Pages\Elements.xml" />
     <Content Include="Pages\Default.aspx" />
+    <None Include="SearchConfiguration1\SharePointProjectItem.spdata">
+      <SharePointProjectItemId>{f82f3f9c-e023-40c9-9260-efdd638ef2e5}</SharePointProjectItemId>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <None Include="Scripts\jquery-1.9.1.min.map" />

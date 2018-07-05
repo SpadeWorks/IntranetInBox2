@@ -174,26 +174,26 @@ var id = ctx.ClientControl.get_nextUniqueId();
 		var ct_deferred = $.Deferred();
 		
 		var ct_PersonProperties;
-		var ct_clientContext;
+		var ct_context;
 		var ct_currentUser;
 		
 		
 		// Get the current client context and PeopleManager instance.
-		ct_clientContext = new SP.ClientContext("/");
-		var ct_peopleManager = new SP.UserProfiles.PeopleManager(ct_clientContext);
+		ct_context = new SP.context("/");
+		var ct_peopleManager = new SP.UserProfiles.PeopleManager(ct_context);
 		
 		// Get user properties for the target user.
 		// To get the PersonProperties object for the current user, use the getMyProperties method.
 		ct_PersonProperties = ct_peopleManager.getPropertiesFor(itemaccountname);
 		
 		// Load the PersonProperties object and send the request.
-		ct_clientContext.load(ct_PersonProperties);
+		ct_context.load(ct_PersonProperties);
 		
-		ct_currentUser = ct_clientContext.get_web().get_currentUser();
-		ct_clientContext.load(ct_currentUser);
+		ct_currentUser = ct_context.get_web().get_currentUser();
+		ct_context.load(ct_currentUser);
 		
 		var ct_oRecognitionData = {ct_deferred:ct_deferred, ct_PersonProperties:ct_PersonProperties, ct_currentUser:ct_currentUser };
-		ct_clientContext.executeQueryAsync(Function.createDelegate(ct_oRecognitionData, ct_successRecognitionData), Function.createDelegate(ct_oRecognitionData, ct_failRecognitionData));
+		ct_context.executeQueryAsync(Function.createDelegate(ct_oRecognitionData, ct_successRecognitionData), Function.createDelegate(ct_oRecognitionData, ct_failRecognitionData));
 				
 		
 		return ct_deferred.promise();

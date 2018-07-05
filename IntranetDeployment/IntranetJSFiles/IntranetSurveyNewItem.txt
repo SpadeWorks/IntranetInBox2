@@ -61,13 +61,13 @@ function updateSurveyListName(listName) {
     var deferred = $.Deferred(),
     	result = false,
     	siteUrl = _spPageContextInfo.webAbsoluteUrl,
-    	clientContext = new SP.ClientContext(siteUrl),
-    	oWebsite = clientContext.get_web(),
+    	context = new SP.context(siteUrl),
+    	oWebsite = context.get_web(),
     	list = oWebsite.get_lists().getByTitle(listName);
     	
     list.set_title(INTRANET.surveyListName.val());
     list.update();
-    clientContext.executeQueryAsync(
+    context.executeQueryAsync(
         function (data) {
             result = true;
             deferred.resolve(result);
@@ -157,14 +157,14 @@ function createList(listName) {
     var deferred = $.Deferred(),
 	result = false,
 	siteUrl = _spPageContextInfo.webAbsoluteUrl,
-	clientContext = new SP.ClientContext(siteUrl),
-	oWebsite = clientContext.get_web(),
+	context = new SP.context(siteUrl),
+	oWebsite = context.get_web(),
 	listCreationInfo = new SP.ListCreationInformation();
     listCreationInfo.set_title(listName);
     listCreationInfo.set_templateType(SP.ListTemplateType.survey);
     this.oList = oWebsite.get_lists().add(listCreationInfo);
-    clientContext.load(oList);
-    clientContext.executeQueryAsync(Function.createDelegate(this, this.onQuerySucceeded), Function.createDelegate(this, this.onQueryFailed));
+    context.load(oList);
+    context.executeQueryAsync(Function.createDelegate(this, this.onQuerySucceeded), Function.createDelegate(this, this.onQueryFailed));
 }
 function onQuerySucceeded() {
 

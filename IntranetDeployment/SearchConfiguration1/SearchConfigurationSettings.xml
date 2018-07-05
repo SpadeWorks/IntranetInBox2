@@ -1,0 +1,169 @@
+﻿<SearchConfigurationSettings xmlns:i="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://schemas.datacontract.org/2004/07/Microsoft.Office.Server.Search.Portability">
+  <SearchQueryConfigurationSettings>
+    <SearchQueryConfigurationSettings>
+      <BestBets xmlns:d4p1="http://www.microsoft.com/sharepoint/search/KnownTypes/2008/08" />
+      <DefaultSourceId>00000000-0000-0000-0000-000000000000</DefaultSourceId>
+      <DefaultSourceIdSet>true</DefaultSourceIdSet>
+      <DeployToParent>true</DeployToParent>
+      <DisableInheritanceOnImport>false</DisableInheritanceOnImport>
+      <QueryRuleGroups xmlns:d4p1="http://www.microsoft.com/sharepoint/search/KnownTypes/2008/08" />
+      <QueryRules xmlns:d4p1="http://www.microsoft.com/sharepoint/search/KnownTypes/2008/08" />
+      <ResultTypes xmlns:d4p1="http://schemas.datacontract.org/2004/07/Microsoft.Office.Server.Search.Administration" />
+      <Sources xmlns:d4p1="http://schemas.datacontract.org/2004/07/Microsoft.Office.Server.Search.Administration.Query">
+        <d4p1:Source>
+          <d4p1:Active>true</d4p1:Active>
+          <d4p1:AuthInfo xmlns:d6p1="http://schemas.datacontract.org/2004/07/Microsoft.Office.Server.Search.Administration" i:nil="true" />
+          <d4p1:BuiltIn>false</d4p1:BuiltIn>
+          <d4p1:ConnectionTimeout>15000</d4p1:ConnectionTimeout>
+          <d4p1:ConnectionUrlTemplate />
+          <d4p1:CreatedDate>2018-07-03T12:23:30.233</d4p1:CreatedDate>
+          <d4p1:Description>This is custom result source for test.</d4p1:Description>
+          <d4p1:HasPermissionToReadAuthInfo>true</d4p1:HasPermissionToReadAuthInfo>
+          <d4p1:Id>e3672062-4e1c-4a12-91e9-7b84b5c4402d</d4p1:Id>
+          <d4p1:IndexOffset>0</d4p1:IndexOffset>
+          <d4p1:LastModifiedDate>2018-07-03T12:23:30.233</d4p1:LastModifiedDate>
+          <d4p1:MaximumResponseLength>64</d4p1:MaximumResponseLength>
+          <d4p1:Name>CustomResultSource</d4p1:Name>
+          <d4p1:Owner xmlns:d6p1="http://schemas.datacontract.org/2004/07/Microsoft.Office.Server.Search.Administration">
+            <d6p1:DatabaseId>00000000-0000-0000-0000-000000000000</d6p1:DatabaseId>
+            <d6p1:DisableInheritance>false</d6p1:DisableInheritance>
+            <d6p1:SPFarmId>baa1b08f-cbca-4af8-95fe-67ba9526f9b6</d6p1:SPFarmId>
+            <d6p1:SPSiteId>0e9a7060-7cc5-46de-855c-f588b2b1b28e</d6p1:SPSiteId>
+            <d6p1:SPSiteSubscriptionId>b616e209-fa4d-4ccf-aab9-327719b0f692</d6p1:SPSiteSubscriptionId>
+            <d6p1:SPWebId>00000000-0000-0000-0000-000000000000</d6p1:SPWebId>
+          </d4p1:Owner>
+          <d4p1:ProviderId>fa947043-6046-4f97-9714-40d4c113963d</d4p1:ProviderId>
+          <d4p1:QueryTransform xmlns:d6p1="http://www.microsoft.com/sharepoint/search/KnownTypes/2008/08">
+            <d6p1:Id>f746eef1-ba80-4789-8662-5bc893a35f35</d6p1:Id>
+            <d6p1:IsSystem>false</d6p1:IsSystem>
+            <d6p1:OverridePropertiesForSeralization xmlns:d7p1="http://schemas.microsoft.com/2003/10/Serialization/Arrays">
+              <d7p1:KeyValueOfstringanyType>
+                <d7p1:Key>AllowPartialResults</d7p1:Key>
+                <d7p1:Value xmlns:d9p1="http://www.w3.org/2001/XMLSchema" i:type="d9p1:boolean">true</d7p1:Value>
+              </d7p1:KeyValueOfstringanyType>
+            </d6p1:OverridePropertiesForSeralization>
+            <d6p1:OwnerId>4cab9662-3d0e-4a53-9aa4-1fde551fae39</d6p1:OwnerId>
+            <d6p1:ParentId>e3672062-4e1c-4a12-91e9-7b84b5c4402d</d6p1:ParentId>
+            <d6p1:ParentType>Source</d6p1:ParentType>
+            <d6p1:QueryPropertyExpressions>
+              <d6p1:MaxSize>2147483647</d6p1:MaxSize>
+              <d6p1:OrderedItems />
+            </d6p1:QueryPropertyExpressions>
+            <d6p1:_IsReadOnly>true</d6p1:_IsReadOnly>
+            <d6p1:_QueryTemplate>{searchTerms} AND path:"sites/IntranetInBoxDev"</d6p1:_QueryTemplate>
+            <d6p1:_SourceId i:nil="true" />
+          </d4p1:QueryTransform>
+        </d4p1:Source>
+      </Sources>
+      <UserSegments xmlns:d4p1="http://www.microsoft.com/sharepoint/search/KnownTypes/2008/08" />
+    </SearchQueryConfigurationSettings>
+  </SearchQueryConfigurationSettings>
+  <SearchRankingModelConfigurationSettings>
+    <RankingModels xmlns:d3p1="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+  </SearchRankingModelConfigurationSettings>
+  <SearchSchemaConfigurationSettings>
+    <Aliases xmlns:d3p1="http://schemas.datacontract.org/2004/07/Microsoft.Office.Server.Search.Administration">
+      <d3p1:LastItemName>Location</d3p1:LastItemName>
+      <d3p1:dictionary xmlns:d4p1="http://schemas.microsoft.com/2003/10/Serialization/Arrays">
+        <d4p1:KeyValueOfstringAliasInfoy6h3NzC8>
+          <d4p1:Key>Location</d4p1:Key>
+          <d4p1:Value>
+            <d3p1:Name>Location</d3p1:Name>
+            <d3p1:ManagedPid>1000000000</d3p1:ManagedPid>
+            <d3p1:SchemaId>137354</d3p1:SchemaId>
+          </d4p1:Value>
+        </d4p1:KeyValueOfstringAliasInfoy6h3NzC8>
+      </d3p1:dictionary>
+    </Aliases>
+    <CategoriesAndCrawledProperties xmlns:d3p1="http://schemas.microsoft.com/2003/10/Serialization/Arrays">
+      <d3p1:KeyValueOfguidCrawledPropertyInfoCollectionaSYUqUE_P>
+        <d3p1:Key>00110329-0000-0110-c000-000000111146</d3p1:Key>
+        <d3p1:Value xmlns:d5p1="http://schemas.datacontract.org/2004/07/Microsoft.Office.Server.Search.Administration">
+          <d5p1:LastItemName>urn:schemas-microsoft-com:sharepoint:portal:profile:SPS-Location</d5p1:LastItemName>
+          <d5p1:dictionary>
+            <d3p1:KeyValueOfstringCrawledPropertyInfoy6h3NzC8>
+              <d3p1:Key>urn:schemas-microsoft-com:sharepoint:portal:profile:Location</d3p1:Key>
+              <d3p1:Value>
+                <d5p1:Name>urn:schemas-microsoft-com:sharepoint:portal:profile:Location</d5p1:Name>
+                <d5p1:CategoryName>People</d5p1:CategoryName>
+                <d5p1:IsImplicit>false</d5p1:IsImplicit>
+                <d5p1:IsMappedToContents>true</d5p1:IsMappedToContents>
+                <d5p1:IsNameEnum>false</d5p1:IsNameEnum>
+                <d5p1:MappedManagedProperties />
+                <d5p1:Propset>00110329-0000-0110-c000-000000111146</d5p1:Propset>
+                <d5p1:Samples />
+                <d5p1:SchemaId>0</d5p1:SchemaId>
+              </d3p1:Value>
+            </d3p1:KeyValueOfstringCrawledPropertyInfoy6h3NzC8>
+            <d3p1:KeyValueOfstringCrawledPropertyInfoy6h3NzC8>
+              <d3p1:Key>urn:schemas-microsoft-com:sharepoint:portal:profile:SPS-Location</d3p1:Key>
+              <d3p1:Value>
+                <d5p1:Name>urn:schemas-microsoft-com:sharepoint:portal:profile:SPS-Location</d5p1:Name>
+                <d5p1:CategoryName>People</d5p1:CategoryName>
+                <d5p1:IsImplicit>false</d5p1:IsImplicit>
+                <d5p1:IsMappedToContents>false</d5p1:IsMappedToContents>
+                <d5p1:IsNameEnum>false</d5p1:IsNameEnum>
+                <d5p1:MappedManagedProperties />
+                <d5p1:Propset>00110329-0000-0110-c000-000000111146</d5p1:Propset>
+                <d5p1:Samples />
+                <d5p1:SchemaId>0</d5p1:SchemaId>
+              </d3p1:Value>
+            </d3p1:KeyValueOfstringCrawledPropertyInfoy6h3NzC8>
+          </d5p1:dictionary>
+        </d3p1:Value>
+      </d3p1:KeyValueOfguidCrawledPropertyInfoCollectionaSYUqUE_P>
+    </CategoriesAndCrawledProperties>
+    <CrawledProperties xmlns:d3p1="http://schemas.datacontract.org/2004/07/Microsoft.Office.Server.Search.Administration" i:nil="true" />
+    <ManagedProperties xmlns:d3p1="http://schemas.datacontract.org/2004/07/Microsoft.Office.Server.Search.Administration">
+      <d3p1:LastItemName i:nil="true" />
+      <d3p1:dictionary xmlns:d4p1="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+      <d3p1:TotalCount>0</d3p1:TotalCount>
+    </ManagedProperties>
+    <Mappings xmlns:d3p1="http://schemas.datacontract.org/2004/07/Microsoft.Office.Server.Search.Administration">
+      <d3p1:LastItemName>00110329-0000-0110-c000-000000111146:urn:schemas-microsoft-com:sharepoint:portal:profile:SPS-Location-&gt;1000000000</d3p1:LastItemName>
+      <d3p1:dictionary xmlns:d4p1="http://schemas.microsoft.com/2003/10/Serialization/Arrays">
+        <d4p1:KeyValueOfstringMappingInfoy6h3NzC8>
+          <d4p1:Key>00110329-0000-0110-c000-000000111146:urn:schemas-microsoft-com:sharepoint:portal:profile:Location-&gt;1000000000</d4p1:Key>
+          <d4p1:Value>
+            <d3p1:Name>00110329-0000-0110-c000-000000111146:urn:schemas-microsoft-com:sharepoint:portal:profile:Location-&gt;1000000000</d3p1:Name>
+            <d3p1:CrawledPropertyName>urn:schemas-microsoft-com:sharepoint:portal:profile:Location</d3p1:CrawledPropertyName>
+            <d3p1:CrawledPropset>00110329-0000-0110-c000-000000111146</d3p1:CrawledPropset>
+            <d3p1:ManagedPid>1000000000</d3p1:ManagedPid>
+            <d3p1:MappingOrder>100</d3p1:MappingOrder>
+            <d3p1:SchemaId>137354</d3p1:SchemaId>
+          </d4p1:Value>
+        </d4p1:KeyValueOfstringMappingInfoy6h3NzC8>
+        <d4p1:KeyValueOfstringMappingInfoy6h3NzC8>
+          <d4p1:Key>00110329-0000-0110-c000-000000111146:urn:schemas-microsoft-com:sharepoint:portal:profile:SPS-Location-&gt;1000000000</d4p1:Key>
+          <d4p1:Value>
+            <d3p1:Name>00110329-0000-0110-c000-000000111146:urn:schemas-microsoft-com:sharepoint:portal:profile:SPS-Location-&gt;1000000000</d3p1:Name>
+            <d3p1:CrawledPropertyName>urn:schemas-microsoft-com:sharepoint:portal:profile:SPS-Location</d3p1:CrawledPropertyName>
+            <d3p1:CrawledPropset>00110329-0000-0110-c000-000000111146</d3p1:CrawledPropset>
+            <d3p1:ManagedPid>1000000000</d3p1:ManagedPid>
+            <d3p1:MappingOrder>200</d3p1:MappingOrder>
+            <d3p1:SchemaId>137354</d3p1:SchemaId>
+          </d4p1:Value>
+        </d4p1:KeyValueOfstringMappingInfoy6h3NzC8>
+      </d3p1:dictionary>
+    </Mappings>
+    <Overrides xmlns:d3p1="http://schemas.datacontract.org/2004/07/Microsoft.Office.Server.Search.Administration">
+      <d3p1:LastItemName>1000000000</d3p1:LastItemName>
+      <d3p1:dictionary xmlns:d4p1="http://schemas.microsoft.com/2003/10/Serialization/Arrays">
+        <d4p1:KeyValueOfstringOverrideInfoy6h3NzC8>
+          <d4p1:Key>1000000000</d4p1:Key>
+          <d4p1:Value>
+            <d3p1:Name>1000000000</d3p1:Name>
+            <d3p1:AliasesOverridden>true</d3p1:AliasesOverridden>
+            <d3p1:EntityExtractorBitMap>0</d3p1:EntityExtractorBitMap>
+            <d3p1:ExtraProperties i:nil="true" />
+            <d3p1:ManagedPid>1000000000</d3p1:ManagedPid>
+            <d3p1:MappingsOverridden>true</d3p1:MappingsOverridden>
+            <d3p1:SchemaId>137354</d3p1:SchemaId>
+            <d3p1:TokenNormalization>true</d3p1:TokenNormalization>
+          </d4p1:Value>
+        </d4p1:KeyValueOfstringOverrideInfoy6h3NzC8>
+      </d3p1:dictionary>
+    </Overrides>
+  </SearchSchemaConfigurationSettings>
+  <SearchSubscriptionSettingsConfigurationSettings i:nil="true" />
+</SearchConfigurationSettings>

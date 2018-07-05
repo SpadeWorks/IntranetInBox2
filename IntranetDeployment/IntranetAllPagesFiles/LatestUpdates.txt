@@ -2,18 +2,17 @@
 <html xmlns:mso="urn:schemas-microsoft-com:office:office" xmlns:msdt="uuid:C2F41010-65B3-11d1-A29F-00AA00C14882"><head>
 <!--[if gte mso 9]><SharePoint:CTFieldRefs runat=server Prefix="mso:" FieldList="FileLeafRef,Comments,PublishingStartDate,PublishingExpirationDate,PublishingContactEmail,PublishingContactName,PublishingContactPicture,PublishingPageLayout,PublishingVariationGroupID,PublishingVariationRelationshipLinkFieldID,PublishingRollupImage,Audience,PublishingIsFurlPage,PublishingPageImage,PublishingPageContent,SummaryLinks,SummaryLinks2,SeoBrowserTitle,SeoMetaDescription,SeoKeywords,RobotsNoIndex"><xml>
 <mso:CustomDocumentProperties>
-<mso:PublishingContact msdt:dt="string">20</mso:PublishingContact>
+<mso:PublishingContact msdt:dt="string">17</mso:PublishingContact>
 <mso:PublishingIsFurlPage msdt:dt="string">0</mso:PublishingIsFurlPage>
-<mso:display_urn_x003a_schemas-microsoft-com_x003a_office_x003a_office_x0023_PublishingContact msdt:dt="string">Mahendra Gohel</mso:display_urn_x003a_schemas-microsoft-com_x003a_office_x003a_office_x0023_PublishingContact>
+<mso:display_urn_x003a_schemas-microsoft-com_x003a_office_x003a_office_x0023_PublishingContact msdt:dt="string">Akash Badhe</mso:display_urn_x003a_schemas-microsoft-com_x003a_office_x003a_office_x0023_PublishingContact>
 <mso:PublishingContactPicture msdt:dt="string"></mso:PublishingContactPicture>
 <mso:RobotsNoIndex msdt:dt="string">0</mso:RobotsNoIndex>
 <mso:PublishingContactName msdt:dt="string"></mso:PublishingContactName>
-<mso:ContentTypeId msdt:dt="string">0x010100C568DB52D9D0A14D9B2FDCC96666E9F2007948130EC3DB064584E219954237AF390064DEA0F50FC8C147B0B6EA0636C4A7D4009A5AD9BE6094EF4B8526709F10EC427F</mso:ContentTypeId>
+<mso:ContentTypeId msdt:dt="string">0x010100C568DB52D9D0A14D9B2FDCC96666E9F2007948130EC3DB064584E219954237AF390064DEA0F50FC8C147B0B6EA0636C4A7D400ECE1727F4A07ED4284021A0BCD8ABE9A</mso:ContentTypeId>
 <mso:PublishingPageLayoutName msdt:dt="string">NBBOneColPageLayout.aspx</mso:PublishingPageLayoutName>
 <mso:Comments msdt:dt="string"></mso:Comments>
 <mso:PublishingContactEmail msdt:dt="string"></mso:PublishingContactEmail>
-<mso:PublishingPageLayout msdt:dt="string">http://icsp2016dev102:8081/_catalogs/masterpage/NBBOneColPageLayout.aspx, NBBOneColPageLayout </mso:PublishingPageLayout>
-<mso:RequiresRouting msdt:dt="string">False</mso:RequiresRouting>
+<mso:PublishingPageLayout msdt:dt="string">https://cognizant222.sharepoint.com/sites/IntranetInBoxPublishing/_catalogs/masterpage/NBBOneColPageLayout.aspx, /sites/IntranetInBoxPublishing/_catalogs/masterpage/NBBOneColPageLayout.aspx</mso:PublishingPageLayout>
 </mso:CustomDocumentProperties>
 </xml></SharePoint:CTFieldRefs><![endif]-->
-<title>Latest Updates</title></head>
+<title>HomeTest</title></head>
