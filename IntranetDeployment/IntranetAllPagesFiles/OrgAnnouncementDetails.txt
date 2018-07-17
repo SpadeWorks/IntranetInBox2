@@ -12,7 +12,7 @@
 <mso:PublishingPageLayoutName msdt:dt="string">NBBOneColPageLayout.aspx</mso:PublishingPageLayoutName>
 <mso:Comments msdt:dt="string"></mso:Comments>
 <mso:PublishingContactEmail msdt:dt="string"></mso:PublishingContactEmail>
-<mso:PublishingPageLayout msdt:dt="string">https://cognizant222.sharepoint.com/sites/IntranetInBoxPublishing/_catalogs/masterpage/NBBOneColPageLayout.aspx, /sites/IntranetInBoxPublishing/_catalogs/masterpage/NBBOneColPageLayout.aspx</mso:PublishingPageLayout>
+<mso:PublishingPageLayout msdt:dt="string">{site_absolute_url}/_catalogs/masterpage/NBBOneColPageLayout.aspx, /sites/IntranetInBoxPublishing/_catalogs/masterpage/NBBOneColPageLayout.aspx</mso:PublishingPageLayout>
 </mso:CustomDocumentProperties>
 </xml></SharePoint:CTFieldRefs><![endif]-->
 <title>HomeTest</title></head>

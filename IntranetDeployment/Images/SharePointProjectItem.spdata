@@ -5,5 +5,9 @@
     <ProjectItemFile Source="AppIcon.png" Target="Images\" Type="ElementFile" />
     <ProjectItemFile Source="intranet-icon-displaying-19-gallery-images-intranet-icon-15988.jpg" Target="Images\" Type="ElementFile" />
     <ProjectItemFile Source="intranet.png" Target="Images\" Type="ElementFile" />
+    <ProjectItemFile Source="NBB-intranet-logo.jpg" Target="Images\" Type="ElementFile" />
+    <ProjectItemFile Source="NBB-logo.jpg" Target="Images\" Type="ElementFile" />
   </Files>
 </ProjectItem>
+
+

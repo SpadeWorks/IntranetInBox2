@@ -1,13 +1,12 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Elements xmlns="http://schemas.microsoft.com/sharepoint/">
   <Module Name="IntranetCSSFiles">
-    <File Path="IntranetCSSFiles\Sample.txt" Url="IntranetCSSFiles/Sample.txt" ReplaceContent="TRUE" />
-    <File Path="IntranetCSSFiles\bootstrap.txt" Url="IntranetCSSFiles/bootstrap.txt" ReplaceContent="TRUE" />
-    <File Path="IntranetCSSFiles\chart.txt" Url="IntranetCSSFiles/chart.txt" ReplaceContent="TRUE" />
-    <File Path="IntranetCSSFiles\fontawesome.txt" Url="IntranetCSSFiles/fontawesome.txt" ReplaceContent="TRUE" />
-    <File Path="IntranetCSSFiles\NBBMain.txt" Url="IntranetCSSFiles/NBBMain.txt" ReplaceContent="TRUE" />
-    <File Path="IntranetCSSFiles\NBBResponsive.txt" Url="IntranetCSSFiles/NBBResponsive.txt" ReplaceContent="TRUE" />
-    <File Path="IntranetCSSFiles\owlcarouselmin.txt" Url="IntranetCSSFiles/owlcarouselmin.txt" ReplaceContent="TRUE" />
-    <File Path="IntranetCSSFiles\owlthemedefaultmin.txt" Url="IntranetCSSFiles/owlthemedefaultmin.txt" ReplaceContent="TRUE" />
+    <File Path="IntranetCSSFiles\bootstrap.min.css" Url="IntranetCSSFiles/bootstrap.min.css" ReplaceContent="TRUE" />
+    <File Path="IntranetCSSFiles\custom_styles.css" Url="IntranetCSSFiles/custom_styles.css" ReplaceContent="TRUE" />
+    <File Path="IntranetCSSFiles\font-awesome.min.css" Url="IntranetCSSFiles/font-awesome.min.css" ReplaceContent="TRUE" />
+    <File Path="IntranetCSSFiles\mega_menu.css" Url="IntranetCSSFiles/mega_menu.css" ReplaceContent="TRUE" />
+    <File Path="IntranetCSSFiles\NBB_Main.css" Url="IntranetCSSFiles/NBB_Main.css" ReplaceContent="TRUE" />
+    <File Path="IntranetCSSFiles\NBB_Responsive.css" Url="IntranetCSSFiles/NBB_Responsive.css" ReplaceContent="TRUE" />
+    <File Path="IntranetCSSFiles\chart.css" Url="IntranetCSSFiles/chart.css" ReplaceContent="TRUE" />
   </Module>
 </Elements>

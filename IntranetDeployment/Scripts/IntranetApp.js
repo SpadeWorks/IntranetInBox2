@@ -1,4 +1,4 @@
-'use strict';
+﻿'use strict';
 var INTRANET = INTRANET || {};
 
 ExecuteOrDelayUntilScriptLoaded(INTRANET.InIt, "sp.js");
@@ -874,34 +874,19 @@ INTRANET.AddItemsInList = function () {
 
                     var hostWeb = hostWebContext.get_web();
                     var oList = hostWeb.get_lists().getByTitle(objList.Name);
-                    asyncMethods = $.map(objList.Items, function (objListItem) {
-
+                    asyncMethods = $.map(objList.Items, function (fields) {
                         var itemCreateInfo = new SP.ListItemCreationInformation();
                         var oListItem = oList.addItem(itemCreateInfo);
                         var dynamicValue = '';
 
-                        for (var c = 0; c < objListItem.Columns.length; c++) {
+                        $.map(fields, function (field) {
+                            oListItem.set_item(field.key, field.value);
+                        });
 
-                            if (dynamicValue != '' && objListItem.Columns[c]["FieldName"] == "BravoValue") {
-                                oListItem.set_item(objListItem.Columns[c]["FieldName"], dynamicValue);
-                            } else {
-                                oListItem.set_item(objListItem.Columns[c]["FieldName"], objListItem.Columns[c]["FieldValue"]);
-                            }
-
-                            if (objListItem.Columns[c]["FieldValue"] == "HostWebURL") {
-                                dynamicValue = INTRANET.Constant.HostWebURL;
-                            } else if (objListItem.Columns[c]["FieldValue"] == "TenantId") {
-                                dynamicValue = INTRANET.Constant.TenantId;
-                            }
-                        }
-
-                        //oListItem.set_item("Title", objListItem["FieldValue"]);
-                        //oListItem.set_item(objListItem["FieldName"], objListItem["FieldValue"]);
                         oListItem.update();
                     });
                     context.executeQueryAsync(
                         function () {
-
                             dfd.resolve();
                         },
                         function (sender, args) {
@@ -2463,104 +2448,498 @@ INTRANET.AddWebPartsToPage = function (serverRelativeUrl) {
     var oFile = hostWebContext.get_web().getFileByServerRelativeUrl(serverRelativeUrl);
     oFile.checkOut();
     var limitedWebPartManager = oFile.getLimitedWebPartManager(SP.WebParts.PersonalizationScope.shared);
-    var webPartXml = `<webParts>
-    <webPart xmlns="http://schemas.microsoft.com/WebPart/v3">
-      <metaData>
-        <type name="Microsoft.Office.Server.Search.WebControls.ContentBySearchWebPart, Microsoft.Office.Server.Search, Version=16.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c" />
-        <importErrorMessage>Cannot import this Web Part.</importErrorMessage>
-      </metaData>
-      <data>
-        <properties>
-          <property name="BypassResultTypes" type="bool">True</property>
-          <property name="ItemTemplateId" type="string">~sitecollection/_catalogs/masterpage/Display Templates/KPCU/Item_News.js</property>
-          <property name="PropertyMappings" type="string" />
-          <property name="ChromeState" type="chromestate">Normal</property>
-          <property name="IncludeResultTypeConstraint" type="bool">False</property>
-          <property name="StartingItemIndex" type="int">1</property>
-          <property name="ShowDefinitions" type="bool">False</property>
-          <property name="Height" type="string" />
-          <property name="Hidden" type="bool">False</property>
-          <property name="HitHighlightedPropertiesJson" type="string">["Title","Path","Author","SectionNames","SiteDescription"]</property>
-          <property name="ScrollToTopOnRedraw" type="bool">False</property>
-          <property name="UseSharedDataProvider" type="bool">False</property>
-          <property name="RepositionLanguageDropDown" type="bool">False</property>
-          <property name="AlwaysRenderOnServer" type="bool">False</property>
-          <property name="AllowConnect" type="bool">True</property>
-          <property name="ItemBodyTemplateId" type="string" />
-          <property name="ShowAlertMe" type="bool">True</property>
-          <property name="ExportMode" type="exportmode">All</property>
-          <property name="AddSEOPropertiesFromSearch" type="bool">False</property>
-          <property name="ShowUpScopeMessage" type="bool">False</property>
-          <property name="AllowHide" type="bool">True</property>
-          <property name="AllowClose" type="bool">True</property>
-          <property name="UseSimplifiedQueryBuilder" type="bool">False</property>
-          <property name="ShouldHideControlWhenEmpty" type="bool">False</property>
-          <property name="ResultType" type="string" />
-          <property name="LogAnalyticsViewEvent" type="bool">False</property>
-          <property name="MaxPagesAfterCurrent" type="int">1</property>
-          <property name="TitleUrl" type="string" />
-          <property name="EmptyMessage" type="string" />
-          <property name="AdvancedSearchPageAddress" type="string">advanced.aspx</property>
-          <property name="IsXGeo3SForwardingFlighted" type="bool">True</property>
-          <property name="AllowMinimize" type="bool">True</property>
-          <property name="ShowBestBets" type="bool">False</property>
-          <property name="AllowEdit" type="bool">True</property>
-          <property name="NumberOfItems" type="int">7</property>
-          <property name="HelpUrl" type="string" />
-          <property name="ShowPaging" type="bool">True</property>
-          <property name="ShowViewDuplicates" type="bool">False</property>
-          <property name="SelectedPropertiesJson" type="string">["Path","Title","LastModifiedTime","NewsTitleOWSTEXT","NewsPublishedDateOWSDATE","MPLocation","NewsBannerOWSIMGE","NewsThumbnailOWSIMGE","MPDepartment"]</property>
-          <property name="TargetResultTable" type="string">RelevantResults</property>
-          <property name="HelpMode" type="helpmode">Modeless</property>
-          <property name="ShowXGeoOptions" type="bool">False</property>
-          <property name="IsXGeoFlighted" type="bool">False</property>
-          <property name="ShowPersonalFavorites" type="bool">False</property>
-          <property name="EnableXGeo3SForwarding" type="bool">False</property>
-          <property name="PreloadedItemTemplateIdsJson" type="string">null</property>
-          <property name="Description" type="string">Content Search Web Part will allow you to show items that are results of a search query you specify. When you add it to the page, this Web Part will show recently modified items from the current site. You can change this setting to show items from another site or list by editing the Web Part and changing its search criteria.As new content is discovered by search, this Web Part will display an updated list of items each time the page is viewed.</property>
-          <property name="ShowPreferencesLink" type="bool">True</property>
-          <property name="QueryGroupName" type="string">75ba926c-ec23-4184-b3d9-da70db9fab95</property>
-          <property name="ShowResultCount" type="bool">True</property>
-          <property name="TitleIconImageUrl" type="string" />
-          <property name="Direction" type="direction">NotSet</property>
-          <property name="ResultsPerPage" type="int">7</property>
-          <property name="AvailableSortsJson" type="string">null</property>
-          <property name="ShowResults" type="bool">True</property>
-          <property name="ServerIncludeScriptsJson" type="string">null</property>
-          <property name="SearchCenterXGeoLocations" type="string" />
-          <property name="DataProviderJSON" type="string">{"QueryGroupName":"75ba926c-ec23-4184-b3d9-da70db9fab95","QueryPropertiesTemplateUrl":"sitesearch://webroot","IgnoreQueryPropertiesTemplateUrl":false,"SourceID":"8413cd39-2156-4e00-b54d-11efd9abdb89","SourceName":"Local SharePoint Results","SourceLevel":"Ssa","CollapseSpecification":"","QueryTemplate":"((path:{\\Site.URL}/Pages/) AND (ContentType:KPCU_News) AND (IsDocument:\"True\" OR contentclass:\"STS_ListItem\"))","FallbackSort":[{"p":"LastModifiedTime","d":1}],"FallbackSortJson":"[{\"p\":\"LastModifiedTime\",\"d\":1}]","RankRules":null,"RankRulesJson":"null","AsynchronousResultRetrieval":false,"SendContentBeforeQuery":true,"BatchClientQuery":true,"FallbackLanguage":-1,"FallbackRankingModelID":"","EnableStemming":true,"EnablePhonetic":false,"EnableNicknames":false,"EnableInterleaving":false,"EnableQueryRules":true,"EnableOrderingHitHighlightedProperty":false,"HitHighlightedMultivaluePropertyLimit":-1,"IgnoreContextualScope":true,"ScopeResultsToCurrentSite":false,"TrimDuplicates":false,"Properties":{"TryCache":true,"Scope":"{Site.URL}","UpdateLinksForCatalogItems":true,"EnableStacking":true,"CrossGeoQuery":"false","ListId":"55e27111-388b-411d-87df-351f2b92600f","ListItemId":4},"PropertiesJson":"{\"TryCache\":true,\"Scope\":\"{Site.URL}\",\"UpdateLinksForCatalogItems\":true,\"EnableStacking\":true,\"CrossGeoQuery\":\"false\",\"ListId\":\"55e27111-388b-411d-87df-351f2b92600f\",\"ListItemId\":4}","ClientType":"ContentSearchRegular","ClientFunction":"","ClientFunctionDetails":"","UpdateAjaxNavigate":true,"SummaryLength":180,"DesiredSnippetLength":90,"PersonalizedQuery":false,"FallbackRefinementFilters":null,"IgnoreStaleServerQuery":false,"RenderTemplateId":"DefaultDataProvider","AlternateErrorMessage":null,"Title":""}</property>
-          <property name="ShowAdvancedLink" type="bool">True</property>
-          <property name="ShowDidYouMean" type="bool">False</property>
-          <property name="AllowZoneChange" type="bool">True</property>
-          <property name="ChromeType" type="chrometype">None</property>
-          <property name="GroupTemplateId" type="string">~sitecollection/_catalogs/masterpage/Display Templates/Content Web Parts/Group_Content.js</property>
-          <property name="MissingAssembly" type="string">Cannot import this Web Part.</property>
-          <property name="OverwriteResultPath" type="bool">True</property>
-          <property name="Width" type="string" />
-          <property name="MaxPagesBeforeCurrent" type="int">4</property>
-          <property name="XGeoTenantsInfo" type="string" />
-          <property name="ShowLanguageOptions" type="bool">True</property>
-          <property name="ResultTypeId" type="string" />
-          <property name="AlternateErrorMessage" type="string" null="true" />
-          <property name="Title" type="string">KPCU News</property>
-          <property name="RenderTemplateId" type="string">~sitecollection/_catalogs/masterpage/Display Templates/KPCU/Control_KPCUNews.js</property>
-          <property name="EmitStyleReference" type="bool">True</property>
-          <property name="StatesJson" type="string">{}</property>
-          <property name="ShowSortOptions" type="bool">False</property>
-          <property name="CatalogIconImageUrl" type="string" />
-        </properties>
-      </data>
-    </webPart>
-  </webParts>`;
+    var newsWebPartXml = `<webParts>
+  <webPart xmlns="http://schemas.microsoft.com/WebPart/v3">
+    <metaData>
+      <type name="Microsoft.Office.Server.Search.WebControls.ContentBySearchWebPart, Microsoft.Office.Server.Search, Version=16.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c" />
+      <importErrorMessage>Cannot import this Web Part.</importErrorMessage>
+    </metaData>
+    <data>
+      <properties>
+        <property name="BypassResultTypes" type="bool">True</property>
+        <property name="ItemTemplateId" type="string">~sitecollection/_catalogs/masterpage/Display Templates/Content Web Parts/Item_Latest_News_Home.js</property>
+        <property name="PropertyMappings" type="string" />
+        <property name="ChromeState" type="chromestate">Normal</property>
+        <property name="IncludeResultTypeConstraint" type="bool">False</property>
+        <property name="StartingItemIndex" type="int">1</property>
+        <property name="ShowDefinitions" type="bool">False</property>
+        <property name="Height" type="string" />
+        <property name="Hidden" type="bool">False</property>
+        <property name="HitHighlightedPropertiesJson" type="string">["Title","Path","Author","SectionNames","SiteDescription"]</property>
+        <property name="ScrollToTopOnRedraw" type="bool">False</property>
+        <property name="UseSharedDataProvider" type="bool">False</property>
+        <property name="RepositionLanguageDropDown" type="bool">False</property>
+        <property name="AlwaysRenderOnServer" type="bool">False</property>
+        <property name="AllowConnect" type="bool">True</property>
+        <property name="ItemBodyTemplateId" type="string" />
+        <property name="ShowAlertMe" type="bool">False</property>
+        <property name="ExportMode" type="exportmode">All</property>
+        <property name="AddSEOPropertiesFromSearch" type="bool">False</property>
+        <property name="ShowUpScopeMessage" type="bool">False</property>
+        <property name="AllowHide" type="bool">True</property>
+        <property name="AllowClose" type="bool">True</property>
+        <property name="UseSimplifiedQueryBuilder" type="bool">False</property>
+        <property name="ShouldHideControlWhenEmpty" type="bool">False</property>
+        <property name="ResultType" type="string" />
+        <property name="LogAnalyticsViewEvent" type="bool">False</property>
+        <property name="MaxPagesAfterCurrent" type="int">1</property>
+        <property name="TitleUrl" type="string" />
+        <property name="EmptyMessage" type="string" />
+        <property name="AdvancedSearchPageAddress" type="string">advanced.aspx</property>
+        <property name="IsXGeo3SForwardingFlighted" type="bool">True</property>
+        <property name="AllowMinimize" type="bool">True</property>
+        <property name="ShowBestBets" type="bool">False</property>
+        <property name="AllowEdit" type="bool">True</property>
+        <property name="NumberOfItems" type="int">5</property>
+        <property name="HelpUrl" type="string" />
+        <property name="ShowPaging" type="bool">True</property>
+        <property name="ShowViewDuplicates" type="bool">False</property>
+        <property name="SelectedPropertiesJson" type="string">["Path","Title","DiscussionPost","ExpiresOWSDATE","FileExtension","SecondaryFileExtension","ExpirationTime","EmployeeDepartment"]</property>
+        <property name="TargetResultTable" type="string">RelevantResults</property>
+        <property name="HelpMode" type="helpmode">Modeless</property>
+        <property name="ShowXGeoOptions" type="bool">False</property>
+        <property name="IsXGeoFlighted" type="bool">False</property>
+        <property name="ShowPersonalFavorites" type="bool">False</property>
+        <property name="EnableXGeo3SForwarding" type="bool">False</property>
+        <property name="PreloadedItemTemplateIdsJson" type="string">null</property>
+        <property name="Description" type="string">Content Search Web Part will allow you to show items that are results of a search query you specify. When you add it to the page, this Web Part will show recently modified items from the current site. You can change this setting to show items from another site or list by editing the Web Part and changing its search criteria.As new content is discovered by search, this Web Part will display an updated list of items each time the page is viewed.</property>
+        <property name="ShowPreferencesLink" type="bool">True</property>
+        <property name="QueryGroupName" type="string">ce483c63-7ea5-48ff-be44-b8623aff11f7</property>
+        <property name="ShowResultCount" type="bool">True</property>
+        <property name="TitleIconImageUrl" type="string" />
+        <property name="Direction" type="direction">NotSet</property>
+        <property name="ResultsPerPage" type="int">5</property>
+        <property name="AvailableSortsJson" type="string">null</property>
+        <property name="ShowResults" type="bool">True</property>
+        <property name="ServerIncludeScriptsJson" type="string">null</property>
+        <property name="SearchCenterXGeoLocations" type="string" />
+        <property name="DataProviderJSON" type="string">{"QueryGroupName":"ce483c63-7ea5-48ff-be44-b8623aff11f7","QueryPropertiesTemplateUrl":"sitesearch://webroot","IgnoreQueryPropertiesTemplateUrl":false,"SourceID":"8413cd39-2156-4e00-b54d-11efd9abdb89","SourceName":"Local SharePoint Results","SourceLevel":"Ssa","CollapseSpecification":"","QueryTemplate":"(IsDocument:\"True\" OR contentclass:\"STS_ListItem\")  ContentType:\"Latest_News\"  RefinableDate02\u003e={Today}  Path:\"https://gohelmahendrak.sharepoint.com/sites/IntranetInBoxPublishing/Lists\"","FallbackSort":[{"p":"RefinableString00","d":0},{"p":"LastModifiedTime","d":0}],"FallbackSortJson":"[{\"p\":\"RefinableString00\",\"d\":0},{\"p\":\"LastModifiedTime\",\"d\":0}]","RankRules":null,"RankRulesJson":"null","AsynchronousResultRetrieval":false,"SendContentBeforeQuery":true,"BatchClientQuery":true,"FallbackLanguage":-1,"FallbackRankingModelID":"","EnableStemming":true,"EnablePhonetic":false,"EnableNicknames":false,"EnableInterleaving":false,"EnableQueryRules":true,"EnableOrderingHitHighlightedProperty":false,"HitHighlightedMultivaluePropertyLimit":-1,"IgnoreContextualScope":true,"ScopeResultsToCurrentSite":false,"TrimDuplicates":false,"Properties":{"TryCache":true,"Scope":"{Site.URL}","UpdateLinksForCatalogItems":true,"EnableStacking":true,"ListId":"3b20d6ec-6bba-4b5d-903e-6d1ab7febb71","ListItemId":5,"CrossGeoQuery":"false"},"PropertiesJson":"{\"TryCache\":true,\"Scope\":\"{Site.URL}\",\"UpdateLinksForCatalogItems\":true,\"EnableStacking\":true,\"ListId\":\"3b20d6ec-6bba-4b5d-903e-6d1ab7febb71\",\"ListItemId\":5,\"CrossGeoQuery\":\"false\"}","ClientType":"ContentSearchRegular","ClientFunction":"","ClientFunctionDetails":"","UpdateAjaxNavigate":true,"SummaryLength":180,"DesiredSnippetLength":90,"PersonalizedQuery":false,"FallbackRefinementFilters":null,"IgnoreStaleServerQuery":false,"RenderTemplateId":"DefaultDataProvider","AlternateErrorMessage":null,"Title":""}</property>
+        <property name="ShowAdvancedLink" type="bool">True</property>
+        <property name="ShowDidYouMean" type="bool">False</property>
+        <property name="AllowZoneChange" type="bool">True</property>
+        <property name="ChromeType" type="chrometype">None</property>
+        <property name="GroupTemplateId" type="string">~sitecollection/_catalogs/masterpage/Display Templates/Content Web Parts/Group_Content.js</property>
+        <property name="MissingAssembly" type="string">Cannot import this Web Part.</property>
+        <property name="OverwriteResultPath" type="bool">True</property>
+        <property name="Width" type="string" />
+        <property name="MaxPagesBeforeCurrent" type="int">4</property>
+        <property name="XGeoTenantsInfo" type="string" />
+        <property name="ShowLanguageOptions" type="bool">True</property>
+        <property name="ResultTypeId" type="string" />
+        <property name="AlternateErrorMessage" type="string" null="true" />
+        <property name="Title" type="string">Latest News Home Content Search</property>
+        <property name="RenderTemplateId" type="string">~sitecollection/_catalogs/masterpage/Display Templates/Content Web Parts/control_Latest_News.js</property>
+        <property name="EmitStyleReference" type="bool">True</property>
+        <property name="StatesJson" type="string">{}</property>
+        <property name="ShowSortOptions" type="bool">False</property>
+        <property name="CatalogIconImageUrl" type="string" />
+      </properties>
+    </data>
+  </webPart>
+</webParts>`;
 
-    var oWebPartDefinition = limitedWebPartManager.importWebPart(webPartXml);
-    var oWebPart = oWebPartDefinition.get_webPart();
+    var orgAnnouncementWebPartXml = `<?xml version="1.0" encoding="utf-8"?>
+<WebPart xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://schemas.microsoft.com/WebPart/v2">
+  <Title>Org Announcement carousel CEWP</Title>
+  <FrameType>None</FrameType>
+  <Description>Allows authors to enter rich text content.</Description>
+  <IsIncluded>true</IsIncluded>
+  <ZoneID>carousel</ZoneID>
+  <PartOrder>4</PartOrder>
+  <FrameState>Normal</FrameState>
+  <Height />
+  <Width />
+  <AllowRemove>true</AllowRemove>
+  <AllowZoneChange>true</AllowZoneChange>
+  <AllowMinimize>true</AllowMinimize>
+  <AllowConnect>true</AllowConnect>
+  <AllowEdit>true</AllowEdit>
+  <AllowHide>true</AllowHide>
+  <IsVisible>true</IsVisible>
+  <DetailLink />
+  <HelpLink />
+  <HelpMode>Modeless</HelpMode>
+  <Dir>Default</Dir>
+  <PartImageSmall />
+  <MissingAssembly>Cannot import this Web Part.</MissingAssembly>
+  <PartImageLarge>/sites/IntranetInBoxPublishing/_layouts/15/images/mscontl.gif</PartImageLarge>
+  <IsIncludedFilter />
+  <IsAvailable>true</IsAvailable>
+  <Assembly>Microsoft.SharePoint, Version=16.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c</Assembly>
+  <TypeName>Microsoft.SharePoint.WebPartPages.ContentEditorWebPart</TypeName>
+  <ContentLink xmlns="http://schemas.microsoft.com/WebPart/v2/ContentEditor">/sites/IntranetInBoxPublishing/Style Library/NBB/Text/carousel.txt</ContentLink>
+  <Content xmlns="http://schemas.microsoft.com/WebPart/v2/ContentEditor" />
+  <PartStorage xmlns="http://schemas.microsoft.com/WebPart/v2/ContentEditor" />
+</WebPart>`;
 
-    limitedWebPartManager.addWebPart(oWebPart, 'Zone 1', 1);
+    var pollWebPartXml = `<?xml version="1.0" encoding="utf-8"?>
+<WebPart xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://schemas.microsoft.com/WebPart/v2">
+  <Title>Poll content editor</Title>
+  <FrameType>None</FrameType>
+  <Description>Allows authors to enter rich text content.</Description>
+  <IsIncluded>true</IsIncluded>
+  <ZoneID>poll</ZoneID>
+  <PartOrder>0</PartOrder>
+  <FrameState>Normal</FrameState>
+  <Height />
+  <Width />
+  <AllowRemove>true</AllowRemove>
+  <AllowZoneChange>true</AllowZoneChange>
+  <AllowMinimize>true</AllowMinimize>
+  <AllowConnect>true</AllowConnect>
+  <AllowEdit>true</AllowEdit>
+  <AllowHide>true</AllowHide>
+  <IsVisible>true</IsVisible>
+  <DetailLink />
+  <HelpLink />
+  <HelpMode>Modeless</HelpMode>
+  <Dir>Default</Dir>
+  <PartImageSmall />
+  <MissingAssembly>Cannot import this Web Part.</MissingAssembly>
+  <PartImageLarge>/sites/IntranetInBoxPublishing/_layouts/15/images/mscontl.gif</PartImageLarge>
+  <IsIncludedFilter />
+  <IsAvailable>true</IsAvailable>
+  <Assembly>Microsoft.SharePoint, Version=16.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c</Assembly>
+  <TypeName>Microsoft.SharePoint.WebPartPages.ContentEditorWebPart</TypeName>
+  <ContentLink xmlns="http://schemas.microsoft.com/WebPart/v2/ContentEditor">/sites/IntranetInBoxPublishing/Style Library/NBB/Text/Poll.html</ContentLink>
+  <Content xmlns="http://schemas.microsoft.com/WebPart/v2/ContentEditor" />
+  <PartStorage xmlns="http://schemas.microsoft.com/WebPart/v2/ContentEditor" />
+</WebPart>`;
+
+    var birthDayWebPartXml = `<?xml version="1.0" encoding="utf-8"?>
+<WebPart xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://schemas.microsoft.com/WebPart/v2">
+  <Title>Birthday And Anniversaries</Title>
+  <FrameType>None</FrameType>
+  <Description>Allows authors to enter rich text content.</Description>
+  <IsIncluded>true</IsIncluded>
+  <ZoneID>x450228fd78454faaa9c3cb246991d0f7</ZoneID>
+  <PartOrder>0</PartOrder>
+  <FrameState>Normal</FrameState>
+  <Height />
+  <Width />
+  <AllowRemove>true</AllowRemove>
+  <AllowZoneChange>true</AllowZoneChange>
+  <AllowMinimize>true</AllowMinimize>
+  <AllowConnect>true</AllowConnect>
+  <AllowEdit>true</AllowEdit>
+  <AllowHide>true</AllowHide>
+  <IsVisible>true</IsVisible>
+  <DetailLink />
+  <HelpLink />
+  <HelpMode>Modeless</HelpMode>
+  <Dir>Default</Dir>
+  <PartImageSmall />
+  <MissingAssembly>Cannot import this Web Part.</MissingAssembly>
+  <PartImageLarge>/_layouts/15/images/mscontl.gif</PartImageLarge>
+  <IsIncludedFilter />
+  <Assembly>Microsoft.SharePoint, Version=16.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c</Assembly>
+  <TypeName>Microsoft.SharePoint.WebPartPages.ContentEditorWebPart</TypeName>
+  <ContentLink xmlns="http://schemas.microsoft.com/WebPart/v2/ContentEditor">/sites/Intranet-Dev/Pages/Home.aspx</ContentLink>
+  <Content xmlns="http://schemas.microsoft.com/WebPart/v2/ContentEditor"><![CDATA[​​<br/><br/>]]></Content>
+  <PartStorage xmlns="http://schemas.microsoft.com/WebPart/v2/ContentEditor" />
+</WebPart>`;
+
+    var eventsWebPartXml = `<webParts>
+  <webPart xmlns="http://schemas.microsoft.com/WebPart/v3">
+    <metaData>
+      <type name="Microsoft.Office.Server.Search.WebControls.ContentBySearchWebPart, Microsoft.Office.Server.Search, Version=16.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c" />
+      <importErrorMessage>Cannot import this Web Part.</importErrorMessage>
+    </metaData>
+    <data>
+      <properties>
+        <property name="BypassResultTypes" type="bool">True</property>
+        <property name="ItemTemplateId" type="string">~sitecollection/_catalogs/masterpage/Display Templates/KPCU/Item_KPCU_Happenings.js</property>
+        <property name="PropertyMappings" type="string" />
+        <property name="ChromeState" type="chromestate">Normal</property>
+        <property name="IncludeResultTypeConstraint" type="bool">False</property>
+        <property name="StartingItemIndex" type="int">1</property>
+        <property name="ShowDefinitions" type="bool">False</property>
+        <property name="Height" type="string" />
+        <property name="Hidden" type="bool">False</property>
+        <property name="HitHighlightedPropertiesJson" type="string">["Title","Path","Author","SectionNames","SiteDescription"]</property>
+        <property name="ScrollToTopOnRedraw" type="bool">False</property>
+        <property name="UseSharedDataProvider" type="bool">False</property>
+        <property name="RepositionLanguageDropDown" type="bool">False</property>
+        <property name="AlwaysRenderOnServer" type="bool">False</property>
+        <property name="AllowConnect" type="bool">True</property>
+        <property name="ItemBodyTemplateId" type="string" />
+        <property name="ShowAlertMe" type="bool">True</property>
+        <property name="ExportMode" type="exportmode">All</property>
+        <property name="AddSEOPropertiesFromSearch" type="bool">False</property>
+        <property name="ShowUpScopeMessage" type="bool">False</property>
+        <property name="AllowHide" type="bool">True</property>
+        <property name="AllowClose" type="bool">True</property>
+        <property name="UseSimplifiedQueryBuilder" type="bool">False</property>
+        <property name="ShouldHideControlWhenEmpty" type="bool">False</property>
+        <property name="ResultType" type="string" />
+        <property name="LogAnalyticsViewEvent" type="bool">False</property>
+        <property name="MaxPagesAfterCurrent" type="int">1</property>
+        <property name="TitleUrl" type="string" />
+        <property name="EmptyMessage" type="string" />
+        <property name="AdvancedSearchPageAddress" type="string">advanced.aspx</property>
+        <property name="IsXGeo3SForwardingFlighted" type="bool">True</property>
+        <property name="AllowMinimize" type="bool">True</property>
+        <property name="ShowBestBets" type="bool">False</property>
+        <property name="AllowEdit" type="bool">True</property>
+        <property name="NumberOfItems" type="int">4</property>
+        <property name="HelpUrl" type="string" />
+        <property name="ShowPaging" type="bool">True</property>
+        <property name="ShowViewDuplicates" type="bool">False</property>
+        <property name="SelectedPropertiesJson" type="string">["EventType","owstaxIdEventType1","Path","Title","EventDateOWSDATE","EndDateOWSDATE","MPLocation","SecondaryFileExtension","ContentTypeId"]</property>
+        <property name="TargetResultTable" type="string">RelevantResults</property>
+        <property name="HelpMode" type="helpmode">Modeless</property>
+        <property name="ShowXGeoOptions" type="bool">False</property>
+        <property name="IsXGeoFlighted" type="bool">False</property>
+        <property name="ShowPersonalFavorites" type="bool">False</property>
+        <property name="EnableXGeo3SForwarding" type="bool">False</property>
+        <property name="PreloadedItemTemplateIdsJson" type="string">null</property>
+        <property name="Description" type="string">Content Search Web Part will allow you to show items that are results of a search query you specify. When you add it to the page, this Web Part will show recently modified items from the current site. You can change this setting to show items from another site or list by editing the Web Part and changing its search criteria.As new content is discovered by search, this Web Part will display an updated list of items each time the page is viewed.</property>
+        <property name="ShowPreferencesLink" type="bool">True</property>
+        <property name="QueryGroupName" type="string">6f9fcc19-aeaa-42f9-9b57-34f0dcd8b8af</property>
+        <property name="ShowResultCount" type="bool">True</property>
+        <property name="TitleIconImageUrl" type="string" />
+        <property name="Direction" type="direction">NotSet</property>
+        <property name="ResultsPerPage" type="int">4</property>
+        <property name="AvailableSortsJson" type="string">null</property>
+        <property name="ShowResults" type="bool">True</property>
+        <property name="ServerIncludeScriptsJson" type="string">null</property>
+        <property name="SearchCenterXGeoLocations" type="string" />
+        <property name="DataProviderJSON" type="string">{"QueryGroupName":"6f9fcc19-aeaa-42f9-9b57-34f0dcd8b8af","QueryPropertiesTemplateUrl":"sitesearch://webroot","IgnoreQueryPropertiesTemplateUrl":false,"SourceID":"8413cd39-2156-4e00-b54d-11efd9abdb89","SourceName":"Local SharePoint Results","SourceLevel":"Ssa","CollapseSpecification":"","QueryTemplate":"path:\"https://kpcu.sharepoint.com/sites/Intranet-Dev/Lists/Happenings/\"  ContentType:KPCU_Happenings RefinableDate01\u003e={Today}","FallbackSort":[{"p":"RefinableDate01","d":0}],"FallbackSortJson":"[{\"p\":\"RefinableDate01\",\"d\":0}]","RankRules":null,"RankRulesJson":"null","AsynchronousResultRetrieval":false,"SendContentBeforeQuery":true,"BatchClientQuery":true,"FallbackLanguage":-1,"FallbackRankingModelID":"","EnableStemming":true,"EnablePhonetic":false,"EnableNicknames":false,"EnableInterleaving":false,"EnableQueryRules":true,"EnableOrderingHitHighlightedProperty":false,"HitHighlightedMultivaluePropertyLimit":-1,"IgnoreContextualScope":true,"ScopeResultsToCurrentSite":false,"TrimDuplicates":false,"Properties":{"TryCache":true,"Scope":"{Site.URL}","UpdateLinksForCatalogItems":true,"EnableStacking":true,"CrossGeoQuery":"false","ListId":"55e27111-388b-411d-87df-351f2b92600f","ListItemId":4},"PropertiesJson":"{\"TryCache\":true,\"Scope\":\"{Site.URL}\",\"UpdateLinksForCatalogItems\":true,\"EnableStacking\":true,\"CrossGeoQuery\":\"false\",\"ListId\":\"55e27111-388b-411d-87df-351f2b92600f\",\"ListItemId\":4}","ClientType":"ContentSearchRegular","ClientFunction":"","ClientFunctionDetails":"","UpdateAjaxNavigate":true,"SummaryLength":180,"DesiredSnippetLength":90,"PersonalizedQuery":false,"FallbackRefinementFilters":null,"IgnoreStaleServerQuery":false,"RenderTemplateId":"DefaultDataProvider","AlternateErrorMessage":null,"Title":""}</property>
+        <property name="ShowAdvancedLink" type="bool">True</property>
+        <property name="ShowDidYouMean" type="bool">False</property>
+        <property name="AllowZoneChange" type="bool">True</property>
+        <property name="ChromeType" type="chrometype">None</property>
+        <property name="GroupTemplateId" type="string">~sitecollection/_catalogs/masterpage/Display Templates/Content Web Parts/Group_Content.js</property>
+        <property name="MissingAssembly" type="string">Cannot import this Web Part.</property>
+        <property name="OverwriteResultPath" type="bool">True</property>
+        <property name="Width" type="string" />
+        <property name="MaxPagesBeforeCurrent" type="int">4</property>
+        <property name="XGeoTenantsInfo" type="string" />
+        <property name="ShowLanguageOptions" type="bool">True</property>
+        <property name="ResultTypeId" type="string" />
+        <property name="AlternateErrorMessage" type="string" null="true" />
+        <property name="Title" type="string">Happenings</property>
+        <property name="RenderTemplateId" type="string">~sitecollection/_catalogs/masterpage/Display Templates/KPCU/control_Happenings.js</property>
+        <property name="EmitStyleReference" type="bool">True</property>
+        <property name="StatesJson" type="string">{}</property>
+        <property name="ShowSortOptions" type="bool">False</property>
+        <property name="CatalogIconImageUrl" type="string" />
+      </properties>
+    </data>
+  </webPart>
+</webParts>`;
+
+    var voiceOfManagementXml = `<webParts>
+  <webPart xmlns="http://schemas.microsoft.com/WebPart/v3">
+    <metaData>
+      <type name="Microsoft.Office.Server.Search.WebControls.ContentBySearchWebPart, Microsoft.Office.Server.Search, Version=16.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c" />
+      <importErrorMessage>Cannot import this Web Part.</importErrorMessage>
+    </metaData>
+    <data>
+      <properties>
+        <property name="BypassResultTypes" type="bool">True</property>
+        <property name="ItemTemplateId" type="string">~sitecollection/_catalogs/masterpage/Display Templates/Content Web Parts/Item_VoiceOfManagement.js</property>
+        <property name="PropertyMappings" type="string" />
+        <property name="ChromeState" type="chromestate">Normal</property>
+        <property name="IncludeResultTypeConstraint" type="bool">False</property>
+        <property name="StartingItemIndex" type="int">1</property>
+        <property name="ShowDefinitions" type="bool">False</property>
+        <property name="Height" type="string" />
+        <property name="Hidden" type="bool">False</property>
+        <property name="HitHighlightedPropertiesJson" type="string">["Title","Path","Author","SectionNames","SiteDescription"]</property>
+        <property name="ScrollToTopOnRedraw" type="bool">False</property>
+        <property name="UseSharedDataProvider" type="bool">False</property>
+        <property name="RepositionLanguageDropDown" type="bool">False</property>
+        <property name="AlwaysRenderOnServer" type="bool">False</property>
+        <property name="AllowConnect" type="bool">True</property>
+        <property name="ItemBodyTemplateId" type="string" />
+        <property name="ShowAlertMe" type="bool">False</property>
+        <property name="ExportMode" type="exportmode">All</property>
+        <property name="AddSEOPropertiesFromSearch" type="bool">False</property>
+        <property name="ShowUpScopeMessage" type="bool">False</property>
+        <property name="AllowHide" type="bool">True</property>
+        <property name="AllowClose" type="bool">True</property>
+        <property name="UseSimplifiedQueryBuilder" type="bool">False</property>
+        <property name="ShouldHideControlWhenEmpty" type="bool">False</property>
+        <property name="ResultType" type="string" />
+        <property name="LogAnalyticsViewEvent" type="bool">False</property>
+        <property name="MaxPagesAfterCurrent" type="int">1</property>
+        <property name="TitleUrl" type="string" />
+        <property name="EmptyMessage" type="string" />
+        <property name="AdvancedSearchPageAddress" type="string">advanced.aspx</property>
+        <property name="IsXGeo3SForwardingFlighted" type="bool">True</property>
+        <property name="AllowMinimize" type="bool">True</property>
+        <property name="ShowBestBets" type="bool">False</property>
+        <property name="AllowEdit" type="bool">True</property>
+        <property name="NumberOfItems" type="int">1</property>
+        <property name="HelpUrl" type="string" />
+        <property name="ShowPaging" type="bool">True</property>
+        <property name="ShowViewDuplicates" type="bool">False</property>
+        <property name="SelectedPropertiesJson" type="string">["ApprovalStatus","PublishingImage","PictureURL","PictureThumbnailURL","Path","Title","ManagementMessage","ContentAuthor","SecondaryFileExtension","ContentTypeId"]</property>
+        <property name="TargetResultTable" type="string">RelevantResults</property>
+        <property name="HelpMode" type="helpmode">Modeless</property>
+        <property name="ShowXGeoOptions" type="bool">False</property>
+        <property name="IsXGeoFlighted" type="bool">False</property>
+        <property name="ShowPersonalFavorites" type="bool">False</property>
+        <property name="EnableXGeo3SForwarding" type="bool">False</property>
+        <property name="PreloadedItemTemplateIdsJson" type="string">null</property>
+        <property name="Description" type="string">Content Search Web Part will allow you to show items that are results of a search query you specify. When you add it to the page, this Web Part will show recently modified items from the current site. You can change this setting to show items from another site or list by editing the Web Part and changing its search criteria.As new content is discovered by search, this Web Part will display an updated list of items each time the page is viewed.</property>
+        <property name="ShowPreferencesLink" type="bool">True</property>
+        <property name="QueryGroupName" type="string">8a80b56d-84db-4ece-8a90-07a13d352681</property>
+        <property name="ShowResultCount" type="bool">True</property>
+        <property name="TitleIconImageUrl" type="string" />
+        <property name="Direction" type="direction">NotSet</property>
+        <property name="ResultsPerPage" type="int">1</property>
+        <property name="AvailableSortsJson" type="string">null</property>
+        <property name="ShowResults" type="bool">True</property>
+        <property name="ServerIncludeScriptsJson" type="string">null</property>
+        <property name="SearchCenterXGeoLocations" type="string" />
+        <property name="DataProviderJSON" type="string">{"QueryGroupName":"8a80b56d-84db-4ece-8a90-07a13d352681","QueryPropertiesTemplateUrl":"sitesearch://webroot","IgnoreQueryPropertiesTemplateUrl":false,"SourceID":"8413cd39-2156-4e00-b54d-11efd9abdb89","SourceName":"Local SharePoint Results","SourceLevel":"Ssa","CollapseSpecification":"","QueryTemplate":"(contentclass:STS_ListItem OR IsDocument:True) ContentType:\"Voice_of_Management\" Path:getSearchItemsPath","FallbackSort":[{"p":"RefinableString00","d":0},{"p":"LastModifiedTime","d":0}],"FallbackSortJson":"[{\"p\":\"RefinableString00\",\"d\":0},{\"p\":\"LastModifiedTime\",\"d\":0}]","RankRules":null,"RankRulesJson":"null","AsynchronousResultRetrieval":false,"SendContentBeforeQuery":true,"BatchClientQuery":true,"FallbackLanguage":-1,"FallbackRankingModelID":"","EnableStemming":true,"EnablePhonetic":false,"EnableNicknames":false,"EnableInterleaving":false,"EnableQueryRules":true,"EnableOrderingHitHighlightedProperty":false,"HitHighlightedMultivaluePropertyLimit":-1,"IgnoreContextualScope":true,"ScopeResultsToCurrentSite":false,"TrimDuplicates":false,"Properties":{"TryCache":true,"Scope":"{Site.URL}","UpdateLinksForCatalogItems":true,"EnableStacking":true,"ListId":"3b20d6ec-6bba-4b5d-903e-6d1ab7febb71","ListItemId":5,"CrossGeoQuery":"false"},"PropertiesJson":"{\"TryCache\":true,\"Scope\":\"{Site.URL}\",\"UpdateLinksForCatalogItems\":true,\"EnableStacking\":true,\"ListId\":\"3b20d6ec-6bba-4b5d-903e-6d1ab7febb71\",\"ListItemId\":5,\"CrossGeoQuery\":\"false\"}","ClientType":"ContentSearchRegular","ClientFunction":"","ClientFunctionDetails":"","UpdateAjaxNavigate":true,"SummaryLength":180,"DesiredSnippetLength":90,"PersonalizedQuery":false,"FallbackRefinementFilters":null,"IgnoreStaleServerQuery":false,"RenderTemplateId":"DefaultDataProvider","AlternateErrorMessage":null,"Title":""}</property>
+        <property name="ShowAdvancedLink" type="bool">True</property>
+        <property name="ShowDidYouMean" type="bool">False</property>
+        <property name="AllowZoneChange" type="bool">True</property>
+        <property name="ChromeType" type="chrometype">None</property>
+        <property name="GroupTemplateId" type="string">~sitecollection/_catalogs/masterpage/Display Templates/Content Web Parts/Group_Content.js</property>
+        <property name="MissingAssembly" type="string">Cannot import this Web Part.</property>
+        <property name="OverwriteResultPath" type="bool">True</property>
+        <property name="Width" type="string" />
+        <property name="MaxPagesBeforeCurrent" type="int">4</property>
+        <property name="XGeoTenantsInfo" type="string" />
+        <property name="ShowLanguageOptions" type="bool">True</property>
+        <property name="ResultTypeId" type="string" />
+        <property name="AlternateErrorMessage" type="string" null="true" />
+        <property name="Title" type="string">Voice of Mgt CSWP</property>
+        <property name="RenderTemplateId" type="string">~sitecollection/_catalogs/masterpage/Display Templates/Content Web Parts/Control_VoiceOfMgtPaging.js</property>
+        <property name="EmitStyleReference" type="bool">True</property>
+        <property name="StatesJson" type="string">{}</property>
+        <property name="ShowSortOptions" type="bool">False</property>
+        <property name="CatalogIconImageUrl" type="string" />
+      </properties>
+    </data>
+  </webPart>
+</webParts>`; 
+
+    var latestUpdatesWebpart = `<webParts>
+  <webPart xmlns="http://schemas.microsoft.com/WebPart/v3">
+    <metaData>
+      <type name="Microsoft.Office.Server.Search.WebControls.ContentBySearchWebPart, Microsoft.Office.Server.Search, Version=16.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c" />
+      <importErrorMessage>Cannot import this Web Part.</importErrorMessage>
+    </metaData>
+    <data>
+      <properties>
+        <property name="BypassResultTypes" type="bool">True</property>
+        <property name="ItemTemplateId" type="string">~sitecollection/_catalogs/masterpage/Display Templates/Content Web Parts/Item_LatestUpdateHomePage.js</property>
+        <property name="PropertyMappings" type="string" />
+        <property name="ChromeState" type="chromestate">Normal</property>
+        <property name="IncludeResultTypeConstraint" type="bool">False</property>
+        <property name="StartingItemIndex" type="int">1</property>
+        <property name="ShowDefinitions" type="bool">False</property>
+        <property name="Height" type="string" />
+        <property name="Hidden" type="bool">False</property>
+        <property name="HitHighlightedPropertiesJson" type="string">["Title","Path","Author","SectionNames","SiteDescription"]</property>
+        <property name="ScrollToTopOnRedraw" type="bool">False</property>
+        <property name="UseSharedDataProvider" type="bool">False</property>
+        <property name="RepositionLanguageDropDown" type="bool">False</property>
+        <property name="AlwaysRenderOnServer" type="bool">False</property>
+        <property name="AllowConnect" type="bool">True</property>
+        <property name="ItemBodyTemplateId" type="string" />
+        <property name="ShowAlertMe" type="bool">False</property>
+        <property name="ExportMode" type="exportmode">All</property>
+        <property name="AddSEOPropertiesFromSearch" type="bool">False</property>
+        <property name="ShowUpScopeMessage" type="bool">False</property>
+        <property name="AllowHide" type="bool">True</property>
+        <property name="AllowClose" type="bool">True</property>
+        <property name="UseSimplifiedQueryBuilder" type="bool">False</property>
+        <property name="ShouldHideControlWhenEmpty" type="bool">False</property>
+        <property name="ResultType" type="string" />
+        <property name="LogAnalyticsViewEvent" type="bool">False</property>
+        <property name="MaxPagesAfterCurrent" type="int">1</property>
+        <property name="TitleUrl" type="string" />
+        <property name="EmptyMessage" type="string" />
+        <property name="AdvancedSearchPageAddress" type="string">advanced.aspx</property>
+        <property name="IsXGeo3SForwardingFlighted" type="bool">True</property>
+        <property name="AllowMinimize" type="bool">True</property>
+        <property name="ShowBestBets" type="bool">False</property>
+        <property name="AllowEdit" type="bool">True</property>
+        <property name="NumberOfItems" type="int">1</property>
+        <property name="HelpUrl" type="string" />
+        <property name="ShowPaging" type="bool">True</property>
+        <property name="ShowViewDuplicates" type="bool">False</property>
+        <property name="SelectedPropertiesJson" type="string">["ListItemID","StoryCopy","BannerImageOWSIMGE","PublishingImage","PictureURL","PictureThumbnailURL","Path","Title","EmployeeDepartment","BannerImage","SecondaryFileExtension","ContentTypeId"]</property>
+        <property name="TargetResultTable" type="string">RelevantResults</property>
+        <property name="HelpMode" type="helpmode">Modeless</property>
+        <property name="ShowXGeoOptions" type="bool">False</property>
+        <property name="IsXGeoFlighted" type="bool">False</property>
+        <property name="ShowPersonalFavorites" type="bool">False</property>
+        <property name="EnableXGeo3SForwarding" type="bool">False</property>
+        <property name="PreloadedItemTemplateIdsJson" type="string">null</property>
+        <property name="Description" type="string">Content Search Web Part will allow you to show items that are results of a search query you specify. When you add it to the page, this Web Part will show recently modified items from the current site. You can change this setting to show items from another site or list by editing the Web Part and changing its search criteria.As new content is discovered by search, this Web Part will display an updated list of items each time the page is viewed.</property>
+        <property name="ShowPreferencesLink" type="bool">True</property>
+        <property name="QueryGroupName" type="string">35afa177-8ad2-485c-9f84-3eab99ab28c3</property>
+        <property name="ShowResultCount" type="bool">True</property>
+        <property name="TitleIconImageUrl" type="string" />
+        <property name="Direction" type="direction">NotSet</property>
+        <property name="ResultsPerPage" type="int">1</property>
+        <property name="AvailableSortsJson" type="string">null</property>
+        <property name="ShowResults" type="bool">True</property>
+        <property name="ServerIncludeScriptsJson" type="string">null</property>
+        <property name="SearchCenterXGeoLocations" type="string" />
+        <property name="DataProviderJSON" type="string">{"QueryGroupName":"35afa177-8ad2-485c-9f84-3eab99ab28c3","QueryPropertiesTemplateUrl":"sitesearch://webroot","IgnoreQueryPropertiesTemplateUrl":false,"SourceID":"8413cd39-2156-4e00-b54d-11efd9abdb89","SourceName":"Local SharePoint Results","SourceLevel":"Ssa","CollapseSpecification":"","QueryTemplate":"(contentclass:STS_ListItem OR IsDocument:True) ContentType:\"Latest_Updates\" Path:getSearchItemsPath","FallbackSort":[{"p":"RefinableString00","d":0},{"p":"LastModifiedTime","d":1}],"FallbackSortJson":"[{\"p\":\"RefinableString00\",\"d\":0},{\"p\":\"LastModifiedTime\",\"d\":1}]","RankRules":null,"RankRulesJson":"null","AsynchronousResultRetrieval":false,"SendContentBeforeQuery":true,"BatchClientQuery":true,"FallbackLanguage":-1,"FallbackRankingModelID":"","EnableStemming":true,"EnablePhonetic":false,"EnableNicknames":false,"EnableInterleaving":false,"EnableQueryRules":true,"EnableOrderingHitHighlightedProperty":false,"HitHighlightedMultivaluePropertyLimit":-1,"IgnoreContextualScope":true,"ScopeResultsToCurrentSite":false,"TrimDuplicates":false,"Properties":{"TryCache":true,"Scope":"{Site.URL}","UpdateLinksForCatalogItems":true,"EnableStacking":true,"ListId":"3b20d6ec-6bba-4b5d-903e-6d1ab7febb71","ListItemId":5,"CrossGeoQuery":"false"},"PropertiesJson":"{\"TryCache\":true,\"Scope\":\"{Site.URL}\",\"UpdateLinksForCatalogItems\":true,\"EnableStacking\":true,\"ListId\":\"3b20d6ec-6bba-4b5d-903e-6d1ab7febb71\",\"ListItemId\":5,\"CrossGeoQuery\":\"false\"}","ClientType":"ContentSearchRegular","ClientFunction":"","ClientFunctionDetails":"","UpdateAjaxNavigate":true,"SummaryLength":180,"DesiredSnippetLength":90,"PersonalizedQuery":false,"FallbackRefinementFilters":null,"IgnoreStaleServerQuery":false,"RenderTemplateId":"DefaultDataProvider","AlternateErrorMessage":null,"Title":""}</property>
+        <property name="ShowAdvancedLink" type="bool">True</property>
+        <property name="ShowDidYouMean" type="bool">False</property>
+        <property name="AllowZoneChange" type="bool">True</property>
+        <property name="ChromeType" type="chrometype">None</property>
+        <property name="GroupTemplateId" type="string">~sitecollection/_catalogs/masterpage/Display Templates/Content Web Parts/Group_Content.js</property>
+        <property name="MissingAssembly" type="string">Cannot import this Web Part.</property>
+        <property name="OverwriteResultPath" type="bool">True</property>
+        <property name="Width" type="string" />
+        <property name="MaxPagesBeforeCurrent" type="int">4</property>
+        <property name="XGeoTenantsInfo" type="string" />
+        <property name="ShowLanguageOptions" type="bool">True</property>
+        <property name="ResultTypeId" type="string" />
+        <property name="AlternateErrorMessage" type="string" null="true" />
+        <property name="Title" type="string">Latest Updates Home CSWP</property>
+        <property name="RenderTemplateId" type="string">~sitecollection/_catalogs/masterpage/Display Templates/Content Web Parts/Control_LatestUpdates.js</property>
+        <property name="EmitStyleReference" type="bool">True</property>
+        <property name="StatesJson" type="string">{}</property>
+        <property name="ShowSortOptions" type="bool">False</property>
+        <property name="CatalogIconImageUrl" type="string" />
+      </properties>
+    </data>
+  </webPart>
+</webParts>`;
+
+    var latestUpdatesWebPart = limitedWebPartManager.importWebPart(latestUpdatesWebpart).get_webPart();
+
+    var voiceOfManagement = limitedWebPartManager.importWebPart(voiceOfManagementXml).get_webPart();
+
+    var eventsWebPart = limitedWebPartManager.importWebPart(eventsWebPartXml).get_webPart();
+
+    var orgAnnouncementWebPart = limitedWebPartManager.importWebPart(orgAnnouncementWebPartXml).get_webPart();
+
+    var newsWebPart = limitedWebPartManager.importWebPart(newsWebPartXml).get_webPart();
+
+    var pollWebPart = limitedWebPartManager.importWebPart(pollWebPartXml).get_webPart();
+
+    var birthDayWebPart = limitedWebPartManager.importWebPart(birthDayWebPartXml).get_webPart();
+
+    limitedWebPartManager.addWebPart(newsWebPart, 'Zone 1', 1);
+    limitedWebPartManager.addWebPart(orgAnnouncementWebPart, 'Zone 1', 2);
+    limitedWebPartManager.addWebPart(pollWebPart, 'Zone 1', 3);
+    limitedWebPartManager.addWebPart(birthDayWebPart, 'Zone 1', 3);
+    limitedWebPartManager.addWebPart(eventsWebPart, 'Zone 1', 3);
+    limitedWebPartManager.addWebPart(voiceOfManagement, 'Zone 1', 3);
+    limitedWebPartManager.addWebPart(latestUpdatesWebPart, 'Zone 1', 3);
 
     oFile.checkIn();
     oFile.publish();
     context.load(oWebPart);
+    context.load(orgAnnouncementWebPart);
+    context.load(pollWebPart);
+    context.load(birthDayWebPart);
+    context.load(eventsWebPart);
+    context.load(voiceOfManagement);
+    context.load(latestUpdatesWebPart);
 
     context.executeQueryAsync(Function.createDelegate(this, function onQuerySucceeded() {
         alert('Web Part added: ' + oWebPart.get_title());

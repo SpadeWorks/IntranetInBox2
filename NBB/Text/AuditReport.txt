@@ -1,0 +1,155 @@
+<script type="text/javascript" src="/_layouts/15/clienttemplates.js"></script>
+<script type="text/javascript" src="/_layouts/15/clientforms.js"></script>
+<script type="text/javascript" src="/_layouts/15/clientpeoplepicker.js"></script>
+<script type="text/javascript" src="/_layouts/15/autofill.js"></script>
+<script type="text/javascript" src="/_layouts/15/SP.Taxonomy.js"></script>
+
+<script type="text/javascript" src="../SiteAssets/JS/Libraries/alasql.min.js"></script>
+
+<div id="koContainer">
+<div class="row">
+	<div class="col-md-4">
+		<div class="pull-left">
+			<select id="selReport" class="form-control">
+				<option value="1">Open Issues</option>
+				<option value="2">Open Issues by Owner</option>
+				<option value="3">Open Issues by Department</option>
+			</select>
+		</div>
+	</div>
+	<div class="col-md-8">
+		<div class="auditreport-gobtn">
+			<div type="text" id="idSuperVisory" class="" placeholder="" style="display:none"></div>
+			<a class="btn btn-primary" type="button" id="getReport" data-bind="click: ChangeReports">Go</a>
+		</div>
+	</div>
+</div>
+
+<div id="idOpenIssues" class="clsAuditReports" style="display:none">
+	<span style="display:none">open issues report</span>
+	<h2 class="auditreport-title">Summary of Open Issues by Owner</h2>
+   <table class="auditreport-table" width="100%" cellspacing="0px" cellpadding="0px">
+      <tbody>
+         <tr>
+            <td colspan="5" align="center">Issue Significance</td>
+         </tr>
+         <tr>
+         	<td>&nbsp;</td>
+            <td>High</td>
+            <td>Medium</td>
+            <td>Low</td>
+            <td>Total</td>
+         </tr>
+         <tr>
+            <td>&nbsp;Past Due</td>
+            <td data-bind="text:pastDueHighCount"></td>
+            <td data-bind="text:pastDueMediumCount"></td>
+            <td data-bind="text:pastDueLowCount"></td>
+            <td data-bind="text:pastDueTotal"></td>
+         </tr>
+         <tr>
+            <td >&nbsp;Not Due</td>
+            <td data-bind="text:pastNotDueHighCount"></td>
+            <td data-bind="text:pastNotDueMediumCount"></td>
+            <td data-bind="text:pastNotDueLowCount"></td>
+            <td data-bind="text:pastNotDueTotal"></td>
+         </tr>
+         <tr>
+            <td >&nbsp;TOTAL</td>
+            <td data-bind="text:highTotal"></td>
+            <td data-bind="text:mediumTotal"></td>
+            <td data-bind="text:lowTotal"></td>
+            <td data-bind="text:totalOpenIssues"></td>
+         </tr>
+      </tbody>
+   </table>
+</div>
+<div class="clsAuditReports" id="idOpenIssuesOwner" style="display:none">
+	<span style="display:none">open issues by owner report</span>
+	<h2 class="auditreport-title">Summary if Open Issues By Owner</h2>
+   <table class="auditreport-table" width="100%" cellspacing="0px" cellpadding="0px">
+   	  <thead>
+   	  	 <tr>
+            <td colspan="6" align="center">Issue Significance</td>
+         </tr>
+         <tr>
+         	<td>Supervisory level</td>
+         	<td>Issue Status</td>
+            <td>High</td>
+            <td>Medium</td>
+            <td>Low</td>
+            <td>Total</td>
+         </tr>
+   	  </thead>
+      <tbody data-bind="foreach: ownerOpenIssuesObservableArray">
+        
+         <tr>
+            <td data-bind="text:superVisoryName"></td>
+            <td >Past Due</td>
+            <td data-bind="text:ownerHighDueIssuesCount"></td>
+            <td data-bind="text:ownerMediumDueIssuesCount"></td>
+            <td data-bind="text:ownerLowDueIssuesCount"></td>
+            <td data-bind="text:ownerDueIssuesTotal"></td>
+         </tr>
+         <tr>
+            <td >&nbsp;</td>
+            <td >Not Due Yet</td>
+            <td data-bind="text:ownerHighNotDueIssuesCount"></td>
+            <td data-bind="text:ownerMediumNotDueIssuesCount"></td>
+            <td data-bind="text:ownerLowNotDueIssuesCount"></td>
+            <td data-bind="text:ownerNotDueIssuesTot"></td>
+         </tr>
+      </tbody>
+      <tfoot>
+      	 <tr data-bind="with: totalOpenIssuesObservableObj">
+            <td >&nbsp;</td>
+            <td >TOTAL</td>
+            <td data-bind="text:ownerHighTotal"></td>
+            <td data-bind="text:ownerMediumTotal"></td>
+            <td data-bind="text:ownerLowTotal"></td>
+            <td data-bind="text:ownerHighTotal+ownerMediumTotal+ownerLowTotal"></td>
+         </tr>
+      </tfoot>
+   </table>
+</div>
+<div class="clsAuditReports" id="OpenIssuesDepartment" style="display:none">
+	<span style="display:none">open issues by department report</span>
+	<h2 class="auditreport-title">Summary if Open Issues By Department</h2>
+   <table class="auditreport-table" width="100%" cellspacing="0px" cellpadding="0px">
+   	  <thead>
+   	  	<tr>
+            <td colspan="5" align="center">Issue Significance</td>
+         </tr>
+         <tr>
+         	<td>Department</td>
+            <td>High</td>
+            <td>Medium</td>
+            <td>Low</td>
+            <td>Total</td>
+         </tr>
+   	  </thead>
+      <tbody data-bind="foreach: deptOpenIssuesObservableArray">
+         <tr>
+            <td data-bind="text:deptName"></td>
+            <td data-bind="text:deptHighIssuesCount">0</td>
+            <td data-bind="text:deptMediumIssuesCount">0</td>
+            <td data-bind="text:deptLowIssuesCount">0</td>
+            <td data-bind="text:deptIssuesTotal">0</td>
+         </tr>
+     </tbody>
+     <tfoot>
+         <tr data-bind="with: deptTotalOpenIssuesObservableObj ">
+            <td >TOTAL</td>
+            <td data-bind="text:deptHighTotal">0</td>
+            <td data-bind="text:deptMediumTotal">0</td>
+            <td data-bind="text:deptLowTotal">0</td>
+            <td data-bind="text:deptHighTotal+deptMediumTotal+deptLowTotal">0</td>
+         </tr>
+      </tfoot>
+   </table>
+</div>
+
+<a href="#" class="morelink pull-right" id="report" onClick="javascript:fnNBBExcelReport();">Export</a>
+</div>
+<br><br><br>
+<script type="text/javascript" src="../SiteAssets/JS/Scripts/AuditReport.js"></script> 

@@ -3,24 +3,16 @@
   <Files>
     <ProjectItemFile Source="Elements.xml" Target="IntranetJSFiles\" Type="ElementManifest" />
     <ProjectItemFile Source="Sample.txt" Target="IntranetJSFiles\" Type="ElementFile" />
-    <ProjectItemFile Source="bootstrap.min.txt" Target="IntranetJSFiles\" Type="ElementFile" />
-    <ProjectItemFile Source="CarouselKO.txt" Target="IntranetJSFiles\" Type="ElementFile" />
-    <ProjectItemFile Source="chart.txt" Target="IntranetJSFiles\" Type="ElementFile" />
-    <ProjectItemFile Source="IntranetSurveyJSLink.txt" Target="IntranetJSFiles\" Type="ElementFile" />
-    <ProjectItemFile Source="IntranetSurveyNewItem.txt" Target="IntranetJSFiles\" Type="ElementFile" />
-    <ProjectItemFile Source="jquery-3.1.0.min.txt" Target="IntranetJSFiles\" Type="ElementFile" />
-    <ProjectItemFile Source="jquery.dialog.min.txt" Target="IntranetJSFiles\" Type="ElementFile" />
-    <ProjectItemFile Source="jquery.slimscroll.min.txt" Target="IntranetJSFiles\" Type="ElementFile" />
-    <ProjectItemFile Source="knockout-3.2.0.txt" Target="IntranetJSFiles\" Type="ElementFile" />
-    <ProjectItemFile Source="ko.sp-1.0.txt" Target="IntranetJSFiles\" Type="ElementFile" />
-    <ProjectItemFile Source="LatestUpdatesJSLink.txt" Target="IntranetJSFiles\" Type="ElementFile" />
-    <ProjectItemFile Source="moment.txt" Target="IntranetJSFiles\" Type="ElementFile" />
-    <ProjectItemFile Source="NBBCommonFunctions.txt" Target="IntranetJSFiles\" Type="ElementFile" />
-    <ProjectItemFile Source="npm.txt" Target="IntranetJSFiles\" Type="ElementFile" />
-    <ProjectItemFile Source="OrgAnnouncementJSLink.txt" Target="IntranetJSFiles\" Type="ElementFile" />
-    <ProjectItemFile Source="owl.carousel.min.txt" Target="IntranetJSFiles\" Type="ElementFile" />
-    <ProjectItemFile Source="perfect-scrollbar.txt" Target="IntranetJSFiles\" Type="ElementFile" />
-    <ProjectItemFile Source="PollKO.txt" Target="IntranetJSFiles\" Type="ElementFile" />
-    <ProjectItemFile Source="WelcomeControl.txt" Target="IntranetJSFiles\" Type="ElementFile" />
+    <ProjectItemFile Source="bootstrap.min.js" Target="IntranetJSFiles\" Type="ElementFile" />
+    <ProjectItemFile Source="jquery-3.1.0.min.js" Target="IntranetJSFiles\" Type="ElementFile" />
+    <ProjectItemFile Source="knockout-3.2.0.js" Target="IntranetJSFiles\" Type="ElementFile" />
+    <ProjectItemFile Source="moment.js" Target="IntranetJSFiles\" Type="ElementFile" />
+    <ProjectItemFile Source="pnp.min.js" Target="IntranetJSFiles\" Type="ElementFile" />
+    <ProjectItemFile Source="services.js" Target="IntranetJSFiles\" Type="ElementFile" />
+    <ProjectItemFile Source="KPCU_Main.js" Target="IntranetJSFiles\" Type="ElementFile" />
+    <ProjectItemFile Source="NBBCommonFunctions.js" Target="IntranetJSFiles\" Type="ElementFile" />
+    <ProjectItemFile Source="chart.js" Target="IntranetJSFiles\" Type="ElementFile" />
+    <ProjectItemFile Source="PollKO.js" Target="IntranetJSFiles\" Type="ElementFile" />
+    <ProjectItemFile Source="CarouselKO.js" Target="IntranetJSFiles\" Type="ElementFile" />
   </Files>
 </ProjectItem>

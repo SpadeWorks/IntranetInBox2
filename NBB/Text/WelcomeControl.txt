@@ -1,0 +1,10 @@
+<script type="text/javascript" src="../Style Library/NBB/JS/CarouselKO.js"></script>
+<div class="col-md-6 col-sm-6 col-xs-12">
+	<div class="top-profile-details pull-right" data-bind="foreach:Employees">
+		<div class="nbb-profile-pic pull-left"><img data-bind="attr:{src: ProfilepicUrl}" width="41" height="41" alt=""></div>
+		<div class="nbb-profile-name pull-left">
+			Hello, <a href="#"> <strong data-bind="text: Name"></strong></a> 
+			<a href="#"><i class="fa fa-angle-down" aria-hidden="true"></i></a>
+		</div>
+	</div>
+</div>

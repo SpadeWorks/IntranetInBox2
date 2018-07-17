@@ -1,0 +1,67 @@
+﻿<html>
+<link rel="stylesheet" type="text/css" href="/sites/NBB/Style Library/NBB/CSS/chart.css">
+<script type="text/javascript" src="/sites/NBB/Style Library/NBB/JS/Chart.bundle.min.js"></script>
+<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+<body>
+  <div class="nbb-latestnews shadowbgBox" id="poll" style="display:block;">
+    <div class="nbb-titleleftbar"></div>
+    <div class="nbb-componenttitle">
+      <h2 class="pull-left">Poll</h2>
+    </div>
+	<div class="nbbpoll-wrap poll-prfScroll" >
+		<div data-bind="visible:pollVisible" class="prfScroll">
+		  <div>
+			<h3 style="display: inline;">Q:</h3>
+			<h4 style="display: inline;" data-bind="text:question"></h4>
+		  </div>
+		  <div data-bind="foreach:answers" class="nbbpoll-options">
+			<div class="nbbpoll-optionslist">
+				<input type="radio" name="gender" data-bind="attr{'id':optionID},value:answer,checked: $root.userResponse">
+				<label data-bind="attr{'for':optionID},text:answer"></label>
+			</div>
+			</div>
+		  <div class="nbbpoll-button pull-right">
+			<input type="button" class="btn btn-primary" name="Vote" value="Vote" data-bind="click:saveUserResponse">
+		  </div>
+		</div>
+		<div class="chart_wrap prfScroll" data-bind="visible:chartVisible">
+		  <h3 style="display: inline;">Q:</h3>
+		  <h4 style="display: inline;" data-bind="text:question"></h4>
+		  <br>
+		  <h4 style="display:inline">Ans:</h4>
+		  <h4 style="display:inline" data-bind="text:userResponse"></h4>
+		</div>
+		<div style="width:80%">
+		  	<canvas id="myChart" style="height:300px;width:300px"></canvas>
+		  	<div data-bind="foreach:AllResponse" style="margin-left:35px">
+		  		<div style="float:left;font-size:10px;font-weight:bolder;width:107px;margin-top:10px">
+		  			<div id="legendColorSquare" data-bind="style:{backgroundColor:backgroundColor}" style="margin-right:10px;height:10px;width:10px;float:left">
+		  		</div><span data-bind="text:answer,attr{title:answerToolTip}"></span>
+		  		</div>
+		  	</div>
+		  </div>
+		<div data-bind="visible:pollVisible() != chartVisible() ? false :true">
+			<div>Please <a data-bind="attr{href:surveyLink}">Click Here</a> to participate in survey</div>
+			<div>Please <a data-bind="attr{href:ViewResponseLink}">Click Here</a> to View Survey Responses</div>
+		</div>
+	</div>
+  </div>
+  
+</body>
+<script type="text/javascript" src="/sites/NBB/Style Library/NBB/JS/chart.js"></script>
+<script type="text/javascript" src="/sites/NBB/Style Library/NBB/JS/PollKO.js"></script>
+<script type="text/javascript">
+  document.onreadystatechange = function () {
+    if (document.readyState === "complete") {
+
+      $("#poll").css("display", "block");
+      $("#carouselDiv").delay(500).animate({ "opacity": "1" }, 700);
+		NBB.PerfectScrollWrapper();
+		var ps = new PerfectScrollbar('#latestnews-prfScroll');
+		ps = new PerfectScrollbar('#quicklinks_Wrapper');
+		ps = new PerfectScrollbar('#calendar-prfScroll');
+
+    }
+  }
+</script>
+</html>

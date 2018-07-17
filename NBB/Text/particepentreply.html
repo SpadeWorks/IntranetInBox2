@@ -1,0 +1,93 @@
+﻿ 
+
+
+<html>
+
+
+
+
+  <head>
+<script> 
+   
+   
+    var repliedcount=[];
+   
+ //function to view all elements
+ 
+function myFunction11()  
+{
+
+  var listName="Collaboration";
+            //your list item id
+            var ListItemID=1;
+            //your topic subject
+            var topicSubject="vcccccccccxnh";
+            
+            var clientContext=SP.ClientContext.get_current();
+            var list = clientContext.get_web().get_lists().getByTitle(listName);
+            var listItem=list.getItemById(ListItemID);    
+             var query = SP.CamlQuery.createAllFoldersQuery();
+     
+            query.set_viewXml("<OrderBy><FieldRef Name='Modified' Ascending='False'></FieldRef></OrderBy>");
+            query.set_folderServerRelativeUrl("Lists/"+listName+"/"+topicSubject);
+    
+            this.listItems= list.getItems(query);
+            clientContext.load(listItems); 
+            clientContext.executeQueryAsync(Function.createDelegate(this, this.onQuerySucceeded), Function.createDelegate(this, this.onUpdateFailed)); 
+  
+}
+  function onQuerySucceeded() {
+            var allReplyPost = "";
+            var ListEnumerator = this.listItems.getEnumerator();
+            while(ListEnumerator.moveNext())
+            {  
+			            var currentItem = ListEnumerator.get_current();
+                        allReplyPost =currentItem .get_item("Author").get_lookupValue();
+                  
+				  
+		/* insert value in array and count the duplication */		  
+		repliedcount.push(allReplyPost);
+        var unique = repliedcount.filter(function(elem, index, self) {
+        return index === self.indexOf(elem);
+     
+      
+     return unique.length;
+   
+       });
+ }
+        
+          alert(unique.length);   
+            
+  }
+  function onQueryFailed(sender, args) {
+    alert('Request failed. ' + args.get_message() + '\n' + args.get_stackTrace());
+  } 
+  
+  
+  </script>
+
+
+</head>
+<body>
+
+<h2> List</h2>
+
+<div >
+    <div>
+	    <div>
+		    count of  persons participated in reply will view in aleart   <br>  
+	       <input type="button" id="btnSubmit4" value="view " onclick="myFunction11();"> 
+        </div>
+	    
+		
+		  
+    
+</div>
+
+</div>
+
+</body>
+</html>
+
+
+

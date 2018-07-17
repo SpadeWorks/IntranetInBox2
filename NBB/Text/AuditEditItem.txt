@@ -1,0 +1,57 @@
+<script type="text/javascript" src="https://gohelmahendrak.sharepoint.com/sites/NBB/Style%20Library/NBB/JS/Libraries/jquery-1.11.1.min.js"></script>
+<script type="text/javascript" src="https://gohelmahendrak.sharepoint.com/sites/NBB/Style%20Library/NBB/JS/Libraries/sputility.js"></script>
+<script type="text/javascript" src="/_layouts/15/clientpeoplepicker.js"></script>
+
+<script type="text/javascript">
+	$.getScript("https://gohelmahendrak.sharepoint.com/sites/NBB/Style Library/NBB/JS/Scripts/CustomEditItemForm.js")
+	  	.done(function(s,Status){
+			ExecuteOrDelayUntilScriptLoaded(Init, "sp.js");
+	});
+	
+</script>
+
+<style>
+	#sideNavBox{
+		display:none;
+	}
+	.ms-informationbar{
+		display:none;
+	}
+	table.complianceportal-table tbody tr:hover {
+        background-color: #FFF;
+        -webkit-box-shadow: 1px 1px 4px 2px rgba(255,13,0,0.2);
+        -moz-box-shadow: 1px 1px 4px 2px rgba(255,13,0,0.2);
+        box-shadow: 1px 1px 4px 2px rgba(255,13,0,0.2);
+        cursor: pointer;
+}
+table.complianceportal-table {
+        border-spacing: 0 10px;
+        border-collapse:separate;
+}
+table.complianceportal-table tr th {
+        background:#f1f1f1;
+        font-weight:normal;
+        font-size:18px;
+}
+table.complianceportal-table tr th, table.complianceportal-table tr td {
+        border-left:0px solid #dadada;
+        border-right:0px solid #dadada;
+        border-bottom:1px solid #dadada;
+        border-top:1px solid #dadada;
+        padding:8px;
+}
+table.complianceportal-table tr th:first-child, table.complianceportal-table tr td:first-child {
+        border-left:1px solid #dadada;
+}
+table.complianceportal-table tr th:last-child, table.complianceportal-table tr td:last-child {
+        border-right:1px solid #dadada;
+}
+table.complianceportal-table tr td a:hover {
+        color:#ff0d00;
+        text-decoration:none;
+}
+table.complianceportal-table tr td a {
+        text-decoration:none;
+}
+
+</style>

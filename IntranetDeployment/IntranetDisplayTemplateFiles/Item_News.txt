@@ -1,0 +1,61 @@
+﻿<html xmlns:mso="urn:schemas-microsoft-com:office:office" xmlns:msdt="uuid:C2F41010-65B3-11d1-A29F-00AA00C14882">
+<head>
+<title>Item KPCU News</title>
+<!--[if gte mso 9]><xml>
+<mso:CustomDocumentProperties>
+<mso:TemplateHidden msdt:dt="string">0</mso:TemplateHidden>
+<mso:ManagedPropertyMapping msdt:dt="string">&#39;Link URL&#39;{Link URL}:&#39;Path&#39;,&#39;Line 1&#39;{Line 1}:&#39;Title&#39;,&#39;Line 3&#39;{Line 3}:&#39;LastModifiedTime&#39;,&#39;NewsTitleOWSTEXT&#39;:&#39;NewsTitleOWSTEXT&#39;,&#39;NewsPublishedDateOWSDATE&#39;:&#39;NewsPublishedDateOWSDATE&#39;,&#39;MPLocation&#39;:&#39;MPLocation&#39;,&#39;NewsBannerOWSIMGE&#39;:&#39;NewsBannerOWSIMGE&#39;,&#39;NewsThumbnailOWSIMGE&#39;:&#39;NewsThumbnailOWSIMGE&#39;,&#39;MPDepartment&#39;:&#39;MPDepartment&#39;</mso:ManagedPropertyMapping> 
+<mso:MasterPageDescription msdt:dt="string">This Item Display Template will show a small thumbnail icon next to a hyperlink of the item title, with an additional line that is available for a custom managed property.</mso:MasterPageDescription>
+<mso:ContentTypeId msdt:dt="string">0x0101002039C03B61C64EC4A04F5361F385106603</mso:ContentTypeId>
+<mso:TargetControlType msdt:dt="string">;#Content Web Parts;#</mso:TargetControlType>
+<mso:HtmlDesignAssociated msdt:dt="string">1</mso:HtmlDesignAssociated>
+<mso:CrawlerXSLFile msdt:dt="string"></mso:CrawlerXSLFile>
+<mso:HtmlDesignPreviewUrl msdt:dt="string"></mso:HtmlDesignPreviewUrl>
+<mso:HtmlDesignStatusAndPreview msdt:dt="string">https://kpcu.sharepoint.com/sites/Intranet-Dev/_catalogs/masterpage/Display Templates/KPCU/Item_News.html, Conversion successful.</mso:HtmlDesignStatusAndPreview>
+<mso:HtmlDesignConversionSucceeded msdt:dt="string">True</mso:HtmlDesignConversionSucceeded>
+</mso:CustomDocumentProperties>
+</xml><![endif]-->
+</head>
+<body>
+	<div id="Item_List">
+	    <!--#_
+		//Get current Item ID 
+		var index = ctx.CurrentItemIdx;
+		
+		//Get the News Title	
+		var newsTitle = $getItemValue(ctx, "NewsTitleOWSTEXT");
+		var tag = newsTitle .value;
+			if(tag.length > 80)
+			{
+				var Title = tag.substring(0,50) + "… ";
+			}
+			else
+			{
+				var Title = tag == "null" ? "" : tag;
+			} 		
+		//Get News Thumbnail Image Object
+		var newsThumbnail = $getItemValue(ctx, "NewsBannerOWSIMGE");	
+		//Get News Thumbnail Image URL
+		newsThumbnail = newsThumbnail.value ? $(newsThumbnail.value).find("img").prevObject[0].src : "";
+		
+		//Get the New URL
+		var linkURL = ctx.CurrentItem.Path;
+		
+		//Checking If index != 0
+		if(index != 0)
+		{
+		 _#--> 
+	        <div class="owl-item">
+				<a href="_#= linkURL =#_">           
+	 				<div class="item">
+	                	<img src="_#= newsThumbnail =#_" class="img-responsive">
+	                	<p class="text-center"> _#= Title =#_ </p>
+	            	</div>
+	            </a>
+	        </div>
+	    <!--#_
+	    }
+	    _#-->        
+	</div>
+</body>
+</html>

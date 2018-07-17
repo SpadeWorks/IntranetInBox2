@@ -1,0 +1,436 @@
+<?xml version="1.0" encoding="utf-8"?><!--SPG:
+
+This HTML file has been associated with a SharePoint Page Layout (.aspx file) carrying the same name.  While the files remain associated, you will not be allowed to edit the .aspx file, and any rename, move, or deletion operations will be reciprocated.
+
+To build the page layout directly from this HTML file, simply fill in the contents of content placeholders.  Use the Snippet Generator at https://kpcu.sharepoint.com/sites/Intranet-Dev/_layouts/15/ComponentHome.aspx?Url=https%3A%2F%2Fkpcu%2Esharepoint%2Ecom%2Fsites%2FIntranet%2DDev%2F%5Fcatalogs%2Fmasterpage%2FKPCU%2FKPCU%5FNewsDetailsLayout%2Easpx to create and customize additional content placeholders and other useful SharePoint entities, then copy and paste them as HTML snippets into your HTML code.   All updates to this file within content placeholders will automatically sync to the associated page layout.
+
+-->
+<!-- _lcid="1033" _version="16.0.7528" _dal="1" -->
+<!-- _LocalBinding -->
+<!--SPM:<%@Master language="C#"%>-->
+<!--SPM:<%@ Register Tagprefix="SharePoint" Namespace="Microsoft.SharePoint.WebControls" Assembly="Microsoft.SharePoint, Version=16.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c" %>-->
+<!--SPM:<%@ Register Tagprefix="Utilities" Namespace="Microsoft.SharePoint.Utilities" Assembly="Microsoft.SharePoint, Version=16.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c" %>-->
+<!--SPM:<%@ Import Namespace="Microsoft.SharePoint" %>-->
+<!--SPM:<%@ Assembly Name="Microsoft.Web.CommandUI, Version=16.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c" %>-->
+<!--SPM:<%@ Import Namespace="Microsoft.SharePoint.ApplicationPages" %>-->
+<!--SPM:<%@ Register Tagprefix="WebPartPages" Namespace="Microsoft.SharePoint.WebPartPages" Assembly="Microsoft.SharePoint, Version=16.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c" %>-->
+<!--SPM:<%@ Register TagPrefix="wssuc" TagName="Welcome" src="~/_controltemplates/15/Welcome.ascx" %>-->
+<!--SPM:<%@ Register TagPrefix="SharePointPortalControls" 
+    Namespace="Microsoft.SharePoint.Portal.WebControls"
+    Assembly="Microsoft.SharePoint.Portal, Version=14.0.0.0,Culture=neutral,PublicKeyToken=71e9bce111e9429c" %>-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"[]>
+<html xmlns:mso="urn:schemas-microsoft-com:office:office" xmlns:msdt="uuid:C2F41010-65B3-11d1-A29F-00AA00C14882">
+    <head runat="server">
+        <!--MS:<asp:ContentPlaceHolder id="PlaceHolderPageTitle" runat="server">-->
+            <!--CS: Start Page Field: Title Snippet-->
+            <!--SPM:<%@Register Tagprefix="PageFieldFieldValue" Namespace="Microsoft.SharePoint.WebControls" Assembly="Microsoft.SharePoint, Version=16.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c"%>-->
+            <!--MS:<PageFieldFieldValue:FieldValue FieldName="fa564e0f-0c70-4ab9-b863-0177e6ddd247" runat="server">-->
+            <!--ME:</PageFieldFieldValue:FieldValue>-->
+            <!--CE: End Page Field: Title Snippet-->
+        <!--ME:</asp:ContentPlaceHolder>-->
+        <link href="https://kpcu.sharepoint.com/_layouts/15/1033/styles/corev15.css" type="text/css" rel="stylesheet" />
+        <link href="https://kpcu.sharepoint.com/_layouts/15/1033/styles/searchv15.css" type="text/css" rel="stylesheet" />
+        <!--MS:<asp:ContentPlaceHolder id="PlaceHolderAdditionalPageHead" runat="server">-->
+            <!--CS: Start Edit Mode Panel Snippet-->
+            <!--SPM:<%@Register Tagprefix="SharePoint" Namespace="Microsoft.SharePoint.WebControls" Assembly="Microsoft.SharePoint, Version=16.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c"%>-->
+            <!--SPM:<%@Register Tagprefix="Publishing" Namespace="Microsoft.SharePoint.Publishing.WebControls" Assembly="Microsoft.SharePoint.Publishing, Version=16.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c"%>-->
+            <!--MS:<Publishing:EditModePanel runat="server" id="editmodestyles">-->
+                <!--MS:<SharePoint:CssRegistration name="&#60;% $SPUrl:~sitecollection/Style Library/~language/Themable/Core Styles/editmode15.css %&#62;" After="&#60;% $SPUrl:~sitecollection/Style Library/~language/Themable/Core Styles/pagelayouts15.css %&#62;" runat="server">-->
+                <!--ME:</SharePoint:CssRegistration>-->
+            <!--ME:</Publishing:EditModePanel>-->
+            <!--CE: End Edit Mode Panel Snippet-->
+        <!--ME:</asp:ContentPlaceHolder>-->
+        <script type="text/javascript" src="/sites/Intranet-Dev/Style Library/KPCU/JS/Libraries/jquery.min.js">//<![CDATA[
+        
+        
+        //]]>
+        </script>
+        <script type="text/javascript" src="/sites/Intranet-Dev/Style Library/KPCU/JS/Libraries/moment.js">//<![CDATA[
+        
+        
+        //]]>
+        </script>
+        <script type="text/javascript" src="/sites/Intranet-Dev/Style Library/KPCU/JS/Libraries/bootstrap.min.js">//<![CDATA[
+        
+        
+        //]]>
+        </script>
+        <script type="text/javascript" src="/sites/Intranet-Dev/Style Library/KPCU/JS/Libraries/jquery.slimscroll.js">//<![CDATA[
+        
+        
+        //]]>
+        </script>
+        <script type="text/javascript" src="/sites/Intranet-Dev/Style Library/KPCU/JS/Libraries/slider/owl.carousel.min.js">//<![CDATA[
+        
+        
+        //]]>
+        </script>
+        <script type="text/javascript" src="/sites/Intranet-Dev/Style Library/KPCU/JS/KPCU_Main.js">//<![CDATA[
+        
+        
+        //]]>
+        </script>
+        <link href="/sites/Intranet-Dev/Style Library/KPCU/CSS/bootstrap.min.css" rel="stylesheet" type="text/css" />
+        <link href="/sites/Intranet-Dev/Style Library/KPCU/CSS/KPCU_Main.css" rel="stylesheet" type="text/css" />
+        <script type="text/javascript">//<![CDATA[
+    //Global Navigation Code
+       	$(function () {               
+			$("#WhoWeAre-Menu").load("/sites/Intranet-Dev/_catalogs/masterpage/KPCU/Menu/WhoWeAre.html");
+			$("#TakeMeTo-Menu").load("/sites/Intranet-Dev/_catalogs/masterpage/KPCU/Menu/TakeMeTo.html");
+			$("#Resources-Menu").load("/sites/Intranet-Dev/_catalogs/masterpage/KPCU/Menu/Resources.html");
+			$("#Projects-Menu").load("/sites/Intranet-Dev/_catalogs/masterpage/KPCU/Menu/Projects.html");
+			$("#MyKPCU-Menu").load("/sites/Intranet-Dev/_catalogs/masterpage/KPCU/Menu/MyKPCU.html");
+			$("#HowDoI-Menu").load("/sites/Intranet-Dev/_catalogs/masterpage/KPCU/Menu/HowDoI.html");			
+			$("#FooterHTML").load("/sites/Intranet-Dev/_catalogs/masterpage/KPCU/Menu/Footer.html");
+			$("#Ticker").load("/sites/Intranet-Dev/_catalogs/masterpage/KPCU/Menu/EmergencyTicker.html");
+			$("#WeatherWrapper").load("/sites/Intranet-Dev/_catalogs/masterpage/KPCU/Menu/Homeweather.html");					
+			// below code hide ribbon on display mode	
+			//editSeoProperties.isCheckedOutToCurrentUser
+			var inDesignMode = document.forms[MSOWebPartPageFormName].MSOLayout_InDesignMode.value;
+			if (inDesignMode == "1")
+			{
+			   // page is in edit mode
+				document.getElementById("s4-ribbonrow").style.display = "block";
+			}
+			else
+			{
+				//page is in display mode
+				document.getElementById("s4-ribbonrow").style.display = "none";					
+			}	
+        });  
+     
+    
+        
+        
+        //]]>
+        </script>       
+        <style type="text/css">//<![CDATA[
+        
+            .ms-core-animation-transparent
+            {
+                opacity:0;
+            }
+            .ms-isBot .ms-core-animation-transparent
+            {
+                opacity:1;
+            }   
+		
+    
+        
+        
+        //]]>
+        </style>
+        <script type="text/javascript">//<![CDATA[
+        
+			var g_pageLoadAnimationParams = { elementSlideIn : "sideNavBox", elementSlideInPhase2 : "contentBox" };
+        
+    
+        
+        
+        //]]>
+        </script>
+        <!--[if gte mso 9]><xml>
+<mso:CustomDocumentProperties>
+<mso:ContentPlaceHolderHashPlaceHolderPageTitleInTitleArea msdt:dt="string">1</mso:ContentPlaceHolderHashPlaceHolderPageTitleInTitleArea>
+<mso:ContentPlaceHolderHashPlaceHolderMain msdt:dt="string">1</mso:ContentPlaceHolderHashPlaceHolderMain>
+<mso:HtmlDesignStatusAndPreview msdt:dt="string">https://kpcu.sharepoint.com/sites/Intranet-Dev/_catalogs/masterpage/KPCU/KPCU_NewsDetailsLayout.html, Warnings and Errors.</mso:HtmlDesignStatusAndPreview>
+<mso:ContentTypeId msdt:dt="string">0x01010007FF3E057FA8AB4AA42FCB67B453FFC100E214EEE741181F4E9F7ACC43278EE8110003D357F861E29844953D5CAA1D4D8A3B</mso:ContentTypeId>
+<mso:ContentPlaceHolderHashPlaceHolderAdditionalPageHead msdt:dt="string">1</mso:ContentPlaceHolderHashPlaceHolderAdditionalPageHead>
+<mso:ContentPlaceHolderHashPlaceHolderPageTitle msdt:dt="string">1</mso:ContentPlaceHolderHashPlaceHolderPageTitle>
+<mso:MasterHash msdt:dt="string">-1930053467</mso:MasterHash>
+<mso:HtmlDesignFromMaster msdt:dt="string">https://kpcu.sharepoint.com/sites/Intranet-Dev/_catalogs/masterpage/KPCU/KPCU_Site.html, https://kpcu.sharepoint.com/sites/Intranet-Dev/_catalogs/masterpage/KPCU/KPCU_Site.html</mso:HtmlDesignFromMaster>
+<mso:PublishingAssociatedContentType msdt:dt="string">;#KPCU_News;#0x010100C568DB52D9D0A14D9B2FDCC96666E9F2007948130EC3DB064584E219954237AF3900242457EFB8B24247815D688C526CD44D00CD7F3F20EC5983478EC532E0013EB21E01;#</mso:PublishingAssociatedContentType>
+<mso:HtmlDesignAssociated msdt:dt="string">1</mso:HtmlDesignAssociated>
+<mso:ContentPlaceHolderChangedPlaceHolderPageTitle msdt:dt="string">True</mso:ContentPlaceHolderChangedPlaceHolderPageTitle>
+<mso:ContentPlaceHolderHashPlaceHolderFormDigest msdt:dt="string">1833940137</mso:ContentPlaceHolderHashPlaceHolderFormDigest>
+<mso:ContentPlaceHolderChangedPlaceHolderAdditionalPageHead msdt:dt="string">True</mso:ContentPlaceHolderChangedPlaceHolderAdditionalPageHead>
+<mso:ContentPlaceHolderChangedPlaceHolderMain msdt:dt="string">True</mso:ContentPlaceHolderChangedPlaceHolderMain>
+<mso:ContentPlaceHolderHashPlaceHolderBodyAreaClass msdt:dt="string">1974311338</mso:ContentPlaceHolderHashPlaceHolderBodyAreaClass>
+
+</mso:CustomDocumentProperties>
+</xml><![endif]-->
+        <title>KPCU_NewsDetailsLayout </title>
+    </head>
+    <body>
+        <script type="text/javascript">//<![CDATA[
+			var submitHook = function () { return false; }; theForm._spOldSubmit = theForm.submit; theForm.submit = function () { if (!submitHook()) { this._spOldSubmit(); } }; 
+			
+        //]]>
+        </script>
+        <!--MS:<asp:ContentPlaceHolder id="PlaceHolderMain" runat="server" ID="PlaceHolderPageTitleInTitleArea">-->
+            <!--CS: Start Page Field: Title Snippet-->
+            <!--SPM:<%@Register Tagprefix="PageFieldFieldValue" Namespace="Microsoft.SharePoint.WebControls" Assembly="Microsoft.SharePoint, Version=16.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c"%>-->
+            <!--MS:<PageFieldFieldValue:FieldValue FieldName="fa564e0f-0c70-4ab9-b863-0177e6ddd247" runat="server">-->
+            <!--ME:</PageFieldFieldValue:FieldValue>-->
+            <!--CE: End Page Field: Title Snippet-->
+        <!--ME:</asp:ContentPlaceHolder>-->
+        <!--MS:<asp:ContentPlaceHolder id="PlaceHolderMain" runat="server">-->
+        
+		<script type="text/javascript" src="/sites/Intranet-Dev/Style Library/KPCU/JS/CustomComments.js"></script>
+		<script type="text/javascript">
+			$(window).load(function() {
+			    $("div#replyContent").slice(0, 4).show();
+				$("#loadMore").on('click', function (e) {
+			       // e.preventDefault();
+			        //console.log($("div#replyContent:hidden"));
+			        $("div#replyContent:hidden").slice(0, 4).show().slideDown();
+			        if ($("div#replyContent:hidden").length == 0) {
+			            $("#load").fadeOut('slow');
+			        }			       
+			    });
+			});
+		</script>
+        <!--News Details Read Mode Panel Wrapper Started here-->
+        <div data-name="EditModePanelShowInRead">
+		    <!--CS: Start Edit Mode Panel Snippet-->
+		    <!--SPM:<%@Register Tagprefix="Publishing" Namespace="Microsoft.SharePoint.Publishing.WebControls" Assembly="Microsoft.SharePoint.Publishing, Version=16.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c"%>-->
+		    <!--MS:<Publishing:EditModePanel runat="server" PageDisplayMode="Display">-->
+		        <!--PS: Start of READ-ONLY PREVIEW (do not modify)--><!--PE: End of READ-ONLY PREVIEW-->
+		        <div class="DefaultContentBlock">
+		        	<!--News Details Banner and User details section Started here-->
+	       			 <div class="row">
+			            <div class="col-md-12">
+			                <section class="sections-innerBanner">
+			                    <div class="row">
+			                        <div class="col-md-8">
+			                        	<div id="NewsBannerImg" class="news_detailed_image">
+											<!--CS: Start Page Field: News Banner Snippet-->
+											<!--SPM:<%@Register Tagprefix="PageFieldRichImageField" Namespace="Microsoft.SharePoint.Publishing.WebControls" Assembly="Microsoft.SharePoint.Publishing, Version=16.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c"%>-->
+											<!--MS:<PageFieldRichImageField:RichImageField FieldName="b83e42ca-f7d7-41c2-863e-d937daee48ec" runat="server">-->
+											<!--PS: Start of READ-ONLY PREVIEW (do not modify)--><!--PE: End of READ-ONLY PREVIEW-->
+											<!--ME:</PageFieldRichImageField:RichImageField>-->
+											<!--CE: End Page Field: News Banner Snippet-->
+							            </div>
+			    					</div>
+			                        <div class="col-md-4">
+		                        		<div class="news_author">
+                                			<h5 class="small_blue">About the Author</h5>
+                                			<div class="User-details" id="newsAuthorID"></div>
+                                			<div class="ratings">
+			                                    <!--CS: Start Rating Snippet-->
+			                                    <!--SPM:<%@ Register TagPrefix="SharePointPortalControls" Namespace="Microsoft.SharePoint.Portal.WebControls" Assembly="Microsoft.SharePoint.Portal, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c" %>-->
+                                   					<!--SPM:<SharePointPortalControls:AverageRatingFieldControl ID="PageRating" FieldName="AverageRating" runat="server"/>-->
+			                                    <!--CE: End Rating Snippet-->
+			                                </div>
+			                                <div class="comments">  
+
+												<!--CS: Start Comments Snippet-->
+												
+												<!--SPM:<%@ Register TagPrefix="SharePointPortalControls" Namespace="Microsoft.SharePoint.Portal.WebControls" Assembly="Microsoft.SharePoint.Portal, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c" %>-->
+												
+												<!--SPM:<div class="article-content">-->
+												
+												<!--SPM:Comment on this article:-->
+												
+												<!--SPM:<SharePointPortalControls:SocialCommentControl 
+												
+												        ID="CommentControl" runat="server"/>-->
+												
+												<!--SPM:</div>-->
+												
+												<!--CE: End Comments Snippet-->				
+												
+												</div>
+                                			<div class="taglist">
+                                				 <h3>Tagged in : </h3>
+                                				 <ul class="tags">
+		                                            <li><a href="#">Benefits</a></li>
+		                                            <li><a href="#">Investments</a></li>
+													<li><a href="#">Quick Guid</a></li>
+													<li><a href="#">Payrolls</a></li>
+													<li><a href="#">Bowers</a></li>		                                            
+		                                        </ul>
+                                			</div>
+                                		</div>
+									</div>
+								 </div>
+			                </section>
+			            </div>
+			        </div>
+			        <!--News Details Banner and User details section Ended here-->
+					<!--News Details Title and content section Started here-->
+					<div class="row">
+					    <div class="col-md-9">
+							<section class="sections-newsdetails">
+							    <div class="newsDetailInner">
+							    	<!--News Details Department and Published Date Snippets Started here-->
+							        <div class="hrnews">							        	
+						                <span class="news_btn">				                            	
+							                <!--CS: Start Page Field: KPCUDepartment Snippet-->
+							                <!--SPM:<%@Register Tagprefix="PageFieldTaxonomyFieldControl" Namespace="Microsoft.SharePoint.Taxonomy" Assembly="Microsoft.SharePoint.Taxonomy, Version=16.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c"%>-->
+							                <!--MS:<PageFieldTaxonomyFieldControl:TaxonomyFieldControl FieldName="3c4e0573-f1e6-46d1-a541-964996139db1" runat="server">-->
+							                    <!--PS: Start of READ-ONLY PREVIEW (do not modify)--><!--PE: End of READ-ONLY PREVIEW-->
+							                <!--ME:</PageFieldTaxonomyFieldControl:TaxonomyFieldControl>-->
+							                <!--CE: End Page Field: KPCUDepartment Snippet-->									            
+						                </span>
+						                <span class="gray" id="dvPublishDate">
+						                	<!--CS: Start Page Field: News Published Date Snippet-->
+							                <!--SPM:<%@Register Tagprefix="PageFieldDateTimeField" Namespace="Microsoft.SharePoint.WebControls" Assembly="Microsoft.SharePoint, Version=16.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c"%>-->
+							                <!--MS:<PageFieldDateTimeField:DateTimeField FieldName="01f1e528-964b-41e0-8dc0-14a892014824" runat="server">-->
+							                    <!--PS: Start of READ-ONLY PREVIEW (do not modify)--><!--PE: End of READ-ONLY PREVIEW-->
+							                <!--ME:</PageFieldDateTimeField:DateTimeField>-->
+							                <!--CE: End Page Field: News Published Date Snippet-->
+						                </span>							           
+									</div>
+									<!--News Details Department and Published Date Snippets Ended here-->
+									<!--News Details Title Snippets Started here-->
+									<div class="newsDetailsTitle">
+										<h1>
+											<!--CS: Start Page Field: News Title Snippet-->
+							                <!--SPM:<%@Register Tagprefix="PageFieldTextField" Namespace="Microsoft.SharePoint.WebControls" Assembly="Microsoft.SharePoint, Version=16.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c"%>-->
+							                <!--MS:<PageFieldTextField:TextField FieldName="ec5d8f72-e06c-4fe9-96a1-ed2e43809a18" runat="server">-->
+							                    <!--PS: Start of READ-ONLY PREVIEW (do not modify)--><!--PE: End of READ-ONLY PREVIEW-->
+							                <!--ME:</PageFieldTextField:TextField>-->
+							                <!--CE: End Page Field: News Title Snippet-->
+										</h1>
+									</div>
+									<!--News Details Title Snippets Ended here-->
+									<!--News Details Content Snippets Started here-->
+									<div class="newsDetailsContent">
+						                <!--CS: Start Page Field: Page Content Snippet-->
+						                <!--SPM:<%@Register Tagprefix="PageFieldRichHtmlField" Namespace="Microsoft.SharePoint.Publishing.WebControls" Assembly="Microsoft.SharePoint.Publishing, Version=16.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c"%>-->
+						                <!--MS:<PageFieldRichHtmlField:RichHtmlField FieldName="f55c4d88-1f2e-4ad9-aaa8-819af4ee7ee8" runat="server">-->
+						                    <!--PS: Start of READ-ONLY PREVIEW (do not modify)--><!--PE: End of READ-ONLY PREVIEW-->
+						                <!--ME:</PageFieldRichHtmlField:RichHtmlField>-->
+						                <!--CE: End Page Field: Page Content Snippet-->
+						            </div>
+						            <!--News Details Content Snippets Ended here-->
+						            <!--News Details Like, Comment, Share Snippets Started here-->
+						            <div class="social-Btn">
+						            	<!--Like Section Started Here-->
+						            	<div id="likeSection" >
+						            		<div id="totlikes">0</div> 
+		                                	<div id="likeText"><a href="javascript:;" id="likeTextLink"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i><p>Likes</p></a></div>
+						            	</div>
+						            	<!--Like Section Ended Here-->
+						            	<!--Comments Section Started Here-->
+						            	<div id="CommentSection">
+						            		<div id="totComments">0</div> 
+		                                	<div id="CommentText" ><a href="javascript:;" ><p>Comments</p></a></div>
+						            	</div>
+						            	<!--Comments Section Ended Here-->
+						            	<!--Share Section Started Here-->
+						            	<div id="ShareSection" >
+						            		<div id="ShareIcon"><i class="fa fa-share-alt" aria-hidden="true"></i></div> 
+		                                	<div id="ShareText" ><a href="javascript:;" id="sharetTextLink"><p>Share</p></a></div>
+						            	</div>
+						            	<!--Share Section Started Here-->					            	
+		                                <!--Rating Section Started Here-->
+		                                <span>
+		                                    <i class="fa fa-star-o not_rated" aria-hidden="true">
+		                                    </i>
+		                                    <i class="fa fa-star-o not_rated" aria-hidden="true">
+		                                    </i>
+		                                    <i class="fa fa-star-o not_rated" aria-hidden="true">
+		                                    </i>
+		                                    <i class="fa fa-star-o not_rated" aria-hidden="true">
+		                                    </i>
+		                                    <i class="fa fa-star-o not_rated" aria-hidden="true">
+		                                    </i>
+		                                    <a href="">124
+		                                    </a>
+		                                </span>
+		                                <!--Rating Section Started Here-->
+		                            </div>
+		                            <div class="form-group commentBox">		                            	
+		                            	<label id="messagecount"></label>
+ 										<textarea class="form-control" style="resize:none;" rows="5" onblur="textCounter(this,this.form.counter);" onkeyup="textCounter(this,this.form.counter);" id="txtComments"></textarea>
+		                                <button type="submit" class="btn btn-default pull-right" onclick="AddComment('Page Comments');"><i class="fa fa-check" aria-hidden="true"></i>Post</button>
+		                            </div>
+		                             <!--News Details Like, Comment, Share Snippets Ended here-->
+								</div>
+							</section>
+							<section class="sections-comments pull-left" style="width:100%">
+			                    <div class="list-Updates">
+			                        <div class="recent-Comments" id="allComments">
+			                            
+			                        </div>
+			                    </div>			                    
+			                    <div class="moreCommentLink"><a href="javascript:;" id="loadMore">View more comments</a></div>
+			                </section>
+						 </div>
+					</div>
+					<!--News Details Title and content section Ended here-->
+		        </div>
+		        <!--PS: Start of READ-ONLY PREVIEW (do not modify)--><!--PE: End of READ-ONLY PREVIEW-->
+		    <!--ME:</Publishing:EditModePanel>-->
+		    <!--CE: End Edit Mode Panel Snippet-->
+		</div>
+        <!--News Details Read Mode Panel Wrapper ended here-->        
+        <!--News Details Edit Mode Panel Wrapper Started here-->
+        <div data-name="EditModePanelShowInEdit">
+		    <!--CS: Start Edit Mode Panel Snippet-->
+		    <!--SPM:<%@Register Tagprefix="Publishing" Namespace="Microsoft.SharePoint.Publishing.WebControls" Assembly="Microsoft.SharePoint.Publishing, Version=16.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c"%>-->
+		    <!--MS:<Publishing:EditModePanel runat="server" CssClass="edit-mode-panel">-->
+		        <!--PS: Start of READ-ONLY PREVIEW (do not modify)--><!--PE: End of READ-ONLY PREVIEW-->
+		        <div class="DefaultContentBlock">
+					<div>
+		                <!--CS: Start Page Field: News Title Snippet-->
+		                <!--SPM:<%@Register Tagprefix="PageFieldTextField" Namespace="Microsoft.SharePoint.WebControls" Assembly="Microsoft.SharePoint, Version=16.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c"%>-->
+		                <!--MS:<PageFieldTextField:TextField FieldName="ec5d8f72-e06c-4fe9-96a1-ed2e43809a18" runat="server">-->
+		                    <!--PS: Start of READ-ONLY PREVIEW (do not modify)--><!--PE: End of READ-ONLY PREVIEW-->
+		                <!--ME:</PageFieldTextField:TextField>-->
+		                <!--CE: End Page Field: News Title Snippet-->
+		            </div>
+		            <div>
+		                <!--CS: Start Page Field: News Published Date Snippet-->
+		                <!--SPM:<%@Register Tagprefix="PageFieldDateTimeField" Namespace="Microsoft.SharePoint.WebControls" Assembly="Microsoft.SharePoint, Version=16.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c"%>-->
+		                <!--MS:<PageFieldDateTimeField:DateTimeField FieldName="01f1e528-964b-41e0-8dc0-14a892014824" runat="server">-->
+		                    <!--PS: Start of READ-ONLY PREVIEW (do not modify)--><!--PE: End of READ-ONLY PREVIEW-->
+		                <!--ME:</PageFieldDateTimeField:DateTimeField>-->
+		                <!--CE: End Page Field: News Published Date Snippet-->
+		            </div>
+		            <div>
+		                <!--CS: Start Page Field: News Author Snippet-->
+		                <!--SPM:<%@Register Tagprefix="PageFieldUserField" Namespace="Microsoft.SharePoint.WebControls" Assembly="Microsoft.SharePoint, Version=16.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c"%>-->
+		                <!--MS:<PageFieldUserField:UserField FieldName="c420a090-76b7-4e68-bc4f-23e12b4e6664" runat="server">-->
+		                    <!--PS: Start of READ-ONLY PREVIEW (do not modify)--><!--PE: End of READ-ONLY PREVIEW-->
+		                <!--ME:</PageFieldUserField:UserField>-->
+		                <!--CE: End Page Field: News Author Snippet-->
+		            </div>
+		            <div>
+		                <!--CS: Start Page Field: KPCUDepartment Snippet-->
+		                <!--SPM:<%@Register Tagprefix="PageFieldTaxonomyFieldControl" Namespace="Microsoft.SharePoint.Taxonomy" Assembly="Microsoft.SharePoint.Taxonomy, Version=16.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c"%>-->
+		                <!--MS:<PageFieldTaxonomyFieldControl:TaxonomyFieldControl FieldName="3c4e0573-f1e6-46d1-a541-964996139db1" runat="server">-->
+		                    <!--PS: Start of READ-ONLY PREVIEW (do not modify)--><!--PE: End of READ-ONLY PREVIEW-->
+		                <!--ME:</PageFieldTaxonomyFieldControl:TaxonomyFieldControl>-->
+		                <!--CE: End Page Field: KPCUDepartment Snippet-->
+		            </div>
+		            <div>
+		                <!--CS: Start Page Field: KPCULocation Snippet-->
+		                <!--SPM:<%@Register Tagprefix="PageFieldTaxonomyFieldControl" Namespace="Microsoft.SharePoint.Taxonomy" Assembly="Microsoft.SharePoint.Taxonomy, Version=16.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c"%>-->
+		                <!--MS:<PageFieldTaxonomyFieldControl:TaxonomyFieldControl FieldName="7ab310c2-3925-4af3-b635-3c55dc8f943e" runat="server">-->
+		                    <!--PS: Start of READ-ONLY PREVIEW (do not modify)--><!--PE: End of READ-ONLY PREVIEW-->
+		                <!--ME:</PageFieldTaxonomyFieldControl:TaxonomyFieldControl>-->
+		                <!--CE: End Page Field: KPCULocation Snippet-->
+		            </div>		            
+		            <div>
+		                <!--CS: Start Page Field: News Banner Snippet-->
+		                <!--SPM:<%@Register Tagprefix="PageFieldRichImageField" Namespace="Microsoft.SharePoint.Publishing.WebControls" Assembly="Microsoft.SharePoint.Publishing, Version=16.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c"%>-->
+		                <!--MS:<PageFieldRichImageField:RichImageField FieldName="b83e42ca-f7d7-41c2-863e-d937daee48ec" runat="server">-->
+		                    <!--PS: Start of READ-ONLY PREVIEW (do not modify)--><!--PE: End of READ-ONLY PREVIEW-->
+		                <!--ME:</PageFieldRichImageField:RichImageField>-->
+		                <!--CE: End Page Field: News Banner Snippet-->
+		            </div>
+		            <div>
+		                <!--CS: Start Page Field: Page Content Snippet-->
+		                <!--SPM:<%@Register Tagprefix="PageFieldRichHtmlField" Namespace="Microsoft.SharePoint.Publishing.WebControls" Assembly="Microsoft.SharePoint.Publishing, Version=16.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c"%>-->
+		                <!--MS:<PageFieldRichHtmlField:RichHtmlField FieldName="f55c4d88-1f2e-4ad9-aaa8-819af4ee7ee8" runat="server">-->
+		                    <!--PS: Start of READ-ONLY PREVIEW (do not modify)--><!--PE: End of READ-ONLY PREVIEW-->
+		                <!--ME:</PageFieldRichHtmlField:RichHtmlField>-->
+		                <!--CE: End Page Field: Page Content Snippet-->
+		            </div>
+		        </div>
+		        <!--PS: Start of READ-ONLY PREVIEW (do not modify)--><!--PE: End of READ-ONLY PREVIEW-->
+		    <!--ME:</Publishing:EditModePanel>-->
+		    <!--CE: End Edit Mode Panel Snippet-->
+		</div>
+		<!--News Details Edit Mode Panel Wrapper Started here-->
+        <!--ME:</asp:ContentPlaceHolder>-->
+        <!--MS:<asp:ContentPlaceHolder id="PlaceHolderFormDigest" runat="server">-->
+            <!--SPM:<SharePoint:FormDigest runat="server"/>-->
+        <!--ME:</asp:ContentPlaceHolder>-->
+        <!--MS:<asp:ContentPlaceHolder id="PlaceHolderBodyAreaClass" runat="server" Visible="true">-->
+        <!--ME:</asp:ContentPlaceHolder>-->
+    </body>
+</html>

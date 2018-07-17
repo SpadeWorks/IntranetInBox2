@@ -6,5 +6,6 @@
     <File Path="IntranetPageLayoutsFiles\NBBHomePageLayout.txt" Url="IntranetPageLayoutsFiles/NBBHomePageLayout.txt" ReplaceContent="TRUE" />
     <File Path="IntranetPageLayoutsFiles\NBBLearningPageLayout.txt" Url="IntranetPageLayoutsFiles/NBBLearningPageLayout.txt" ReplaceContent="TRUE" />
     <File Path="IntranetPageLayoutsFiles\NBBOneColPageLayout.txt" Url="IntranetPageLayoutsFiles/NBBOneColPageLayout.txt" ReplaceContent="TRUE" />
+    <File Path="IntranetPageLayoutsFiles\KPCU_NewsDetailsLayout.txt" Url="IntranetPageLayoutsFiles/KPCU_NewsDetailsLayout.txt" ReplaceContent="TRUE" />
   </Module>
 </Elements>

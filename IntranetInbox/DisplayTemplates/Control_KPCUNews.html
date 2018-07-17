@@ -1,0 +1,151 @@
+﻿<html xmlns:mso="urn:schemas-microsoft-com:office:office" xmlns:msdt="uuid:C2F41010-65B3-11d1-A29F-00AA00C14882"> 
+<head>
+<title>Control KPCU News</title>
+
+<!--[if gte mso 9]><xml>
+<mso:CustomDocumentProperties>
+<mso:TemplateHidden msdt:dt="string">0</mso:TemplateHidden>
+<mso:MasterPageDescription msdt:dt="string">This is the default Control Display Template for KPCU News.</mso:MasterPageDescription>
+<mso:ContentTypeId msdt:dt="string">0x0101002039C03B61C64EC4A04F5361F385106601</mso:ContentTypeId>
+<mso:TargetControlType msdt:dt="string">;#Content Web Parts;#</mso:TargetControlType>
+<mso:HtmlDesignAssociated msdt:dt="string">1</mso:HtmlDesignAssociated>
+<mso:HtmlDesignConversionSucceeded msdt:dt="string">True</mso:HtmlDesignConversionSucceeded>
+<mso:HtmlDesignStatusAndPreview msdt:dt="string">https://kpcu.sharepoint.com/sites/Intranet-Dev/_catalogs/masterpage/Display%20Templates/KPCU/Control_KPCUNews.html, Conversion successful.</mso:HtmlDesignStatusAndPreview>
+</mso:CustomDocumentProperties>
+</xml><![endif]-->
+</head>
+	<body>
+    <div id="Control_List">
+	<!--#_ 	
+		AddPostRenderCallback(ctx, function() {
+				KPCU.Carousel("Home"); 
+			 	$('.owl-nav').click(function(event) {
+			  	$(".owl-nav").removeClass('disabled');
+			});
+		});
+	
+	if (!$isNull(ctx.ClientControl) && !$isNull(ctx.ClientControl.shouldRenderControl) && !ctx.ClientControl.shouldRenderControl()) {
+	    return "";
+	}
+	ctx.ListDataJSONGroupsKey = "ResultTables";
+	var $noResults = Srch.ContentBySearch.getControlTemplateEncodedNoResultsMessage(ctx.ClientControl);	
+	var isRollupPageInDisplayMode = Srch.ContentBySearch.isRollupPage(ctx.ClientControl) && !Srch.U.isPageInEditMode();
+	var noResultsClassName = isRollupPageInDisplayMode ? "ms-attractMode ms-uppercase ms-alignCenter" : "ms-srch-result-noResults";	
+	//Get total rows
+	ctx["CurrentItems"] = ctx.ListData.ResultTables[0].ResultRows;
+	var ListRenderRenderWrapper = function(itemRenderResult, inCtx, tpl) {
+	    var iStr = [];
+	    iStr.push(itemRenderResult);
+	    return iStr.join('');
+	}
+	ctx['ItemRenderWrapper'] = ListRenderRenderWrapper;
+	
+	//Checking If current Items Length 
+	if (ctx["CurrentItems"].length > 0)
+	{
+		//Get the News URL Path	
+		var newsURL = ctx.ListData.ResultTables[0].ResultRows[0].OriginalPath;
+		
+		//Get News Title	
+		var newsTitle = ctx.ListData.ResultTables[0].ResultRows[0].NewsTitleOWSTEXT;
+			//tag = newsTitle;
+			if(newsTitle.length > 80)
+			{
+				var Title = newsTitle .substring(0,50) + "… ";
+			}
+			else
+			{
+				var Title = newsTitle == "null" ? "" : newsTitle;
+			} 		
+
+		
+		//Get News Published Date
+		if(!$isNull(ctx.ListData.ResultTables[0].ResultRows[0].NewsPublishedDateOWSDATE)) {		
+			var newsPublishDate = KPCU.DateFormat(ctx.ListData.ResultTables[0].ResultRows[0].NewsPublishedDateOWSDATE);
+		}
+		//Get News Location
+		var newsLocation = ctx.ListData.ResultTables[0].ResultRows[0].MPLocation;
+		
+		//Get News Department
+		var newsDepartment = ctx.ListData.ResultTables[0].ResultRows[0].MPDepartment;
+		
+		//Get News Banner Image	Object
+		var newsBanner = ctx.ListData.ResultTables[0].ResultRows[0].NewsBannerOWSIMGE;
+		//Get Banner Image URL
+		newsBanner = newsBanner ? $(newsBanner).find("img").prevObject[0].src : "";
+		
+		//Get News Thumbnail Image Object
+		var newsThumbnail = ctx.ListData.ResultTables[0].ResultRows[0].NewsThumbnailOWSIMGE;
+		//Get News Thumbnail Image URL		
+		newsThumbnail = newsThumbnail ? $(newsThumbnail).find("img").prevObject[0].src : "";
+		_#-->
+		<div class="NewsContainer">
+			<div class="NewsBannerImage">
+				<img src="_#= newsBanner =#_" class="img-responsive  banner-image">
+			</div>
+			<div class="NewsDetails">
+				<div class="col-md-12 col-sm-12 col-xs-12">
+					<div class="NewsCategory">
+						<a href="NewsArchive.aspx?k=_#= newsDepartment =#_" class="news_btn">_#= newsDepartment =#_</a>
+					</div>
+				</div>
+				<div class="col-md-12 col-sm-12 col-xs-12">
+					<div class="duration_container">
+						<div class="NewsPublishedDate"> _#= newsPublishDate =#_ </div>
+						<div class="NewsLocation"> _#= newsLocation =#_ </div>
+					</div>
+				</div>
+				<div class="col-md-10 col-sm-12 col-xs-12">
+					<div class="NewsTitle">
+						<a href="_#= newsURL =#_"><h2> _#= Title =#_  </h2></a>
+					</div>						
+				</div>
+				<div class="col-md-2 col-sm-12 col-xs-12">
+					<div class="allnews">
+						<a href="NewsArchive.aspx">All News</a>
+					</div>
+				</div>
+			</div>
+		</div>			
+		<div class="row">
+		    <div class="col-md-12">
+		        <div class="news_slider">		            
+					<div class="owl-carousel owl-theme owl-loaded owl-drag">
+					    <div class="owl-stage-outer">
+					        <div class="owl-stage">
+								_#= ctx.RenderGroups(ctx) =#_										
+							</div>
+					    </div>
+					    <div class="owl-nav">
+					        <button type="button" role="presentation" class="owl-prev">
+					            <span aria-label="Previous">‹</span>
+					        </button>
+					        <button type="button" role="presentation" class="owl-next">
+					            <span aria-label="Next">›</span>
+					        </button>
+					    </div>
+					    <div class="owl-dots">
+					        <button role="button" class="owl-dot">
+					            <span></span>
+					        </button>
+					        <button role="button" class="owl-dot active">
+					            <span></span>
+					        </button>
+					    </div>
+					</div>
+				</div>		            
+		    </div>
+		</div>
+		<!--#_
+	}
+	else
+	{
+	//Display the no data message
+	_#-->
+	    <div class="no-data-msg">No data is currently available.</div>
+	<!--#_			
+	}
+	_#-->
+	</div>
+</body>
+</html>

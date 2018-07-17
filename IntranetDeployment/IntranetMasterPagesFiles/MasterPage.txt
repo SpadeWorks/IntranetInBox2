@@ -2,7 +2,7 @@
 
 This HTML file has been associated with a SharePoint Master Page (.master file) carrying the same name.  While the files remain associated, you will not be allowed to edit the .master file, and any rename, move, or deletion operations will be reciprocated.
 
-To build the master page directly from this HTML file, simply edit the page as you normally would.  Use the Snippet Generator at https://kpcu.sharepoint.com/sites/Intranet-Dev/_layouts/15/ComponentHome.aspx?Url=https%3A%2F%2Fkpcu%2Esharepoint%2Ecom%2Fsites%2FIntranet%2DDev%2F%5Fcatalogs%2Fmasterpage%2FKPCU%2FKPCU%5FSite%2Emaster to create and customize useful SharePoint entities, then copy and paste them as HTML snippets into your HTML code.   All updates to this file will automatically sync to the associated Master Page.
+To build the master page directly from this HTML file, simply edit the page as you normally would.  Use the Snippet Generator at https://gohelmahendrak.sharepoint.com/sites/NBB/_layouts/15/ComponentHome.aspx?Url=https%3A%2F%2Fgohelmahendrak%2Esharepoint%2Ecom%2Fsites%2FNBB%2F%5Fcatalogs%2Fmasterpage%2FNBB%2FNBB%5FSite%2Emaster to create and customize useful SharePoint entities, then copy and paste them as HTML snippets into your HTML code.   All updates to this file will automatically sync to the associated Master Page.
 
  --%>
 <%@Master language="C#"%>
@@ -19,361 +19,429 @@ To build the master page directly from this HTML file, simply edit the page as y
 <%@Register TagPrefix="af25e94ec" Namespace="Microsoft.Office.Server.Search.WebControls" Assembly="Microsoft.Office.Server.Search, Version=16.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <SharePoint:SPHtmlTag runat="server" id="SPHtmlTag" dir="&lt;%$Resources:wss,multipages_direction_dir_value%&gt;">
-
-<head runat="server">
-    <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE10" />
-    <meta name="GENERATOR" content="Microsoft SharePoint" />
-    <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1 , minimum-scale=1, maximum-scale=1" />
-    <SharePoint:IECompatibleMetaTag runat="server" />
-    <meta http-equiv="Expires" content="0" />
-    <SharePoint:SPPinnedSiteTile runat="server" TileUrl="/_layouts/15/images/SharePointMetroAppTile.png" TileColor="#0072C6" />
-    <SharePoint:RobotsMetaTag runat="server" />
-    <SharePoint:PageTitle runat="server">
-    <asp:ContentPlaceHolder id="PlaceHolderPageTitle" runat="server" />
-    </SharePoint:PageTitle>
-    <SharePoint:StartScript runat="server" />
-    <SharePoint:CssLink runat="server" Version="15" />
     
-    <SharePoint:ScriptLink language="javascript" name="core.js" OnDemand="true" runat="server" Localizable="false" />
-    <SharePoint:ScriptLink language="javascript" name="menu.js" OnDemand="true" runat="server" Localizable="false" />
-    <SharePoint:ScriptLink language="javascript" name="callout.js" OnDemand="true" runat="server" Localizable="false" />
-    <SharePoint:ScriptLink language="javascript" name="sharing.js" OnDemand="true" runat="server" Localizable="false" />
-    <SharePoint:ScriptLink language="javascript" name="suitelinks.js" OnDemand="true" runat="server" Localizable="false" />
-    <SharePoint:CustomJSUrl runat="server" />
-    <SharePoint:SoapDiscoveryLink runat="server" />
-    <SharePoint:AjaxDelta id="DeltaPlaceHolderAdditionalPageHead" Container="false" runat="server">
-    <asp:ContentPlaceHolder id="PlaceHolderAdditionalPageHead" runat="server" />
-    <SharePoint:DelegateControl runat="server" ControlId="AdditionalPageHead" AllowMultipleControls="true" />
-	<!--<SharePoint:ScriptLink Name="sp.js" runat="server" LoadAfterUI="true" Localizable="false"/>-->
-    <!--<SharePoint:ScriptLink language="javascript" Name="SP.UI.Dialog.js" runat="server" OnDemand="true" Localizable="false"/>-->
-    <!--<SharePoint:ScriptLink Name="sp.core.js" runat="server" LoadAfterUI="true" Localizable="false"/>-->
-    </SharePoint:AjaxDelta>
-    <SharePoint:SPShortcutIcon runat="server" IconUrl="/sites/Intranet-Dev/Style Library/KPCU/Images/favicon.png" />
-    <script type="text/javascript" src="/sites/Intranet-Dev/Style Library/KPCU/JS/jquery.min.js">//<![CDATA[
+    <head runat="server">
+        <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE10" />
+        <meta name="GENERATOR" content="Microsoft SharePoint" />
+        <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=2" />
+        <SharePoint:IECompatibleMetaTag runat="server" />
+        <meta http-equiv="Expires" content="0" />
+        <SharePoint:SPPinnedSiteTile runat="server" TileUrl="/_layouts/15/images/SharePointMetroAppTile.png" TileColor="#0072C6" />
+        <SharePoint:RobotsMetaTag runat="server" />
+        <SharePoint:PageTitle runat="server">
+        <asp:ContentPlaceHolder id="PlaceHolderPageTitle" runat="server" />
+        </SharePoint:PageTitle>
+        <SharePoint:StartScript runat="server" />
+        <SharePoint:CssLink runat="server" Version="15" />
         
-                
-    //]]></script>    
-    <script type="text/javascript" src="/sites/Intranet-Dev/Style Library/KPCU/JS/bootstrap.min.js">//<![CDATA[
+        <SharePoint:ScriptLink language="javascript" name="core.js" OnDemand="true" runat="server" Localizable="false" />
+        <SharePoint:ScriptLink language="javascript" name="menu.js" OnDemand="true" runat="server" Localizable="false" />
+        <SharePoint:ScriptLink language="javascript" name="callout.js" OnDemand="true" runat="server" Localizable="false" />
+        <SharePoint:ScriptLink language="javascript" name="sharing.js" OnDemand="true" runat="server" Localizable="false" />
+        <SharePoint:ScriptLink language="javascript" name="suitelinks.js" OnDemand="true" runat="server" Localizable="false" />
+        <SharePoint:CustomJSUrl runat="server" />
+        <SharePoint:SoapDiscoveryLink runat="server" />
+        <SharePoint:AjaxDelta id="DeltaPlaceHolderAdditionalPageHead" Container="false" runat="server">
+        <asp:ContentPlaceHolder id="PlaceHolderAdditionalPageHead" runat="server" />
+        <SharePoint:DelegateControl runat="server" ControlId="AdditionalPageHead" AllowMultipleControls="true" />
+        </SharePoint:AjaxDelta>
+        <SharePoint:SPShortcutIcon runat="server" IconUrl="/_layouts/15/images/favicon.ico?rev=40" />
+        <!-- Bootstrap core CSS for this template -->
+        <SharePoint:CssRegistration name="&lt;% $SPUrl:~sitecollection/Style Library/IntranetInbox/css/bootstrap.min.css %&gt;" runat="server" after="SharepointCssFile" />
+        <!-- Custom styles for this template -->
+        <SharePoint:CssRegistration name="&lt;% $SPUrl:~sitecollection/Style Library/IntranetInbox/css/font-awesome.min.css %&gt;" runat="server" after="SharepointCssFile" />
+        <SharePoint:CssRegistration name="&lt;% $SPUrl:~sitecollection/Style Library/IntranetInbox/css/NBB_Main.css %&gt;" runat="server" after="SharepointCssFile" />        <SharePoint:CssRegistration name="&lt;% $SPUrl:~sitecollection/Style Library/IntranetInbox/css/mega_menu.css %&gt;" runat="server" after="SharepointCssFile" />
+        <SharePoint:CssRegistration name="&lt;% $SPUrl:~sitecollection/Style Library/IntranetInbox/css/custom_styles.css %&gt;" runat="server" after="SharepointCssFile" />
+        <SharePoint:CssRegistration name="&lt;% $SPUrl:~sitecollection/Style Library/IntranetInbox/css/mega_menu.css %&gt;" runat="server" after="SharepointCssFile" />
+<![CDATA[ [if IE 9] ]]>        <style type="text/css">//<![CDATA[
+    .ms-core-animation-transparent
+    {
+        opacity:0;
+    }
+    .ms-isBot .ms-core-animation-transparent
+    {
+        opacity:1;
+    }
         
-                
-    //]]></script>
-    <script type="text/javascript" src="/sites/Intranet-Dev/Style Library/KPCU/JS/jquery.slimscroll.js">//<![CDATA[
         
-                
-    //]]></script>
-    <script type="text/javascript" src="/sites/Intranet-Dev/Style Library/KPCU/JS/owl.carousel.min.js">//<![CDATA[
         
-                
-    //]]></script>
-    <script type="text/javascript" src="/sites/Intranet-Dev/Style Library/KPCU/JS/KPCU_Main.js">//<![CDATA[
         
-                
-    //]]></script>
-    <SharePoint:CssRegistration name="/sites/Intranet-Dev/Style Library/KPCU/CSS/bootstrap.min.css" runat="server" after="SharepointCssFile" />
-    <SharePoint:CssRegistration name="/sites/Intranet-Dev/Style Library/KPCU/CSS/KPCU_Main.css" runat="server" after="SharepointCssFile" />
-    <SharePoint:CssRegistration name="/sites/Intranet-Dev/Style Library/KPCU/CSS/kpcu_responsive.css" runat="server" after="SharepointCssFile" />
-    <script type="text/javascript">//<![CDATA[
-           
-        	       	$(function () {
-        				$("#FooterHTML").load("/sites/Intranet-Dev/_catalogs/masterpage/KPCU/Menu/Footer.html");
-        				$("#WeatherWrapper").load("/sites/Intranet-Dev/_catalogs/masterpage/KPCU/Menu/Homeweather.html");					
-        				// below code hide ribbon on display mode	
-        				//editSeoProperties.isCheckedOutToCurrentUser
-        				var inDesignMode = document.forms[MSOWebPartPageFormName].MSOLayout_InDesignMode.value;
-        				if (inDesignMode == "1") {
-        				   // page is in edit mode
-        					document.getElementById("s4-ribbonrow").style.display = "block";
-        				} else {
-        					//page is in display mode
-        					document.getElementById("s4-ribbonrow").style.display = "none";					
-        				}		
-        	        });
-                
-    //]]></script>
-    <![CDATA[ [if IE 9] ]]>
+        
+        
+        //]]></style>
+<![CDATA[ [endif] ]]>        <!--[if lte IE 8]>
     <style type="text/css">//<![CDATA[
-                
-                    .ms-core-animation-transparent
-                    {
-                        opacity:0;
-                    }
-                    .ms-isBot .ms-core-animation-transparent
-                    {
-                        opacity:1;
-                    }
-                
-    //]]></style>
-    <![CDATA[ [endif] ]]>
-    <!--[if lte IE 8]>
-    <style type="text/css">//<![CDATA[    
-	    .ms-core-animation-transparent, .ms-core-animation-transparent img {
-	       -ms-filter:"alpha(opacity=0)";
-	    }
-	    .ms-isBot .ms-core-animation-transparent, .ms-isBot .ms-core-animation-transparent img {
-	       -ms-filter:"";
-	    }   
+    .ms-core-animation-transparent,
+    .ms-core-animation-transparent img
+    {
+       -ms-filter:"alpha(opacity=0)";
+    }
+    .ms-isBot .ms-core-animation-transparent,
+    .ms-isBot .ms-core-animation-transparent img
+    {
+       -ms-filter:"";
+    }
     //]]></style>
     <![endif]-->
-    <script type="text/javascript">//<![CDATA[
-                
-        			var g_pageLoadAnimationParams = { elementSlideIn : "sideNavBox", elementSlideInPhase2 : "contentBox" };
-                
-    //]]></script>
-    <SharePoint:CssRegistration Name="Themable/corev15.css" runat="server" />
-    </head>
-<body onhashchange="if (typeof(_spBodyOnHashChange) != 'undefined') _spBodyOnHashChange();"><SharePoint:SharePointForm onsubmit="if (typeof(_spFormOnSubmitWrapper) != 'undefined') {return _spFormOnSubmitWrapper();} else {return true;}" runat="server">
-    <SharePoint:ImageLink runat="server" />
-    <SharePoint:SPNoScript runat="server" />
-    <SharePoint:SPClientIDGenerator runat="server" ServerControlID="DeltaPlaceHolderMain;DeltaPlaceHolderPageTitleInTitleArea;DeltaPlaceHolderUtilityContent" />
-    <script type="text/javascript">//<![CDATA[
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+		<script src="https://www.googletagmanager.com/gtag/js?id=UA-116618171-1">//<![CDATA[
+		
+		//]]></script>
+		<script>//<![CDATA[
+		  window.dataLayer = window.dataLayer || [];
+		  function gtag(){dataLayer.push(arguments);}
+		  gtag('js', new Date());
+		
+		  gtag('config', 'UA-116618171-1');
+		
+		//]]></script>
+		<script type="text/javascript" src='<SharePoint:EncodedLiteral runat="server" text="<%$SPUrl:~SiteCollection/Style Library/IntranetInbox/js/jquery-3.1.0.min.js%>" EncodeMethod="HtmlEncode"/>' >//<![CDATA[//]]></script>
+		<script type="text/javascript" src='<SharePoint:EncodedLiteral runat="server" text="<%$SPUrl:~SiteCollection/Style Library/IntranetInbox/js/bootstrap.min.js%>" EncodeMethod="HtmlEncode"/>' >//<![CDATA[//]]></script>
+		<script type="text/javascript" src='<SharePoint:EncodedLiteral runat="server" text="<%$SPUrl:~SiteCollection/Style Library/IntranetInbox/js/moment.js%>" EncodeMethod="HtmlEncode"/>' >//<![CDATA[//]]></script>
+		<script type="text/javascript" src='<SharePoint:EncodedLiteral runat="server" text="<%$SPUrl:~SiteCollection/Style Library/IntranetInbox/js/knockout-3.2.0.js%>" EncodeMethod="HtmlEncode"/>' >//<![CDATA[//]]></script>
+		<script type="text/javascript" src='<SharePoint:EncodedLiteral runat="server" text="<%$SPUrl:~SiteCollection/Style Library/IntranetInbox/js/pnp.min.js%>" EncodeMethod="HtmlEncode"/>' >//<![CDATA[//]]></script>
+		<script type="text/javascript" src='<SharePoint:EncodedLiteral runat="server" text="<%$SPUrl:~SiteCollection/Style Library/IntranetInbox/js/services.js%>" EncodeMethod="HtmlEncode"/>' >//<![CDATA[//]]></script>
+		<script type="text/javascript" src='<SharePoint:EncodedLiteral runat="server" text="<%$SPUrl:~SiteCollection/Style Library/IntranetInbox/js/KPCU_Main.js%>" EncodeMethod="HtmlEncode"/>' >//<![CDATA[//]]></script>
+		<script type="text/javascript" src='<SharePoint:EncodedLiteral runat="server" text="<%$SPUrl:~SiteCollection/Style Library/IntranetInbox/js/NBBCommonFunctions.js%>" EncodeMethod="HtmlEncode"/>' >//<![CDATA[//]]></script>
+            <script>
+        // this function will be executed once the polyfill is loaded.
+        console.log("pnpNotReady");
+
+        function pnpReady() {
+
+            $(function() {
+                $(document).trigger("pnpReady");
+                console.log("pnpReady");
+            })
+
+        }
+    </script>
+
+    <!-- This script tag loads the required polyfills from the service -->
+    <script src="https://cdn.polyfill.io/v2/polyfill.min.js?callback=pnpReady&features=es6|always|gated,fetch|always|gated"></script>
+
+        <!-- Global site tag (gtag.js) - Google Analytics -->
+        <script type="text/javascript" src="https://www.googletagmanager.com/gtag/js?id=UA-54516992-1">//<![CDATA[//]]></script>
+        <script>//<![CDATA[
+			(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+			new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+			j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+			'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+			})(window,document,'script','novartisDataLayer','GTM-W5L3W3P');		
         
-                 var submitHook = function () { return false; }; theForm._spOldSubmit = theForm.submit; theForm.submit = function () { if (!submitHook()) { this._spOldSubmit(); } };         		           
-                
-    //]]></script>
-    <WebPartPages:SPWebPartManager runat="Server"/>
-    <asp:ScriptManager id="ScriptManager" runat="server" EnablePageMethods="false" EnablePartialRendering="true" EnableScriptGlobalization="false" EnableScriptLocalization="true" />
-    <SharePoint:AjaxDelta id="DeltaDelegateControls" runat="server">
-    <SharePoint:DelegateControl runat="server" ControlId="GlobalNavigation" />
-    <SharePoint:DelegateControl ControlId="GlobalSiteLink3" Scope="Farm" runat="server" Visible="false" />
-    </SharePoint:AjaxDelta>
-    <div id="TurnOnAccessibility" style="display:none" class="s4-notdlg noindex">
-        <a id="linkTurnOnAcc" data-accessibility-nocheck="true" href="#" class="ms-TurnOnAcc" onclick="SetIsAccessibilityFeatureEnabled(true);UpdateAccessibilityUI();document.getElementById('linkTurnOffAcc').focus();return false;">
-            <SharePoint:EncodedLiteral runat="server" text="&lt;%$Resources:wss,master_turnonaccessibility%&gt;" EncodeMethod="HtmlEncode"/>
-        </a>
-    </div>
-    <div id="TurnOffAccessibility" style="display:none" class="s4-notdlg noindex">
-        <a id="linkTurnOffAcc" data-accessibility-nocheck="true" href="#" class="ms-TurnOffAcc" onclick="SetIsAccessibilityFeatureEnabled(false);UpdateAccessibilityUI();document.getElementById('linkTurnOnAcc').focus();return false;">
-            <SharePoint:EncodedLiteral runat="server" text="&lt;%$Resources:wss,master_turnoffaccessibility%&gt;" EncodeMethod="HtmlEncode"/>
-        </a>
-    </div>
-    <div class="s4-notdlg s4-skipribbonshortcut noindex">
-        <a href="javascript:;" data-accessibility-nocheck="true" onclick="document.getElementById('startNavigation').focus();" class="ms-SkiptoNavigation" accesskey="&lt;%$Resources:wss,skipribbon_accesskey%&gt;" runat="server">
-            <SharePoint:EncodedLiteral runat="server" text="&lt;%$Resources:wss,skipRibbonCommandsLink%&gt;" EncodeMethod="HtmlEncode"/>
-        </a>
-    </div>
-    <div class="s4-notdlg noindex">
-        <a href="javascript:;" data-accessibility-nocheck="true" onclick="document.getElementById('mainContent').focus();" class="ms-SkiptoMainContent" accesskey="&lt;%$Resources:wss,maincontent_accesskey%&gt;" runat="server">
-            <SharePoint:EncodedLiteral runat="server" text="&lt;%$Resources:wss,mainContentLink%&gt;" EncodeMethod="HtmlEncode"/>
-        </a>
-    </div>
-    <div id="TurnOffAnimation" style="display:none;" class="s4-notdlg noindex">
-        <a id="linkTurnOffAnimation" data-accessibility-nocheck="true" href="#" class="ms-accessible ms-acc-button" onclick="ToggleAnimationStatus();return false;">
-            <SharePoint:EncodedLiteral runat="server" text="&lt;%$Resources:wss,master_disableanimation%&gt;" EncodeMethod="HtmlEncode"/>
-        </a>
-    </div>
-    <div id="TurnOnAnimation" style="display:none;" class="s4-notdlg noindex">
-        <a id="linkTurnOnAnimation" data-accessibility-nocheck="true" href="#" class="ms-accessible ms-acc-button" onclick="ToggleAnimationStatus();return false;">
-            <SharePoint:EncodedLiteral runat="server" text="&lt;%$Resources:wss,master_enableanimation%&gt;" EncodeMethod="HtmlEncode"/>
-        </a>
-    </div>
-    <a id="HiddenAnchor" href="javascript:;" style="display:none;">
-        </a>
-    <div id="ms-hcTest">
-    </div>
-    <div id="ms-designer-ribbon">
-        <PublishingRibbon:PublishingRibbon runat="server"/>
+        //]]></script>
+        <SharePoint:CssRegistration Name="Themable/corev15.css" runat="server" />
+        </head>
+    <body onhashchange="if (typeof(_spBodyOnHashChange) != 'undefined') _spBodyOnHashChange();"><SharePoint:SharePointForm onsubmit="if (typeof(_spFormOnSubmitWrapper) != 'undefined') {return _spFormOnSubmitWrapper();} else {return true;}" runat="server">
+        <SharePoint:ImageLink runat="server" />
+        <SharePoint:SPNoScript runat="server" />
+        <SharePoint:SPClientIDGenerator runat="server" ServerControlID="DeltaPlaceHolderMain;DeltaPlaceHolderPageTitleInTitleArea;DeltaPlaceHolderUtilityContent" />
+        <script type="text/javascript">//<![CDATA[ var submitHook = function () { return false; }; theForm._spOldSubmit = theForm.submit; theForm.submit = function () { if (!submitHook()) { this._spOldSubmit(); } }; 
+		        <!-- Google Tag Manager (noscript) -->
+		<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-W5L3W3P"
+		height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+		<!-- End Google Tag Manager (noscript) -->
         
-    </div>
-    <SharePoint:SPSecurityTrimmedControl runat="server" AuthenticationRestrictions="AnonymousUsersOnly">
-    <wssucw:Welcome runat="server" EnableViewState="false" />
-    </SharePoint:SPSecurityTrimmedControl>
-    <div id="s4-workspace" class="ms-core-overlay">
-        <div id="s4-bodyContainer">
-            <!-- Main Container Started -->
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-sm-12 col-md-12 col-xs-12 visible-xs">
-                        <section class="mobile_Responsive">
-                            <div class="logo_wrapper pull-left">
-                                <img src="/sites/Intranet-Dev/Style Library/KPCU/Images/KPCU_Logo_mobile.png" />
+        
+        
+        
+        
+        
+        //]]></script>
+        <WebPartPages:SPWebPartManager runat="Server"/>
+        <asp:ScriptManager id="ScriptManager" runat="server" EnablePageMethods="false" EnablePartialRendering="true" EnableScriptGlobalization="false" EnableScriptLocalization="true" />
+        <SharePoint:AjaxDelta id="DeltaDelegateControls" runat="server">
+        <SharePoint:DelegateControl runat="server" ControlId="GlobalNavigation" />
+        <SharePoint:DelegateControl ControlId="GlobalSiteLink3" Scope="Farm" runat="server" Visible="false" />
+        </SharePoint:AjaxDelta>
+        <div id="TurnOnAccessibility" style="display:none" class="s4-notdlg noindex">
+            <a id="linkTurnOnAcc" data-accessibility-nocheck="true" href="#" class="ms-TurnOnAcc" onclick="SetIsAccessibilityFeatureEnabled(true);UpdateAccessibilityUI();document.getElementById('linkTurnOffAcc').focus();return false;">
+                <SharePoint:EncodedLiteral runat="server" text="&lt;%$Resources:wss,master_turnonaccessibility%&gt;" EncodeMethod="HtmlEncode"/>
+            </a>
+        </div>
+        <div id="TurnOffAccessibility" style="display:none" class="s4-notdlg noindex">
+            <a id="linkTurnOffAcc" data-accessibility-nocheck="true" href="#" class="ms-TurnOffAcc" onclick="SetIsAccessibilityFeatureEnabled(false);UpdateAccessibilityUI();document.getElementById('linkTurnOnAcc').focus();return false;">
+                <SharePoint:EncodedLiteral runat="server" text="&lt;%$Resources:wss,master_turnoffaccessibility%&gt;" EncodeMethod="HtmlEncode"/>
+            </a>
+        </div>
+        <div class="s4-notdlg s4-skipribbonshortcut noindex">
+            <a href="javascript:;" data-accessibility-nocheck="true" onclick="document.getElementById('startNavigation').focus();" class="ms-SkiptoNavigation" accesskey="&lt;%$Resources:wss,skipribbon_accesskey%&gt;" runat="server">
+                <SharePoint:EncodedLiteral runat="server" text="&lt;%$Resources:wss,skipRibbonCommandsLink%&gt;" EncodeMethod="HtmlEncode"/>
+            </a>
+        </div>
+        <div class="s4-notdlg noindex">
+            <a href="javascript:;" data-accessibility-nocheck="true" onclick="document.getElementById('mainContent').focus();" class="ms-SkiptoMainContent" accesskey="&lt;%$Resources:wss,maincontent_accesskey%&gt;" runat="server">
+                <SharePoint:EncodedLiteral runat="server" text="&lt;%$Resources:wss,mainContentLink%&gt;" EncodeMethod="HtmlEncode"/>
+            </a>
+        </div>
+        <div id="TurnOffAnimation" style="display:none;" class="s4-notdlg noindex">
+            <a id="linkTurnOffAnimation" data-accessibility-nocheck="true" href="#" class="ms-accessible ms-acc-button" onclick="ToggleAnimationStatus();return false;">
+                <SharePoint:EncodedLiteral runat="server" text="&lt;%$Resources:wss,master_disableanimation%&gt;" EncodeMethod="HtmlEncode"/>
+            </a>
+        </div>
+        <div id="TurnOnAnimation" style="display:none;" class="s4-notdlg noindex">
+            <a id="linkTurnOnAnimation" data-accessibility-nocheck="true" href="#" class="ms-accessible ms-acc-button" onclick="ToggleAnimationStatus();return false;">
+                <SharePoint:EncodedLiteral runat="server" text="&lt;%$Resources:wss,master_enableanimation%&gt;" EncodeMethod="HtmlEncode"/>
+            </a>
+        </div>
+        <a id="HiddenAnchor" href="javascript:;" style="display:none;">
+        </a>
+        <div id="ms-hcTest">
+        </div>
+        <div id="ms-designer-ribbon">
+            <PublishingRibbon:PublishingRibbon runat="server"/>
+            
+        </div>
+        <SharePoint:SPSecurityTrimmedControl runat="server" AuthenticationRestrictions="AnonymousUsersOnly">
+            <wssucw:Welcome runat="server" EnableViewState="false" />
+        </SharePoint:SPSecurityTrimmedControl>
+        <div id="s4-workspace" class="ms-core-overlay">
+            <div id="s4-bodyContainer">
+                <div class="bg-Wrap">
+                    <div class="container">
+                        <!-- Starts Header Here -->
+                        <div class="row" id="LogoAndWelcomControl">
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                <div class="logo-Wrapper" id="nbbLogo">
+                                    <a data-bind="attr{href:NBBURL}" target="_blank" class="nbb-logo pull-left">
+                                        <img src='<SharePoint:EncodedLiteral runat="server" text="<%$SPUrl:~SiteCollection/Style Library/IntranetInbox/images/NBB-logo.jpg%>" EncodeMethod="HtmlEncode" __designer:Preview="/sites/PublishingTest1/Style Library/IntranetInbox/images/NBB-logo.jpg" __designer:Values="&lt;P N=&#39;Text&#39; Bound=&#39;True&#39; T=&#39;SPUrl:~SiteCollection/Style Library/IntranetInbox/images/NBB-logo.jpg&#39; /&gt;&lt;P N=&#39;ID&#39; T=&#39;ctl12&#39; /&gt;&lt;P N=&#39;Page&#39; ID=&#39;1&#39; /&gt;&lt;P N=&#39;TemplateControl&#39; ID=&#39;2&#39; /&gt;&lt;P N=&#39;AppRelativeTemplateSourceDirectory&#39; R=&#39;-1&#39; /&gt;"/>' width="130" height="47" alt="" />
+                                        
+                                    </a>
+                                    <a data-bind="attr{href:myNBBURL}" class="nbb-intranet-logo pull-left">
+                                        <img src='<SharePoint:EncodedLiteral runat="server" text="<%$SPUrl:~SiteCollection/Style Library/IntranetInbox/images/NBB-intranet-logo.jpg%>" EncodeMethod="HtmlEncode" __designer:Preview="/sites/PublishingTest1/Style Library/IntranetInbox/images/NBB-intranet-logo.jpg" __designer:Values="&lt;P N=&#39;Text&#39; Bound=&#39;True&#39; T=&#39;SPUrl:~SiteCollection/Style Library/IntranetInbox/images/NBB-intranet-logo.jpg&#39; /&gt;&lt;P N=&#39;ID&#39; T=&#39;ctl13&#39; /&gt;&lt;P N=&#39;Page&#39; ID=&#39;1&#39; /&gt;&lt;P N=&#39;TemplateControl&#39; ID=&#39;2&#39; /&gt;&lt;P N=&#39;AppRelativeTemplateSourceDirectory&#39; R=&#39;-1&#39; /&gt;"/>' width="109" height="35" alt="" />
+                                        
+                                    </a>
+                                </div>
                             </div>
-                            <div class="search_wrapper pull-left">
-                                <a href="javascript:;"><i class="glyphicon glyphicon-search"></i></a>
+                            <div class="col-md-6 col-sm-6 col-xs-12" id="welcomeControl">
+                                <div class="top-profile-details pull-right" data-bind="foreach:Employees">
+                                    <div class="nbb-profile-pic pull-left">
+                                        <img data-bind="attr:{src: ProfilepicUrl}" width="41" height="41" alt="" />
+                                    </div>
+                                    <div class="nbb-profile-name pull-left">
+											Hello, 
+                                        
+                                        
+                                        <div class="dropdown show pull-right">
+                                            <a href="#" class="dropdown-toggle" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                <span data-bind="text: Name">
+                                                </span>
+                                                <i class="fa fa-angle-down" aria-hidden="true">
+                                                </i>
+                                            </a>
+                                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuLink">
+                                                <a class="dropdown-item" href="http://icsp2016dev102:20165/sites/mysite/person.aspx">About Me
+                                                
+                                                </a>
+                                                <a class="dropdown-item" href="javascript:SuiteOnClick('STSNavigate2\u0028event,\u0027\u002f_layouts\u002f15\u002fSignOut.aspx\u0027\u0029;')">Sign Out
+                                                
+                                                </a>
+                                                <a class="dropdown-item" href="javascript:SuiteOnClick('LoginAsAnother\u0028\u0027\u002f_layouts\\u002f15\\u002fcloseConnection.aspx?loginasanotheruser=true\u0027, 0\u0029')">Sign in as Different User
+                                                
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
-                        </section>
+                        </div>
+                        <!-- Ends Header Here -->
+                        <!-- Starts Navigation Here -->
+                        <div class="megamenandsearch_wrapper" id="navigation-container">
+        <div class="row">
+            <div class="megamenu_container">
+                <div class="col-md-9">
+                    <div class="menu">
+                        <a href="#" class="menu-mobile">Navigation</a>
+                        <ul data-bind="foreach: navigationTree.children">
+                            <li class="menu-dropdown-icon who_we_are">
+                                <a data-bind="attr: { href: url ? url: '#', title: name }, text: name" ,></a>
+                                <ul data-bind="foreach: children">
+                                    <li>
+                                        <span class="menu_name" data-bind="text: name"></span>
+                                        <ul id="who-we-are-submenu1" data-bind="foreach: children">
+                                            <li>
+                                                <a data-bind="attr: { href: url ? url: '#', title: name }, text: name"></a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
                     </div>
                 </div>
-                <header class="desktop_header">
-                    <!-- Emergency Ticker -->
-                    <div id="Ticker" class="notification_wrapper hide"></div>
-                    <!--End Emergency Ticker -->
-                    <!-- Logo and Weather widgets Starts here -->
-                    <div class="Header_wrapper">
-                        <div class="mobile_iconbox visible-xs">
-                            <div class="logo_wrapper pull-left">
-                                <img src="/sites/Intranet-Dev/Style Library/KPCU/Images/KPCU_Logo_mobile.png" />
-                            </div>
-                            <div class="search_wrapper pull-left">
-                                <a href="#"><i class="glyphicon glyphicon-search"></i></a>
-                            </div>
-                            <div class="weather_wrapper pull-left">
-                                <a href="#"><i class="glyphicon glyphicon-cloud"></i></a>
-                            </div>
-                        </div>
-                        <div class="Header_container">
-                            <div class="row">
-                                <!--Start KPCU Logo-->
-                                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-4 hidden-xs">
-                                    <div class="company-logo">
-                                        <a href="/sites/Intranet-Dev/Pages/Home.aspx">
-                                                <img src="/sites/Intranet-Dev/Style Library/KPCU/Images/KPCU_Logo.png" />
-                                            </a>
-                                    </div>
-                                </div>
-                                <!--Start KPCU Logo -->
-                                <!--Start Weather Widget-->
-                                <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12 weather_containbox hidden-xs">
-                                    <div id="WeatherWrapper" class="WeatherInfo hidden-xs">
-                                    </div>
-                                </div>
-                                <!--End Weather Widget-->
-                            </div>
+                <div class="col-md-3">
+                    <div id="custom-search-input">
+                        <div class="input-group col-md-12">
+                            <input type="text" class="form-control input-lg" placeholder="Find People, documents and stuf" />
+                            <span class="input-group-btn">
+                                <button class="btn btn-info btn-lg" type="button">
+                                    <i class="glyphicon glyphicon-search"></i>
+                                </button>
+                            </span>
                         </div>
                     </div>
-                    <!-- Logo and Weather widgets Ends here -->
-                    <!-- Menu and SearchBox widgets Starts here -->
-                    <div class="megamenandsearch_wrapper">
-                        <div class="row">
-                            <div class="megamenu_container">
-                                <!-- Menu Ends here -->
-                                <div class="col-md-8">
-                                    <!-- Mega Menu Started -->
-                                    <div class="menu"></div>
-                                </div>
-                                <!-- Menu Ends here -->
-                                <!-- Search Box Snippet Starts here -->
-                                <div class="col-md-3 col-xs-12 col-md-3 search-box-cont hidden-xs">
-                                    
-                                    
-                                    
-                                    
-                                    
-                                    
-                                    
-                                    
-                                    
-                                    <spsswc:SearchBoxScriptWebPart runat="server" QueryGroupNamesJson="[&quot;Default&quot;]" ResultsPageAddress="https://kpcu.sharepoint.com/sites/Intranet-Dev/Search/Pages/SearchResults.aspx" ShowPeopleNameSuggestions="True" UpdatePageTitle="False" TryInplaceQuery="False" FurtherSharedSearchBoxSettingsCheckNeeded="False" RenderTemplateId="~sitecollection/_catalogs/masterpage/Display Templates/Search/Control_KPCUSearchBox.js" StatesJson="{}" ServerIncludeScriptsJson="null" Title="KPCU Search Box" FrameType="None" SuppressWebPartChrome="False" Description="&lt;%$Resources:Microsoft.Office.Server.Search,SearchBoxScriptWP_Desc;%&gt;" IsIncluded="True" ZoneID="ImportedPartZone" PartOrder="0" FrameState="Normal" AllowRemove="True" AllowZoneChange="True" AllowMinimize="True" AllowConnect="True" AllowEdit="True" AllowHide="True" IsVisible="True" DetailLink="" HelpLink="" HelpMode="Modeless" Dir="Default" PartImageSmall="" MissingAssembly="&lt;%$Resources:core,ImportErrorMessage;%&gt;" ImportErrorMessage="&lt;%$Resources:core,ImportErrorMessage;%&gt;" PartImageLarge="" IsIncludedFilter="" ExportControlledProperties="True" ConnectionID="00000000-0000-0000-0000-000000000000" ID="g_711db10d_45d8_460f_b402_afb64911bbac" ChromeType="None" ExportMode="All" Preview="&lt;div class=&quot;ms-webpart-chrome ms-webpart-chrome-vertical ms-webpart-chrome-fullWidth &quot;&gt;  &lt;div WebPartID=&quot;00000000-0000-0000-0000-000000000000&quot; HasPers=&quot;true&quot; id=&quot;WebPartwpz0_g_711db10d_45d8_460f_b402_afb64911bbac&quot; width=&quot;100%&quot; class=&quot;ms-WPBody noindex &quot; OnlyForMePart=&quot;true&quot; allowDelete=&quot;false&quot; style=&quot;&quot; &gt;&lt;div id=&quot;WebPartContent&quot;&gt;   &lt;div componentid=&quot;wpz0_g_711db10d_45d8_460f_b402_afb64911bbac_csr&quot; id=&quot;wpz0_g_711db10d_45d8_460f_b402_afb64911bbac_csr&quot;&gt;&lt;/div&gt;&lt;noscript&gt;&lt;div id=&quot;wpz0_g_711db10d_45d8_460f_b402_afb64911bbac_noscript&quot;&gt;It looks like your browser does not have JavaScript enabled. Please turn on JavaScript and try again.&lt;/div&gt;&lt;/noscript&gt;&lt;div id=&quot;wpz0_g_711db10d_45d8_460f_b402_afb64911bbac&quot;&gt;  &lt;/div&gt;  &lt;/div&gt;&lt;div class=&quot;ms-clear&quot;&gt;&lt;/div&gt;&lt;/div&gt; &lt;/div&gt;" __MarkupType="vsattributemarkup" __WebPartId="{711db10d-45d8-460f-b402-afb64911bbac}" WebPart="true" Height="" Width="">
-                                    </spsswc:SearchBoxScriptWebPart>
-                                    
-                            
-                        </div>
-                        <!-- Search Box Snippet Ends here -->
-                    </div>
+                </div>
             </div>
         </div>
-        <!-- Menu and Search Box widgets Starts here -->
-        </header>
-        <div id="contentRow">
-            <!-- Custom BreadCrumb Section Starts here -->
-            <div id="breadcrumb-pub" class="breadcrumb-cont hide">
-                <asp:SiteMapPath runat="server" SiteMapProviders="SPSiteMapProvider,SPXmlContentMapProvider" RenderCurrentNodeAsLink="true" NodeStyle-CssClass="breadcrumbNode" CurrentNodeStyle-CssClass="breadcrumbCurrentNode" RootNodeStyle-CssClass="breadcrumbRootNode" HideInteriorRootNodes="true" SkipLinkText=""/>
-            </div>
-            <!-- Custom BreadCrumb Section Ends  here -->
-            <div class="row">
-                <div class="col-md-3 hide">
-                    <div class="departmentsidebar_wrapper">
-                        <div id="sideNavBox" role="navigation" class="ms-dialogHidden ms-forceWrap ms-noList">
-                            <SharePoint:AjaxDelta id="DeltaPlaceHolderLeftNavBar" BlockElement="true" CssClass="ms-core-navigation" role="navigation" runat="server">
-                            <asp:ContentPlaceHolder id="PlaceHolderLeftNavBar" runat="server">
-							<SharePoint:DelegateControl runat="server" ControlId="QuickLaunchTop" />
-                            <a id="startNavigation" name="startNavigation" tabIndex="-1">
-	                                        </a>
-                            <asp:ContentPlaceHolder id="PlaceHolderLeftNavBarTop" runat="server" />
-                            <asp:ContentPlaceHolder id="PlaceHolderQuickLaunchTop" runat="server" />
-                            <asp:ContentPlaceHolder id="PlaceHolderLeftNavBarDataSource" runat="server" />
-                            <asp:ContentPlaceHolder id="PlaceHolderCalendarNavigator" runat="server" />
-                            <asp:ContentPlaceHolder id="PlaceHolderLeftActions" runat="server" />
-                            <div class="ms-core-sideNavBox-removeLeftMargin">
-                                <SharePoint:SPNavigationManager id="QuickLaunchNavigationManager" runat="server" QuickLaunchControlId="V4QuickLaunchMenu" ContainedControl="QuickLaunch" EnableViewState="false">
-                                <SharePoint:DelegateControl runat="server" ControlId="QuickLaunchDataSource">
-                                <Template_Controls>
-                                <asp:SiteMapDataSource SiteMapProvider="SPNavigationProvider" ShowStartingNode="False" id="QuickLaunchSiteMap" StartingNodeUrl="sid:1025" runat="server" />
-                                </Template_Controls>
-                                </SharePoint:DelegateControl>
-                                <SharePoint:AspMenu id="V4QuickLaunchMenu" runat="server" EnableViewState="false" DataSourceId="QuickLaunchSiteMap" UseSimpleRendering="true" Orientation="Vertical" StaticDisplayLevels="3" AdjustForShowStartingNode="true" MaximumDynamicDisplayLevels="0" SkipLinkText="" />
-                                </SharePoint:SPNavigationManager>
-                                <SharePoint:SPNavigationManager id="TreeViewNavigationManagerV4" runat="server" ContainedControl="TreeView" CssClass="ms-tv-box">
-                                <SharePoint:SPLinkButton runat="server" NavigateUrl="~site/_layouts/15/viewlsts.aspx" id="idNavLinkSiteHierarchyV4" Text="&lt;%$Resources:wss,treeview_header%&gt;" accesskey="&lt;%$Resources:wss,quiklnch_allcontent_AK%&gt;" CssClass="ms-tv-header" />
-                                <SharePoint:DelegateControl runat="server" ControlId="TreeViewAndDataSource">
-                                <Template_Controls>
-                                <SharePoint:SPHierarchyDataSourceControl runat="server" id="TreeViewDataSourceV4" RootContextObject="Web" IncludeDiscussionFolders="true" />
-                                <SharePoint:SPRememberScroll runat="server" id="TreeViewRememberScrollV4" onscroll="javascript:_spRecordScrollPositions(this);" style="overflow: auto;">
-                                <SharePoint:SPTreeView id="WebTreeViewV4" runat="server" ShowLines="false" DataSourceId="TreeViewDataSourceV4" ExpandDepth="0" SelectedNodeStyle-CssClass="ms-tv-selected" NodeStyle-CssClass="ms-tv-item" SkipLinkText="" NodeIndent="12" ExpandImageUrl="/_layouts/15/images/tvclosed.png?rev=44" ExpandImageUrlRtl="/_layouts/15/images/tvclosedrtl.png?rev=44" CollapseImageUrl="/_layouts/15/images/tvopen.png?rev=44" CollapseImageUrlRtl="/_layouts/15/images/tvopenrtl.png?rev=44" NoExpandImageUrl="/_layouts/15/images/tvblank.gif?rev=44">
-                                </SharePoint:SPTreeView>
-                                </SharePoint:SPRememberScroll>
-                                </Template_Controls>
-                                </SharePoint:DelegateControl>
-                                </SharePoint:SPNavigationManager>
-                                <asp:ContentPlaceHolder id="PlaceHolderQuickLaunchBottom" runat="server">
-								<div class="ms-core-listMenu-verticalBox">
-                                    <SharePoint:ClusteredSPLinkButton runat="server" id="idNavLinkViewAll" PermissionsString="ViewFormPages" NavigateUrl="~site/_layouts/15/viewlsts.aspx" Text="&lt;%$Resources:wss,AllSiteContentMore%&gt;" ToolTip="&lt;%$Resources:wss,AllSiteContentMore%&gt;" accesskey="&lt;%$Resources:wss,quiklnch_allcontent_AK%&gt;" CssClass="ms-core-listMenu-item ms-core-listMenu-heading" />
-                                    
+    </div>
+    
+                        <div class="row" style="display:none">
+                            <div class="col-md-12">
+                                <nav class="navbar navbar-default">
+                                    <!-- Brand and toggle get grouped for better mobile display -->
+                                    <div class="navbar-header">
+                                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                                            <span class="sr-only">Toggle navigation
+                                            
+                                            
+                                            
+                                            </span>
+                                            <span class="icon-bar">
+                                            </span>
+                                            <span class="icon-bar">
+                                            </span>
+                                            <span class="icon-bar">
+                                            </span>
+                                        </button>
+                                    </div>
+                                    <!-- Collect the nav links, forms, and other content for toggling -->
+                                    <div class="collapse navbar-collapse pull-left customNavContent" id="bs-example-navbar-collapse-1">
+                                        <div class="ms-breadcrumb-top">
+                                            <div class="ms-breadcrumb-dropdownBox" style="display:none;">
+                                                <SharePoint:AjaxDelta id="DeltaBreadcrumbDropdown" runat="server">
+                                                <SharePoint:PopoutMenu Visible="false" runat="server" ID="GlobalBreadCrumbNavPopout" IconUrl="/_layouts/15/images/spcommon.png?rev=40" IconAlt="&lt;%$Resources:wss,master_breadcrumbIconAlt%&gt;" ThemeKey="v15breadcrumb" IconOffsetX="215" IconOffsetY="120" IconWidth="16" IconHeight="16" AnchorCss="ms-breadcrumb-anchor" AnchorOpenCss="ms-breadcrumb-anchor-open" MenuCss="ms-breadcrumb-menu ms-noList">
+                                                <div class="ms-breadcrumb-top">
+                                                    <asp:Label runat="server" CssClass="ms-breadcrumb-header" Text="&lt;%$Resources:wss,master_breadcrumbHeader%&gt;" />
+                                                </div>
+                                                <asp:ContentPlaceHolder id="PlaceHolderTitleBreadcrumb" runat="server">
+                                                <SharePoint:ListSiteMapPath runat="server" SiteMapProviders="SPSiteMapProvider,SPContentMapProvider" RenderCurrentNodeAsLink="false" PathSeparator="" CssClass="ms-breadcrumb" NodeStyle-CssClass="ms-breadcrumbNode" CurrentNodeStyle-CssClass="ms-breadcrumbCurrentNode" RootNodeStyle-CssClass="ms-breadcrumbRootNode" NodeImageOffsetX="0" NodeImageOffsetY="289" NodeImageWidth="16" NodeImageHeight="16" NodeImageUrl="/_layouts/15/images/fgimg.png?rev=40" RTLNodeImageOffsetX="0" RTLNodeImageOffsetY="312" RTLNodeImageWidth="16" RTLNodeImageHeight="16" RTLNodeImageUrl="/_layouts/15/images/fgimg.png?rev=40" HideInteriorRootNodes="true" SkipLinkText="" />
+                                                </asp:ContentPlaceHolder>
+                                                </SharePoint:PopoutMenu>
+                                                </SharePoint:AjaxDelta>
+                                            </div>
+                                            <SharePoint:AjaxDelta id="DeltaTopNavigation" BlockElement="true" CssClass="ms-displayInline" runat="server">
+                                            <SharePoint:DelegateControl runat="server" ControlId="TopNavigationDataSource" Id="topNavigationDelegate">
+                                            <Template_Controls>
+                                            <asp:SiteMapDataSource ShowStartingNode="False" SiteMapProvider="SPNavigationProvider" id="topSiteMap" runat="server" StartingNodeUrl="sid:1002" />
+                                            </Template_Controls>
+                                            </SharePoint:DelegateControl>
+                                            <asp:ContentPlaceHolder id="PlaceHolderTopNavBar" runat="server">
+											<SharePoint:AspMenu ID="TopNavigationMenu" Runat="server" EnableViewState="false" DataSourceID="topSiteMap" AccessKey="&lt;%$Resources:wss,navigation_accesskey%&gt;" UseSimpleRendering="true" UseSeparateCss="false" Orientation="Horizontal" StaticDisplayLevels="2" AdjustForShowStartingNode="true" MaximumDynamicDisplayLevels="2" SkipLinkText="" />
+                                            
+                                            </asp:ContentPlaceHolder>
+                                            </SharePoint:AjaxDelta>
+                                        </div>
+                                    </div>
+                                    <!-- /.navbar-collapse -->
+                                    <div class="search-wrapper pull-right">
+                                        <div id="searchInputBox">
+                                            <SharePoint:DelegateControl runat="server" ControlId="SmallSearchInputBox"/>
+                                            
+                                        </div>
+                                    </div>
+                                </nav>
+                            </div>
+                        </div>
+                        <!-- Ends Navigation Here -->
+                        <div class="row">
+                            <div class="col-md-12">
+                                <!-- Starts News Bulletin Here -->
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                <spsswc:ContentBySearchWebPart runat="server" AlwaysRenderOnServer="False" ResultType="" NumberOfItems="30" DataProviderJSON="{&quot;QueryGroupName&quot;:&quot;Default&quot;,&quot;QueryPropertiesTemplateUrl&quot;:&quot;sitesearch://webroot&quot;,&quot;IgnoreQueryPropertiesTemplateUrl&quot;:false,&quot;SourceID&quot;:&quot;8413cd39-2156-4e00-b54d-11efd9abdb89&quot;,&quot;SourceName&quot;:&quot;Local SharePoint Results&quot;,&quot;SourceLevel&quot;:&quot;Ssa&quot;,&quot;CollapseSpecification&quot;:&quot;&quot;,&quot;QueryTemplate&quot;:&quot;(contentclass:STS_ListItem OR IsDocument:True) ContentType:\&quot;NBB_Bulletin\&quot;  ExpirationTime\u003e{Today-1} Path:\&quot;https://gohelmahendrak.sharepoint.com/sites/NBB/\&quot;&quot;,&quot;FallbackSort&quot;:[],&quot;FallbackSortJson&quot;:&quot;[]&quot;,&quot;RankRules&quot;:[],&quot;RankRulesJson&quot;:&quot;[]&quot;,&quot;AsynchronousResultRetrieval&quot;:false,&quot;SendContentBeforeQuery&quot;:true,&quot;BatchClientQuery&quot;:true,&quot;FallbackLanguage&quot;:-1,&quot;FallbackRankingModelID&quot;:&quot;&quot;,&quot;EnableStemming&quot;:true,&quot;EnablePhonetic&quot;:false,&quot;EnableNicknames&quot;:false,&quot;EnableInterleaving&quot;:false,&quot;EnableQueryRules&quot;:true,&quot;EnableOrderingHitHighlightedProperty&quot;:false,&quot;HitHighlightedMultivaluePropertyLimit&quot;:-1,&quot;IgnoreContextualScope&quot;:true,&quot;ScopeResultsToCurrentSite&quot;:false,&quot;TrimDuplicates&quot;:false,&quot;Properties&quot;:{&quot;TryCache&quot;:true,&quot;Scope&quot;:&quot;{Site.URL}&quot;,&quot;UpdateLinksForCatalogItems&quot;:true,&quot;EnableStacking&quot;:true,&quot;CrossGeoQuery&quot;:&quot;false&quot;,&quot;ListId&quot;:&quot;00000000-0000-0000-0000-000000000000&quot;},&quot;PropertiesJson&quot;:&quot;{\&quot;TryCache\&quot;:true,\&quot;Scope\&quot;:\&quot;{Site.URL}\&quot;,\&quot;UpdateLinksForCatalogItems\&quot;:true,\&quot;EnableStacking\&quot;:true,\&quot;CrossGeoQuery\&quot;:\&quot;false\&quot;,\&quot;ListId\&quot;:\&quot;00000000-0000-0000-0000-000000000000\&quot;}&quot;,&quot;ClientType&quot;:&quot;ContentSearchRegular&quot;,&quot;ClientFunction&quot;:&quot;&quot;,&quot;ClientFunctionDetails&quot;:&quot;&quot;,&quot;UpdateAjaxNavigate&quot;:true,&quot;SummaryLength&quot;:180,&quot;DesiredSnippetLength&quot;:90,&quot;PersonalizedQuery&quot;:false,&quot;FallbackRefinementFilters&quot;:null,&quot;IgnoreStaleServerQuery&quot;:false,&quot;RenderTemplateId&quot;:&quot;DefaultDataProvider&quot;,&quot;AlternateErrorMessage&quot;:null,&quot;Title&quot;:&quot;&quot;}" BypassResultTypes="True" ItemTemplateId="~sitecollection/_catalogs/masterpage/Display Templates/Content Web Parts/Item_Important_Announcements.js" GroupTemplateId="~sitecollection/_catalogs/masterpage/Display Templates/Content Web Parts/Group_Content.js" ResultsPerPage="30" SelectedPropertiesJson="[&quot;Path&quot;,&quot;Title&quot;,&quot;DiscussionPost&quot;,&quot;FileExtension&quot;,&quot;SecondaryFileExtension&quot;,&quot;ExpirationTime&quot;,&quot;ExpiresOWSDATE&quot;,&quot;EmployeeDepartment&quot;]" HitHighlightedPropertiesJson="[&quot;Title&quot;,&quot;Path&quot;,&quot;Author&quot;,&quot;SectionNames&quot;,&quot;SiteDescription&quot;]" AvailableSortsJson="null" SearchCenterXGeoLocations="" XGeoTenantsInfo="" ShowBestBets="False" ShowPersonalFavorites="False" ShowDefinitions="False" ShowDidYouMean="False" PreloadedItemTemplateIdsJson="null" QueryGroupName="Default" RenderTemplateId="~sitecollection/_catalogs/masterpage/Display Templates/Content Web Parts/Control_ImpAnnouncement.js" StatesJson="{}" ServerIncludeScriptsJson="null" Title="Content Search" FrameType="None" SuppressWebPartChrome="False" Description="&lt;%$Resources:Microsoft.Office.Server.Search,CBS_Description;%&gt;" IsIncluded="True" ZoneID="ImportedPartZone" PartOrder="0" FrameState="Normal" AllowRemove="True" AllowZoneChange="True" AllowMinimize="True" AllowConnect="True" AllowEdit="True" AllowHide="True" IsVisible="True" DetailLink="" HelpLink="" HelpMode="Modeless" Dir="Default" PartImageSmall="" MissingAssembly="&lt;%$Resources:core,ImportErrorMessage;%&gt;" ImportErrorMessage="&lt;%$Resources:core,ImportErrorMessage;%&gt;" PartImageLarge="" IsIncludedFilter="" ExportControlledProperties="True" ConnectionID="00000000-0000-0000-0000-000000000000" ID="g_fa23908b_4ef5_4a87_9644_b56b5774d640" ChromeType="None" ExportMode="All" __MarkupType="vsattributemarkup" __WebPartId="{fa23908b-4ef5-4a87-9644-b56b5774d640}" WebPart="true" Height="" Width=""/>
+                                                                
+								<!-- Ends News Bulletin Here -->
+                            </div>
+                        </div>
+                        <div id="contentRow">
+                            <div id="contentBox" aria-live="polite" aria-relevant="all" role="main">
+                                <div id="notificationArea" class="ms-notif-box">
+                                </div>
+                                <SharePoint:AjaxDelta id="DeltaPageStatusBar" BlockElement="true" runat="server">
+                                <div id="pageStatusBar">
+                                </div>
+                                </SharePoint:AjaxDelta>
+                                <SharePoint:AjaxDelta id="DeltaPlaceHolderMain" BlockElement="true" IsMainContent="true" runat="server">
+                                <a id="mainContent" name="mainContent" tabindex="-1">
+                                </a>
+                                <asp:ContentPlaceHolder id="PlaceHolderMain" runat="server">
+								<div class="DefaultContentBlock" style="border:medium black solid; background:yellow; color:black;">
+            This area will be filled in by content you create in your page layouts.
+		
+                        
+                        
+                                
+                                
+                                
+                                
                                 </div>
                                 </asp:ContentPlaceHolder>
+                                </SharePoint:AjaxDelta>
                             </div>
-                            <SharePoint:DelegateControl runat="server" ControlId="QuickLaunchBottom" />
+                            <SharePoint:AjaxDelta id="DeltaFormDigest" BlockElement="true" runat="server">
+                            <asp:ContentPlaceHolder id="PlaceHolderFormDigest" runat="server">
+							<SharePoint:FormDigest runat="server" />
                             </asp:ContentPlaceHolder>
                             </SharePoint:AjaxDelta>
+                            <div class="ms-hide">
+                                <asp:ContentPlaceHolder id="PlaceHolderSiteName" runat="server" Visible="false" />
+                                <asp:ContentPlaceHolder id="PlaceHolderHorizontalNav" runat="server" Visible="false" />
+                                <asp:ContentPlaceHolder id="PlaceHolderPageImage" runat="server" Visible="false" />
+                                <asp:ContentPlaceHolder id="PlaceHolderTitleLeftBorder" runat="server" Visible="false" />
+                                <asp:ContentPlaceHolder id="PlaceHolderMiniConsole" runat="server" Visible="false" />
+                                <asp:ContentPlaceHolder id="PlaceHolderTitleRightMargin" runat="server" Visible="false" />
+                                <asp:ContentPlaceHolder id="PlaceHolderTitleAreaSeparator" runat="server" Visible="false" />
+                                <asp:ContentPlaceHolder id="PlaceHolderNavSpacer" runat="server" Visible="false" />
+                                <asp:ContentPlaceHolder id="PlaceHolderLeftNavBarBorder" runat="server" Visible="false" />
+                                <asp:ContentPlaceHolder id="PlaceHolderBodyLeftBorder" runat="server" Visible="false" />
+                                <asp:ContentPlaceHolder id="PlaceHolderBodyRightMargin" runat="server" Visible="false" />
+                                <asp:ContentPlaceHolder id="PlaceHolderBodyAreaClass" runat="server" Visible="true" />
+                                <asp:ContentPlaceHolder id="PlaceHolderTitleAreaClass" runat="server" Visible="false" />
+                                <asp:ContentPlaceHolder id="PlaceHolderGlobalNavigation" runat="server" Visible="false" />
+                                <asp:ContentPlaceHolder id="PlaceHolderGlobalNavigationSiteMap" runat="server" Visible="false" />
+                                <asp:ContentPlaceHolder id="WSSDesignConsole" runat="server" Visible="false" />
+                            </div>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-9">
-                    <div id="contentBox" aria-live="polite" aria-relevant="all" role="main">
-                        <a id="mainContent" name="mainContent" tabindex="-1"></a>
-                        <div id="notificationArea" class="ms-notif-box"></div>
-                        <SharePoint:AjaxDelta id="DeltaPageStatusBar" BlockElement="true" runat="server">
-                        <div id="pageStatusBar">
+            </div>
+            <div class="footer-section">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-6 col-sm-12 col-xs-12">
+                            <div class="pull-left">
+                                <a href="https://www.nbbonline.com/en/">NBBOnline.com
+                                
+                                
+                                
+                                </a>
+                            </div>
                         </div>
-                        </SharePoint:AjaxDelta>
-                        <SharePoint:AjaxDelta id="DeltaPlaceHolderMain" BlockElement="true" IsMainContent="true" runat="server">
-                        <asp:ContentPlaceHolder id="PlaceHolderMain" runat="server">
-						<div class="DefaultContentBlock">
-                            This area will be filled in by content you create in your page layouts.
+                        <div class="col-md-6 col-sm-12 col-xs-12">
+                            <div class="pull-right">
+                                <span>NBB Confidential - For Internal User Only
+                                
+                                
+                                
+                                </span>
+                            </div>
                         </div>
-                        </asp:ContentPlaceHolder>
-                        </SharePoint:AjaxDelta>
                     </div>
                 </div>
             </div>
-            <SharePoint:AjaxDelta id="DeltaFormDigest" BlockElement="true" runat="server">
-            <asp:ContentPlaceHolder id="PlaceHolderFormDigest" runat="server">
-			<SharePoint:FormDigest runat="server" />
-            </asp:ContentPlaceHolder>
-            </SharePoint:AjaxDelta>
-            <div class="ms-hide">
-                <asp:ContentPlaceHolder id="PlaceHolderSiteName" runat="server" Visible="false" />
-                <asp:ContentPlaceHolder id="PlaceHolderHorizontalNav" runat="server" Visible="false" />
-                <asp:ContentPlaceHolder id="PlaceHolderPageImage" runat="server" Visible="false" />
-                <asp:ContentPlaceHolder id="PlaceHolderTitleLeftBorder" runat="server" Visible="false" />
-                <asp:ContentPlaceHolder id="PlaceHolderMiniConsole" runat="server" Visible="false" />
-                <asp:ContentPlaceHolder id="PlaceHolderTitleRightMargin" runat="server" Visible="false" />
-                <asp:ContentPlaceHolder id="PlaceHolderTitleAreaSeparator" runat="server" Visible="false" />
-                <asp:ContentPlaceHolder id="PlaceHolderNavSpacer" runat="server" Visible="false" />
-                <asp:ContentPlaceHolder id="PlaceHolderLeftNavBarBorder" runat="server" Visible="false" />
-                <asp:ContentPlaceHolder id="PlaceHolderBodyLeftBorder" runat="server" Visible="false" />
-                <asp:ContentPlaceHolder id="PlaceHolderBodyRightMargin" runat="server" Visible="false" />
-                <asp:ContentPlaceHolder id="PlaceHolderBodyAreaClass" runat="server" Visible="true" />
-                <asp:ContentPlaceHolder id="PlaceHolderTitleAreaClass" runat="server" Visible="false" />
-                <asp:ContentPlaceHolder id="PlaceHolderGlobalNavigation" runat="server" Visible="false" />
-                <asp:ContentPlaceHolder id="PlaceHolderGlobalNavigationSiteMap" runat="server" Visible="false" />
-                <asp:ContentPlaceHolder id="WSSDesignConsole" runat="server" Visible="false" />
-            </div>
         </div>
-        <!-- KPCU Footer -->
-    </div>
-    </div>
-    <!-- Footer Section Starts here -->
-    <div class="footer-section">
-        <div id="FooterHTML" class="container-fluid">
-        </div>
-    </div>
-    <!-- Footer Section Ends here -->
-    </div>
-    <SharePoint:ScriptBlock runat="server">
-    var g_Workspace = "s4-workspace";
-    </SharePoint:ScriptBlock>
-</SharePoint:SharePointForm>
-<SharePoint:AjaxDelta id="DeltaPlaceHolderUtilityContent" runat="server"><asp:ContentPlaceHolder id="PlaceHolderUtilityContent" runat="server" /></SharePoint:AjaxDelta><asp:ContentPlaceHolder id="PlaceHolderTitleBreadcrumb" Visible="False" runat="server" /><asp:ContentPlaceHolder id="PlaceHolderSearchArea" Visible="False" runat="server" /><asp:ContentPlaceHolder id="PlaceHolderTopNavBar" Visible="False" runat="server" /><asp:ContentPlaceHolder id="PlaceHolderPageTitleInTitleArea" Visible="False" runat="server" /><asp:ContentPlaceHolder id="PlaceHolderPageDescription" Visible="False" runat="server" /><asp:ContentPlaceHolder id="SPNavigation" Visible="False" runat="server" /></body>
+        <SharePoint:ScriptBlock runat="server">
+        var g_Workspace = "s4-workspace";
+        </SharePoint:ScriptBlock>
+    </SharePoint:SharePointForm>
+	<SharePoint:AjaxDelta id="DeltaPlaceHolderUtilityContent" runat="server"><asp:ContentPlaceHolder id="PlaceHolderUtilityContent" runat="server" /></SharePoint:AjaxDelta><asp:ContentPlaceHolder id="PlaceHolderSearchArea" Visible="False" runat="server" /><asp:ContentPlaceHolder id="PlaceHolderLeftNavBar" Visible="False" runat="server" /><asp:ContentPlaceHolder id="PlaceHolderLeftNavBarDataSource" Visible="False" runat="server" /><asp:ContentPlaceHolder id="PlaceHolderCalendarNavigator" Visible="False" runat="server" /><asp:ContentPlaceHolder id="PlaceHolderLeftActions" Visible="False" runat="server" /><asp:ContentPlaceHolder id="PlaceHolderLeftNavBarTop" Visible="False" runat="server" /><asp:ContentPlaceHolder id="PlaceHolderPageTitleInTitleArea" Visible="False" runat="server" /><asp:ContentPlaceHolder id="PlaceHolderPageDescription" Visible="False" runat="server" /><asp:ContentPlaceHolder id="SPNavigation" Visible="False" runat="server" /><asp:ContentPlaceHolder id="PlaceHolderQuickLaunchTop" Visible="False" runat="server" /><asp:ContentPlaceHolder id="PlaceHolderQuickLaunchBottom" Visible="False" runat="server" /></body>
 </SharePoint:SPHtmlTag>

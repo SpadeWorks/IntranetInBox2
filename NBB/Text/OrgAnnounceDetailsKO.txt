@@ -1,0 +1,31 @@
+<html>
+<body>	
+	<div class="nbb-articledetails" id="OrgAnnounceDetail">
+			<div class="articledetails-wrapper">
+	                <ul class="list-group">
+						<div class="dept-nameWrap">					
+					 		<div class="dept-name pull-left" title="">
+					 			<span data-bind="text:department"></span>
+							</div>					
+							<div class="dept-arrow pull-left"></div>				
+						</div>
+					 	<div class="nbb-articletitle">
+							<h2 data-bind="text:title"></h2>
+						</div>
+						<div class="articledetails-info">Last Modified: <span data-bind="text:lastModifiedDate"></span> <span> | </span>Expiry Date: <span data-bind="text:expiryDate"></span> <span></div>	<div class="articledetails-authorinfo">
+							<div class="articleauthor-profilepic nbb-profile-pic">
+						    	<img  width="41" height="41" alt="" data-bind="attr{src:userProfilePic}">
+						    </div>
+						    <div class="articleauthor-name">
+							 Author: <a href="/sites/mysites/person.aspx" data-bind="text:author"></a></div>
+					    </div>
+					    <div class="articledetails-image" data-bind="html:bannerImage"></div>
+					    		<div class="articledetails-txt" data-bind="html:description"></div>	          
+						</div>
+					</ul>
+			<div><a class="nbb-links" href="../Pages/OrgAnnouncements.aspx">View All Announcements</a><span data-bind="visible:hasEditPermission">&nbsp;|&nbsp;</span><a data-bind="visible:hasEditPermission" class="nbb-links" href="../Lists/OrganizationalAnnouncements/NewForm.aspx">Submit An Announcement</a></div>
+		</div>
+	
+</body>
+<script type="text/javascript" src="../Style Library/NBB/JS/OrgAnnounceDetailKO.js"></script>
+</html>

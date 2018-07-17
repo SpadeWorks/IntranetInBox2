@@ -1,3 +1,29 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Elements xmlns="http://schemas.microsoft.com/sharepoint/"> 
+<Elements xmlns="http://schemas.microsoft.com/sharepoint/">
+  <Module Name="fonts">
+    <File Path="fonts\Sample.txt" Url="fonts/Sample.txt" ReplaceContent="TRUE" />
+    <File Path="fonts\calibri.eot" Url="fonts/calibri.eot" ReplaceContent="TRUE" />
+    <File Path="fonts\calibri.otf" Url="fonts/calibri.otf" ReplaceContent="TRUE" />
+    <File Path="fonts\calibri.ttf" Url="fonts/calibri.ttf" ReplaceContent="TRUE" />
+    <File Path="fonts\calibri.woff" Url="fonts/calibri.woff" ReplaceContent="TRUE" />
+    <File Path="fonts\FontAwesome.otf" Url="fonts/FontAwesome.otf" ReplaceContent="TRUE" />
+    <File Path="fonts\fontawesome-webfont.eot" Url="fonts/fontawesome-webfont.eot" ReplaceContent="TRUE" />
+    <File Path="fonts\fontawesome-webfont.svg" Url="fonts/fontawesome-webfont.svg" ReplaceContent="TRUE" />
+    <File Path="fonts\fontawesome-webfont.ttf" Url="fonts/fontawesome-webfont.ttf" ReplaceContent="TRUE" />
+    <File Path="fonts\fontawesome-webfont.woff" Url="fonts/fontawesome-webfont.woff" ReplaceContent="TRUE" />
+    <File Path="fonts\fontawesome-webfont.woff2" Url="fonts/fontawesome-webfont.woff2" ReplaceContent="TRUE" />
+    <File Path="fonts\Gill Sans MT Bold.eot" Url="fonts/Gill Sans MT Bold.eot" ReplaceContent="TRUE" />
+    <File Path="fonts\Gill Sans MT Bold.svg" Url="fonts/Gill Sans MT Bold.svg" ReplaceContent="TRUE" />
+    <File Path="fonts\Gill Sans MT Bold.woff" Url="fonts/Gill Sans MT Bold.woff" ReplaceContent="TRUE" />
+    <File Path="fonts\Gill Sans MT Bold.woff2" Url="fonts/Gill Sans MT Bold.woff2" ReplaceContent="TRUE" />
+    <File Path="fonts\Gill Sans MT.eot" Url="fonts/Gill Sans MT.eot" ReplaceContent="TRUE" />
+    <File Path="fonts\Gill Sans MT.svg" Url="fonts/Gill Sans MT.svg" ReplaceContent="TRUE" />
+    <File Path="fonts\Gill Sans MT.woff" Url="fonts/Gill Sans MT.woff" ReplaceContent="TRUE" />
+    <File Path="fonts\Gill Sans MT.woff2" Url="fonts/Gill Sans MT.woff2" ReplaceContent="TRUE" />
+    <File Path="fonts\glyphicons-halflings-regular.eot" Url="fonts/glyphicons-halflings-regular.eot" ReplaceContent="TRUE" />
+    <File Path="fonts\glyphicons-halflings-regular.svg" Url="fonts/glyphicons-halflings-regular.svg" ReplaceContent="TRUE" />
+    <File Path="fonts\glyphicons-halflings-regular.ttf" Url="fonts/glyphicons-halflings-regular.ttf" ReplaceContent="TRUE" />
+    <File Path="fonts\glyphicons-halflings-regular.woff" Url="fonts/glyphicons-halflings-regular.woff" ReplaceContent="TRUE" />
+    <File Path="fonts\glyphicons-halflings-regular.woff2" Url="fonts/glyphicons-halflings-regular.woff2" ReplaceContent="TRUE" />
+  </Module>
 </Elements>

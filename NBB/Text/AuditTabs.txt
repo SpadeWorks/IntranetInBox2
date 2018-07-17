@@ -1,0 +1,25 @@
+
+
+
+            	<div id="koContainer1" class="nbbaudit-dashboard shadowbgBox">
+                	<div class="nbb-titleleftbar"></div>
+    					<div class="nbb-componenttitle">
+                           	<h2>Audit Issue Management</h2>
+	                    </div>
+                	<div class="row" data-bind="foreach: webPartsObservableArray">
+                    	<div class="col-md-3 col-sm-4 col-xs-12 clsAuditIssuesCount" data-bind="attr:{webpartname:WebPartName}" style="cursor: pointer">
+                        	<div class="auditissues-wrap shadowbgBox">
+                            	<div data-bind="css: IconClass" class="auditissues-icon allissues-icon goldbgBox"></div>
+                                <div class="auditissues-details">
+                                	<div class="auditissues-count" data-bind="text:Count"></div>
+                            		<div class="auditissues-txt" data-bind="text:Title"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+<script type="text/javascript" src="/sites/NBB/Style Library/NBB/JS/Scripts/AuditTabs.js"></script> 
+
+
+

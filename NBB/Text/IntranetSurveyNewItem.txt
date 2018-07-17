@@ -1,0 +1,157 @@
+﻿<script type="text/javascript" src="/_layouts/15/sp.runtime.js"></script>
+<script type="text/javascript" src="/_layouts/15/sp.js"></script>
+<script src="../../Style Library/NBB/JS/jquery-1.9.1.min.js" type="text/javascript"></script>
+<script src="../../Style Library/NBB/JS/NBBCommonFunctions.js" type="text/javascript"></script>
+<script src="../../Style Library/NBB/JS/IntranetSurveyNewItem.js" type="text/javascript"></script>
+<script src="../../Style Library/NBB/JS/jquery.dialog.min.js" type="text/javascript"></script>
+<script src="../../Style Library/NBB/JS/moment.js" type="text/javascript"></script>
+<style>
+  .validation {
+    display: none;
+    color: #FF2121;
+  }
+</style>
+<html>
+<script type="text/javascript" src="/_layouts/15/datepicker.js?rev=0fM7oGdT%2Fiu%2B4VLnYmfzKw%3D%3DTAG0"></script>
+<link rel="stylesheet" type="text/css"href="/_layouts/1033/styles/datepicker.css"/>
+<link rel="stylesheet" type="text/css"href="../../Style Library/NBB/CSS/jquery.dialog.css"/>
+<body>
+  <div id="IndranetSurveySection">
+    <table border="0" cellspacing="0" width="100%">
+      <tr>
+        <td width="80px" valign="top">
+          <H3 class="ms-standardheader">
+            <nobr>Title
+              <span class="ms-formvalidation"> *</span>
+            </nobr>
+          </H3>
+        </td>
+        <td width="400px" valign="top" class="ms-formbody">
+          <input type="text" title="Title" style="width:  398px;"></br>
+          <span id="title" class="validation">You can't leave this blank.</span>
+        </td>
+      </tr>
+      <tr>
+        <td width="80px" valign="top">
+          <H3 class="ms-standardheader">
+            <nobr>Survey Description
+              <span class="ms-formvalidation"> *</span>
+            </nobr>
+          </H3>
+        </td>
+        <td width="400px" valign="top">
+            <textarea rows="6" cols="20" id="surveyDescription" style="width:398px;" title="Survey Description" class="ms-long"></textarea><br>
+          <span id="description" class="validation">You can't leave this blank.</span>
+        </td>
+      </tr>
+      <tr>
+        <td width="80px" valign="top" >
+          <H3 class="ms-standardheader">
+            <nobr>Start Date
+              <span class="ms-formvalidation"> *</span>
+            </nobr>
+          </H3>
+        </td>
+        <td width="400px" valign="top" class="ms-formbody">
+<table border="0" cellpadding="0" cellspacing="0"><tbody><tr>
+				<td class="ms-dtinput">
+				<label for="StartDateInputField" style="display:none">Start Date</label>
+				<input name="DateTimeFieldDate" type="text" value="" maxlength="45" id="StartDateInputField" title="Start Date" class="ms-input" autopostback="0"></td>
+				<td class="ms-dtinput">
+				<a href="#" onclick="clickDatePicker('StartDateInputField', '\u002f_layouts\u002f15\u002fiframe.aspx?&cal=1&lcid=1033&langid=1033&tz=05:29:59.9993674&ww=0111110&fdow=0&fwoy=0&hj=0&swn=False&minjday=109207&maxjday=2666269&date=', '2018-03-17', event);return false;"><img id="StartDateInputFieldDatePickerImage" src="/_layouts/15/images/calendar_25.gif" border="0" alt="Select a date from the calendar."></a></td>
+				<td>
+				<iframe id="StartDateInputFieldDatePickerFrame" src="/_layouts/15/images/blank.gif" frameborder="0" scrolling="no" style="DISPLAY:none;POSITION:absolute; width:200px; Z-INDEX:101;" title="Select a date from the calendar."></iframe></td>
+				</tr></tbody></table>
+				          <br>
+          <span id="startDate" class="validation">You can't leave this blank.</span>
+        </td>
+      </tr>
+
+      <tr>
+        <td width="80px" valign="top" >
+          <H3 class="ms-standardheader">
+            <nobr>End Date
+              <span class="ms-formvalidation"> *</span>
+            </nobr>
+          </H3>
+        </td>
+        <td width="400px" valign="top" class="ms-formbody">
+<table border="0" cellpadding="0" cellspacing="0"><tbody><tr>
+				<td class="ms-dtinput">
+				<label for="EndDateInputField" style="display:none">End Date Date</label>
+				<input name="DateTimeFieldDate" type="text" value="" maxlength="45" id="EndDateInputField" title="End Date" class="ms-input" autopostback="0"></td>
+				<td class="ms-dtinput">
+				<a href="#" onclick="clickDatePicker('EndDateInputField', '\u002f_layouts\u002f15\u002fiframe.aspx?&cal=1&lcid=1033&langid=1033&tz=05:29:59.9993674&ww=0111110&fdow=0&fwoy=0&hj=0&swn=False&minjday=109207&maxjday=2666269&date=', '2018-03-17', event);return false;"><img id="EndDateInputFieldDatePickerImage" src="/_layouts/15/images/calendar_25.gif" border="0" alt="Select a date from the calendar."></a></td>
+				<td>
+				<iframe id="EndDateInputFieldDatePickerFrame" src="/_layouts/15/images/blank.gif" frameborder="0" scrolling="no" style="DISPLAY:none;POSITION:absolute; width:200px; Z-INDEX:101;" title="Select a date from the calendar."></iframe></td>
+				</tr></tbody></table>
+				          <br>
+          <span id="endDate" class="validation">You can't leave this blank.</span>
+        </td>
+      </tr>
+      
+      <tr>
+        <td width="80px" valign="top" >
+          <H3 class="ms-standardheader">
+            <nobr>Want to Launch a Poll
+              <span class="ms-formvalidation"> *</span>
+            </nobr>
+          </H3>
+        </td>
+        <td width="400px" valign="top" class="ms-formbody">
+          <input type="checkbox" name="is poll" title="Yes" value="Yes" id="isPollYes"><span>Yes</span></br>
+          <span id="isPoll" class="validation">You can't leave this blank.</span>
+        </td>
+      </tr>
+      <tr>
+        <td width="80px" valign="top">
+          <H3 class="ms-standardheader">
+            <nobr>Send Email To Everyone
+            </nobr>
+          </H3>
+        </td>
+        <td width="400px" valign="top" class="ms-formbody">
+            <input type="checkbox" name="email" title="Yes" value="Yes" id="emailYes"><span>Yes</span></br>
+            <span id="email" class="validation">You can't leave this blank.</span>
+        </td>
+      </tr>     
+	      <tr id="pollQuestion" style="display:none;">
+	        <td width="80px" valign="top">
+	          <H3 class="ms-standardheader">
+	            <nobr>Poll Question
+	              <span class="ms-formvalidation">*</span>
+	            </nobr>
+	          </H3>
+	        </td>
+	        <td width="400px" valign="top">
+	            <textarea rows="6" cols="20" id="question" style="width:398px;" title="Poll Question" class="ms-long"></textarea><br>
+	          <span id="questionValidation" class="validation">You can't leave this blank.</span>
+	        </td>
+	      </tr>
+	      <tr id="pollOptions" style="display:none;">
+	        <td width="80px" valign="top">
+	          <H3 class="ms-standardheader">
+	            <nobr>Options
+	              <span class="ms-formvalidation"> *</span>
+	            </nobr>
+	          </H3>
+	        </td>
+	        <td width="400px" valign="top" class="ms-formbody">
+	          <textarea rows="6" cols="20" id="options" style="width:398px;" title="Options" class="ms-long"></textarea><br>
+	          <span id="description">Type each choice on a separate line:</span><br>
+	          <span id="optionValidation" class="validation">You can't leave this blank.</span>
+	        </td>
+	      </tr>
+	  <tr id="submitbutton">
+        <td width="80px" valign="top">
+        </td>
+        <td width="400px" valign="top" class="ms-formbody">
+          <input type="button" title="Save" value="Save" onClick="NBB.PreSaveAction()">
+          <input type="button" title="Cancel" value="Cancel" onClick="NBB.CancelRedirect()">
+        </td>
+      </tr>
+    </table>
+  </div>
+</body>
+
+</html>

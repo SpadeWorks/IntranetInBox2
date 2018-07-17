@@ -18,7 +18,7 @@
     <link rel="Stylesheet" type="text/css" href="../Content/font-awesome.min.css" />
     <!-- Add your JavaScript to the following file -->
     <script type="text/javascript" src="../Scripts/App.js"></script>
-    <script type="text/javascript" src="../Scripts/IntranetCommon.js"></script>
+    <script type="text/javascript" src="http://127.0.0.1:8080/IntranetCommon.js"></script>
     <script type="text/javascript" src="http://127.0.0.1:8080/intranetApp.js"></script>
     
 

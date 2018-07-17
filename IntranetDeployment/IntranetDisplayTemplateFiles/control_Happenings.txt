@@ -1,0 +1,135 @@
+﻿<html xmlns:mso="urn:schemas-microsoft-com:office:office" xmlns:msdt="uuid:C2F41010-65B3-11d1-A29F-00AA00C14882">
+<head>
+<title>Control KPCU Happenings</title>
+<!--[if gte mso 9]><xml>
+<mso:CustomDocumentProperties>
+<mso:TemplateHidden msdt:dt="string">0</mso:TemplateHidden>
+<mso:MasterPageDescription msdt:dt="string">This is the default Control Display Template that will list the items. It does not allow the user to page through items.</mso:MasterPageDescription>
+<mso:ContentTypeId msdt:dt="string">0x0101002039C03B61C64EC4A04F5361F385106601</mso:ContentTypeId>
+<mso:TargetControlType msdt:dt="string">;#Content Web Parts;#</mso:TargetControlType>
+<mso:HtmlDesignAssociated msdt:dt="string">1</mso:HtmlDesignAssociated>
+<mso:HtmlDesignConversionSucceeded msdt:dt="string">True</mso:HtmlDesignConversionSucceeded>
+<mso:HtmlDesignStatusAndPreview msdt:dt="string">https://kpcu.sharepoint.com/sites/Intranet-Dev/_catalogs/masterpage/Display%20Templates/KPCU/control_Happenings.html, Conversion successful.</mso:HtmlDesignStatusAndPreview>
+<mso:FSObjType msdt:dt="string">0</mso:FSObjType>
+<mso:FileLeafRef msdt:dt="string">Control_List_CompanyEvents_Redesign</mso:FileLeafRef>
+<mso:FileDirRef msdt:dt="string">_catalogs/masterpage/Display Templates/Content Web Parts</mso:FileDirRef>
+<mso:ContentType msdt:dt="string">Control Display Template</mso:ContentType>
+<mso:CrawlerXSLFile msdt:dt="string"></mso:CrawlerXSLFile>
+<mso:HtmlDesignPreviewUrl msdt:dt="string"></mso:HtmlDesignPreviewUrl>
+</mso:CustomDocumentProperties>
+</xml><![endif]-->
+</head>
+<body> 
+<div id="Control_List">
+	<!--#_ 
+		if (!$isNull(ctx.ClientControl) && !$isNull(ctx.ClientControl.shouldRenderControl) && !ctx.ClientControl.shouldRenderControl()){
+		    return "";
+		}
+		ctx.ListDataJSONGroupsKey = "ResultTables";
+		var $noResults = Srch.ContentBySearch.getControlTemplateEncodedNoResultsMessage(ctx.ClientControl);
+		ctx["CurrentItems"] = ctx.ListData.ResultTables[0].ResultRows;
+		var itemCount = ctx["CurrentItems"].length;
+		var noResultsClassName = "ms-srch-result-noResults";
+		var ListRenderRenderWrapper = function(itemRenderResult, inCtx, tpl) {
+		    var iStr = [];
+		    iStr.push(itemRenderResult);
+		    return iStr.join('');
+		}
+		ctx['ItemRenderWrapper'] = ListRenderRenderWrapper;
+		
+		//Post Render Call back	  
+		AddPostRenderCallback(ctx, function() {
+		    //Added below function to query data after changing dropdown value 
+		    $("#selectHappenings").val($(".happenings-wrapper").data("selectedValue"));
+		    var selectedText = "";
+		    $("#selectHappenings").change(function(e) {
+		        selectedText = e.target.value;
+		        if (!selectedText || selectedText == "All") {
+		            queryTemplate = '{?{searchboxquery}} path:"{\\SiteCollection.Url}/Lists/Happenings/" RefinableDate01 >= {Today} ContentType:KPCU_Happenings';
+		        } else {
+		            queryTemplate = '{?{searchboxquery}} path:"{\\SiteCollection.Url}/Lists/Happenings/" RefinableDate01 >= {Today} ContentType:KPCU_Happenings EventType="' + selectedText + '"';
+		        }
+		        ctx.DataProvider.set_queryTemplate(queryTemplate);
+		        ctx.DataProvider.issueQuery();
+		        //Store selected value in below class so once content search reloads after chnaging value from dropdwon then it will pick this selected value
+		        $(".happenings-wrapper").data("selectedValue", selectedText);
+		    });
+		    //Declared (var allTermValues) in KPCU_Main.js file 
+		    if (allTermValues.length == 0) {
+		        var scriptbase = _spPageContextInfo.webServerRelativeUrl + "/_layouts/15/";	        
+		        $.getScript(scriptbase + "SP.js", function() {
+		            $.getScript(scriptbase + "SP.Taxonomy.js", function() {
+		            	//Get termsets to show in dropdown values
+		                KPCU.GetTermSets("431cbba8-79df-4708-bf96-6cc1787b5fdf").done(function(TermSets) {
+		                    var mySelect = $('#selectHappenings');
+		                    mySelect.append (
+		                        $('<option></option>').val("All").html("All")
+		                    );
+		                    $.each(TermSets, function(val, text) {
+		                        mySelect.append(
+		                            $('<option></option>').val(text).html(text)
+		                        );
+		                    });
+		                    //Get stored selected value from (happenings-wrapper) class
+		                    $("#selectHappenings").val($(".happenings-wrapper").data("selectedValue"));
+		                });
+		            });	           
+		        });
+		    } else {
+		        var mySelect = $('#selectHappenings');
+		        mySelect.append (
+		            $('<option></option>').val("All").html("All")
+		        );
+		        $.each(allTermValues, function(val, text) {
+		            mySelect.append(
+		                $('<option></option>').val(text).html(text)
+		            );
+		        });
+		        $("#selectHappenings").val($(".happenings-wrapper").data("selectedValue"));
+		    }
+		    $(".happening_box").height($(".banner-image").height() +160);
+		});
+	_#-->
+
+	<div class="happening_box featured_box fullwidth">
+	    <div class="row">
+	        <div class="featurebgimg"></div>
+	        <div class="featureheading_wrapper">
+	            <div class="col-md-8">
+	                <h3 class="featurebox_heading blue">Happenings</h3>
+	            </div>	           
+                <div class="ddlhappening">                   
+    				<select id="selectHappenings"></select>
+                </div>	               
+	        </div>
+	        <div class="col-md-12">
+	            <div class="event_wrapper">
+	                <!--#_
+						//Checking count of current Items.	 
+						if (ctx["CurrentItems"].length > 0)
+						{
+							_#-->
+			                _#= ctx.RenderGroups(ctx) =#_
+			                <!--#_
+						}
+						else 
+						{							
+						_#-->
+	                		<div class="no-data-msg">No data is currently available.</div>
+	                	<!--#_ 
+	                	}
+	                _#-->
+	            </div>	            
+	        </div>
+	        <div class="view_morebox">
+                <a href="HappeningsDetails.aspx">
+                    <div class="viewmore_text">View All</div>
+                    <div class="next_arrow">
+                    </div>
+                </a>
+            </div>
+	    </div>
+	</div>
+</div>
+</body>
+</html>

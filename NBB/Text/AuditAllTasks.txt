@@ -1,0 +1,50 @@
+<script type="text/javascript" src="https://gohelmahendrak.sharepoint.com/sites/NBB/Style%20Library/NBB/JS/Libraries/jquery-1.11.1.min.js"></script>
+<script type="text/javascript" src="https://gohelmahendrak.sharepoint.com/sites/NBB/Style%20Library/NBB/JS/Libraries/sputility.js"></script>
+<style>
+	#sideNavBox{
+		display:none;
+	}
+	.ms-informationbar{
+		display:none;
+	}
+</style>
+
+<script>
+$(document).ready(function(){
+	GetMyTasks()
+})
+function GetMyTasks(){
+	$.ajax({  
+        url: _spPageContextInfo.webAbsoluteUrl + "/_api/web/lists/getbytitle('IssueTracking')/items?$select=*,IssueOwner/ID,DelegateIssue/ID&$expand=IssueOwner/ID,DelegateIssue/ID&$filter=(IssueOwner/ID eq "+_spPageContextInfo.userId+") or (DelegateIssue/ID eq "+_spPageContextInfo.userId+")&$orderby=Created desc",  
+        method: "GET", 
+        cache: false, 
+        headers: { "Accept": "application/json; odata=verbose" },  
+        success: function (data) {
+        	var d = data.d.results;
+        	$('#idTotalIssues').text(d.length)
+        	
+        	for(var i=0;i<d.length;i++){
+        		var link = _spPageContextInfo.webAbsoluteUrl+"/lists/IssueTracking/DispForm.aspx?ID="+d[i].ID+"&source="+window.location.href+""
+        		var dt = new Date(d[i].Created)
+        		var tasks = "<li><a href="+link+" title='' id=''><span class='task-item'><span class='month-greybg'>"+dt.format('MMM dd yyyy')+"</span><span>"+d[i].Title+"</span></span></a></li>"
+        		$('#TasksGroups').append(tasks)
+        	}
+        	        	
+        	console.log(d)	            
+        },
+        error: function(error) {
+                console.log(JSON.stringify(error));
+            }
+        });
+}
+</script>
+<div class="nbb-tasks-wrap"> 
+   <div class="nbb-titleleftbar"></div> 
+     <div class="nbb-componenttitle">                        	
+     	<h2 class="pull-left">My All Tasks</h2></div>                                                                      		 				
+    <div class="recentRecognitionContent">			
+    <div class="ms-srch-result tasks-list" id="Result">    
+    	<ul id="TasksGroups">
+    	
+    	</ul>
+	</div></div></div>

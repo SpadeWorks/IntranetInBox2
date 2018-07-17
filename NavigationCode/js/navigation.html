@@ -1,0 +1,79 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" href="../Style Library/IntranetInBox/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="../Style Library/IntranetInBox/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="../Style Library/IntranetInBox/css/custom_styles.css" />
+    <link rel="stylesheet" href="../Style Library/IntranetInBox/css/mega_menu.css" />
+    <script type="text/javascript" src="../Style Library/IntranetInBox/js/jquery-3.3.1.min.js?v=1"></script>
+    <script type="text/javascript" src="../Style Library/IntranetInBox/js/bootstrap.min.js?v=1"></script>
+    <script type="text/javascript" src="../Style Library/IntranetInBox/js/knockout-3.4.2.js?v=1"></script>
+    <script type="text/javascript" src="../Style Library/IntranetInBox/js/services.js?v=1"></script>
+    <script type="text/javascript" src="../Style Library/IntranetInBox/js/pnp.min.js?v=1"></script>
+
+    <script type="text/javascript" src="../Style Library/IntranetInBox/js/megamenu.js?v=1"></script>
+    <script>
+        // this function will be executed once the polyfill is loaded.
+        console.log("pnpNotReady");
+
+        function pnpReady() {
+
+            $(function() {
+                $(document).trigger("pnpReady");
+                console.log("pnpReady");
+            })
+
+        }
+    </script>
+
+    <!-- This script tag loads the required polyfills from the service -->
+    <script src="https://cdn.polyfill.io/v2/polyfill.min.js?callback=pnpReady&features=es6|always|gated,fetch|always|gated"></script>
+
+    <title>Untitled 1</title>
+</head>
+
+<body>
+    <div class="megamenandsearch_wrapper" id="navigation-container">
+        <div class="row">
+            <div class="megamenu_container">
+                <div class="col-md-9">
+                    <div class="menu">
+                        <a href="#" class="menu-mobile">Navigation</a>
+                        <ul data-bind="foreach: navigationTree.children">
+                            <li class="menu-dropdown-icon who_we_are">
+                                <a data-bind="attr: { href: url ? url: '#', title: name }, text: name" ,></a>
+                                <ul data-bind="foreach: children">
+                                    <li>
+                                        <span class="menu_name" data-bind="text: name"></span>
+                                        <ul id="who-we-are-submenu1" data-bind="foreach: children">
+                                            <li>
+                                                <a data-bind="attr: { href: url ? url: '#', title: name }, text: name"></a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div id="custom-search-input">
+                        <div class="input-group col-md-12">
+                            <input type="text" class="form-control input-lg" placeholder="Find People, documents and stuf">
+                            <span class="input-group-btn">
+                                <button class="btn btn-info btn-lg" type="button">
+                                    <i class="glyphicon glyphicon-search"></i>
+                                </button>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>

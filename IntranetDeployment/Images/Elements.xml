@@ -4,5 +4,7 @@
     <File Path="Images\AppIcon.png" Url="Images/AppIcon.png" ReplaceContent="TRUE" />
     <File Path="Images\intranet-icon-displaying-19-gallery-images-intranet-icon-15988.jpg" Url="Images/intranet-icon-displaying-19-gallery-images-intranet-icon-15988.jpg" ReplaceContent="TRUE" />
     <File Path="Images\intranet.png" Url="Images/intranet.png" ReplaceContent="TRUE" />
+    <File Path="Images\NBB-intranet-logo.jpg" Url="Images/NBB-intranet-logo.jpg" ReplaceContent="TRUE" />
+    <File Path="Images\NBB-logo.jpg" Url="Images/NBB-logo.jpg" ReplaceContent="TRUE" />
   </Module>
 </Elements>

@@ -7,5 +7,6 @@
     <ProjectItemFile Source="NBBHomePageLayout.txt" Target="IntranetPageLayoutsFiles\" Type="ElementFile" />
     <ProjectItemFile Source="NBBLearningPageLayout.txt" Target="IntranetPageLayoutsFiles\" Type="ElementFile" />
     <ProjectItemFile Source="NBBOneColPageLayout.txt" Target="IntranetPageLayoutsFiles\" Type="ElementFile" />
+    <ProjectItemFile Source="KPCU_NewsDetailsLayout.txt" Target="IntranetPageLayoutsFiles\" Type="ElementFile" />
   </Files>
 </ProjectItem>

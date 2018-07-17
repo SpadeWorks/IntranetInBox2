@@ -1,22 +1,15 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Elements xmlns="http://schemas.microsoft.com/sharepoint/">
   <Module Name="IntranetAllPagesFiles">
-    <File Path="IntranetAllPagesFiles\Sample.txt" Url="IntranetAllPagesFiles/Sample.txt" ReplaceContent="TRUE" />
     <File Path="IntranetAllPagesFiles\AllArticles.txt" Url="IntranetAllPagesFiles/AllArticles.txt" ReplaceContent="TRUE" />
     <File Path="IntranetAllPagesFiles\AllLatestNews.txt" Url="IntranetAllPagesFiles/AllLatestNews.txt" ReplaceContent="TRUE" />
-    <File Path="IntranetAllPagesFiles\CompliancePortal.txt" Url="IntranetAllPagesFiles/CompliancePortal.txt" ReplaceContent="TRUE" />
     <File Path="IntranetAllPagesFiles\Home.txt" Url="IntranetAllPagesFiles/Home.txt" ReplaceContent="TRUE" />
     <File Path="IntranetAllPagesFiles\IntranetSurvey.txt" Url="IntranetAllPagesFiles/IntranetSurvey.txt" ReplaceContent="TRUE" />
     <File Path="IntranetAllPagesFiles\LatestUpdateDetails.txt" Url="IntranetAllPagesFiles/LatestUpdateDetails.txt" ReplaceContent="TRUE" />
     <File Path="IntranetAllPagesFiles\LatestUpdates.txt" Url="IntranetAllPagesFiles/LatestUpdates.txt" ReplaceContent="TRUE" />
     <File Path="IntranetAllPagesFiles\MarkYourCalendar.txt" Url="IntranetAllPagesFiles/MarkYourCalendar.txt" ReplaceContent="TRUE" />
-    <File Path="IntranetAllPagesFiles\NBB-FamilyUpdates.txt" Url="IntranetAllPagesFiles/NBB-FamilyUpdates.txt" ReplaceContent="TRUE" />
-    <File Path="IntranetAllPagesFiles\NBB-FamilyUpdatesDetailedPage.txt" Url="IntranetAllPagesFiles/NBB-FamilyUpdatesDetailedPage.txt" ReplaceContent="TRUE" />
-    <File Path="IntranetAllPagesFiles\NBB-FamilyUpdatesNew.txt" Url="IntranetAllPagesFiles/NBB-FamilyUpdatesNew.txt" ReplaceContent="TRUE" />
-    <File Path="IntranetAllPagesFiles\NBBFamilyUpdates.txt" Url="IntranetAllPagesFiles/NBBFamilyUpdates.txt" ReplaceContent="TRUE" />
     <File Path="IntranetAllPagesFiles\OrgAnnouncementDetails.txt" Url="IntranetAllPagesFiles/OrgAnnouncementDetails.txt" ReplaceContent="TRUE" />
     <File Path="IntranetAllPagesFiles\OrgAnnouncements.txt" Url="IntranetAllPagesFiles/OrgAnnouncements.txt" ReplaceContent="TRUE" />
     <File Path="IntranetAllPagesFiles\QuickLinks.txt" Url="IntranetAllPagesFiles/QuickLinks.txt" ReplaceContent="TRUE" />
-    <File Path="IntranetAllPagesFiles\Test.txt" Url="IntranetAllPagesFiles/Test.txt" ReplaceContent="TRUE" />
   </Module>
 </Elements>

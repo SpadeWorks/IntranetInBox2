@@ -1,0 +1,86 @@
+﻿<html xmlns:mso="urn:schemas-microsoft-com:office:office" xmlns:msdt="uuid:C2F41010-65B3-11d1-A29F-00AA00C14882"> 
+<head>
+<title>Item KPCU Happenings</title>
+<!--[if gte mso 9]><xml>
+<mso:CustomDocumentProperties>
+<mso:TemplateHidden msdt:dt="string">0</mso:TemplateHidden>
+<mso:ManagedPropertyMapping msdt:dt="string">&#39;EventType&#39;{EventType}:&#39;EventType&#39;,&#39;owstaxIdEventType1&#39;{owstaxIdEventType1}:&#39;owstaxIdEventType1&#39;,&#39;Link URL&#39;{Link URL}:&#39;Path&#39;,&#39;Line 1&#39;{Line 1}:&#39;Title&#39;,&#39;Line 2&#39;{Line 2}:&#39;EventDateOWSDATE&#39;,&#39;Line 3&#39;{Line 3}:&#39;EndDateOWSDATE&#39;,&#39;Line 5&#39;{Line 5}:&#39;MPLocation&#39;,&#39;SecondaryFileExtension&#39;,&#39;ContentTypeId&#39;</mso:ManagedPropertyMapping>
+<mso:MasterPageDescription msdt:dt="string">This Item Display Template will show a 100x100 picture of the item on the left. The title and the default item description will display to the right of the picture with an additional line that is available for a custom managed property.</mso:MasterPageDescription>
+<mso:ContentTypeId msdt:dt="string">0x0101002039C03B61C64EC4A04F5361F385106603</mso:ContentTypeId>
+<mso:TargetControlType msdt:dt="string">;#Content Web Parts;#</mso:TargetControlType>
+<mso:HtmlDesignAssociated msdt:dt="string">1</mso:HtmlDesignAssociated>
+<mso:HtmlDesignStatusAndPreview msdt:dt="string">https://kpcu.sharepoint.com/sites/Intranet-Dev/_catalogs/masterpage/Display Templates/KPCU/Item_KPCU_Happenings.html, Conversion successful.</mso:HtmlDesignStatusAndPreview>
+<mso:HtmlDesignConversionSucceeded msdt:dt="string">True</mso:HtmlDesignConversionSucceeded>
+</mso:CustomDocumentProperties>
+</xml><![endif]-->
+</head>
+<body>
+	<div id="TwoLines">
+		<!--#_
+			var linkURL = $getItemValue(ctx, "Link URL");
+			linkURL.overrideValueRenderer($urlHtmlEncode);			
+			var line1 = $getItemValue(ctx, "Line 1");//Title
+			var line2 = $getItemValue(ctx, "Line 2");//Start date
+			var startDate = "";
+			var startDate1 = "";
+			var actualhrs = "";
+			var min = "";
+			var ampm = "";			
+			if(line2.value)
+			{
+				startDate = line2.value.format("MMM");
+				startDate1 = line2.value.format("dd");
+				actualhrs = line2.value.format("hh");
+				min = line2.value.format("mm");
+				ampm = line2.value.format("tt");
+			}
+			var line3 = $getItemValue(ctx, "Line 3");//End date
+			var EndDate = "";
+			var EndDate1 = "";
+			if(line3.value)
+			{
+				EndDate =line3.value.format("MMM");
+				EndDate1 =line3.value.format("dd");
+			}
+			var Category = $getItemValue(ctx, "EventType");
+			//var Category1 = $getItemValue(ctx, "owstaxIdEventType1");			
+			var tag = document.createElement('div');
+			tag.innerHTML = line1.value;
+			var Location =  $getItemValue(ctx, "Line 5");			
+		_#-->
+        <div class="event_box">           
+            <div class="happeningcategory">
+                <span class="news_btn"> _#= Category =#_</span>
+            </div>           
+            <div class="eventdetails_wrapper">
+                <div class="col-md-3 col-sm-3 eventDate">                    
+                    <div class="eventdate_container">
+                        <div class="from_date">
+                            <span class="big_date">_#= startDate1 =#_ </span>
+                            <span class="month">_#= startDate =#_</span>
+                        </div>
+                        <!--#_
+						if (startDate1 != EndDate1)
+						{
+						_#-->
+	                        <div class="dash"> - </div>
+	                        <div class="to_date">
+	                            <span class="small_date">_#= EndDate1 =#_</span>                                    
+	                            <span class="small_month">_#= EndDate =#_</span>
+	                        </div>
+                        <!--#_
+						}
+						_#-->
+                    </div>                       
+                </div>
+                <div class="eventtitle_container">
+                    <a href="_#= linkURL =#_" title="_#= $htmlEncode(tag.innerHTML) =#_"><span class="eventtitle">_#= line1 =#_</span></a>
+                    <span class="time"><i class="fa fa-clock-o"></i> _#= actualhrs =#_ _#= min =#_ _#= ampm =#_</span>
+                    <span class="global"><i class="fa fa-map-marker"></i> _#= Location  =#_ </span>	               
+                </div>                  
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+

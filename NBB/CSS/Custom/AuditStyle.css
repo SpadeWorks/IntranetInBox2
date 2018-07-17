@@ -1,0 +1,23 @@
+﻿
+.clsAuditReports tr td{
+	border:1px solid;
+	width: 111px;
+	text-align: center;
+}
+.clsAuditReports tr{
+	border:1px solid;
+}
+.clsAuditReports tr td{
+	height: 50px;
+	width:589px
+}
+
+#sideNavBox{
+	display:none;
+}
+#contentBox {
+    margin-right: 0;
+    margin-left: 10px;
+    min-width: 100%;
+}
+

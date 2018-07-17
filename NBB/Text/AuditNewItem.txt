@@ -1,0 +1,73 @@
+<script type="text/javascript" src="https://gohelmahendrak.sharepoint.com/sites/NBB/Style%20Library/NBB/JS/Libraries/jquery-1.11.1.min.js"></script>
+<script type="text/javascript" src="https://gohelmahendrak.sharepoint.com/sites/NBB/Style%20Library/NBB/JS/Libraries/sputility.js"></script>
+<script type="text/javascript" src="/_layouts/15/clientpeoplepicker.js"></script>
+<script type="text/javascript" src="/_layouts/15/autofill.js"></script>
+<style>
+	#sideNavBox{
+		display:none;
+	}
+	.ms-informationbar{
+		display:none;
+	}
+</style>
+
+<script>
+$(document).ready(function(){
+	
+	SPUtility.GetSPFieldByInternalName('RevisedDueDateStatus').Hide()
+	SPUtility.GetSPFieldByInternalName('IssueJustification').Hide()
+	SPUtility.GetSPFieldByInternalName('DelegateIssue').Hide()
+	SPUtility.GetSPFieldByInternalName('RevisedDueDate').Hide()
+	SPUtility.GetSPFieldByInternalName('IssueResolutionComments').Hide()
+	SPUtility.GetSPFieldByInternalName('IssueClosureDate').Hide()
+	SPUtility.GetSPFieldByInternalName('ParentTaskId').Hide()
+	SPUtility.GetSPFieldByInternalName('PrimaryIssueOwner').Hide()
+	SPUtility.GetSPFieldByInternalName('IssueItemStatus').Hide()
+	SPUtility.GetSPFieldByInternalName('IssueResolutionCommentText').Hide()
+	SPUtility.GetSPFieldByInternalName('IssueJustificationText').Hide()
+	SPUtility.GetSPFieldByInternalName('AssignedTo').Hide()
+	var issueStatus = SPUtility.GetSPFieldByInternalName('IssueStatus1').Dropdown;
+	SetPeoplePickerValue(SPUtility.GetSPField('Auditors').Controls.firstChild.id,_spPageContextInfo.userEmail)
+	$(issueStatus).find('option').each(function(a,e){
+        if(e.label!="Open"){$(e).remove();}
+    })
+})
+function SetPeoplePickerValue(id, strName) {
+    try {
+        var userField = $("input[id$='" + id + "_EditorInput']")[0]
+        if (userField != undefined && userField != 'undefined') {
+            var peoplepicker = SPClientPeoplePicker.PickerObjectFromSubElement(userField)
+            //peoplepicker.DeleteProcessedUser()
+            peoplepicker.AddUserKeys(strName);
+        }
+    } catch (err) {
+
+    }
+}
+
+function PreSaveAction(){
+	debugger
+	var d = new Date()
+	var OriDueDt = SPUtility.GetSPFieldByInternalName('OriginalDueDate').GetValue();
+	var dtObj = new Date(""+OriDueDt.Year+"-"+OriDueDt.Month+"-"+OriDueDt.Day+"")
+	var RevDueDt = SPUtility.GetSPFieldByInternalName('RevisedDueDate').GetValue();
+	var revDtObj = new Date(""+RevDueDt.Year+"-"+RevDueDt.Month+"-"+RevDueDt.Day+"")
+	SPUtility.GetSPFieldByInternalName('AssignedTo').SetValue(SPUtility.GetSPFieldByInternalName('IssueOwner').GetValue()[0].AutoFillKey)
+	if(revDtObj=="Invalid Date"){
+		if(dtObj>=new Date(d.getFullYear(), d.getMonth(), d.getDate())){
+			SPUtility.GetSPFieldByInternalName('RevisedDueDate').SetValue(OriDueDt.Year,OriDueDt.Month,OriDueDt.Day);
+			return true;
+		}else{
+			alert("Please select Original Due Date greater than today's date!!!")
+			return false;
+		}
+	}else if(revDtObj<dtObj){
+		alert("Please select Revised Due Date greater than Original Due Date!!!")
+		return false;
+	}else{
+		return true;
+	}
+	
+}
+
+</script>

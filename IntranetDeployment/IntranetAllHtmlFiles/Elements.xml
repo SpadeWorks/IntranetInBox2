@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Elements xmlns="http://schemas.microsoft.com/sharepoint/">
+  <Module Name="IntranetAllHtmlFiles">
+    <File Path="IntranetAllHtmlFiles\carousel.html" Url="IntranetAllHtmlFiles/carousel.html" ReplaceContent="TRUE" />
+    <File Path="IntranetAllHtmlFiles\LatestUpdatesJSLink.html" Url="IntranetAllHtmlFiles/LatestUpdatesJSLink.html" ReplaceContent="TRUE" />
+    <File Path="IntranetAllHtmlFiles\OrgAnnouncementJSLink.html" Url="IntranetAllHtmlFiles/OrgAnnouncementJSLink.html" ReplaceContent="TRUE" />
+    <File Path="IntranetAllHtmlFiles\Poll.html" Url="IntranetAllHtmlFiles/Poll.html" ReplaceContent="TRUE" />
+    <File Path="IntranetAllHtmlFiles\BirthdayAndAnniversaries.html" Url="IntranetAllHtmlFiles/BirthdayAndAnniversaries.html" ReplaceContent="TRUE" />
+  </Module>
+</Elements>
+

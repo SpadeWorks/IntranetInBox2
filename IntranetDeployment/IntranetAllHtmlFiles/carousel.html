@@ -1,0 +1,42 @@
+<html>
+<body>
+    <div class="row" style="opacity:0;" id="carouselDiv">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="announce-carouselWrap shadowbgBox" id="carousel">
+                <!-- Carousel -->
+                <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+                    <!-- Indicators -->
+                    <ol class="carousel-indicators carousel-dots" data-bind="foreach: IndicatorArray">
+                        <li data-target="#carousel-example-generic" data-bind="attr:{'data-slide-to':position},css:active"></li>
+                    </ol>
+                    <!-- Wrapper for slides -->
+                    <div class="carousel-inner" data-bind="foreach: CarouselArray">
+
+                        <div class="item" data-bind="css:active">
+                            <div class="overlay"></div>
+                            <div data-bind="html: bannerImage"></div>
+                            <!-- Static Header -->
+                            <div class="header-text hidden-xs">
+                                <div class="announce-carouselTxt">
+                                    <!--<div class="dept-nameWrap">
+                                        <div class="dept-name pull-left" data-bind="html:department"></div>
+                                        <div class="dept-arrow pull-left"></div>
+                                    </div> -->
+                                    <h2 data-bind="text: title"></h2>
+                                    <div class="carousel-readbtns">
+                                        <a class="btn btn-primary" data-bind="attr:{href:readMore}">Read More</a>
+                                    </div>
+                                </div>
+                                <div class="carousel-morebtns">
+                                    <a class="btn btn-link" href="../Pages/OrgAnnouncements.aspx">More Announcements</a>
+                                </div>
+                            </div><!-- /header-text -->
+                        </div>
+                    </div>
+                </div><!-- /carousel -->
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript" src="../Style Library/IntranetInbox/js/CarouselKO.js"></script>
+</body>
+</html>
