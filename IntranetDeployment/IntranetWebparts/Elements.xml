@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Elements xmlns="http://schemas.microsoft.com/sharepoint/">
+  <Module Name="IntranetWebparts">
+    <File Path="IntranetWebparts\Sample.txt" Url="IntranetWebparts/Sample.txt" ReplaceContent="TRUE" />
+    <File Path="IntranetWebparts\Birthday And Anniversaries.dwp" Url="IntranetWebparts/Birthday And Anniversaries.dwp" ReplaceContent="TRUE" />
+    <File Path="IntranetWebparts\Happenings.webpart" Url="IntranetWebparts/Happenings.webpart" ReplaceContent="TRUE" />
+    <File Path="IntranetWebparts\KPCU News.webpart" Url="IntranetWebparts/KPCU News.webpart" ReplaceContent="TRUE" />
+    <File Path="IntranetWebparts\Latest News Home Content Search.webpart" Url="IntranetWebparts/Latest News Home Content Search.webpart" ReplaceContent="TRUE" />
+    <File Path="IntranetWebparts\Latest Updates Home CSWP.webpart" Url="IntranetWebparts/Latest Updates Home CSWP.webpart" ReplaceContent="TRUE" />
+    <File Path="IntranetWebparts\Mark Your Calendar CSWP.webpart" Url="IntranetWebparts/Mark Your Calendar CSWP.webpart" ReplaceContent="TRUE" />
+    <File Path="IntranetWebparts\NBB Family Updates CSWP.webpart" Url="IntranetWebparts/NBB Family Updates CSWP.webpart" ReplaceContent="TRUE" />
+    <File Path="IntranetWebparts\Org Announcement carousel CEWP.dwp" Url="IntranetWebparts/Org Announcement carousel CEWP.dwp" ReplaceContent="TRUE" />
+    <File Path="IntranetWebparts\Poll content editor.dwp" Url="IntranetWebparts/Poll content editor.dwp" ReplaceContent="TRUE" />
+    <File Path="IntranetWebparts\Voice of Mgt CSWP (1).webpart" Url="IntranetWebparts/Voice of Mgt CSWP (1).webpart" ReplaceContent="TRUE" />
+  </Module>
+</Elements>
