@@ -588,7 +588,7 @@ $(document).on("pnpReady", function () {
                 var parent;
 
                 $pnp.sp.web.lists.getByTitle(NP.CONSTANTS.Lists.GLOBAL_NAVIGATION).items
-                    .select("ID,Title,Parent/ID, Parent/Title, Sequence, NavigationLevel, NavigationLink, OpenInNewTab")
+                    .select("ID,Title,Parent/ID, Parent/Title, Sequence,NavigationLevel, NavigationLink, OpenInNewTab")
                     .expand("Parent")
                     .orderBy("NavigationLevel", true)
                     .orderBy("Sequence", true)
@@ -597,7 +597,7 @@ $(document).on("pnpReady", function () {
                         navTreeObj = { children: NP.UTILS.ConvertToHierarchy(data) };
                         navigationComponent.BindNaivagion(navTreeObj);
                     }, function (err) {
-                        deferred.reject(err);
+                        console.log(err);
                     });
 
             }

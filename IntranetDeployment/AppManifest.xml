@@ -1,13 +1,13 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <!--Created:cb85b80c-f585-40ff-8bfc-12ff4d0e34a9-->
 <App xmlns="http://schemas.microsoft.com/sharepoint/2012/app/manifest"
-     Name="IntranetInBox4"
-     ProductID="{5714e024-85aa-3714-b0ce-d7dd36eb13c7}"
-     Version="4.0.0.0"
+     Name="IntranetInBox 12"
+     ProductID="{5714e014-23aa-3714-b0de-d7dd16eb13c7}"
+     Version="12.0.0.0"
      SharePointMinVersion="15.0.0.0"
 >
   <Properties>
-    <Title>Intranet In Box 4</Title>
+    <Title>Intranet In Box 12</Title>
     <StartPage>~appWebUrl/Pages/Default.aspx?{StandardTokens}</StartPage>
   </Properties>
 

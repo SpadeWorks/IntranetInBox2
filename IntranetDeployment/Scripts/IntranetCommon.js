@@ -2,7 +2,7 @@
 var INTRANET = INTRANET || {};
 
 INTRANET.Constant = {
-    SiteColumnGroupName: 'NBB'
+    SiteColumnGroupName: 'IntranetInbox'
 }
 INTRANET.Schema = {};
 
@@ -105,21 +105,56 @@ INTRANET.Schema.SiteColumns = [
     '</Field >',
     '<Field Command= "Create" Type="Text" DisplayName= "Key" Required= "TRUE" EnforceUniqueValues="FALSE" Indexed="FALSE" MaxLength="255" Group= "' + INTRANET.Constant.SiteColumnGroupName + '" StaticName="Key" Name="Key"></Field >',
     '<Field Command= "Create" Type="Text" DisplayName= "Value" Required= "TRUE" EnforceUniqueValues="FALSE" Indexed="FALSE" MaxLength="255" Group= "' + INTRANET.Constant.SiteColumnGroupName + '" StaticName="Value" Name="Value"></Field >',
-    '<Field Command= "Create" Type="Text" DisplayName= "Category" Required= "TRUE" EnforceUniqueValues="FALSE" Indexed="FALSE" MaxLength="255" Group= "' + INTRANET.Constant.SiteColumnGroupName + '" StaticName="Category" Name="Category"></Field >'
+    '<Field Command= "Create" Type="Text" DisplayName= "Category" Required= "TRUE" EnforceUniqueValues="FALSE" Indexed="FALSE" MaxLength="255" Group= "' + INTRANET.Constant.SiteColumnGroupName + '" StaticName="Category" Name="Category"></Field >',
+    '<Field Command= "Create" Type= "Choice" DisplayName= "NavigationLevel" Required= "FALSE" EnforceUniqueValues= "FALSE" Indexed= "FALSE" MaxLength= "255" Group= "' + INTRANET.Constant.SiteColumnGroupName + '" StaticName= "NavigationLevel" Name= "NavigationLevel">' +
+    '<CHOICES>' +
+    '<CHOICE>Level 1</CHOICE>' +
+    '<CHOICE>Level 2</CHOICE>' +
+    '<CHOICE>Level 3</CHOICE>' +
+    '</CHOICES>' +
+    '</Field> ',
+    '<Field Command= "Create" Type= "Choice" DisplayName= "Open In New Tab" Required= "FALSE" EnforceUniqueValues= "FALSE" Indexed= "FALSE" MaxLength= "255" Group= "' + INTRANET.Constant.SiteColumnGroupName + '" StaticName= "OpenInNewTab" Name= "OpenInNewTab">' +
+    '<CHOICES>' +
+    '<CHOICE>Yes</CHOICE>' +
+    '<CHOICE>No</CHOICE>' +
+    '</CHOICES>' +
+    '</Field> ',
+    '<Field Command= "Create" Type= "Choice" DisplayName= "IsActiveLink" Required= "FALSE" EnforceUniqueValues= "FALSE" Indexed= "FALSE" MaxLength= "255" Group= "' + INTRANET.Constant.SiteColumnGroupName + '" StaticName= "IsActiveLink" Name= "IsActiveLink">' +
+    '<CHOICES>' +
+    '<CHOICE>Yes</CHOICE>' +
+    '<CHOICE>No</CHOICE>' +
+    '</CHOICES>' +
+    '</Field> ',
+    '<Field Name="Sequence" StaticName="Sequence" DisplayName="Sequence" Type="Number" Group= "' + INTRANET.Constant.SiteColumnGroupName + '"/>',
+    '<Field Command= "Create" Type="Text" DisplayName= "NavigationLink" Required= "FALSE" EnforceUniqueValues="FALSE" Indexed="FALSE" MaxLength="255" Group= "' + INTRANET.Constant.SiteColumnGroupName + '" StaticName="NavigationLink" Name="NavigationLink"></Field >',
+    '<Field Command= "Create" Type="Text" DisplayName= "Parent" Required= "FALSE" EnforceUniqueValues="FALSE" Indexed="FALSE" MaxLength="255" Group= "' + INTRANET.Constant.SiteColumnGroupName + '" StaticName="Parent" Name="Parent"></Field >',
+    '<Field Type="Text" DisplayName="News Title" Required="TRUE" EnforceUniqueValues="FALSE" Indexed="FALSE" MaxLength="255" Group= "' + INTRANET.Constant.SiteColumnGroupName + '" StaticName="NewsTitle" Name="NewsTitle" CustomFormatter=""></Field >',
+    '<Field Type="DateTime" DisplayName="News Published Date" Required="FALSE" EnforceUniqueValues="FALSE" Indexed="FALSE" Format="DateOnly" Group= "' + INTRANET.Constant.SiteColumnGroupName + '" FriendlyDisplayFormat="Disabled" StaticName="NewsPublishedDate" Name="NewsPublishedDate" CustomFormatter="" CalType="0"></Field>',
+    '<Field Type="User" DisplayName="News Author" List="UserInfo" Required="FALSE" EnforceUniqueValues="FALSE" ShowField="ImnName" UserSelectionMode="PeopleOnly" UserSelectionScope="0" Group= "' + INTRANET.Constant.SiteColumnGroupName + '" StaticName="NewsAuthor" Name="NewsAuthor" />',
+    '<Field Type="Image" DisplayName="News Banner" RichText="TRUE" RichTextMode="ThemeHtml" Required="FALSE" Group= "' + INTRANET.Constant.SiteColumnGroupName + '" StaticName="NewsBanner" Name="NewsBanner" />',
+    '<Field Name="PublishingPageContent" StaticName="PublishingPageContent" SourceID="http://schemas.microsoft.com/sharepoint/v3" Group= "' + INTRANET.Constant.SiteColumnGroupName + '" DisplayName="Page Content" Description="Page Content is a site column created by the Publishing feature. It is used on the Article Page Content Type as the content of the page." Type="HTML" Required="FALSE" Sealed="TRUE" RichText="TRUE" RichTextMode="FullHtml" />',
+
 ];
 INTRANET.Schema.ContentTypes = [{
+    Name: 'Latest_News1',
+    ParentContenttype: '0x010100C568DB52D9D0A14D9B2FDCC96666E9F2007948130EC3DB064584E219954237AF39', //Document Content Type
+    Description: 'Latest_News1',
+    IsLookUpExist: false,
+    FieldsInternalName: ['NewsTitle', 'NewsPublishedDate', 'NewsAuthor', 'NewsBanner', 'PublishingPageContent']
+},
+{
+    Name: 'Global_Navigation',
+    ParentContenttype: '0x01', //Announcement Content Type
+    Description: 'Global Navigation',
+    IsLookUpExist: false,
+    FieldsInternalName: ['NavigationLevel', 'Sequence', 'IsActiveLink', 'OpenInNewTab', 'NavigationLink', 'Parent']
+},
+{
     Name: 'Intranet_Survey',
     ParentContenttype: '0x01', //Item Content Type
     Description: 'Survey List',
     IsLookUpExist: false,
     FieldsInternalName: ['SurveyDescription', 'SurveyLink', 'EndDate', 'ManageQuestions', 'ViewResponse', 'EmailNotification', 'IsPoll']
-},
-{
-    Name: 'Latest_News',
-    ParentContenttype: '0x0104', //Announcement Content Type
-    Description: 'Latest News',
-    IsLookUpExist: false,
-    FieldsInternalName: ['ContentPriority', 'EmailNotification', 'NewsDetails']
 },
 {
     Name: 'Latest_Update',
@@ -220,7 +255,7 @@ INTRANET.Schema.Lists = [{
             Value: "Navigation"
         }, {
             Key: "Key",
-            Value: "NavigationTermSet"
+            Value: "Navigation_Term_Set_ID"
         },
         {
             Key: "Value",
@@ -232,11 +267,47 @@ INTRANET.Schema.Lists = [{
             Value: "Navigation"
         }, {
             Key: "Key",
-            Value: "NavigationFromList"
+            Value: "NAVIGATION_FROM_LIST"
         },
         {
             Key: "Value",
             Value: "YES"
+        }
+        ],
+        [{
+            Key: "Category",
+            Value: "Navigation"
+        }, {
+            Key: "Key",
+            Value: "BirthdayFrequency"
+        },
+        {
+            Key: "Value",
+            Value: "60"
+        }
+        ],
+        [{
+            Key: "Category",
+            Value: "EmergencyTickerFrequency"
+        }, {
+            Key: "EmergencyTickerFrequency",
+            Value: "4"
+        },
+        {
+            Key: "Value",
+            Value: "60"
+        }
+        ],
+        [{
+            Key: "Category",
+            Value: "ResultSource"
+        }, {
+            Key: "Key",
+            Value: "ResultSource"
+        },
+        {
+            Key: "Value",
+            Value: "9af61fa5-992a-4b2f-adf0-c873ffdf1e69"
         }
         ]
     ]
@@ -254,10 +325,10 @@ INTRANET.Schema.Lists = [{
     Items: []
 },
 {
-    Name: 'LatestNews',
-    Type: 'genericList',
-    TemplateID: '100',
-    ContentType: 'Latest_News',
+    Name: 'LatestNews1',
+    Type: 'documentLibrary',
+    TemplateID: '101',
+    ContentType: 'Latest_News1',
     ContentTypeID: '', //This parameter value getting insert dynamically while app execution
     SetAsDefaultContentType: true,
     IsLookUpExist: false,
@@ -266,6 +337,62 @@ INTRANET.Schema.Lists = [{
     Items: []
 },
 {
+    Name: 'GlobalNavigation',
+    Type: 'genericList',
+    TemplateID: '101',
+    ContentType: 'Global_Navigation',
+    ContentTypeID: '', //This parameter value getting insert dynamically while app execution
+    SetAsDefaultContentType: true,
+    IsLookUpExist: false,
+    IsUniquePermission: false,
+    Fields: [],
+    Items: [
+        [{
+            Key: 'Title',
+            Value: 'Google'
+        }, {
+            Key: 'NavigationLevel',
+            Value: 'Level 1'
+        }, {
+            Key: 'Sequence',
+            Value: '1'
+        },
+        {
+            Key: 'IsActiveLink',
+            Value: 'Yes'
+        },
+        {
+            Key: 'OpenInNewTab',
+            Value: 'Yes'
+        }, {
+            Key: 'NavigationLink',
+            Value: 'www.google.com'
+        }
+        ],
+        [{
+            Key: 'Title',
+            Value: 'Yahoo'
+        }, {
+            Key: 'NavigationLevel',
+            Value: 'Level 1'
+        }, {
+            Key: 'Sequence',
+            Value: '2'
+        },
+        {
+            Key: 'IsActiveLink',
+            Value: 'Yes'
+        },
+        {
+            Key: 'OpenInNewTab',
+            Value: 'Yes'
+        }, {
+            Key: 'NavigationLink',
+            Value: 'www.Yahoo.com'
+        }
+        ],
+    ]
+}, {
     Name: 'LatestUpdates',
     Type: 'genericList',
     TemplateID: '101',
@@ -276,8 +403,7 @@ INTRANET.Schema.Lists = [{
     IsUniquePermission: false,
     Fields: [],
     Items: []
-},
-{
+}, {
     Name: 'OrganizationalAnnouncements',
     Type: 'genericList',
     TemplateID: '101',
@@ -288,8 +414,7 @@ INTRANET.Schema.Lists = [{
     IsUniquePermission: false,
     Fields: [],
     Items: []
-},
-{
+}, {
     Name: 'Mark Your Calendar',
     Type: 'events',
     TemplateID: '106',
@@ -300,8 +425,7 @@ INTRANET.Schema.Lists = [{
     IsUniquePermission: false,
     Fields: [],
     Items: []
-},
-{
+}, {
     Name: 'NBBBulletins',
     Type: 'genericList',
     TemplateID: '100',
@@ -312,8 +436,7 @@ INTRANET.Schema.Lists = [{
     IsUniquePermission: false,
     Fields: [],
     Items: []
-},
-{
+}, {
     Name: 'VoiceofManagement',
     Type: 'genericList',
     TemplateID: '100',
@@ -324,8 +447,7 @@ INTRANET.Schema.Lists = [{
     IsUniquePermission: false,
     Fields: [],
     Items: []
-},
-{
+}, {
     Name: 'NBBFamilyUpdates',
     Type: 'genericList',
     TemplateID: '100',
@@ -336,8 +458,7 @@ INTRANET.Schema.Lists = [{
     IsUniquePermission: false,
     Fields: [],
     Items: []
-},
-{
+}, {
     Name: 'Quick Links',
     Type: 'links',
     TemplateID: '103',
@@ -348,8 +469,7 @@ INTRANET.Schema.Lists = [{
     IsUniquePermission: false,
     Fields: [],
     Items: []
-},
-{
+}, {
     Name: 'Issue Tracking',
     Type: 'genericList',
     TemplateID: '100',
@@ -370,11 +490,31 @@ INTRANET.Schema.AllCSS = [
 ];
 
 INTRANET.Schema.AllJS = [
-    "bootstrap.min.js", "jquery-3.1.0.min.js", "knockout-3.2.0.js", "moment.js", "pnp.min.js", "services.js"
+    "bootstrap.min.js",
+    "jquery-3.1.0.min.js",
+    "knockout-3.2.0.js",
+    "moment.js",
+    "pnp.min.js",
+    "services.js",
+    "KPCU_Main.js",
+    "NBBCommonFunctions.js",
+    "chart.js",
+    "PollKO.js",
+    "CarouselKO.js"
 ];
 
 INTRANET.Schema.AllHtmlFiles = [
     "carousel.html", "LatestUpdatesJSLink.html", "OrgAnnouncementJSLink.html", "Poll.html"
+];
+
+INTRANET.Schema.AllTextFiles = [
+    "carousel.txt",
+    "IntranetSurveyJSLink.txt",
+    "IntranetSurveyNewItem.txt",
+    "LatestUpdatesJSLink.txt",
+    "OrgAnnouncementJSLink.txt",
+    "Poll.txt",
+    "WelcomeControl.txt"
 ];
 
 INTRANET.Schema.AllFontFiles = [
@@ -385,6 +525,16 @@ INTRANET.Schema.AllFontFiles = [
     "glyphicons-halflings-regular.svg", "glyphicons-halflings-regular.ttf", "glyphicons-halflings-regular.woff",
     "glyphicons-halflings-regular.woff2"
 ];
+
+INTRANET.Schema.AllWebFontFiles = [
+    "calibri.eot", "calibri.otf", "calibri.ttf", "calibri.woff", "FontAwesome.otf", "fontawesome-webfont.eot",
+    "fontawesome-webfont.svg", "fontawesome-webfont.ttf", "fontawesome-webfont.woff", "fontawesome-webfont.woff2",
+    "Gill Sans MT Bold.eot", "Gill Sans MT Bold.svg", "Gill Sans MT Bold.woff", "Gill Sans MT Bold.woff2",
+    "Gill Sans MT.eot", "Gill Sans MT.svg", "Gill Sans MT.woff2", "glyphicons-halflings-regular.eot",
+    "glyphicons-halflings-regular.svg", "glyphicons-halflings-regular.ttf", "glyphicons-halflings-regular.woff",
+    "glyphicons-halflings-regular.woff2"
+];
+
 INTRANET.Schema.AllImagesFiles = [
     "NBB-intranet-logo.jpg", "NBB-logo.jpg"
 ];
@@ -394,13 +544,23 @@ INTRANET.Schema.AllTemplateFiles = [
     "Item_LatestUpdateHomePage", "Item_News", "Item_VoiceOfManagement", "control_Happenings"
 ];
 INTRANET.Schema.AllPageLayouts = [
-    "DepartmentGenricPageLayout", "NBBHomePageLayout", "NBBLearningPageLayout", "NBBOneColPageLayout"
+    "KPCU_NewsDetailsLayout", "DepartmentGenricPageLayout", "NBBHomePageLayout", "NBBLearningPageLayout", "NBBOneColPageLayout"
 ];
-INTRANET.Schema.AllWebParts = [
-    "Latest News Home Content Search"
-];
+
 INTRANET.Schema.AllPages = [
-    "AllArticles", "AllLatestNews", "CompliancePortal", "Home", "IntranetSurvey", "LatestUpdateDetails", "LatestUpdates",
-    "MarkYourCalendar", "NBBFamilyUpdates", "NBB-FamilyUpdates", "NBB-FamilyUpdatesDetailedPage", "NBB-FamilyUpdatesNew",
-    "OrgAnnouncementDetails", "OrgAnnouncements", "QuickLinks"
+    "AllArticles", "AllLatestNews", "Home", "IntranetSurvey", "LatestUpdateDetails", "LatestUpdates",
+    "MarkYourCalendar", "OrgAnnouncementDetails", "OrgAnnouncements", "QuickLinks"
+]
+
+INTRANET.Schema.AllWebpartFiles = [
+    "Birthday And Anniversaries.dwp",
+    "Happenings.webpart",
+    "KPCU News.webpart",
+    "Voice of Mgt CSWP.webpart",
+    "Poll content editor.dwp",
+    "Org Announcement carousel CEWP.dwp",
+    // "NBB Family Updates CSWP.webpart",
+    // "Mark Your Calendar CSWP.webpart",
+    "Latest Updates Home CSWP.webpart",
+    // "Latest News Home Content Search.webpart"
 ];

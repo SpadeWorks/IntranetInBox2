@@ -11,12 +11,12 @@ var PollKOModel = (function () {
     var surveyListName;
     var isPoll;
     var object = {};
-    var PollLandingRender = function() {
+    var PollLandingRender = function () {
         var LandingView = new PollKOModel.PollViewModel();
         var viewModelDiv = document.getElementById("poll");
         ko.applyBindings(LandingView, viewModelDiv);
     }
-    
+
     PollKOModel.PollViewModel = function () {
 
         var self = this;
@@ -33,37 +33,33 @@ var PollKOModel = (function () {
 
         /**************************************Functionalityy for Poll Question Starts********************************/
         self.GetSurveyListName = function () {
-            var deferred = $.Deferred(),today = new Date(),pastDate = new Date("01/01/2001"),count=0;
-            var siteUrl = _spPageContextInfo.webAbsoluteUrl + "/_api/web/lists/getbytitle('Intranet Survey')/items?select=Title,IsPoll,SurveyStartDate,SurveyEndDate,SurveyLink,ViewResponse&$filter=OData__ModerationStatus eq 0 &$orderby=SurveyEndDate,SurveyStartDate desc";
+            var deferred = $.Deferred(), today = new Date(), pastDate = new Date("01/01/2001"), count = 0;
+            var siteUrl = _spPageContextInfo.webAbsoluteUrl + "/_api/web/lists/getbytitle('IntranetSurvey')/items?select=Title,IsPoll,SurveyStartDate,SurveyEndDate,SurveyLink,ViewResponse&$filter=OData__ModerationStatus eq 0 &$orderby=SurveyEndDate,SurveyStartDate desc";
             $.ajax({
                 url: siteUrl,
                 method: 'GET',
                 headers: { 'Accept': 'application/json; odata=nometadata' },
                 success: function (data) {
-                	
-                    if (data.value.length > 0) 
-                    {
-                    	for(var i=0;i<data.value.length;i++)
-	                	{
-	                		startDate = new Date(data.value[i].SurveyStartDate);
-	                		startDate.setHours(0,0,0,0);
-	                		today.setHours(0,0,0,0);
-	                		endDate = new Date(data.value[i].SurveyEndDate);
-	                		endDate.setHours(0,0,0,0);
-	                		pastDate.setHours(0,0,0,0);
-	                		
-	                		if(startDate >= today && startDate <= today)
-	                		{
-	                			deferred.resolve(data.value[i]);
-	                			break;		
-	                		}
-	                		else if(endDate > pastDate && endDate < today)
-	                		{
-	                			pastDate = new Date(data.value[i].SurveyEndDate);
-	                			count=i;
-	                		}	
-	                	}
-	                	deferred.resolve(data.value[count]);
+
+                    if (data.value.length > 0) {
+                        for (var i = 0; i < data.value.length; i++) {
+                            startDate = new Date(data.value[i].SurveyStartDate);
+                            startDate.setHours(0, 0, 0, 0);
+                            today.setHours(0, 0, 0, 0);
+                            endDate = new Date(data.value[i].SurveyEndDate);
+                            endDate.setHours(0, 0, 0, 0);
+                            pastDate.setHours(0, 0, 0, 0);
+
+                            if (startDate >= today && startDate <= today) {
+                                deferred.resolve(data.value[i]);
+                                break;
+                            }
+                            else if (endDate > pastDate && endDate < today) {
+                                pastDate = new Date(data.value[i].SurveyEndDate);
+                                count = i;
+                            }
+                        }
+                        deferred.resolve(data.value[count]);
                     }
                 },
                 error: function (error) {
@@ -81,15 +77,15 @@ var PollKOModel = (function () {
                 url: siteUrl,
                 method: 'GET',
                 headers: { 'Accept': 'application/json; odata=nometadata' },
-                async:false,
+                async: false,
                 success: function (data) {
-                
-                	self.questionInternalName(data.value[0].InternalName);
+
+                    self.questionInternalName(data.value[0].InternalName);
                     self.question(data.value[0].Title);
                     for (var i = 0; i < data.value[0].Choices.length; i++) {
-                        self.answers.push(new AnswerList(data.value[0].Choices[i],itemID = "option"+(i+1)));
+                        self.answers.push(new AnswerList(data.value[0].Choices[i], itemID = "option" + (i + 1)));
                         object[data.value[0].Choices[i]] = 0;
-                                            }
+                    }
                 },
                 error: function (error) {
                     console.log(error);
@@ -106,11 +102,10 @@ var PollKOModel = (function () {
                 headers: { 'Accept': 'application/json; odata=nometadata' },
                 success: function (data) {
                     for (var i = 0; i < data.value.length; i++) {
-                    	var columnName = self.questionInternalName();
-                        if (data.value[i].AuthorId === _spPageContextInfo.userId) 
-                        {
+                        var columnName = self.questionInternalName();
+                        if (data.value[i].AuthorId === _spPageContextInfo.userId) {
                             isSubmitted = true;
-                            self.userResponse(data.value[i][""+columnName+""]);
+                            self.userResponse(data.value[i]["" + columnName + ""]);
                             break;
                         }
                     }
@@ -129,10 +124,10 @@ var PollKOModel = (function () {
             var columnName = self.question();
             columnName = self.questionInternalName();
             list = surveyListName.split(' ').join('_x0020_');
-            
+
             var item = {};
-            item["__metadata"] = {"type": "SP.Data."+list+"ListItem"};
-            
+            item["__metadata"] = { "type": "SP.Data." + list + "ListItem" };
+
             item["" + columnName + ""] = "" + self.userResponse() + "";
 
             if (self.userResponse() === "" || self.userResponse() === undefined) {
@@ -184,34 +179,28 @@ var PollKOModel = (function () {
                 url: siteUrl,
                 method: 'GET',
                 headers: { 'Accept': 'application/json; odata=nometadata' },
-                success: function (data) 
-                {
+                success: function (data) {
                     var columnName = self.question();
                     columnName = self.questionInternalName();
-                    for (property in object) 
-                    {
+                    for (property in object) {
                         var temp = [];
                         var answerCount = data.value.reduce(function (n, data) {
                             return n + (property == data["" + columnName + ""]);
                         }, 0);
                         self.AllResponse.push(new AllAnswerListPush(property, answerCount));
-                        if(property.length>10)
-                        {
-                        	property = property.substr(0,7)+"...";
+                        if (property.length > 10) {
+                            property = property.substr(0, 7) + "...";
                         }
                         NBB.chartLabels.push(property);
                         NBB.chartData.push(answerCount);
                     }
-                    for(var i=0;i<data.value.length;i++)
-                    {
-                    	if (data.value[i].AuthorId === _spPageContextInfo.userId) 
-                        {
-                            self.userResponse(data.value[i][""+columnName+""]);
+                    for (var i = 0; i < data.value.length; i++) {
+                        if (data.value[i].AuthorId === _spPageContextInfo.userId) {
+                            self.userResponse(data.value[i]["" + columnName + ""]);
                             break;
                         }
-                        else
-                        {
-                        	self.userResponse("N/A");
+                        else {
+                            self.userResponse("N/A");
                         }
 
                     }
@@ -233,7 +222,7 @@ var PollKOModel = (function () {
 
         /**************************************Common Functions Starts*************************************/
 
-        function AnswerList(answer,id) {
+        function AnswerList(answer, id) {
             var self = this;
             self.answer = answer;
             self.optionID = id;
@@ -254,44 +243,42 @@ var PollKOModel = (function () {
         }
         self.GetSurveyListName().then(function (data) {
             surveyListName = data.Title;
-            if(isExpired(data.SurveyEndDate))
-            {
-            	self.GetSurveyQuestion(surveyListName, isPoll);
-                        self.GetAllResponse(surveyListName).then(function (data) {
-                            if (data) {
-                            	NBB.DrawPieChart();                            }
-                        });
-                        self.pollVisible(false);
-                        self.chartVisible(true);
+            if (isExpired(data.SurveyEndDate)) {
+                self.GetSurveyQuestion(surveyListName, isPoll);
+                self.GetAllResponse(surveyListName).then(function (data) {
+                    if (data) {
+                        NBB.DrawPieChart();
+                    }
+                });
+                self.pollVisible(false);
+                self.chartVisible(true);
             }
-            else
-            {
-            	self.pollVisible((data.IsPoll[0] === "Yes") ? true : false);
+            else {
+                self.pollVisible((data.IsPoll[0] === "Yes") ? true : false);
 
-	            if (self.pollVisible()) 
-	            {
-	            	self.GetSurveyQuestion(surveyListName, isPoll);
-	                self.checkUserResponse(surveyListName).then(function (data) {
-	                    if (data) {
-	                        self.GetSurveyQuestion(surveyListName, isPoll);
-	                        self.GetAllResponse(surveyListName).then(function (data) {
-	                            if (data) {
-	                                NBB.DrawPieChart();
-	                            }
-	                        });
-	                        self.pollVisible(false);
-	                        self.chartVisible(true);
-	                    }
-	                });
-	            }
-	            else {
-	
-	                self.chartVisible(false);
-	                self.surveyLink(data[0].SurveyLink.Url);
-	                self.ViewResponseLink(data[0].ViewResponse.Url);
-	            }
+                if (self.pollVisible()) {
+                    self.GetSurveyQuestion(surveyListName, isPoll);
+                    self.checkUserResponse(surveyListName).then(function (data) {
+                        if (data) {
+                            self.GetSurveyQuestion(surveyListName, isPoll);
+                            self.GetAllResponse(surveyListName).then(function (data) {
+                                if (data) {
+                                    NBB.DrawPieChart();
+                                }
+                            });
+                            self.pollVisible(false);
+                            self.chartVisible(true);
+                        }
+                    });
+                }
+                else {
+
+                    self.chartVisible(false);
+                    self.surveyLink(data[0].SurveyLink.Url);
+                    self.ViewResponseLink(data[0].ViewResponse.Url);
+                }
             }
-            
+
 
         });
         /**************************************Calling Functions Ends*************************************/
@@ -319,14 +306,14 @@ var PollKOModel = (function () {
                 return true;
             }
         }
-                
+
         /**************************************Pie charts functions starts*************************************/
 
         /**************************************Pie charts functions starts*************************************/
 
     };
     return {
-    	PollLandingRender: PollLandingRender,
-    	PollKOModel:PollKOModel
-    	};
+        PollLandingRender: PollLandingRender,
+        PollKOModel: PollKOModel
+    };
 })();

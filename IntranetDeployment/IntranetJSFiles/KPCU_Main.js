@@ -18,7 +18,7 @@ var clientContext;
 // Most KPCU function are found here
 /////////////////////////////////////////////////////////////////////////////
 var KPCU = {
-    Init: function() {
+    Init: function () {
         KPCU.GetSiteURLForMultipleSiteCollection();
         KPCU.HideShowLeftNavMenu(); //Used for toggle left navigation on subsites(HR)
         KPCU.AddClassToBreadCrumb(); //Used to override SP CSS for breadcrumb
@@ -27,29 +27,29 @@ var KPCU = {
         //This is used for recently updated docs webpart, default data selected value should be set to "Policy"
         $(".recently-updated-doc-wrapper").data("selectedValue", "Policy");
         //Added by design team for happeing webpart
-        $(window).on('resize', function() {
+        $(window).on('resize', function () {
             $(".happening_box").height($(".banner-image").height() + 160);
         });
-        $(window).load(function() {
+        $(window).load(function () {
             $(".happening_box").height($(".banner-image").height() + 160);
         });
-        $(".search_wrapper i").click(function() {
+        $(".search_wrapper i").click(function () {
             $("#overlay").show(200);
             $(".search-box-cont").addClass("animated slideInUp");
             $(".search-box-cont").toggleClass("hidden-xs");
             $(".search-box-cont").css("background", "none");
         });
-        $("#overlay i").click(function() {
+        $("#overlay i").click(function () {
             $("#overlay").hide(100);
             $(".search-box-cont").addClass("hidden-xs");
         });
-        $(".weather_wrapper i").click(function() {
+        $(".weather_wrapper i").click(function () {
             $("#overlay").show(100);
             $(".weather_containbox").addClass("animated slideInUp");
             $(".weather_containbox").removeClass("hidden-xs");
             $(".WeatherInfo").removeClass("hidden-xs");
         });
-        $("#overlay i").click(function() {
+        $("#overlay i").click(function () {
             $("#overlay").hide(100);
             $(".weather_containbox").addClass("hidden-xs");
         });
@@ -60,13 +60,13 @@ var KPCU = {
         KPCU.OpenInModalNewProjectRequest();
     },
     //Add classes to breadcrumb to modify the breeadcrumb look
-    AddClassToBreadCrumb: function() {
+    AddClassToBreadCrumb: function () {
         $("#breadcrumb-pub").find("span:not(:has(a))").addClass("breadcrumb-icon");
         $("#breadcrumb-pub").find("span:not(:has(a))").html('<i class="fa fa-chevron-right" aria-hidden="true"></i>');
     },
     //Added comma into number which in used in KPI and StarIncentive Webpart
     //nStr: It will be number as parameter
-    AddCommasToNumber: function(nStr) {
+    AddCommasToNumber: function (nStr) {
         nStr += '';
         var x = nStr.split('.');
         var x1 = x[0];
@@ -78,11 +78,11 @@ var KPCU = {
         return x1 + x2;
     },
     //Add KPCU Logo on Suite Bar
-    AddKPCULogoOnSuiteBar: function() {
+    AddKPCULogoOnSuiteBar: function () {
         $(".o365cs-nav-centerAlign").append("<img src='/sites/Intranet-Dev/Style Library/KPCU/Images/Keypoint_logo.png'>");
     },
     //Add list item (My Quick Link) to MyShortcuts list
-    AddQuickLinkListItem: function() {
+    AddQuickLinkListItem: function () {
         if (KPCU.ValidateQuickLinkItem("Add")) return false;
         else {
             $("#addLinkButton").attr("disabled", "disabled");
@@ -97,11 +97,11 @@ var KPCU = {
                 this.oListItem.set_item('OpenInNewTab', document.getElementById("quickLinkOpenInNewTabAdd").checked);
                 this.oListItem.update();
                 clientContext.load(this.oListItem);
-                clientContext.executeQueryAsync(Function.createDelegate(this, function() {
+                clientContext.executeQueryAsync(Function.createDelegate(this, function () {
                     $("#addQuickLink").modal("toggle");
                     KPCU.ShowToaster("Item Added Successfully");
                     KPCU.GetMyQuickLaunch();
-                }), Function.createDelegate(this, function(sender, args) {
+                }), Function.createDelegate(this, function (sender, args) {
                     KPCU.ClientLog("Error on AddQuickLinkListItem onQueryFailed : " + args.get_message(), "Error");
                 }));
             } catch (ex) {
@@ -110,9 +110,9 @@ var KPCU = {
         }
     },
     //This will show all user birthdays and anniversaries from user profile properties
-    BirthdayAndAnniversariesWebpart: function() {
-        var query = siteAbsoluteURL + "/_api/web/lists/GetByTitle('" + KPCU.ListName.spListConfiguration + "')/" + "items?$filter=KPCUKey eq 'BirthdayFrequency'&$select=KPCUKey,KPCUValue&$top=1";
-        KPCU.FetchDatafromList(query, "GET").then(function(getData) {
+    BirthdayAndAnniversariesWebpart: function () {
+
+        KPCU.FetchDatafromList(query, "GET").then(function (getData) {
             getData = getData.d.results;
             if (getData.length > 0) {
                 var birthday = 'RefinableDate00';
@@ -142,11 +142,11 @@ var KPCU = {
                 }
                 var birthdayURL = webAbsoluteURL + "/_api/search/query?querytext='" + querytextBirthday + "'&sourceid='B09A7990-05EA-4AF9-81EF-EDFAB16C4E31'&selectproperties='Title," + birthday + ",Path,PictureURL,WorkEmail'&sortlist='" + birthday + ":ascending'";
                 var AnniversaryURL = webAbsoluteURL + "/_api/search/query?querytext='" + querytextAnniversary + "'&sourceid='B09A7990-05EA-4AF9-81EF-EDFAB16C4E31'&selectproperties='Title," + hireDate + ",Path,PictureURL,WorkEmail'&sortlist='" + hireDate + ":ascending'";
-                KPCU.FetchDatafromList(birthdayURL, "GET").then(function(data) {
+                KPCU.FetchDatafromList(birthdayURL, "GET").then(function (data) {
                     var birthdayHtml = "";
                     var arrayBirthAnni = [];
                     var resultsBirthday = data.d.query.PrimaryQueryResult.RelevantResults.Table.Rows.results;
-                    arrayBirthAnni = $.map(resultsBirthday, function(item) {
+                    arrayBirthAnni = $.map(resultsBirthday, function (item) {
                         var date = new Date(Date.parse(item.Cells.results[3].Value));
                         date.setFullYear(endYear);
                         return {
@@ -158,11 +158,11 @@ var KPCU = {
                             WorkEmail: item.Cells.results[6].Value
                         }
                     });
-                    KPCU.FetchDatafromList(AnniversaryURL, "GET").then(function(data) {
+                    KPCU.FetchDatafromList(AnniversaryURL, "GET").then(function (data) {
                         var resultsAnniversary = data.d.query.PrimaryQueryResult.RelevantResults.Table.Rows.results;
-                        arrayBirthAnni = $.merge($.map(resultsAnniversary, function(item) {
+                        arrayBirthAnni = $.merge($.map(resultsAnniversary, function (item) {
                             var date = new Date(Date.parse(item.Cells.results[3].Value));
-                            var newArrayBirthAnni = $.grep(arrayBirthAnni, function(e) {
+                            var newArrayBirthAnni = $.grep(arrayBirthAnni, function (e) {
                                 return e.WorkEmail == item.Cells.results[6].Value;
                             });
                             if ((new Date().getFullYear() - date.getFullYear()) % 5 == 0 && new Date().getFullYear() != date.getFullYear() && new Date().getDate() == date.getDate()) {
@@ -179,7 +179,7 @@ var KPCU = {
                                 }
                             }
                         }), arrayBirthAnni);
-                        arrayBirthAnni.sort(function(a, b) {
+                        arrayBirthAnni.sort(function (a, b) {
                             var dateA = new Date(a.Date),
                                 dateB = new Date(b.Date);
                             return dateA - dateB;
@@ -187,7 +187,7 @@ var KPCU = {
                         if (arrayBirthAnni) {
                             birthdayHtml += '<div class="cauraosal"><div id="myCarousel1" class="carousel slide" data-ride="carousel"><div class="carousel-inner">';
                             var nextKey = 0;
-                            $.each(arrayBirthAnni, function(key, item) {
+                            $.each(arrayBirthAnni, function (key, item) {
                                 var months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
                                 if (key % 5 == 0) {
                                     if (key == 0) birthdayHtml += '<div class="item active">';
@@ -216,15 +216,15 @@ var KPCU = {
         });
     },
     //Fetch data from recognition list to show in Bravo webpart
-    Bravo: function() {
+    Bravo: function () {
         //Get data from Recognition list
         var query = siteAbsoluteURL + "/_api/web/lists/GetByTitle('" + KPCU.ListName.spListRecognition + "')/" + "items?$expand=BravoUserName,BravoGivenBy&$select=*,BravoUserName/Id,BravoUserName/FirstName,BravoUserName/LastName,BravoUserName/JobTitle,BravoUserName/Department,BravoUserName/EMail,BravoGivenBy/FirstName,BravoGivenBy/LastName&$top=3&$orderby=Created desc";
-        KPCU.FetchDatafromList(query, "GET").then(function(getData) {
+        KPCU.FetchDatafromList(query, "GET").then(function (getData) {
             getData = getData.d.results;
             if (getData.length > 0) {
                 var bravoData = "";
                 var carouselIndicatorsBravo = "";
-                $.map(getData, function(item, key) {
+                $.map(getData, function (item, key) {
                     var userURL = siteAbsoluteURL + "/_layouts/15/userdisp.aspx?ID=" + item.BravoUserName.Id;
                     var clsActive = (key == 0) ? "active" : "";
                     if (getData.length > 1) carouselIndicatorsBravo += "<li data-target='#myCarousel' data-slide-to='" + key + "' class='" + clsActive + "'></li>";
@@ -242,7 +242,7 @@ var KPCU = {
         });
     },
     //This mechanism is used for Emergency Ticker. If ticker is closed by user then save this action in cache and dont show ticker again for that user
-    Cache: (function() {
+    Cache: (function () {
         /*
          * Sets local storage cache with the key/value pair and expiration.
          * @param {string} cacheKey - Cache key.
@@ -250,25 +250,25 @@ var KPCU = {
          * @param {number} expirationMin - Expiration (In minutes).
          */
         function setCache(cacheKey, cacheValue, expirationMins) {
-                var record, expirationMs;
-                if (cacheKey && cacheValue) {
-                    try {
-                        cacheKey = getStorageKey(cacheKey);
-                        expirationMs = expirationMins ? (parseInt(expirationMins) * 60 * 1000) : null;
-                        record = {
-                            value: JSON.stringify(cacheValue),
-                            timestamp: expirationMs ? (new Date().getTime() + expirationMs) : null
-                        };
-                        localStorage.setItem(cacheKey, JSON.stringify(record));
-                    } catch (e) {
-                        KPCU.ClientLog(e.message);
-                    }
+            var record, expirationMs;
+            if (cacheKey && cacheValue) {
+                try {
+                    cacheKey = getStorageKey(cacheKey);
+                    expirationMs = expirationMins ? (parseInt(expirationMins) * 60 * 1000) : null;
+                    record = {
+                        value: JSON.stringify(cacheValue),
+                        timestamp: expirationMs ? (new Date().getTime() + expirationMs) : null
+                    };
+                    localStorage.setItem(cacheKey, JSON.stringify(record));
+                } catch (e) {
+                    KPCU.ClientLog(e.message);
                 }
             }
-            /*
-             * Gets local storage cache value using the cache key.
-             * @param {string} cacheKey - Cache key.
-             */
+        }
+        /*
+         * Gets local storage cache value using the cache key.
+         * @param {string} cacheKey - Cache key.
+         */
         function getCache(cacheKey) {
             var record;
             if (cacheKey) {
@@ -308,14 +308,14 @@ var KPCU = {
     })(),
     //This will logs the messages in browser console
     //message: Message to show in console
-    ClientLog: function(message) {
+    ClientLog: function (message) {
         if (typeof console !== "undefined" && typeof message !== "undefined") {
             console.log(message);
         }
     },
     //Used for home page nad department page carousels
     //checkPage: Name of the page
-    Carousel: function(checkPage) {
+    Carousel: function (checkPage) {
         var owl = $('.owl-carousel');
         if (owl.length > 0) //Check if class present
         {
@@ -338,7 +338,7 @@ var KPCU = {
                     }
                 }
             });
-            owl.on('mousewheel', '.owl-stage', function(e) {
+            owl.on('mousewheel', '.owl-stage', function (e) {
                 if (e.deltaY > 0) {
                     owl.trigger('next.owl');
                 } else {
@@ -349,15 +349,15 @@ var KPCU = {
         }
     },
     //This will fetch data from ContactsAndCommitments list for ContactsAndCommitments webpart
-    ContactsAndCommitment: function() {
+    ContactsAndCommitment: function () {
         //Get data from contacts and commitments list
         var query = siteAbsoluteURL + "/_api/web/lists/GetByTitle('" + KPCU.ListName.spListContactsAndCommitments + "')/GetItems(query=@v1)?@v1={'ViewXml':'<View><Query></Query><RowLimit>1000</RowLimit></View>'}";
-        KPCU.FetchDatafromList(query, "POST").then(function(getData) {
+        KPCU.FetchDatafromList(query, "POST").then(function (getData) {
             getData = getData.d.results;
             if (getData.length > 0) {
                 var arrayAllItems = [];
                 var uniqueSubjectArray = [];
-                arrayAllItems = $.map(getData, function(item) {
+                arrayAllItems = $.map(getData, function (item) {
                     if ($.inArray(item.KPCUSubject && item.KPCUSubject.Label, uniqueSubjectArray) == -1) {
                         uniqueSubjectArray.push(item.KPCUSubject.Label);
                     }
@@ -370,13 +370,13 @@ var KPCU = {
                     }
                 });
                 var buildPopUps = "";
-                $.map(uniqueSubjectArray, function(item, key) {
-                    var innerArray = $.grep(arrayAllItems, function(value) {
+                $.map(uniqueSubjectArray, function (item, key) {
+                    var innerArray = $.grep(arrayAllItems, function (value) {
                         return value.Subject == item;
                     })
                     var createLI = "";
                     //Added inner array to show all topics under subjects ----- Added popup for each topic.
-                    $.map(innerArray, function(itemInner, keyInner) {
+                    $.map(innerArray, function (itemInner, keyInner) {
                         if (itemInner.Topic) {
                             createLI += "<li>" + "<a href='#' data-toggle='modal' title='Popover Header' data-target='#PopUp" + key + keyInner + "' data-content='Some content inside the popover'>" + itemInner.Topic + "</a>" + "</li>";
                             buildPopUps += "<div id='PopUp" + key + keyInner + "' class='modal fade' role='dialog'>" + "<div class='modal-wrapper'>" + "<div class='modal-dialog'>" + "<div class='modal-content'>" + "<div class='modal-header text-center'>" + "<button type='button' class='close' data-dismiss='modal'>&times;</button>" + "<h4 class='modal-title'>Contacts and Commitments</h4>" + "</div>" + "<div class='modal-body contactscommitemtsPopUp'>" + "<table><tr><th>Subject</th><th>Topic</th><th>Procedure</th><th>Commitment</th><th>Escalation</th></tr>" + "<tr><td>" + itemInner.Subject + "</td><td>" + itemInner.Topic + "</td><td>" + itemInner.Procedure + "</td><td>" + itemInner.Commitment + "</td><td>" + itemInner.Escalation + "</td></tr></table>" + "</div>" + "<div class='modal-footer'>" + "<button type='button' class='btn btn-red' data-dismiss='modal'>Close</button>" + "</div>" + "</div>" + "</div>" + "</div>" + "</div>";
@@ -395,23 +395,23 @@ var KPCU = {
     },
     //Used to modify date format
     //date: Value in date format. 
-    DateFormat: function(date) {
+    DateFormat: function (date) {
         return date ? new Date(date).format('MMM dd, yyyy') : "";
     },
     //Used to Delete list item
     //listItemId: List Item ID.
-    DeleteQuickLinkListItem: function(listItemId) {
+    DeleteQuickLinkListItem: function (listItemId) {
         $("#deleteLinkButton").attr("disabled", "disabled");
         try {
             clientContext = new SP.ClientContext(siteAbsoluteURL);
             var oList = clientContext.get_web().get_lists().getByTitle(KPCU.ListName.spListMyShortcuts);
             var oListItemDelete = oList.getItemById(listItemId);
             oListItemDelete.deleteObject();
-            clientContext.executeQueryAsync(Function.createDelegate(this, function() {
+            clientContext.executeQueryAsync(Function.createDelegate(this, function () {
                 $("#editQuickLink").modal("toggle");
                 KPCU.ShowToaster("Item Deleted Successfully");
                 KPCU.GetMyQuickLaunch();
-            }), Function.createDelegate(this, function(sender, args) {
+            }), Function.createDelegate(this, function (sender, args) {
                 KPCU.ClientLog("Error on DeleteQuickLinkListItem onQueryFailedDelete : " + args.get_message());
             }));
         } catch (error) {
@@ -420,7 +420,7 @@ var KPCU = {
     },
     //Used to Edit list item
     //listItemId: List Item ID.
-    EditQuickLinkListItem: function(listItemId) {
+    EditQuickLinkListItem: function (listItemId) {
         if (KPCU.ValidateQuickLinkItem("Edit")) return false;
         else {
             $("#editLinkButton").attr("disabled", "disabled");
@@ -432,11 +432,11 @@ var KPCU = {
                 oListItemUpdate.set_item('LinkURL', $("#quickLinkURLBoxEdit").val());
                 oListItemUpdate.set_item('OpenInNewTab', document.getElementById("quickLinkOpenInNewTabEdit").checked);
                 oListItemUpdate.update();
-                clientContext.executeQueryAsync(Function.createDelegate(this, function() {
+                clientContext.executeQueryAsync(Function.createDelegate(this, function () {
                     $("#editQuickLink").modal("toggle");
                     KPCU.ShowToaster("Item Updated Successfully");
                     KPCU.GetMyQuickLaunch();
-                }), Function.createDelegate(this, function(sender, args) {
+                }), Function.createDelegate(this, function (sender, args) {
                     KPCU.ClientLog("Error on EditQuickLinkListItem onQueryFailedEdit : " + args.get_message());
                 }));
             } catch (error) {
@@ -445,12 +445,12 @@ var KPCU = {
         }
     },
     //This will fetch data from EmergencyTicker List. This ticker will appear on top of master page
-    EmergencyTicker: function() {
+    EmergencyTicker: function () {
         //Get latest item from emergency ticker list 
         var today = new Date();
         var query = siteAbsoluteURL + "/_api/web/lists/GetByTitle('" + KPCU.ListName.spListEmergencyTicker + "')/items?$expand=TaxCatchAll/Term&$filter=EmergencyTickerPublishedDate lt datetime'" + today.toISOString() + "' and Expires gt datetime'" + today.toISOString() + "'&$select=*,TaxCatchAll/Term&$orderby=Modified desc";
         //GetItems(query=@v1)?@v1={'ViewXml':'<View><Query><Where><And><Leq><FieldRef Name=\"EmergencyTickerPublishedDate\" /><Value Type=\"DateTime\"><Today /></Value></Leq><Geq><FieldRef Name=\"Expires\" /><Value Type=\"DateTime\"><Today /></Value></Geq></And></Where><OrderBy><FieldRef Name=\"Modified\" Ascending=\"False\" /></OrderBy></Query></View>'}";
-        KPCU.FetchDatafromList(query, "GET").then(function(getData) {
+        KPCU.FetchDatafromList(query, "GET").then(function (getData) {
             getData = getData.d.results;
             if (getData.length > 0) {
                 //Set data to emergency ticker values
@@ -459,7 +459,7 @@ var KPCU = {
                 var classActive = "";
                 var emergencyTitle = "";
                 var emergencyDepartment = "";
-                $.map(getData, function(item, key) {
+                $.map(getData, function (item, key) {
                     emergencyTitle = item.Title ? item.Title : "";
                     emergencyDepartment = item.TaxCatchAll.results.length > 0 ? "<li>" + item.TaxCatchAll.results[0].Term + "</li>" : ""
                     if (key == 0) classActive = "active";
@@ -486,13 +486,13 @@ var KPCU = {
                 //}
                 if ($(".notification_wrapper").is(':visible')) {
                     //If user closes emergency ticker then set cache for 1 day
-                    $("#closeNotificationInner").click(function() {
+                    $("#closeNotificationInner").click(function () {
                         KPCU.Cache.SetCache("Notification" + _spPageContextInfo.userId, "Closed", 0);
                         KPCU.Cache.SetCache("etTitle", $("#etTitle").text(), 0);
                         KPCU.Cache.SetCache("etDepartment", $("#etDepartment").text(), 0);
                         KPCU.Cache.SetCache("etDate", $("#etDate").text(), 0);
                     });
-                    $(".close_notification a").click(function() {
+                    $(".close_notification a").click(function () {
                         $(".notification_strip").fadeOut(200);
                     });
                 }
@@ -503,7 +503,7 @@ var KPCU = {
     //siteURL: Site URL
     //listName: Name of the List
     //strQuery: REST query used for list
-    FetchDatafromList: function(queryURL, queryType, asyncValue) {
+    FetchDatafromList: function (queryURL, queryType, asyncValue) {
         var deferred = $.Deferred();
         asyncValue = asyncValue || false;
         try {
@@ -516,10 +516,10 @@ var KPCU = {
                     "accept": "application/json;odata=verbose",
                     "X-RequestDigest": $("#__REQUESTDIGEST").val()
                 },
-                success: function(data) {
+                success: function (data) {
                     deferred.resolve(data);
                 },
-                error: function(xhr, status, error) {
+                error: function (xhr, status, error) {
                     KPCU.ClientLog("Error in KPCU_Main.js KPCU.FetchDatafromList Inner : " + JSON.stringify(xhr.responseText));
                     deferred.reject(xhr.responseText);
                 }
@@ -531,15 +531,15 @@ var KPCU = {
         return deferred.promise();
     },
     // Get List Item Type metadata
-    GetItemTypeForListName: function(name) {
+    GetItemTypeForListName: function (name) {
         return "SP.Data." + name.charAt(0).toUpperCase() + name.split(" ").join("").slice(1) + "ListItem";
     },
     //This is used to fetch my quick links from MyShortcuts list
-    GetMyQuickLaunch: function() {
+    GetMyQuickLaunch: function () {
         var createLinks = "";
         //Get all my links in alphabetical order using title
         var query = siteAbsoluteURL + "/_api/web/lists/GetByTitle('" + KPCU.ListName.spListMyShortcuts + "')/items?$filter=MyShortcutsOwner/EMail eq '" + _spPageContextInfo.userEmail + "'&$select=Id,LinkURL,Title,OpenInNewTab&$orderby=Title asc&$top=33";
-        KPCU.FetchDatafromList(query, "GET").then(function(getData) {
+        KPCU.FetchDatafromList(query, "GET").then(function (getData) {
             getData = getData.d.results;
             quickLinksCount = getData.length;
             if (quickLinksCount >= 32) {
@@ -558,7 +558,7 @@ var KPCU = {
             }
             if (quickLinksCount > 0) {
                 var nextKey = 0;
-                $.map(getData, function(item, key) {
+                $.map(getData, function (item, key) {
                     var targetBlank = "";
                     if (item.OpenInNewTab) targetBlank = "target='_blank'";
                     if (key % 8 == 0) {
@@ -572,12 +572,12 @@ var KPCU = {
                 });
                 $('#' + myKPCUID + ' li:not(:last-child)').remove();
                 $("#myQuickLaunchMenu").before(createLinks);
-                $('.editIcon').click(function() {
+                $('.editIcon').click(function () {
                     $("#deleteLinkButton").removeAttr("disabled");
                     $("#editLinkButton").removeAttr("disabled");
                     var itemID = $(this).attr("id");
                     var query = siteAbsoluteURL + "/_api/web/lists/GetByTitle('" + KPCU.ListName.spListMyShortcuts + "')/" + "items?$filter=Id eq " + $(this).attr("id") + "&$top=1";
-                    KPCU.FetchDatafromList(query, "GET").then(function(getData) {
+                    KPCU.FetchDatafromList(query, "GET").then(function (getData) {
                         getData = getData.d.results;
                         if (getData.length > 0) {
                             $("#quickLinkTitleBoxEdit").val(getData[0].Title);
@@ -589,7 +589,7 @@ var KPCU = {
                         }
                     });
                 });
-                $('#btnMyQuickLaunchMenuAddLink').click(function() {
+                $('#btnMyQuickLaunchMenuAddLink').click(function () {
                     $("#addLinkButton").removeAttr("disabled");
                     $("#quickLinkURLBoxAdd").val("http://");
                     $("#quickLinkTitleBoxAdd").val("");
@@ -602,9 +602,9 @@ var KPCU = {
         });
     },
     //Used to get site URL if it is stored in different site collection
-    GetSiteURLForMultipleSiteCollection: function() {
+    GetSiteURLForMultipleSiteCollection: function () {
         var query = siteAbsoluteURL + "/_api/web/lists/GetByTitle('" + KPCU.ListName.spListConfiguration + "')/" + "items?$filter=KPCUKey eq 'SiteURL'&$select=KPCUKey,KPCUValue&$top=1";
-        KPCU.FetchDatafromList(query, "GET", true).then(function(getData) {
+        KPCU.FetchDatafromList(query, "GET", true).then(function (getData) {
             getData = getData.d.results;
             if (getData.length > 0) {
                 siteAbsoluteURL = getData[0].KPCUValue;
@@ -616,7 +616,7 @@ var KPCU = {
     },
     //Used to fecth termsets
     //termSetID: Term set ID
-    GetTermSets: function(termSetID) {
+    GetTermSets: function (termSetID) {
         var deferred = $.Deferred();
         //Current Context
         var context = SP.ClientContext.get_current();
@@ -630,20 +630,20 @@ var KPCU = {
         var termSet = termStore.getTermSet(termSetID);
         var terms = termSet.getAllTerms();
         context.load(terms);
-        context.executeQueryAsync(function() {
+        context.executeQueryAsync(function () {
             var termEnumerator = terms.getEnumerator();
             while (termEnumerator.moveNext()) {
                 allTermValues.push(termEnumerator.get_current().get_name());
             }
             deferred.resolve(allTermValues);
-        }, function(sender, args) {
+        }, function (sender, args) {
             KPCU.ClientLog(args.get_message());
             deferred.reject(args.get_message());
         });
         return deferred.promise();
     },
     //This is used to load user profile properties
-    GetUserProperties: function(userName) {
+    GetUserProperties: function (userName) {
         var userProfileProperties = "";
         var user = userName;
         if (userName.indexOf("|") >= 0) {
@@ -659,60 +659,60 @@ var KPCU = {
                 'Accept': 'application/json;odata=verbose'
             },
             async: false,
-            success: function(data) {
+            success: function (data) {
                 userProfileProperties = data.d;
             },
-            error: function(error) {}
+            error: function (error) { }
         });
         return userProfileProperties;
     },
     //This is used to show global navigation links
-    GlobalNavigationLinks: function() {
+    GlobalNavigationLinks: function () {
         var createLinks = "<ul>";
         var Level1Arr = [],
             Level2Arr = [],
             Level3Arr = [];
         //Get data from Global Navigation Links list
         var query = siteAbsoluteURL + "/_api/web/lists/GetByTitle('" + KPCU.ListName.spListGlobalNavigationLinks + "')/" + "items?$filter=KPCUIsActive eq 1&$expand=Parent&$select=*,Parent/Title&$orderby=Title asc&$top=1000";
-        KPCU.FetchDatafromList(query, "GET").then(function(getData) {
+        KPCU.FetchDatafromList(query, "GET").then(function (getData) {
             getData = getData.d.results;
             var globalLinksCount = getData.length;
             if (globalLinksCount > 0) {
-                $.map(getData, function(item) {
+                $.map(getData, function (item) {
                     if (item.Level == "Level 1")
-                    //Add first level items in array Level1Arr
+                        //Add first level items in array Level1Arr
                         Level1Arr.push({
-                        Title: item.Title,
-                        Sequence: item.Sequence
-                    });
+                            Title: item.Title,
+                            Sequence: item.Sequence
+                        });
                     if (item.Level == "Level 2")
-                    //Add second level items in array Level2Arr
+                        //Add second level items in array Level2Arr
                         Level2Arr.push({
-                        Title: item.Title,
-                        Sequence: item.Sequence,
-                        Parent: item.Parent.Title
-                    });
+                            Title: item.Title,
+                            Sequence: item.Sequence,
+                            Parent: item.Parent.Title
+                        });
                     if (item.Level == "Level 3")
-                    //Add third level items in array Level3Arr
+                        //Add third level items in array Level3Arr
                         Level3Arr.push({
-                        Title: item.Title,
-                        Sequence: item.Sequence,
-                        Parent: item.Parent.Title,
-                        URL: item.LinkURL ? item.LinkURL.Url : '',
-                        OpenInNewTab: item.OpenInNewTab
-                    });
+                            Title: item.Title,
+                            Sequence: item.Sequence,
+                            Parent: item.Parent.Title,
+                            URL: item.LinkURL ? item.LinkURL.Url : '',
+                            OpenInNewTab: item.OpenInNewTab
+                        });
                 });
                 //Arrays should be sorted using sequence number mentioned in list 
-                Level1Arr.sort(function(a, b) {
+                Level1Arr.sort(function (a, b) {
                     return a.Sequence - b.Sequence
                 });
                 //Use below arrays to store new values
                 var arrayMenuItemsLevel2 = [];
                 var arrayMenuItemsLevel3 = [];
                 //Traverse throuth first array (Level1Arr) to show first level values
-                $.map(Level1Arr, function(item, key) {
+                $.map(Level1Arr, function (item, key) {
                     //Get the menu items from second array which are childs of first array and sort that array using sequence number           
-                    arrayMenuItemsLevel2 = findMenuItems(item.Title, Level2Arr).sort(function(a, b) {
+                    arrayMenuItemsLevel2 = findMenuItems(item.Title, Level2Arr).sort(function (a, b) {
                         return a.Sequence - b.Sequence
                     });
                     if (item.Title === "My KPCU") myKPCUID = item.Title.replace(/ /g, '') + '-menu';
@@ -720,16 +720,16 @@ var KPCU = {
                     if (arrayMenuItemsLevel2.length > 0) {
                         createLinks += "<ul>";
                         //Traverse throuth second array (Level2Arr) to show second level values
-                        $.map(arrayMenuItemsLevel2, function(item, key) {
+                        $.map(arrayMenuItemsLevel2, function (item, key) {
                             //Get the menu items from third array which are childs of second array and sort that array using sequence number
-                            arrayMenuItemsLevel3 = findMenuItems(item.Title, Level3Arr).sort(function(a, b) {
+                            arrayMenuItemsLevel3 = findMenuItems(item.Title, Level3Arr).sort(function (a, b) {
                                 return a.Sequence - b.Sequence
                             });
                             createLinks += "<li><span class='menu_name'>" + item.Title + "</span>";
                             if (arrayMenuItemsLevel3.length > 0) {
                                 createLinks += "<ul>";
                                 //Traverse throuth third array (Level3Arr) to show third level values
-                                $.map(arrayMenuItemsLevel3, function(item, key) {
+                                $.map(arrayMenuItemsLevel3, function (item, key) {
                                     if (key != 0 && key % 12 == 0) createLinks += "</ul></li><li><ul style='margin-top:32px'>";
                                     var openTab = item.OpenInNewTab == true ? '_blank' : '';
                                     createLinks += "<li><a href='" + item.URL + "' target='" + openTab + "'>" + item.Title + "</a></li>";
@@ -756,23 +756,23 @@ var KPCU = {
         });
 
         function findMenuItems(menuTitle, arrayName) {
-            return $.grep(arrayName, function(n, i) {
+            return $.grep(arrayName, function (n, i) {
                 return n.Parent == menuTitle;
             });
         };
     },
     //Update CSS of left navigation apperas in department sites
-    HideShowLeftNavMenu: function() {
+    HideShowLeftNavMenu: function () {
         if ($("#sideNavBox").length > 0) {
             $("#sideNavBox .ms-core-listMenu-root li ul").hide();
-            $("#sideNavBox .ms-core-listMenu-root li").each(function(index) {
+            $("#sideNavBox .ms-core-listMenu-root li").each(function (index) {
                 if ($(this).has("ul").length > 0) {
                     $(this).addClass("has-sub-menu" + index);
                     $(this).find("ul").addClass("toggle-sub-menu" + index);
                     $(this).find("ul").addClass("toggle-all");
-                    $(".has-sub-menu" + index).click(function() {
+                    $(".has-sub-menu" + index).click(function () {
                         var currentClass = "toggle-sub-menu" + index;
-                        $(".toggle-all").map(function() {
+                        $(".toggle-all").map(function () {
                             if ($(this).hasClass("show_menu") && !$(this).hasClass(currentClass)) $(this).siblings().next().removeClass("show_menu");
                         });
                         $(".toggle-sub-menu" + index).toggleClass("show_menu");
@@ -782,7 +782,7 @@ var KPCU = {
         }
     },
     //Check if my quick links is valid URL
-    IsValidUrl: function(url) {
+    IsValidUrl: function (url) {
         var myVariable = url;
         if (/^(http|https|ftp):\/\/[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$/i.test(myVariable)) {
             return true;
@@ -791,15 +791,15 @@ var KPCU = {
         }
     },
     //This function is used to load key contacts
-    KeyContacts: function() {
+    KeyContacts: function () {
         //Get data from Quick Links
         var query = webAbsoluteURL + "/_api/web/lists/GetByTitle('" + KPCU.ListName.spListKeyContacts + "')/items?$expand=KeyContactUserName&$select=*,KeyContactUserName/Id,KeyContactUserName/FirstName,KeyContactUserName/LastName,KeyContactUserName/JobTitle,KeyContactUserName/Department,KeyContactUserName/EMail&$top=4&$orderby=Sequence asc";
-        KPCU.FetchDatafromList(query, "GET").then(function(getData) {
+        KPCU.FetchDatafromList(query, "GET").then(function (getData) {
             var strQuickLinksItem = "";
             getData = getData.d.results;
             if (getData.length > 0) {
                 var keyContactsHTML = "";
-                $.map(getData, function(item, key) {
+                $.map(getData, function (item, key) {
                     var pictureURL = _spPageContextInfo.siteServerRelativeUrl + "/_layouts/15/userphoto.aspx?size=L&accountname=" + item.KeyContactUserName.EMail;
                     var userURL = siteAbsoluteURL + "/_layouts/15/userdisp.aspx?ID=" + item.KeyContactUserName.Id;
                     var keyContactUserName = item.KeyContactUserName.FirstName + " " + item.KeyContactUserName.LastName;
@@ -812,16 +812,16 @@ var KPCU = {
         });
     },
     //This is used to fetch data from KPIs list
-    KPIs: function() {
+    KPIs: function () {
         //Get data from KPI list
         var query = siteAbsoluteURL + "/_api/web/lists/GetByTitle('" + KPCU.ListName.spListKPI + "')/items?$select=KPCUValue,Title&$top=3&$orderby=Created desc";
-        KPCU.FetchDatafromList(query, "GET").then(function(getData) {
+        KPCU.FetchDatafromList(query, "GET").then(function (getData) {
             getData = getData.d.results;
             if (getData.length > 0) {
                 var KPIHtml = "";
                 var KPIValue = "";
                 var KPITitle = "";
-                $.map(getData, function(item) {
+                $.map(getData, function (item) {
                     KPIValue = item.KPCUValue ? item.KPCUValue : "";
                     KPITitle = item.Title ? item.Title : "";
                     KPIHtml += "<div class='col-md-4 col-sm-4 col-xs-12'><div class='main_points'><div class='mainpoint_heading blue'>" + KPIValue + "</div><div class='mainpoint_heading kpis_title gray'>" + KPITitle + "</div></div></div>";
@@ -847,10 +847,10 @@ var KPCU = {
         spListQuickLinks: "Quick Links"
     },
     //Load department banner used on department home page
-    LoadDepartmentBanner: function() {
+    LoadDepartmentBanner: function () {
         //Get data from KPI list
         var query = webAbsoluteURL + "/_api/web/lists/GetByTitle('" + KPCU.ListName.spListConfiguration + "')/items?$filter=KPCUKey eq 'Image'&$select=KPCUKey,KPCUValue,KPCUDescription,Title&$top=1";
-        KPCU.FetchDatafromList(query, "GET").then(function(getData) {
+        KPCU.FetchDatafromList(query, "GET").then(function (getData) {
             getData = getData.d.results;
             if (getData.length > 0) {
                 var banneImage = getData[0].KPCUValue;
@@ -869,7 +869,7 @@ var KPCU = {
         });
     },
     //Mega menu hover behaviour
-    MegaMenuDropdown: function() {
+    MegaMenuDropdown: function () {
         $('.menu > ul > li:has( > div > ul)').addClass('menu-dropdown-icon');
         //Checks if li has sub (ul) and adds class for toggle icon - just an UI		
         $('.menu > ul > li > ul:not(:has(> div> ul))').addClass('normal-sub');
@@ -879,41 +879,41 @@ var KPCU = {
         //Mobile menu is hidden if width is more then 959px, but normal menu is displayed
         //Normal menu is hidden if width is below 959px, and jquery adds mobile menu
         //Done this way so it can be used with wordpress without any trouble	
-        $(".menu > ul > li").hover(function(e) {
+        $(".menu > ul > li").hover(function (e) {
             $(".editIcon").addClass("hide");
             if ($(window).width() > 943) {
                 $(this).children("div").children("ul").addClass("show_menu");
                 e.preventDefault();
             }
-        }, function(e) {
+        }, function (e) {
             if ($(window).width() > 943) {
                 $(this).children("div").children("ul").removeClass("show_menu");
                 e.preventDefault();
             }
         });
         //If width is more than 943px dropdowns are displayed on hover	
-        $(".menu > ul > li").click(function() {
+        $(".menu > ul > li").click(function () {
             if ($(window).width() < 943) {
                 $(this).children("div").children("ul").fadeToggle(150);
             }
         });
         //If width is less or equal to 943px dropdowns are displayed on click (thanks Aman Jain from stackoverflow)	
-        $(".menu-mobile").click(function(e) {
+        $(".menu-mobile").click(function (e) {
             $(".menu > ul").toggleClass('show-on-mobile');
             e.preventDefault();
         });
         //when clicked on mobile-menu, normal menu is shown as a list, classic rwd menu story (thanks mwl from stackoverflow)
     },
     //Fetch data from NewJoinee list to show new joinees
-    NewJoinee: function() {
+    NewJoinee: function () {
         //Get data from New Joinee list
         var query = siteAbsoluteURL + "/_api/web/lists/GetByTitle('" + KPCU.ListName.spListNewJoinee + "')/" + "items?$expand=NewJoineeUsername&$select=*,NewJoineeUsername/Id,NewJoineeUsername/FirstName,NewJoineeUsername/LastName,NewJoineeUsername/JobTitle,NewJoineeUsername/Department,NewJoineeUsername/EMail&$top=3&$orderby=Created desc";
-        KPCU.FetchDatafromList(query, "GET").then(function(getData) {
+        KPCU.FetchDatafromList(query, "GET").then(function (getData) {
             getData = getData.d.results;
             if (getData.length > 0) {
                 var newJoineeData = "";
                 var carouselIndicatorsNewJoinee = "";
-                $.map(getData, function(item, key) {
+                $.map(getData, function (item, key) {
                     var userURL = siteAbsoluteURL + "/_layouts/15/userdisp.aspx?ID=" + item.NewJoineeUsername.Id;
                     var clsActive = (key == 0) ? "active" : "";
                     if (getData.length > 1) carouselIndicatorsNewJoinee += "<li data-target='#myCarousel1' data-slide-to='" + key + "' class='" + clsActive + "'></li>";
@@ -931,16 +931,16 @@ var KPCU = {
         });
     },
     //This function used to open links in modal dialog
-    OpenInDialog: function(url, title) {
+    OpenInDialog: function (url, title) {
         var options = SP.UI.$create_DialogOptions();
         options.url = url;
         options.title = title;
         options.dialogReturnValueCallback = Function.createDelegate(null, null);
         SP.UI.ModalDialog.showModalDialog(options);
     },
-    OpenInModalNewProjectRequest: function() {
+    OpenInModalNewProjectRequest: function () {
         if ($(".menu-item-text").length > 0) {
-            $(".menu-item-text").each(function() {
+            $(".menu-item-text").each(function () {
                 if ($(this).text() == "New Project Request") {
                     var projectNewHref = "javascript:KPCU.OpenInDialog('" + $(this).parent().parent().attr("href") + "', 'New Project Request Form')";
                     $(this).parent().parent().attr("href", projectNewHref);
@@ -950,7 +950,7 @@ var KPCU = {
         }
     },
     //Picture library js init point which is used in department sites
-    PictureLibraryCarousel: function() {
+    PictureLibraryCarousel: function () {
         if ($(".fancybox-thumbs").length > 0) {
             $('.fancybox-thumbs').fancybox({
                 prevEffect: 'none',
@@ -968,34 +968,34 @@ var KPCU = {
         }
     },
     //Project Hub Init function
-    ProjectHubInit: function() {
-        $("a.show_all_pro").click(function() {
+    ProjectHubInit: function () {
+        $("a.show_all_pro").click(function () {
             $(".searched_ontrack").parent().removeClass("hide_card");
             $(".searched_critical").parent().removeClass("hide_card");
             $(".searched_caution").parent().removeClass("hide_card");
         });
-        $("a.show_ontrack_pro").click(function() {
+        $("a.show_ontrack_pro").click(function () {
             $(".searched_ontrack").parent().removeClass("hide_card");
             $(".searched_critical").parent().addClass("hide_card");
             $(".searched_caution").parent().addClass("hide_card");
         });
-        $("a.show_caution_pro").click(function() {
+        $("a.show_caution_pro").click(function () {
             $(".searched_caution").parent().removeClass("hide_card");
             $(".searched_ontrack").parent().addClass("hide_card");
             $(".searched_critical").parent().addClass("hide_card");
         });
-        $("a.show_critical_pro").click(function() {
+        $("a.show_critical_pro").click(function () {
             $(".searched_critical").parent().removeClass("hide_card");
             $(".searched_ontrack").parent().addClass("hide_card");
             $(".searched_caution").parent().addClass("hide_card");
         });
-        $(".change_view a i.fa.fa-list-ul").click(function() {
+        $(".change_view a i.fa.fa-list-ul").click(function () {
             $(".change_view a i.fa.fa-list-ul").hide(50);
             $(".change_view a i.fa.fa-table").show(50);
             $(".card_wrapper").hide(50);
             $(".strip_wrapper").show(50);
         });
-        $(".change_view a i.fa.fa-table").click(function() {
+        $(".change_view a i.fa.fa-table").click(function () {
             $(".change_view a i.fa.fa-table").hide(50);
             $(".change_view a i.fa.fa-list-ul").show(50);
             $(".card_wrapper").show(50);
@@ -1003,13 +1003,13 @@ var KPCU = {
         });
     },
     //This is used to fetch data from project site 
-    ProjectSiteProjectInformation: function() {
+    ProjectSiteProjectInformation: function () {
         var query = webAbsoluteURL + "/_api/web/lists/GetByTitle('" + KPCU.ListName.spListProjects + "')/" + "items?$expand=ProjectSponsorer,ProjectManager&$select=*,ProjectSponsorer/FirstName,ProjectSponsorer/LastName,ProjectManager/Id,ProjectManager/FirstName,ProjectManager/LastName&$orderby=Created desc&$top=1";
-        KPCU.FetchDatafromList(query, "GET").then(function(getData) {
+        KPCU.FetchDatafromList(query, "GET").then(function (getData) {
             getData = getData.d.results;
             if (getData.length > 0) {
                 var dashboardHtml = "";
-                $.map(getData, function(item) {
+                $.map(getData, function (item) {
                     var projectOnTargetClassName = "ontrack_projects";
                     var projectAtRiskClassName = "caution_projects";
                     var projectHighRiskClassName = "critical_projects";
@@ -1067,14 +1067,14 @@ var KPCU = {
         });
     },
     //This function is used to load quick links on project site
-    ProjectSiteQuickLinks: function() {
+    ProjectSiteQuickLinks: function () {
         //Get data from Quick Links
         var query = webAbsoluteURL + "/_api/web/lists/GetByTitle('" + KPCU.ListName.spListQuickLinks + "')/items?$select=*";
-        KPCU.FetchDatafromList(query, "GET").then(function(getData) {
+        KPCU.FetchDatafromList(query, "GET").then(function (getData) {
             var strQuickLinksItem = "";
             getData = getData.d.results;
             if (getData.length > 0) {
-                $.map(getData, function(item, key) {
+                $.map(getData, function (item, key) {
                     var targetBlank = "";
                     if (item.OpenInNewTab) targetBlank = "target='_blank'";
                     //This will add all quick links
@@ -1085,29 +1085,29 @@ var KPCU = {
         });
     },
     //This is used to show toaster message after doing operations on my quick links(like Add, Edit, Delete)
-    ShowToaster: function(textToDisplay) {
+    ShowToaster: function (textToDisplay) {
         $("#lblToasterSuccess").html(textToDisplay);
         var x = document.getElementById("lblToasterSuccess");
         x.className = "show";
-        setTimeout(function() {
+        setTimeout(function () {
             x.className = x.className.replace("show", "");
         }, 3000);
         //location.reload();
     },
     //This is used to fetch data from StarIncentive list
-    StarIncentive: function() {
+    StarIncentive: function () {
         var newDate = new Date().format("MMMM yyyy");
         $("#dvPublishDate").text(newDate);
         //Get data from Star Incentive list
         var query = siteAbsoluteURL + "/_api/web/lists/GetByTitle('" + KPCU.ListName.spListStarIncentive + "')/items?$select=KPCUValue,KPCUGoalValue,Title&$top=4&$orderby=Created desc";
-        KPCU.FetchDatafromList(query, "GET").then(function(getData) {
+        KPCU.FetchDatafromList(query, "GET").then(function (getData) {
             getData = getData.d.results;
             if (getData.length > 0) {
                 var starIncentiveHtml = "";
                 var starIncentiveTitle = "";
                 var starIncentiveValue = "";
                 var starIncentiveGoalValue = "";
-                $.map(getData, function(item) {
+                $.map(getData, function (item) {
                     starIncentiveTitle = item.Title ? item.Title : "";
                     starIncentiveValue = item.KPCUValue ? item.KPCUValue : "";
                     starIncentiveGoalValue = item.KPCUGoalValue ? item.KPCUGoalValue : "";
@@ -1118,7 +1118,7 @@ var KPCU = {
         });
     },
     //Validation on my KPCU quick links
-    ValidateQuickLinkItem: function(appendID) {
+    ValidateQuickLinkItem: function (appendID) {
         var chkError = false;
         if ($("#quickLinkTitleBox" + appendID).val().trim() == "") {
             $("#errorMsgTitle" + appendID).removeClass("hide");
@@ -1136,15 +1136,15 @@ var KPCU = {
         return chkError;
     }
 }
-$(document).ready(function() {
+$(document).ready(function () {
     siteAbsoluteURL = _spPageContextInfo.siteAbsoluteUrl;
     webAbsoluteURL = _spPageContextInfo.webAbsoluteUrl;
     KPCU.Init();
 });
 // Functions that require the DOM to be fully loaded
-$(window).load(function() {
+$(window).load(function () {
     //Apply KPCU Logo to the Suite Bar
-    var interval = setInterval(function() {
+    var interval = setInterval(function () {
         if ($("#O365_MainLink_Logo").length > 0) {
             KPCU.AddKPCULogoOnSuiteBar();
             clearInterval(interval);
@@ -1153,7 +1153,7 @@ $(window).load(function() {
         }
     }, 1000);
     //Adding div to activity feed
-    var intervalActivityFeed = setInterval(function() {
+    var intervalActivityFeed = setInterval(function () {
         if ($("#ms-newsfeedpartdiv").length > 0) {
             $("#ms-newsfeedpartdiv").wrap("<div id='activityFeedSlimScroll'></div>");
             //Added div at the end of activity feed.

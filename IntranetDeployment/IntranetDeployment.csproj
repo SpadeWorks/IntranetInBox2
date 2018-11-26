@@ -88,8 +88,8 @@
     <Content Include="IntranetJSFiles\Sample.txt" />
     <Content Include="IntranetJSFiles\services.js" />
     <Content Include="IntranetPageLayoutsFiles\KPCU_NewsDetailsLayout.txt" />
-    <Content Include="IntranetWebparts\Elements.xml" />
-    <Content Include="IntranetWebparts\Sample.txt" />
+    <Content Include="IntranetWebFontsFiles\glyphicons-halflings-regular.svg" />
+    <Content Include="IntranetWebPartFiles\Elements.xml" />
     <Content Include="SearchConfiguration1\Elements.xml">
       <SubType>Designer</SubType>
     </Content>
@@ -143,6 +143,10 @@
     <None Include="IntranetTextFiles\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{ad6be2a5-cdc2-4ec5-bc36-b2a51e7bb65b}</SharePointProjectItemId>
     </None>
+    <None Include="IntranetWebFontsFiles\calibri.eot" />
+    <None Include="IntranetWebFontsFiles\calibri.otf" />
+    <None Include="IntranetWebFontsFiles\calibri.ttf" />
+    <None Include="IntranetWebFontsFiles\calibri.woff" />
     <None Include="IntranetWebFontsFiles\fontawesome-webfont.eot" />
     <None Include="IntranetWebFontsFiles\fontawesome-webfont.ttf" />
     <None Include="IntranetWebFontsFiles\fontawesome-webfont.woff" />
@@ -154,28 +158,29 @@
     <None Include="IntranetWebFontsFiles\Gill Sans MT.eot" />
     <None Include="IntranetWebFontsFiles\Gill Sans MT.woff" />
     <None Include="IntranetWebFontsFiles\Gill Sans MT.woff2" />
+    <None Include="IntranetWebFontsFiles\glyphicons-halflings-regular.eot" />
+    <None Include="IntranetWebFontsFiles\glyphicons-halflings-regular.ttf" />
+    <None Include="IntranetWebFontsFiles\glyphicons-halflings-regular.woff" />
+    <None Include="IntranetWebFontsFiles\glyphicons-halflings-regular.woff2" />
     <None Include="IntranetWebFontsFiles\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{160b0d31-d759-4410-be94-888f515a2468}</SharePointProjectItemId>
     </None>
     <None Include="IntranetMasterPagesFiles\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{be47bfeb-eeb5-406a-bcdc-6736b1afb02b}</SharePointProjectItemId>
     </None>
+    <None Include="IntranetWebPartFiles\Birthday And Anniversaries.dwp" />
+    <None Include="IntranetWebPartFiles\Happenings.webpart" />
+    <None Include="IntranetWebPartFiles\KPCU News.webpart" />
+    <None Include="IntranetWebPartFiles\Latest News Home Content Search.webpart" />
+    <None Include="IntranetWebPartFiles\Latest Updates Home CSWP.webpart" />
+    <None Include="IntranetWebPartFiles\Mark Your Calendar CSWP.webpart" />
+    <None Include="IntranetWebPartFiles\NBB Family Updates CSWP.webpart" />
+    <None Include="IntranetWebPartFiles\Org Announcement carousel CEWP.dwp" />
+    <None Include="IntranetWebPartFiles\Poll content editor.dwp" />
     <None Include="IntranetWebPartFiles\SharePointProjectItem.spdata">
-      <SharePointProjectItemId>{29f837d4-44f3-4938-b144-cba244f1e98d}</SharePointProjectItemId>
+      <SharePointProjectItemId>{14399f12-a81d-4df7-8df2-d522f7c93f1f}</SharePointProjectItemId>
     </None>
-    <None Include="IntranetWebparts\Birthday And Anniversaries.dwp" />
-    <None Include="IntranetWebparts\Happenings.webpart" />
-    <None Include="IntranetWebparts\KPCU News.webpart" />
-    <None Include="IntranetWebparts\Latest News Home Content Search.webpart" />
-    <None Include="IntranetWebparts\Latest Updates Home CSWP.webpart" />
-    <None Include="IntranetWebparts\Mark Your Calendar CSWP.webpart" />
-    <None Include="IntranetWebparts\NBB Family Updates CSWP.webpart" />
-    <None Include="IntranetWebparts\Org Announcement carousel CEWP.dwp" />
-    <None Include="IntranetWebparts\Poll content editor.dwp" />
-    <None Include="IntranetWebparts\SharePointProjectItem.spdata">
-      <SharePointProjectItemId>{9aaf0efe-378b-4766-9e39-e7a7363b7ede}</SharePointProjectItemId>
-    </None>
-    <None Include="IntranetWebparts\Voice of Mgt CSWP %281%29.webpart" />
+    <None Include="IntranetWebPartFiles\Voice of Mgt CSWP.webpart" />
     <None Include="packages.config" />
     <None Include="Pages\SharePointProjectItem.spdata">
       <SharePointProjectItemId>{5814e024-85aa-4714-a0cd-d7dc36eb43c6}</SharePointProjectItemId>
@@ -236,9 +241,6 @@
     <Content Include="IntranetWebFontsFiles\Sample.txt" />
     <Content Include="IntranetMasterPagesFiles\Elements.xml" />
     <Content Include="IntranetMasterPagesFiles\MasterPage.txt" />
-    <Content Include="IntranetWebPartFiles\Elements.xml" />
-    <Content Include="IntranetWebPartFiles\Latest News Home Content Search.txt" />
-    <Content Include="IntranetWebPartFiles\Sample.txt" />
     <Content Include="Pages\Elements.xml" />
     <Content Include="Pages\Default.aspx" />
     <None Include="SearchConfiguration1\SharePointProjectItem.spdata">

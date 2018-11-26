@@ -5,12 +5,12 @@
 <!--[if gte mso 9]><xml>
 <mso:CustomDocumentProperties>
 <mso:TemplateHidden msdt:dt="string">0</mso:TemplateHidden>
-<mso:ManagedPropertyMapping msdt:dt="string">&#39;ApprovalStatus&#39;:&#39;ApprovalStatus&#39;,&#39;Picture URL&#39;{Picture URL}:&#39;PublishingImage;PictureURL;PictureThumbnailURL&#39;,&#39;Link URL&#39;{Link URL}:&#39;Path&#39;,&#39;Line 1&#39;{Line 1}:&#39;Title&#39;,&#39;Line 2&#39;{Line 2}:&#39;ManagementMessage&#39;,&#39;Line 3&#39;{Line 3}:&#39;ContentAuthor&#39;,&#39;SecondaryFileExtension&#39;,&#39;ContentTypeId&#39;</mso:ManagedPropertyMapping>
+<mso:ManagedPropertyMapping msdt:dt="string">'ApprovalStatus':'ApprovalStatus','Picture URL'{Picture URL}:'PublishingImage;PictureURL;PictureThumbnailURL','Link URL'{Link URL}:'Path','Line 1'{Line 1}:'Title','Line 2'{Line 2}:'ManagementMessage','Line 3'{Line 3}:'ContentAuthorOWSUSER','SecondaryFileExtension','ContentTypeId','ContentAuthorOWSUSEROWSUSER':'ContentAuthorOWSUSEROWSUSER'</mso:ManagedPropertyMapping>
 <mso:MasterPageDescription msdt:dt="string">This Item Display Template will show a 100x100 picture of the item on the left. The title and the default item description will display to the right of the picture with an additional line that is available for a custom managed property.</mso:MasterPageDescription>
 <mso:ContentTypeId msdt:dt="string">0x0101002039C03B61C64EC4A04F5361F385106603</mso:ContentTypeId>
 <mso:TargetControlType msdt:dt="string">;#Content Web Parts;#</mso:TargetControlType>
 <mso:HtmlDesignAssociated msdt:dt="string">1</mso:HtmlDesignAssociated>
-<mso:HtmlDesignStatusAndPreview msdt:dt="string">https://gohelmahendrak.sharepoint.com/sites/NBB/_catalogs/masterpage/Display%20Templates/Content%20Web%20Parts/Item_VoiceOfManagement.html, Conversion successful.</mso:HtmlDesignStatusAndPreview>
+<mso:HtmlDesignStatusAndPreview msdt:dt="string">https://cognizant222.sharepoint.com/sites/IntranetInBoxPublishing/_catalogs/masterpage/Display Templates/Content Web Parts/Item_VoiceOfManagement.html, Conversion successful.</mso:HtmlDesignStatusAndPreview>
 <mso:HtmlDesignConversionSucceeded msdt:dt="string">True</mso:HtmlDesignConversionSucceeded>
 </mso:CustomDocumentProperties>
 </xml><![endif]-->
@@ -51,8 +51,8 @@ var line2 = $getItemValue(ctx, "Line 2");
 var line3 = $getItemValue(ctx, "Line 3");
 var userName,displayName;
 
-	userName = Srch.U.getUsernameFromAuthorField(ctx.CurrentItem.ContentAuthor);
-	displayName = Srch.U.getDisplayNameFromAuthorField(ctx.CurrentItem.ContentAuthor);
+	userName = Srch.U.getUsernameFromAuthorField(ctx.CurrentItem.ContentAuthorOWSUSER);
+	displayName = Srch.U.getDisplayNameFromAuthorField(ctx.CurrentItem.ContentAuthorOWSUSER);
 
 
 var status = $getItemValue(ctx,"ApprovalStatus");
@@ -78,7 +78,7 @@ var tag = document.createElement('div');
 tag.innerHTML = line2.value;
 if(tag.innerText.length > 120)
 {
-	var description = tag.innerText.substring(0,120) + "… ";
+	var description = tag.innerText.substring(0,120) + "& ";
 }
 else
 {

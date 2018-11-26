@@ -17,5 +17,14 @@
     <ProjectItemFile Source="Gill Sans MT.svg" Target="IntranetWebFontsFiles\" Type="ElementFile" />
     <ProjectItemFile Source="Gill Sans MT.woff" Target="IntranetWebFontsFiles\" Type="ElementFile" />
     <ProjectItemFile Source="Gill Sans MT.woff2" Target="IntranetWebFontsFiles\" Type="ElementFile" />
+    <ProjectItemFile Source="calibri.eot" Target="IntranetWebFontsFiles\" Type="ElementFile" />
+    <ProjectItemFile Source="calibri.otf" Target="IntranetWebFontsFiles\" Type="ElementFile" />
+    <ProjectItemFile Source="calibri.ttf" Target="IntranetWebFontsFiles\" Type="ElementFile" />
+    <ProjectItemFile Source="calibri.woff" Target="IntranetWebFontsFiles\" Type="ElementFile" />
+    <ProjectItemFile Source="glyphicons-halflings-regular.eot" Target="IntranetWebFontsFiles\" Type="ElementFile" />
+    <ProjectItemFile Source="glyphicons-halflings-regular.svg" Target="IntranetWebFontsFiles\" Type="ElementFile" />
+    <ProjectItemFile Source="glyphicons-halflings-regular.ttf" Target="IntranetWebFontsFiles\" Type="ElementFile" />
+    <ProjectItemFile Source="glyphicons-halflings-regular.woff" Target="IntranetWebFontsFiles\" Type="ElementFile" />
+    <ProjectItemFile Source="glyphicons-halflings-regular.woff2" Target="IntranetWebFontsFiles\" Type="ElementFile" />
   </Files>
 </ProjectItem>

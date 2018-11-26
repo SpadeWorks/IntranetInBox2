@@ -16,5 +16,14 @@
     <File Path="IntranetWebFontsFiles\Gill Sans MT.svg" Url="IntranetWebFontsFiles/Gill Sans MT.svg" ReplaceContent="TRUE" />
     <File Path="IntranetWebFontsFiles\Gill Sans MT.woff" Url="IntranetWebFontsFiles/Gill Sans MT.woff" ReplaceContent="TRUE" />
     <File Path="IntranetWebFontsFiles\Gill Sans MT.woff2" Url="IntranetWebFontsFiles/Gill Sans MT.woff2" ReplaceContent="TRUE" />
+    <File Path="IntranetWebFontsFiles\calibri.eot" Url="IntranetWebFontsFiles/calibri.eot" ReplaceContent="TRUE" />
+    <File Path="IntranetWebFontsFiles\calibri.otf" Url="IntranetWebFontsFiles/calibri.otf" ReplaceContent="TRUE" />
+    <File Path="IntranetWebFontsFiles\calibri.ttf" Url="IntranetWebFontsFiles/calibri.ttf" ReplaceContent="TRUE" />
+    <File Path="IntranetWebFontsFiles\calibri.woff" Url="IntranetWebFontsFiles/calibri.woff" ReplaceContent="TRUE" />
+    <File Path="IntranetWebFontsFiles\glyphicons-halflings-regular.eot" Url="IntranetWebFontsFiles/glyphicons-halflings-regular.eot" ReplaceContent="TRUE" />
+    <File Path="IntranetWebFontsFiles\glyphicons-halflings-regular.svg" Url="IntranetWebFontsFiles/glyphicons-halflings-regular.svg" ReplaceContent="TRUE" />
+    <File Path="IntranetWebFontsFiles\glyphicons-halflings-regular.ttf" Url="IntranetWebFontsFiles/glyphicons-halflings-regular.ttf" ReplaceContent="TRUE" />
+    <File Path="IntranetWebFontsFiles\glyphicons-halflings-regular.woff" Url="IntranetWebFontsFiles/glyphicons-halflings-regular.woff" ReplaceContent="TRUE" />
+    <File Path="IntranetWebFontsFiles\glyphicons-halflings-regular.woff2" Url="IntranetWebFontsFiles/glyphicons-halflings-regular.woff2" ReplaceContent="TRUE" />
   </Module>
 </Elements>

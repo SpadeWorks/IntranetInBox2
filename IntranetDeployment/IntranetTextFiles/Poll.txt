@@ -27,13 +27,11 @@
     <div data-bind="visible:pollVisible() != chartVisible() ? false :true">
         <div>Please <a data-bind="attr{href:surveyLink}">Click Here</a> to participate in survey</div>
         <div>Please <a data-bind="attr{href:ViewResponseLink}">Click Here</a> to View Survey Responses</div>
-      </div>
-       
+      </div> 
   </div>
-  
 </body>
-<script type="text/javascript" src="../Style Library/NBB/JS/chart.js"></script>
-<script type="text/javascript" src="../Style Library/NBB/JS/PollKO.js"></script>
+<script type="text/javascript" src="../Style Library/IntranetInbox/js/chart.js"></script>
+<script type="text/javascript" src="../Style Library/IntranetInbox/js/PollKO.js"></script>
 <script type="text/javascript">
   document.onreadystatechange = function () {
     if (document.readyState === "complete") {

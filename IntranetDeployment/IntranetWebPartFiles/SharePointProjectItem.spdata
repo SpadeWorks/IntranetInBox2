@@ -2,7 +2,15 @@
 <ProjectItem Type="Microsoft.VisualStudio.SharePoint.Module" DefaultFile="Elements.xml" SupportedTrustLevels="All" SupportedDeploymentScopes="Web, Site" xmlns="http://schemas.microsoft.com/VisualStudio/2010/SharePointTools/SharePointProjectItemModel">
   <Files>
     <ProjectItemFile Source="Elements.xml" Target="IntranetWebPartFiles\" Type="ElementManifest" />
-    <ProjectItemFile Source="Sample.txt" Target="IntranetWebPartFiles\" Type="ElementFile" />
-    <ProjectItemFile Source="Latest News Home Content Search.txt" Target="IntranetWebPartFiles\" Type="ElementFile" />
+    <ProjectItemFile Source="Birthday And Anniversaries.dwp" Target="IntranetWebPartFiles\" Type="ElementFile" />
+    <ProjectItemFile Source="Happenings.webpart" Target="IntranetWebPartFiles\" Type="ElementFile" />
+    <ProjectItemFile Source="KPCU News.webpart" Target="IntranetWebPartFiles\" Type="ElementFile" />
+    <ProjectItemFile Source="Latest News Home Content Search.webpart" Target="IntranetWebPartFiles\" Type="ElementFile" />
+    <ProjectItemFile Source="Latest Updates Home CSWP.webpart" Target="IntranetWebPartFiles\" Type="ElementFile" />
+    <ProjectItemFile Source="Mark Your Calendar CSWP.webpart" Target="IntranetWebPartFiles\" Type="ElementFile" />
+    <ProjectItemFile Source="NBB Family Updates CSWP.webpart" Target="IntranetWebPartFiles\" Type="ElementFile" />
+    <ProjectItemFile Source="Org Announcement carousel CEWP.dwp" Target="IntranetWebPartFiles\" Type="ElementFile" />
+    <ProjectItemFile Source="Poll content editor.dwp" Target="IntranetWebPartFiles\" Type="ElementFile" />
+    <ProjectItemFile Source="Voice of Mgt CSWP.webpart" Target="IntranetWebPartFiles\" Type="ElementFile" />
   </Files>
 </ProjectItem>

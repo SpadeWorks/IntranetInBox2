@@ -84,18 +84,6 @@ To build the master page directly from this HTML file, simply edit the page as y
     }
     //]]></style>
     <![endif]-->
-    <!-- Global site tag (gtag.js) - Google Analytics -->
-		<script src="https://www.googletagmanager.com/gtag/js?id=UA-116618171-1">//<![CDATA[
-		
-		//]]></script>
-		<script>//<![CDATA[
-		  window.dataLayer = window.dataLayer || [];
-		  function gtag(){dataLayer.push(arguments);}
-		  gtag('js', new Date());
-		
-		  gtag('config', 'UA-116618171-1');
-		
-		//]]></script>
 		<script type="text/javascript" src='<SharePoint:EncodedLiteral runat="server" text="<%$SPUrl:~SiteCollection/Style Library/IntranetInbox/js/jquery-3.1.0.min.js%>" EncodeMethod="HtmlEncode"/>' >//<![CDATA[//]]></script>
 		<script type="text/javascript" src='<SharePoint:EncodedLiteral runat="server" text="<%$SPUrl:~SiteCollection/Style Library/IntranetInbox/js/bootstrap.min.js%>" EncodeMethod="HtmlEncode"/>' >//<![CDATA[//]]></script>
 		<script type="text/javascript" src='<SharePoint:EncodedLiteral runat="server" text="<%$SPUrl:~SiteCollection/Style Library/IntranetInbox/js/moment.js%>" EncodeMethod="HtmlEncode"/>' >//<![CDATA[//]]></script>
@@ -205,11 +193,11 @@ To build the master page directly from this HTML file, simply edit the page as y
                             <div class="col-md-6 col-sm-6 col-xs-12">
                                 <div class="logo-Wrapper" id="nbbLogo">
                                     <a data-bind="attr{href:NBBURL}" target="_blank" class="nbb-logo pull-left">
-                                        <img src='<SharePoint:EncodedLiteral runat="server" text="<%$SPUrl:~SiteCollection/Style Library/IntranetInbox/images/NBB-logo.jpg%>" EncodeMethod="HtmlEncode" __designer:Preview="/sites/PublishingTest1/Style Library/IntranetInbox/images/NBB-logo.jpg" __designer:Values="&lt;P N=&#39;Text&#39; Bound=&#39;True&#39; T=&#39;SPUrl:~SiteCollection/Style Library/IntranetInbox/images/NBB-logo.jpg&#39; /&gt;&lt;P N=&#39;ID&#39; T=&#39;ctl12&#39; /&gt;&lt;P N=&#39;Page&#39; ID=&#39;1&#39; /&gt;&lt;P N=&#39;TemplateControl&#39; ID=&#39;2&#39; /&gt;&lt;P N=&#39;AppRelativeTemplateSourceDirectory&#39; R=&#39;-1&#39; /&gt;"/>' width="130" height="47" alt="" />
+                                        <img src='<SharePoint:EncodedLiteral runat="server" text="<%$SPUrl:~SiteCollection/Style Library/IntranetInbox/images/NBB-logo.jpg%>" EncodeMethod="HtmlEncode" __designer:Preview="/sites/IntranetInBoxPublishing/Style Library/IntranetInbox/images/NBB-logo.jpg" __designer:Values="&lt;P N=&#39;Text&#39; Bound=&#39;True&#39; T=&#39;SPUrl:~SiteCollection/Style Library/IntranetInbox/images/NBB-logo.jpg&#39; /&gt;&lt;P N=&#39;ID&#39; T=&#39;ctl12&#39; /&gt;&lt;P N=&#39;Page&#39; ID=&#39;1&#39; /&gt;&lt;P N=&#39;TemplateControl&#39; ID=&#39;2&#39; /&gt;&lt;P N=&#39;AppRelativeTemplateSourceDirectory&#39; R=&#39;-1&#39; /&gt;"/>' width="130" height="47" alt="" />
                                         
                                     </a>
                                     <a data-bind="attr{href:myNBBURL}" class="nbb-intranet-logo pull-left">
-                                        <img src='<SharePoint:EncodedLiteral runat="server" text="<%$SPUrl:~SiteCollection/Style Library/IntranetInbox/images/NBB-intranet-logo.jpg%>" EncodeMethod="HtmlEncode" __designer:Preview="/sites/PublishingTest1/Style Library/IntranetInbox/images/NBB-intranet-logo.jpg" __designer:Values="&lt;P N=&#39;Text&#39; Bound=&#39;True&#39; T=&#39;SPUrl:~SiteCollection/Style Library/IntranetInbox/images/NBB-intranet-logo.jpg&#39; /&gt;&lt;P N=&#39;ID&#39; T=&#39;ctl13&#39; /&gt;&lt;P N=&#39;Page&#39; ID=&#39;1&#39; /&gt;&lt;P N=&#39;TemplateControl&#39; ID=&#39;2&#39; /&gt;&lt;P N=&#39;AppRelativeTemplateSourceDirectory&#39; R=&#39;-1&#39; /&gt;"/>' width="109" height="35" alt="" />
+                                        <img src='<SharePoint:EncodedLiteral runat="server" text="<%$SPUrl:~SiteCollection/Style Library/IntranetInbox/images/NBB-intranet-logo.jpg%>" EncodeMethod="HtmlEncode" __designer:Preview="/sites/IntranetInBoxPublishing/Style Library/IntranetInbox/images/NBB-intranet-logo.jpg" __designer:Values="&lt;P N=&#39;Text&#39; Bound=&#39;True&#39; T=&#39;SPUrl:~SiteCollection/Style Library/IntranetInbox/images/NBB-intranet-logo.jpg&#39; /&gt;&lt;P N=&#39;ID&#39; T=&#39;ctl13&#39; /&gt;&lt;P N=&#39;Page&#39; ID=&#39;1&#39; /&gt;&lt;P N=&#39;TemplateControl&#39; ID=&#39;2&#39; /&gt;&lt;P N=&#39;AppRelativeTemplateSourceDirectory&#39; R=&#39;-1&#39; /&gt;"/>' width="109" height="35" alt="" />
                                         
                                     </a>
                                 </div>
@@ -345,23 +333,6 @@ To build the master page directly from this HTML file, simply edit the page as y
                             </div>
                         </div>
                         <!-- Ends Navigation Here -->
-                        <div class="row">
-                            <div class="col-md-12">
-                                <!-- Starts News Bulletin Here -->
-                                
-                                
-                                
-                                
-                                
-                                
-                                
-                                
-                                
-                                <spsswc:ContentBySearchWebPart runat="server" AlwaysRenderOnServer="False" ResultType="" NumberOfItems="30" DataProviderJSON="{&quot;QueryGroupName&quot;:&quot;Default&quot;,&quot;QueryPropertiesTemplateUrl&quot;:&quot;sitesearch://webroot&quot;,&quot;IgnoreQueryPropertiesTemplateUrl&quot;:false,&quot;SourceID&quot;:&quot;8413cd39-2156-4e00-b54d-11efd9abdb89&quot;,&quot;SourceName&quot;:&quot;Local SharePoint Results&quot;,&quot;SourceLevel&quot;:&quot;Ssa&quot;,&quot;CollapseSpecification&quot;:&quot;&quot;,&quot;QueryTemplate&quot;:&quot;(contentclass:STS_ListItem OR IsDocument:True) ContentType:\&quot;NBB_Bulletin\&quot;  ExpirationTime\u003e{Today-1} Path:\&quot;https://gohelmahendrak.sharepoint.com/sites/NBB/\&quot;&quot;,&quot;FallbackSort&quot;:[],&quot;FallbackSortJson&quot;:&quot;[]&quot;,&quot;RankRules&quot;:[],&quot;RankRulesJson&quot;:&quot;[]&quot;,&quot;AsynchronousResultRetrieval&quot;:false,&quot;SendContentBeforeQuery&quot;:true,&quot;BatchClientQuery&quot;:true,&quot;FallbackLanguage&quot;:-1,&quot;FallbackRankingModelID&quot;:&quot;&quot;,&quot;EnableStemming&quot;:true,&quot;EnablePhonetic&quot;:false,&quot;EnableNicknames&quot;:false,&quot;EnableInterleaving&quot;:false,&quot;EnableQueryRules&quot;:true,&quot;EnableOrderingHitHighlightedProperty&quot;:false,&quot;HitHighlightedMultivaluePropertyLimit&quot;:-1,&quot;IgnoreContextualScope&quot;:true,&quot;ScopeResultsToCurrentSite&quot;:false,&quot;TrimDuplicates&quot;:false,&quot;Properties&quot;:{&quot;TryCache&quot;:true,&quot;Scope&quot;:&quot;{Site.URL}&quot;,&quot;UpdateLinksForCatalogItems&quot;:true,&quot;EnableStacking&quot;:true,&quot;CrossGeoQuery&quot;:&quot;false&quot;,&quot;ListId&quot;:&quot;00000000-0000-0000-0000-000000000000&quot;},&quot;PropertiesJson&quot;:&quot;{\&quot;TryCache\&quot;:true,\&quot;Scope\&quot;:\&quot;{Site.URL}\&quot;,\&quot;UpdateLinksForCatalogItems\&quot;:true,\&quot;EnableStacking\&quot;:true,\&quot;CrossGeoQuery\&quot;:\&quot;false\&quot;,\&quot;ListId\&quot;:\&quot;00000000-0000-0000-0000-000000000000\&quot;}&quot;,&quot;ClientType&quot;:&quot;ContentSearchRegular&quot;,&quot;ClientFunction&quot;:&quot;&quot;,&quot;ClientFunctionDetails&quot;:&quot;&quot;,&quot;UpdateAjaxNavigate&quot;:true,&quot;SummaryLength&quot;:180,&quot;DesiredSnippetLength&quot;:90,&quot;PersonalizedQuery&quot;:false,&quot;FallbackRefinementFilters&quot;:null,&quot;IgnoreStaleServerQuery&quot;:false,&quot;RenderTemplateId&quot;:&quot;DefaultDataProvider&quot;,&quot;AlternateErrorMessage&quot;:null,&quot;Title&quot;:&quot;&quot;}" BypassResultTypes="True" ItemTemplateId="~sitecollection/_catalogs/masterpage/Display Templates/Content Web Parts/Item_Important_Announcements.js" GroupTemplateId="~sitecollection/_catalogs/masterpage/Display Templates/Content Web Parts/Group_Content.js" ResultsPerPage="30" SelectedPropertiesJson="[&quot;Path&quot;,&quot;Title&quot;,&quot;DiscussionPost&quot;,&quot;FileExtension&quot;,&quot;SecondaryFileExtension&quot;,&quot;ExpirationTime&quot;,&quot;ExpiresOWSDATE&quot;,&quot;EmployeeDepartment&quot;]" HitHighlightedPropertiesJson="[&quot;Title&quot;,&quot;Path&quot;,&quot;Author&quot;,&quot;SectionNames&quot;,&quot;SiteDescription&quot;]" AvailableSortsJson="null" SearchCenterXGeoLocations="" XGeoTenantsInfo="" ShowBestBets="False" ShowPersonalFavorites="False" ShowDefinitions="False" ShowDidYouMean="False" PreloadedItemTemplateIdsJson="null" QueryGroupName="Default" RenderTemplateId="~sitecollection/_catalogs/masterpage/Display Templates/Content Web Parts/Control_ImpAnnouncement.js" StatesJson="{}" ServerIncludeScriptsJson="null" Title="Content Search" FrameType="None" SuppressWebPartChrome="False" Description="&lt;%$Resources:Microsoft.Office.Server.Search,CBS_Description;%&gt;" IsIncluded="True" ZoneID="ImportedPartZone" PartOrder="0" FrameState="Normal" AllowRemove="True" AllowZoneChange="True" AllowMinimize="True" AllowConnect="True" AllowEdit="True" AllowHide="True" IsVisible="True" DetailLink="" HelpLink="" HelpMode="Modeless" Dir="Default" PartImageSmall="" MissingAssembly="&lt;%$Resources:core,ImportErrorMessage;%&gt;" ImportErrorMessage="&lt;%$Resources:core,ImportErrorMessage;%&gt;" PartImageLarge="" IsIncludedFilter="" ExportControlledProperties="True" ConnectionID="00000000-0000-0000-0000-000000000000" ID="g_fa23908b_4ef5_4a87_9644_b56b5774d640" ChromeType="None" ExportMode="All" __MarkupType="vsattributemarkup" __WebPartId="{fa23908b-4ef5-4a87-9644-b56b5774d640}" WebPart="true" Height="" Width=""/>
-                                                                
-								<!-- Ends News Bulletin Here -->
-                            </div>
-                        </div>
                         <div id="contentRow">
                             <div id="contentBox" aria-live="polite" aria-relevant="all" role="main">
                                 <div id="notificationArea" class="ms-notif-box">

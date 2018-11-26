@@ -1,7 +1,15 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Elements xmlns="http://schemas.microsoft.com/sharepoint/">
   <Module Name="IntranetWebPartFiles">
-    <File Path="IntranetWebPartFiles\Sample.txt" Url="IntranetWebPartFiles/Sample.txt" ReplaceContent="TRUE" />
-    <File Path="IntranetWebPartFiles\Latest News Home Content Search.txt" Url="IntranetWebPartFiles/Latest News Home Content Search.txt" ReplaceContent="TRUE" />
+    <File Path="IntranetWebPartFiles\Birthday And Anniversaries.dwp" Url="IntranetWebPartFiles/Birthday And Anniversaries.dwp" ReplaceContent="TRUE" />
+    <File Path="IntranetWebPartFiles\Happenings.webpart" Url="IntranetWebPartFiles/Happenings.webpart" ReplaceContent="TRUE" />
+    <File Path="IntranetWebPartFiles\KPCU News.webpart" Url="IntranetWebPartFiles/KPCU News.webpart" ReplaceContent="TRUE" />
+    <File Path="IntranetWebPartFiles\Latest News Home Content Search.webpart" Url="IntranetWebPartFiles/Latest News Home Content Search.webpart" ReplaceContent="TRUE" />
+    <File Path="IntranetWebPartFiles\Latest Updates Home CSWP.webpart" Url="IntranetWebPartFiles/Latest Updates Home CSWP.webpart" ReplaceContent="TRUE" />
+    <File Path="IntranetWebPartFiles\Mark Your Calendar CSWP.webpart" Url="IntranetWebPartFiles/Mark Your Calendar CSWP.webpart" ReplaceContent="TRUE" />
+    <File Path="IntranetWebPartFiles\NBB Family Updates CSWP.webpart" Url="IntranetWebPartFiles/NBB Family Updates CSWP.webpart" ReplaceContent="TRUE" />
+    <File Path="IntranetWebPartFiles\Org Announcement carousel CEWP.dwp" Url="IntranetWebPartFiles/Org Announcement carousel CEWP.dwp" ReplaceContent="TRUE" />
+    <File Path="IntranetWebPartFiles\Poll content editor.dwp" Url="IntranetWebPartFiles/Poll content editor.dwp" ReplaceContent="TRUE" />
+    <File Path="IntranetWebPartFiles\Voice of Mgt CSWP.webpart" Url="IntranetWebPartFiles/Voice of Mgt CSWP.webpart" ReplaceContent="TRUE" />
   </Module>
 </Elements>

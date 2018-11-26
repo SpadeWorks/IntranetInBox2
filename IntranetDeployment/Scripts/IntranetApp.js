@@ -123,57 +123,102 @@ INTRANET.CreateSiteStructure = function () {
 
     INTRANET.InIt();
     INTRANET.SetConfigSectionReadOnly();
-
-    //INTRANET.CheckConfigListExist();
-    //INTRANET.CreateNewTenant();
-    INTRANET.CreateSiteColumns().then(function () {
-        INTRANET.CreateContentTypes().then(function () {
-            //Add fields in COntent Type
-            INTRANET.AddFieldsInContentType();
-            addFieldsPromise.promise().then(function () {
-                INTRANET.LoadAllContentTypes().then(function () {
-                    INTRANET.AddContentTypeToList().then(function () {
-                        INTRANET.SetAsDefaultContentType().then(function () {
-                            INTRANET.AddFieldsDirectlyInList().then(function () {
-                                INTRANET.BreakInheritedPermissions().then(function () {
-                                    INTRANET.AddItemsInList().then(function () {
-                                        INTRANET.InitiateMigration().then(function () {
-                                            INTRANET.UploadMasterLookUpData().then(function () {
-                                                INTRANET.UploadMasterPage();
-                                                INTRANET.CreateAllFolders("Style Library", "NBB/CSS");
-                                                var uploadUrl = INTRANET.GetRelativeUrlFromAbsolute(hostWebUrl) + "Style Library/NBB/",
-                                                    readUrl = _spPageContextInfo.webAbsoluteUrl + "/IntranetJSFiles/";
-
-                                                INTRANET.UploadAllFiles("Style Library", INTRANET.Schema.AllJS, uploadUrl, "JS", readUrl, ".js");
-                                                readUrl = _spPageContextInfo.webAbsoluteUrl + "/IntranetCSSFiles/";
-                                                INTRANET.UploadAllFiles("Style Library", INTRANET.Schema.AllCSS, uploadUrl, "CSS", readUrl, ".css");
-                                                readUrl = _spPageContextInfo.webAbsoluteUrl + "/IntranetTextFiles/";
-                                                INTRANET.UploadAllFiles("Style Library", INTRANET.Schema.AllTextFiles, uploadUrl, "Text", readUrl, ".txt");
-                                                readUrl = _spPageContextInfo.webAbsoluteUrl + "/IntranetDisplayTemplateFiles/";
-                                                INTRANET.UploadAllDisplayTemplates(INTRANET.Schema.AllTemplateFiles, "_catalogs/masterpage/Display Templates/Content Web Parts", "js", readUrl);
-                                                readUrl = _spPageContextInfo.webAbsoluteUrl + "/IntranetWebPartFiles/";
-                                                INTRANET.UploadAllDisplayTemplates(INTRANET.Schema.AllWebParts, "_catalogs/wp", "webpart", readUrl);
-                                                readUrl = _spPageContextInfo.webAbsoluteUrl + "/IntranetPageLayoutsFiles/";
-                                                INTRANET.UploadAllPageLayouts(INTRANET.Schema.AllPageLayouts, "_catalogs/masterpage", "html", readUrl).then(function () {
-                                                    uploadUrl = INTRANET.GetRelativeUrlFromAbsolute(hostWebUrl) + "Pages/";
-                                                    readUrl = _spPageContextInfo.webAbsoluteUrl + "/IntranetAllPagesFiles/";
-                                                    INTRANET.UploadAllPageFiles("Pages", INTRANET.Schema.AllPages, uploadUrl, "aspx", readUrl).then(function () {
-                                                        readUrl = INTRANET.GetRelativeUrlFromAbsolute(hostWebUrl) + "/Pages/Home.aspx";
-                                                        INTRANET.AddWebPartsToPage(readUrl);
-                                                        INTRANET.EndExecution();
-                                                    });
+    // INTRANET.CreateSiteColumns().then(function() {
+    //     INTRANET.CreateContentTypes().then(function() {
+    //         //Add fields in COntent Type
+    //         INTRANET.AddFieldsInContentType();
+    //         addFieldsPromise.promise().then(function() {
+    //             INTRANET.LoadAllContentTypes().then(function() {
+    //                 INTRANET.AddContentTypeToList().then(function() {
+    //                     INTRANET.SetAsDefaultContentType().then(function() {
+    //                         INTRANET.AddFieldsDirectlyInList().then(function() {
+    //                             INTRANET.BreakInheritedPermissions().then(function() {
+    //                                 INTRANET.AddItemsInList().then(function() {
+    //                                     INTRANET.InitiateMigration().then(function() {
+    //                                         INTRANET.UploadMasterLookUpData().then(function() {
+    //                                             INTRANET.UploadMasterPage();
+    INTRANET.CreateAllFolders("Style Library", "IntranetInbox").then(function () {
+        var uploadUrl = INTRANET.GetRelativeUrlFromAbsolute(hostWebUrl) + "Style Library/IntranetInbox/";
+        var readUrl = _spPageContextInfo.webAbsoluteUrl;
+        INTRANET.UploadArtifacts(uploadUrl, readUrl).then(function () {
+            readUrl = _spPageContextInfo.webAbsoluteUrl + "/IntranetDisplayTemplateFiles/";
+            INTRANET.UploadAllDisplayTemplates(INTRANET.Schema.AllTemplateFiles, "_catalogs/masterpage/Display Templates/Content Web Parts", "html", readUrl)
+                .then(function () {
+                    readUrl = _spPageContextInfo.webAbsoluteUrl + "/IntranetPageLayoutsFiles/";
+                    INTRANET.UploadAllPageLayouts(INTRANET.Schema.AllPageLayouts, "_catalogs/masterpage", "html", readUrl).then(function () {
+                        uploadUrl = INTRANET.GetRelativeUrlFromAbsolute(hostWebUrl) + "Pages/";
+                        readUrl = _spPageContextInfo.webAbsoluteUrl + "/IntranetAllPagesFiles/";
+                        INTRANET.UploadAllPageFiles("Pages", INTRANET.Schema.AllPages, uploadUrl, "aspx", readUrl).then(function () {
+                            INTRANET.UploadAllFiles("Web Part Gallery",
+                                INTRANET.Schema.AllWebpartFiles, "",
+                                readUrl + "/IntranetWebPartFiles/").then(function () {
+                                    var list = hostWeb.get_lists().getByTitle("Web Part Gallery");
+                                    var camlQuery = new SP.CamlQuery();
+                                    camlQuery.set_viewXml('');
+                                    var items = list.getItems(camlQuery);
+                                    context.load(items);
+                                    context.executeQueryAsync(function (sender, args) {
+                                        var listItemEnumerator = items.getEnumerator();
+                                        var listItemInfo;
+                                        while (listItemEnumerator.moveNext()) {
+                                            var oListItem = listItemEnumerator.get_current();
+                                            if ($.inArray(oListItem.get_item('FileLeafRef'), INTRANET.Schema.AllWebpartFiles)) {
+                                                oListItem["Group"] = "add-in Script Part";
+                                                oListItem.update();
+                                                context.executeQueryAsync(function (data) { }, function (error) {
+                                                    console.log(error)
                                                 });
-                                            });
-                                        });
+                                            }
+                                        }
+
                                     });
+                                },
+                                function (sender, error) {
+                                    console.log(error);
                                 });
+
+                            var serverRelativeUrl = INTRANET.GetRelativeUrlFromAbsolute(hostWebUrl);
+                            readUrl = _spPageContextInfo.webAbsoluteUrl;
+                            INTRANET.AddWebPartsToPage(serverRelativeUrl, readUrl + "/IntranetWebPartFiles/", INTRANET.Schema.AllWebpartFiles).then(function () {
+                                readUrl = INTRANET.GetRelativeUrlFromAbsolute(hostWebUrl) + "Pages/Home.aspx";
+                                INTRANET.EndExecution();
                             });
                         });
                     });
                 });
-            });
         });
     });
+    //                                         });
+    //                                     });
+    //                                 });
+    //                             });
+    //                         });
+    //                     });
+    //                 });
+    //             });
+    //         });
+    //     });
+    // });
+};
+
+INTRANET.UploadArtifacts = function (uploadUrl, readUrl) {
+    var deferred = $.Deferred();
+    $.when.apply($, [
+        INTRANET.UploadAllFiles("Style Library", INTRANET.Schema.AllJS, uploadUrl + "js/", readUrl + "/IntranetJSFiles/"),
+        INTRANET.UploadAllFiles("Style Library", INTRANET.Schema.AllFontFiles, uploadUrl + "fonts/", readUrl + "/IntranetWebFontsFiles/"),
+        INTRANET.UploadAllFiles("Style Library", INTRANET.Schema.AllFontFiles, uploadUrl + "webfonts/", readUrl + "/IntranetWebFontsFiles/"),
+        INTRANET.UploadAllFiles("Style Library", INTRANET.Schema.AllImagesFiles, uploadUrl + "images/", readUrl + "/Images/"),
+        INTRANET.UploadAllFiles("Style Library", INTRANET.Schema.AllCSS, uploadUrl + "css/", readUrl + "/IntranetCSSFiles/"),
+        INTRANET.UploadAllFiles("Style Library", INTRANET.Schema.AllHtmlFiles, uploadUrl + "html/", readUrl + "/IntranetAllHtmlFiles/"),
+        INTRANET.UploadAllFiles("Style Library", INTRANET.Schema.AllTextFiles, uploadUrl + "text/", readUrl + "/IntranetTextFiles/")
+    ]).then(function () {
+        deferred.resolve();
+    }, function (err) {
+        console.log("Error in UploadArtifacts function", err);
+        deferred.resolve();
+    });
+
+    return deferred.promise();
 };
 
 //Execution for Look Up columns, content types and lists
@@ -404,7 +449,6 @@ INTRANET.CreateFieldsInContentType = function (ctypeName, fieldsInternalName, cr
                 context.load(createdContentType);
                 context.executeQueryAsync(
                     function () {
-
                         countContentType++;
                         if (countContentType == INTRANET.App.TotalSiteContentTypes) {
                             INTRANET.Log(INTRANET.LogType.Info, "-----Added fields in Content Types------");
@@ -418,7 +462,6 @@ INTRANET.CreateFieldsInContentType = function (ctypeName, fieldsInternalName, cr
                     },
                     function onCreateFieldsInContentTypeFail(sender, args) {
                         INTRANET.Log(INTRANET.LogType.Error, "Error in onCreateFieldsInContentTypeFail. Error: " + args.get_message() + '\n' + args.get_stackTrace());
-
                         countContentType++;
                         if (countContentType == INTRANET.App.TotalSiteContentTypes) {
                             INTRANET.Log(INTRANET.LogType.Info, "-----Added fields in Content Types------");
@@ -474,7 +517,7 @@ INTRANET.CreateLists = function () {
 
                 //context.load(list);
                 context.load(INTRANET.App.CollLists[counter]);
-                counter++
+                counter++;
                 context.executeQueryAsync(
                     function () {
                         dfd.resolve();
@@ -821,7 +864,7 @@ INTRANET.BreakInheritedPermissions = function () {
                 var userobj = hostWeb.ensureUser("c:0(.s|true");
                 var role = SP.RoleDefinitionBindingCollection.newObject(context);
                 role.add(hostWeb.get_roleDefinitions().getByType(SP.RoleType.reader));
-                oList.get_roleAssignments().add(userobj, role)
+                oList.get_roleAssignments().add(userobj, role);
 
                 context.executeQueryAsync(
                     function () {
@@ -880,7 +923,7 @@ INTRANET.AddItemsInList = function () {
                         var dynamicValue = '';
 
                         $.map(fields, function (field) {
-                            oListItem.set_item(field.key, field.value);
+                            oListItem.set_item(field.Key, field.Value);
                         });
 
                         oListItem.update();
@@ -1574,6 +1617,10 @@ INTRANET.Log = function (pLogType, PMessage) {
             console.log(PMessage);
         }
 
+        for (var i = 2; i < arguments.length; i++) {
+            console.log(arguments[i]);
+        }
+
         $('#txtAreaProgress').append("\n" + PMessage);
         document.getElementById("txtAreaProgress").scrollTop = document.getElementById("txtAreaProgress").scrollHeight;
     } catch (ex) {
@@ -2197,7 +2244,8 @@ INTRANET.UploadAllPageFiles = function (listtitle, fileArray, uploadUrl, type, r
     var deferred = $.Deferred();
     try {
         var tempFileArray = fileArray,
-            url = uploadUrl;
+            url = uploadUrl,
+            hostWebRelativeUrl = INTRANET.GetRelativeUrlFromAbsolute(hostWebUrl);
         INTRANET.Log(INTRANET.LogType.Info, type + " Files Uploading");
         var asyncmethods = [];
         if (tempFileArray) {
@@ -2211,6 +2259,8 @@ INTRANET.UploadAllPageFiles = function (listtitle, fileArray, uploadUrl, type, r
                     cache: false,
                     success: function (fileContents) {
                         if (fileContents !== undefined && fileContents.length > 0) {
+                            fileContents = fileContents.replace("{site_absolute_url}", hostWebUrl)
+                                .replace("{site_relative_url}", hostWebRelativeUrl);
                             INTRANET.UploadFile(listtitle, txtName, fileContents, url).then(function () {
                                 dfd.resolve();
                             }, function (err) {
@@ -2237,34 +2287,44 @@ INTRANET.UploadAllPageFiles = function (listtitle, fileArray, uploadUrl, type, r
     return deferred.promise();
 }
 
-INTRANET.UploadAllFiles = function (listtitle, fileArray, uploadUrl, type, readUrl, fileExtension) {
+INTRANET.UploadAllFiles = function (listTitle, fileArray, uploadUrl, readUrl) {
     var deferred = $.Deferred();
     try {
         var tempFileArray = fileArray,
-            url = uploadUrl + type + "/";
-        INTRANET.Log(INTRANET.LogType.Info, type + " Files Uploading");
-        var asyncmethods = [];
+            url = uploadUrl;
+        INTRANET.Log(INTRANET.LogType.Info + " Files Uploading");
+        var asyncMethods = [];
         if (tempFileArray) {
-            asyncmethods = $.map(tempFileArray, function (fileName) {
-                var txtName = fileName + fileExtension,
-                    fileNameUrl = readUrl + fileName + ".txt",
-                    readFile = $.ajax({
-                        url: fileNameUrl,
-                        type: "GET",
-                        cache: false,
-                        success: function (fileContents) {
-                            if (fileContents !== undefined && fileContents.length > 0) {
-                                INTRANET.UploadFile(listtitle, txtName, fileContents, url);
+            $.map(tempFileArray, function (fileName) {
+                var txtName = fileName,
+                    fileNameUrl = readUrl + fileName,
+                    readFile = (function () {
+                        var d = $.Deferred();
+                        $.ajax({
+                            url: fileNameUrl,
+                            type: "GET",
+                            cache: false,
+                            dataType: "binary",
+                            processData: false,
+                            responseType: 'arraybuffer',
+                            success: function (fileContents) {
+                                INTRANET.UploadFile(listTitle, txtName, fileContents, url, true).then(function () {
+                                    d.resolve();
+                                });
+                            },
+                            error: function (error) {
+                                console.log("Error uploading file: " + fileName);
+                                d.resolve(error);
                             }
-                        },
-                        error: function (error) {
-                            console.log(error);
-                        }
-                    });
+                        });
+                        return d.promise();
+                    }());
+
+                asyncMethods.push(readFile);
             });
         }
 
-        $.when.apply($, asyncMethods).done(function (results) {
+        $.when.apply($, asyncMethods).done(function (files) {
             deferred.resolve();
         }, function (err) {
             deferred.reject();
@@ -2276,68 +2336,85 @@ INTRANET.UploadAllFiles = function (listtitle, fileArray, uploadUrl, type, readU
     return deferred.promise();
 }
 
-INTRANET.CreateAllFolders = function (listTitle, folderUrl) {
+INTRANET.CreateAllFolders = function (listTitle, rootFolderName) {
+    var deferred = $.Deferred();
     try {
         var list = hostWeb.get_lists().getByTitle(listTitle);
         INTRANET.Log(INTRANET.LogType.Info, "-----creating Folders---");
-        var createFolderInternal = function (parentFolder, folderUrl) {
+        var createFolderInternal = function (parentFolder, folderName) {
+            var dfd = $.Deferred();
             var ctx = parentFolder.get_context();
-            var folderNames = folderUrl.split('/');
-            var folderName = folderNames[0];
             var curFolder = parentFolder.get_folders().add(folderName);
             ctx.load(curFolder);
             ctx.executeQueryAsync(
                 function () {
-                    INTRANET.Log(INTRANET.LogType.Info, "Folder Created." + curFolder);
-                    if (folderNames.length > 1) {
-                        //var subFolderUrl = folderNames.slice(1, folderNames.length).join('/');
-                        createFolderInternal(curFolder, "CSS");
-                        createFolderInternal(curFolder, "JS");
-                        createFolderInternal(curFolder, "Text");
-                        createFolderInternal(curFolder, "fonts");
-                        createFolderInternal(curFolder, "images");
-                    }
+                    INTRANET.Log(INTRANET.LogType.Info, "Folder Created.", curFolder);
+                    dfd.resolve(curFolder);
                 },
                 function (sender, args) {
-                    INTRANET.Log(INTRANET.LogType.Info, "Error in creatin a folder. Error:" + args.get_message);
+                    INTRANET.Log(INTRANET.LogType.Info, "Error in creatin a folder. Error:", args.get_message());
+                    dfd.reject();
                 });
+            return dfd.promise();
         };
-        createFolderInternal(list.get_rootFolder(), folderUrl);
+        createFolderInternal(list.get_rootFolder(), rootFolderName).then(function (curFolder) {
+            $.when(createFolderInternal(curFolder, "css"),
+                createFolderInternal(curFolder, "js"),
+                createFolderInternal(curFolder, "html"),
+                createFolderInternal(curFolder, "text"),
+                createFolderInternal(curFolder, "fonts"),
+                createFolderInternal(curFolder, "images"),
+                createFolderInternal(curFolder, "webfonts")).done(function () {
+                    deferred.resolve();
+                });
+        });
     } catch (ex) {
-        INTRANET.Log(INTRANET.LogType.Error, "Error in creating folder. Error: " + ex.message);
+        INTRANET.Log(INTRANET.LogType.Error, "Error in creating folder. Error: ", ex);
+        deferred.reject();
     }
 
-}
+    return deferred.promise();
 
-INTRANET.UploadFile = function (listtitle, filename, contents, path) {
+};
+
+INTRANET.UploadFile = function (listtitle, filename, contents, path, isArrayBuffer) {
     var deferred = $.Deferred();
     try {
         var createInfo = new SP.FileCreationInformation();
-        createInfo.set_content(new SP.Base64EncodedByteArray());
+
         createInfo.set_url(path + filename);
         createInfo.set_overwrite(true);
 
         var list = hostWeb.get_lists().getByTitle(listtitle);
 
-        for (var i = 0; i < contents.length; i++) {
+        if (!isArrayBuffer) {
+            createInfo.set_content(new SP.Base64EncodedByteArray());
+            for (var i = 0; i < contents.length; i++) {
 
-            createInfo.get_content().append(contents.charCodeAt(i));
+                createInfo.get_content().append(contents.charCodeAt(i));
+            }
+        } else {
+            createInfo.set_content(INTRANET.ArrayBufferToBase64(contents));
         }
 
+
         this.newFile = list.get_rootFolder().get_files().add(createInfo);
-        this.newFile.checkIn();
-        this.newFile.publish();
+        if (listtitle != "Web Part Gallery") {
+            this.newFile.checkIn();
+            this.newFile.publish();
+        }
+
         context.load(this.newFile);
         context.executeQueryAsync(function (data) {
             INTRANET.Log(INTRANET.LogType.Info, 'File uploaded successfully: ' + path + filename);
             deferred.resolve();
         },
             function (sender, args) {
-                INTRANET.Log(INTRANET.LogType.Info, 'File upload Failed. Error: ' + args.get_message);
+                INTRANET.Log(INTRANET.LogType.Info, 'File upload Failed. Error: ' + args.get_message());
                 deferred.reject();
             });
     } catch (ex) {
-        INTRANET.Log(INTRANET.LogType.Info, 'Error in uploading File. Error: ' + ex.message);
+        INTRANET.Log(INTRANET.LogType.Info, 'Error in uploading File. Error: ', ex);
     }
 
     return deferred.promise();
@@ -2345,6 +2422,7 @@ INTRANET.UploadFile = function (listtitle, filename, contents, path) {
 
 
 INTRANET.UploadAllDisplayTemplates = function (fileArray, uploadUrl, type, readUrl) {
+    var deferred = $.Deferred();
     try {
         var tempFileArray = fileArray,
             url = uploadUrl;
@@ -2352,7 +2430,8 @@ INTRANET.UploadAllDisplayTemplates = function (fileArray, uploadUrl, type, readU
         var asyncmethods = [];
         if (tempFileArray) {
             asyncmethods = $.map(tempFileArray, function (fileName) {
-                var txtName = fileName + "." + type,
+                var dfd = $.Deferred(),
+                    txtName = fileName + "." + type,
                     fileNameUrl = readUrl + fileName + ".txt",
                     readFile = $.ajax({
                         url: fileNameUrl,
@@ -2360,18 +2439,29 @@ INTRANET.UploadAllDisplayTemplates = function (fileArray, uploadUrl, type, readU
                         cache: false,
                         success: function (fileContents) {
                             if (fileContents !== undefined && fileContents.length > 0) {
-                                INTRANET.UploadFileToHostWebViaCSOM(url, txtName, fileContents);
+                                INTRANET.UploadFileToHostWebViaCSOM(url, txtName, fileContents).then(function () {
+                                    dfd.resolve();
+                                });
                             }
                         },
                         error: function (error) {
                             console.log(error);
                         }
                     });
+
+                return dfd.promise();
             });
+
+            $.when.apply($, asyncmethods).done(function (results) {
+                deferred.resolve();
+            });
+
         }
     } catch (ex) {
         INTRANET.Log(INTRANET.LogType.Error, "Error in Uploading Text files. Error: " + ex.message);
     }
+
+    return deferred.promise();
 }
 
 
@@ -2394,7 +2484,7 @@ INTRANET.UploadAllPageLayouts = function (fileArray, uploadUrl, type, readUrl) {
                     success: function (fileContents) {
                         if (fileContents !== undefined && fileContents.length > 0) {
                             INTRANET.UploadFileToHostWebViaCSOM(url, txtName, fileContents).then(function () {
-                                INTRANET.SetPageLayoutContentType(INTRANET.GetRelativeUrlFromAbsolute(hostWebUrl) + url + '/' + txtName).then(function () {
+                                INTRANET.SetPageLayoutContentType(INTRANET.GetRelativeUrlFromAbsolute(hostWebUrl) + url + '/' + txtName, txtName).then(function () {
                                     dfd.resolve();
                                 }, function (err) {
                                     console.log(error);
@@ -2423,7 +2513,7 @@ INTRANET.UploadAllPageLayouts = function (fileArray, uploadUrl, type, readUrl) {
 }
 
 
-INTRANET.SetPageLayoutContentType = function (pageLayoutUrl) {
+INTRANET.SetPageLayoutContentType = function (pageLayoutUrl, dtName) {
     var deferred = $.Deferred();
     var file = hostWeb.getFileByServerRelativeUrl(pageLayoutUrl);
     var item = file.get_listItemAllFields();;
@@ -2441,509 +2531,80 @@ INTRANET.SetPageLayoutContentType = function (pageLayoutUrl) {
         deferred.resolve(err, sender);
     });
     return deferred.resolve();
+};
+
+INTRANET.ReadFile = function (fileUrl) {
+    var deferred = $.Deferred();
+    try {
+        $.ajax({
+            url: fileUrl,
+            type: "GET",
+            // cache: false,
+            // dataType: "binary",
+            // processData: false,
+            // responseType: 'arraybuffer',
+            success: function (fileContents) {
+                deferred.resolve(fileContents)
+            },
+            error: function (error) {
+                deferred.reject(error);
+                console.log(error);
+            }
+        });
+    } catch (ex) {
+        deferred.reject(error);
+        INTRANET.Log(INTRANET.LogType.Error, "Error in Uploading Text files. Error: " + ex.message);
+    }
+    return deferred.promise();
 }
 
-
-INTRANET.AddWebPartsToPage = function (serverRelativeUrl) {
-    var oFile = hostWebContext.get_web().getFileByServerRelativeUrl(serverRelativeUrl);
+INTRANET.AddWebPartsToPage = function (serverRelativeUrl, readUrl, webPartsArray) {
+    var deferred = $.Deferred();
+    var oFile = hostWebContext.get_web().getFileByServerRelativeUrl(serverRelativeUrl + "Pages/Home.aspx");
+    var limitedWebPartManager;
+    var webPartsXml = [];
     oFile.checkOut();
-    var limitedWebPartManager = oFile.getLimitedWebPartManager(SP.WebParts.PersonalizationScope.shared);
-    var newsWebPartXml = `<webParts>
-  <webPart xmlns="http://schemas.microsoft.com/WebPart/v3">
-    <metaData>
-      <type name="Microsoft.Office.Server.Search.WebControls.ContentBySearchWebPart, Microsoft.Office.Server.Search, Version=16.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c" />
-      <importErrorMessage>Cannot import this Web Part.</importErrorMessage>
-    </metaData>
-    <data>
-      <properties>
-        <property name="BypassResultTypes" type="bool">True</property>
-        <property name="ItemTemplateId" type="string">~sitecollection/_catalogs/masterpage/Display Templates/Content Web Parts/Item_Latest_News_Home.js</property>
-        <property name="PropertyMappings" type="string" />
-        <property name="ChromeState" type="chromestate">Normal</property>
-        <property name="IncludeResultTypeConstraint" type="bool">False</property>
-        <property name="StartingItemIndex" type="int">1</property>
-        <property name="ShowDefinitions" type="bool">False</property>
-        <property name="Height" type="string" />
-        <property name="Hidden" type="bool">False</property>
-        <property name="HitHighlightedPropertiesJson" type="string">["Title","Path","Author","SectionNames","SiteDescription"]</property>
-        <property name="ScrollToTopOnRedraw" type="bool">False</property>
-        <property name="UseSharedDataProvider" type="bool">False</property>
-        <property name="RepositionLanguageDropDown" type="bool">False</property>
-        <property name="AlwaysRenderOnServer" type="bool">False</property>
-        <property name="AllowConnect" type="bool">True</property>
-        <property name="ItemBodyTemplateId" type="string" />
-        <property name="ShowAlertMe" type="bool">False</property>
-        <property name="ExportMode" type="exportmode">All</property>
-        <property name="AddSEOPropertiesFromSearch" type="bool">False</property>
-        <property name="ShowUpScopeMessage" type="bool">False</property>
-        <property name="AllowHide" type="bool">True</property>
-        <property name="AllowClose" type="bool">True</property>
-        <property name="UseSimplifiedQueryBuilder" type="bool">False</property>
-        <property name="ShouldHideControlWhenEmpty" type="bool">False</property>
-        <property name="ResultType" type="string" />
-        <property name="LogAnalyticsViewEvent" type="bool">False</property>
-        <property name="MaxPagesAfterCurrent" type="int">1</property>
-        <property name="TitleUrl" type="string" />
-        <property name="EmptyMessage" type="string" />
-        <property name="AdvancedSearchPageAddress" type="string">advanced.aspx</property>
-        <property name="IsXGeo3SForwardingFlighted" type="bool">True</property>
-        <property name="AllowMinimize" type="bool">True</property>
-        <property name="ShowBestBets" type="bool">False</property>
-        <property name="AllowEdit" type="bool">True</property>
-        <property name="NumberOfItems" type="int">5</property>
-        <property name="HelpUrl" type="string" />
-        <property name="ShowPaging" type="bool">True</property>
-        <property name="ShowViewDuplicates" type="bool">False</property>
-        <property name="SelectedPropertiesJson" type="string">["Path","Title","DiscussionPost","ExpiresOWSDATE","FileExtension","SecondaryFileExtension","ExpirationTime","EmployeeDepartment"]</property>
-        <property name="TargetResultTable" type="string">RelevantResults</property>
-        <property name="HelpMode" type="helpmode">Modeless</property>
-        <property name="ShowXGeoOptions" type="bool">False</property>
-        <property name="IsXGeoFlighted" type="bool">False</property>
-        <property name="ShowPersonalFavorites" type="bool">False</property>
-        <property name="EnableXGeo3SForwarding" type="bool">False</property>
-        <property name="PreloadedItemTemplateIdsJson" type="string">null</property>
-        <property name="Description" type="string">Content Search Web Part will allow you to show items that are results of a search query you specify. When you add it to the page, this Web Part will show recently modified items from the current site. You can change this setting to show items from another site or list by editing the Web Part and changing its search criteria.As new content is discovered by search, this Web Part will display an updated list of items each time the page is viewed.</property>
-        <property name="ShowPreferencesLink" type="bool">True</property>
-        <property name="QueryGroupName" type="string">ce483c63-7ea5-48ff-be44-b8623aff11f7</property>
-        <property name="ShowResultCount" type="bool">True</property>
-        <property name="TitleIconImageUrl" type="string" />
-        <property name="Direction" type="direction">NotSet</property>
-        <property name="ResultsPerPage" type="int">5</property>
-        <property name="AvailableSortsJson" type="string">null</property>
-        <property name="ShowResults" type="bool">True</property>
-        <property name="ServerIncludeScriptsJson" type="string">null</property>
-        <property name="SearchCenterXGeoLocations" type="string" />
-        <property name="DataProviderJSON" type="string">{"QueryGroupName":"ce483c63-7ea5-48ff-be44-b8623aff11f7","QueryPropertiesTemplateUrl":"sitesearch://webroot","IgnoreQueryPropertiesTemplateUrl":false,"SourceID":"8413cd39-2156-4e00-b54d-11efd9abdb89","SourceName":"Local SharePoint Results","SourceLevel":"Ssa","CollapseSpecification":"","QueryTemplate":"(IsDocument:\"True\" OR contentclass:\"STS_ListItem\")  ContentType:\"Latest_News\"  RefinableDate02\u003e={Today}  Path:\"https://gohelmahendrak.sharepoint.com/sites/IntranetInBoxPublishing/Lists\"","FallbackSort":[{"p":"RefinableString00","d":0},{"p":"LastModifiedTime","d":0}],"FallbackSortJson":"[{\"p\":\"RefinableString00\",\"d\":0},{\"p\":\"LastModifiedTime\",\"d\":0}]","RankRules":null,"RankRulesJson":"null","AsynchronousResultRetrieval":false,"SendContentBeforeQuery":true,"BatchClientQuery":true,"FallbackLanguage":-1,"FallbackRankingModelID":"","EnableStemming":true,"EnablePhonetic":false,"EnableNicknames":false,"EnableInterleaving":false,"EnableQueryRules":true,"EnableOrderingHitHighlightedProperty":false,"HitHighlightedMultivaluePropertyLimit":-1,"IgnoreContextualScope":true,"ScopeResultsToCurrentSite":false,"TrimDuplicates":false,"Properties":{"TryCache":true,"Scope":"{Site.URL}","UpdateLinksForCatalogItems":true,"EnableStacking":true,"ListId":"3b20d6ec-6bba-4b5d-903e-6d1ab7febb71","ListItemId":5,"CrossGeoQuery":"false"},"PropertiesJson":"{\"TryCache\":true,\"Scope\":\"{Site.URL}\",\"UpdateLinksForCatalogItems\":true,\"EnableStacking\":true,\"ListId\":\"3b20d6ec-6bba-4b5d-903e-6d1ab7febb71\",\"ListItemId\":5,\"CrossGeoQuery\":\"false\"}","ClientType":"ContentSearchRegular","ClientFunction":"","ClientFunctionDetails":"","UpdateAjaxNavigate":true,"SummaryLength":180,"DesiredSnippetLength":90,"PersonalizedQuery":false,"FallbackRefinementFilters":null,"IgnoreStaleServerQuery":false,"RenderTemplateId":"DefaultDataProvider","AlternateErrorMessage":null,"Title":""}</property>
-        <property name="ShowAdvancedLink" type="bool">True</property>
-        <property name="ShowDidYouMean" type="bool">False</property>
-        <property name="AllowZoneChange" type="bool">True</property>
-        <property name="ChromeType" type="chrometype">None</property>
-        <property name="GroupTemplateId" type="string">~sitecollection/_catalogs/masterpage/Display Templates/Content Web Parts/Group_Content.js</property>
-        <property name="MissingAssembly" type="string">Cannot import this Web Part.</property>
-        <property name="OverwriteResultPath" type="bool">True</property>
-        <property name="Width" type="string" />
-        <property name="MaxPagesBeforeCurrent" type="int">4</property>
-        <property name="XGeoTenantsInfo" type="string" />
-        <property name="ShowLanguageOptions" type="bool">True</property>
-        <property name="ResultTypeId" type="string" />
-        <property name="AlternateErrorMessage" type="string" null="true" />
-        <property name="Title" type="string">Latest News Home Content Search</property>
-        <property name="RenderTemplateId" type="string">~sitecollection/_catalogs/masterpage/Display Templates/Content Web Parts/control_Latest_News.js</property>
-        <property name="EmitStyleReference" type="bool">True</property>
-        <property name="StatesJson" type="string">{}</property>
-        <property name="ShowSortOptions" type="bool">False</property>
-        <property name="CatalogIconImageUrl" type="string" />
-      </properties>
-    </data>
-  </webPart>
-</webParts>`;
 
-    var orgAnnouncementWebPartXml = `<?xml version="1.0" encoding="utf-8"?>
-<WebPart xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://schemas.microsoft.com/WebPart/v2">
-  <Title>Org Announcement carousel CEWP</Title>
-  <FrameType>None</FrameType>
-  <Description>Allows authors to enter rich text content.</Description>
-  <IsIncluded>true</IsIncluded>
-  <ZoneID>carousel</ZoneID>
-  <PartOrder>4</PartOrder>
-  <FrameState>Normal</FrameState>
-  <Height />
-  <Width />
-  <AllowRemove>true</AllowRemove>
-  <AllowZoneChange>true</AllowZoneChange>
-  <AllowMinimize>true</AllowMinimize>
-  <AllowConnect>true</AllowConnect>
-  <AllowEdit>true</AllowEdit>
-  <AllowHide>true</AllowHide>
-  <IsVisible>true</IsVisible>
-  <DetailLink />
-  <HelpLink />
-  <HelpMode>Modeless</HelpMode>
-  <Dir>Default</Dir>
-  <PartImageSmall />
-  <MissingAssembly>Cannot import this Web Part.</MissingAssembly>
-  <PartImageLarge>/sites/IntranetInBoxPublishing/_layouts/15/images/mscontl.gif</PartImageLarge>
-  <IsIncludedFilter />
-  <IsAvailable>true</IsAvailable>
-  <Assembly>Microsoft.SharePoint, Version=16.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c</Assembly>
-  <TypeName>Microsoft.SharePoint.WebPartPages.ContentEditorWebPart</TypeName>
-  <ContentLink xmlns="http://schemas.microsoft.com/WebPart/v2/ContentEditor">/sites/IntranetInBoxPublishing/Style Library/NBB/Text/carousel.txt</ContentLink>
-  <Content xmlns="http://schemas.microsoft.com/WebPart/v2/ContentEditor" />
-  <PartStorage xmlns="http://schemas.microsoft.com/WebPart/v2/ContentEditor" />
-</WebPart>`;
 
-    var pollWebPartXml = `<?xml version="1.0" encoding="utf-8"?>
-<WebPart xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://schemas.microsoft.com/WebPart/v2">
-  <Title>Poll content editor</Title>
-  <FrameType>None</FrameType>
-  <Description>Allows authors to enter rich text content.</Description>
-  <IsIncluded>true</IsIncluded>
-  <ZoneID>poll</ZoneID>
-  <PartOrder>0</PartOrder>
-  <FrameState>Normal</FrameState>
-  <Height />
-  <Width />
-  <AllowRemove>true</AllowRemove>
-  <AllowZoneChange>true</AllowZoneChange>
-  <AllowMinimize>true</AllowMinimize>
-  <AllowConnect>true</AllowConnect>
-  <AllowEdit>true</AllowEdit>
-  <AllowHide>true</AllowHide>
-  <IsVisible>true</IsVisible>
-  <DetailLink />
-  <HelpLink />
-  <HelpMode>Modeless</HelpMode>
-  <Dir>Default</Dir>
-  <PartImageSmall />
-  <MissingAssembly>Cannot import this Web Part.</MissingAssembly>
-  <PartImageLarge>/sites/IntranetInBoxPublishing/_layouts/15/images/mscontl.gif</PartImageLarge>
-  <IsIncludedFilter />
-  <IsAvailable>true</IsAvailable>
-  <Assembly>Microsoft.SharePoint, Version=16.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c</Assembly>
-  <TypeName>Microsoft.SharePoint.WebPartPages.ContentEditorWebPart</TypeName>
-  <ContentLink xmlns="http://schemas.microsoft.com/WebPart/v2/ContentEditor">/sites/IntranetInBoxPublishing/Style Library/NBB/Text/Poll.html</ContentLink>
-  <Content xmlns="http://schemas.microsoft.com/WebPart/v2/ContentEditor" />
-  <PartStorage xmlns="http://schemas.microsoft.com/WebPart/v2/ContentEditor" />
-</WebPart>`;
+    var promises = [];
+    $.map(webPartsArray, function (fileName, index) {
+        var webPartItemUrl = readUrl + fileName;
+        var readFile = (function () {
+            var d = $.Deferred();
+            INTRANET.ReadFile(webPartItemUrl).then(function (webPartXml) {
+                d.resolve(webPartXml);
+                webPartsXml.push(webPartXml);
+            }, function (error) {
 
-    var birthDayWebPartXml = `<?xml version="1.0" encoding="utf-8"?>
-<WebPart xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://schemas.microsoft.com/WebPart/v2">
-  <Title>Birthday And Anniversaries</Title>
-  <FrameType>None</FrameType>
-  <Description>Allows authors to enter rich text content.</Description>
-  <IsIncluded>true</IsIncluded>
-  <ZoneID>x450228fd78454faaa9c3cb246991d0f7</ZoneID>
-  <PartOrder>0</PartOrder>
-  <FrameState>Normal</FrameState>
-  <Height />
-  <Width />
-  <AllowRemove>true</AllowRemove>
-  <AllowZoneChange>true</AllowZoneChange>
-  <AllowMinimize>true</AllowMinimize>
-  <AllowConnect>true</AllowConnect>
-  <AllowEdit>true</AllowEdit>
-  <AllowHide>true</AllowHide>
-  <IsVisible>true</IsVisible>
-  <DetailLink />
-  <HelpLink />
-  <HelpMode>Modeless</HelpMode>
-  <Dir>Default</Dir>
-  <PartImageSmall />
-  <MissingAssembly>Cannot import this Web Part.</MissingAssembly>
-  <PartImageLarge>/_layouts/15/images/mscontl.gif</PartImageLarge>
-  <IsIncludedFilter />
-  <Assembly>Microsoft.SharePoint, Version=16.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c</Assembly>
-  <TypeName>Microsoft.SharePoint.WebPartPages.ContentEditorWebPart</TypeName>
-  <ContentLink xmlns="http://schemas.microsoft.com/WebPart/v2/ContentEditor">/sites/Intranet-Dev/Pages/Home.aspx</ContentLink>
-  <Content xmlns="http://schemas.microsoft.com/WebPart/v2/ContentEditor"><![CDATA[​​<br/><br/>]]></Content>
-  <PartStorage xmlns="http://schemas.microsoft.com/WebPart/v2/ContentEditor" />
-</WebPart>`;
+                d.resolve(error);
+            });
+            return d.promise();
+        }());
 
-    var eventsWebPartXml = `<webParts>
-  <webPart xmlns="http://schemas.microsoft.com/WebPart/v3">
-    <metaData>
-      <type name="Microsoft.Office.Server.Search.WebControls.ContentBySearchWebPart, Microsoft.Office.Server.Search, Version=16.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c" />
-      <importErrorMessage>Cannot import this Web Part.</importErrorMessage>
-    </metaData>
-    <data>
-      <properties>
-        <property name="BypassResultTypes" type="bool">True</property>
-        <property name="ItemTemplateId" type="string">~sitecollection/_catalogs/masterpage/Display Templates/KPCU/Item_KPCU_Happenings.js</property>
-        <property name="PropertyMappings" type="string" />
-        <property name="ChromeState" type="chromestate">Normal</property>
-        <property name="IncludeResultTypeConstraint" type="bool">False</property>
-        <property name="StartingItemIndex" type="int">1</property>
-        <property name="ShowDefinitions" type="bool">False</property>
-        <property name="Height" type="string" />
-        <property name="Hidden" type="bool">False</property>
-        <property name="HitHighlightedPropertiesJson" type="string">["Title","Path","Author","SectionNames","SiteDescription"]</property>
-        <property name="ScrollToTopOnRedraw" type="bool">False</property>
-        <property name="UseSharedDataProvider" type="bool">False</property>
-        <property name="RepositionLanguageDropDown" type="bool">False</property>
-        <property name="AlwaysRenderOnServer" type="bool">False</property>
-        <property name="AllowConnect" type="bool">True</property>
-        <property name="ItemBodyTemplateId" type="string" />
-        <property name="ShowAlertMe" type="bool">True</property>
-        <property name="ExportMode" type="exportmode">All</property>
-        <property name="AddSEOPropertiesFromSearch" type="bool">False</property>
-        <property name="ShowUpScopeMessage" type="bool">False</property>
-        <property name="AllowHide" type="bool">True</property>
-        <property name="AllowClose" type="bool">True</property>
-        <property name="UseSimplifiedQueryBuilder" type="bool">False</property>
-        <property name="ShouldHideControlWhenEmpty" type="bool">False</property>
-        <property name="ResultType" type="string" />
-        <property name="LogAnalyticsViewEvent" type="bool">False</property>
-        <property name="MaxPagesAfterCurrent" type="int">1</property>
-        <property name="TitleUrl" type="string" />
-        <property name="EmptyMessage" type="string" />
-        <property name="AdvancedSearchPageAddress" type="string">advanced.aspx</property>
-        <property name="IsXGeo3SForwardingFlighted" type="bool">True</property>
-        <property name="AllowMinimize" type="bool">True</property>
-        <property name="ShowBestBets" type="bool">False</property>
-        <property name="AllowEdit" type="bool">True</property>
-        <property name="NumberOfItems" type="int">4</property>
-        <property name="HelpUrl" type="string" />
-        <property name="ShowPaging" type="bool">True</property>
-        <property name="ShowViewDuplicates" type="bool">False</property>
-        <property name="SelectedPropertiesJson" type="string">["EventType","owstaxIdEventType1","Path","Title","EventDateOWSDATE","EndDateOWSDATE","MPLocation","SecondaryFileExtension","ContentTypeId"]</property>
-        <property name="TargetResultTable" type="string">RelevantResults</property>
-        <property name="HelpMode" type="helpmode">Modeless</property>
-        <property name="ShowXGeoOptions" type="bool">False</property>
-        <property name="IsXGeoFlighted" type="bool">False</property>
-        <property name="ShowPersonalFavorites" type="bool">False</property>
-        <property name="EnableXGeo3SForwarding" type="bool">False</property>
-        <property name="PreloadedItemTemplateIdsJson" type="string">null</property>
-        <property name="Description" type="string">Content Search Web Part will allow you to show items that are results of a search query you specify. When you add it to the page, this Web Part will show recently modified items from the current site. You can change this setting to show items from another site or list by editing the Web Part and changing its search criteria.As new content is discovered by search, this Web Part will display an updated list of items each time the page is viewed.</property>
-        <property name="ShowPreferencesLink" type="bool">True</property>
-        <property name="QueryGroupName" type="string">6f9fcc19-aeaa-42f9-9b57-34f0dcd8b8af</property>
-        <property name="ShowResultCount" type="bool">True</property>
-        <property name="TitleIconImageUrl" type="string" />
-        <property name="Direction" type="direction">NotSet</property>
-        <property name="ResultsPerPage" type="int">4</property>
-        <property name="AvailableSortsJson" type="string">null</property>
-        <property name="ShowResults" type="bool">True</property>
-        <property name="ServerIncludeScriptsJson" type="string">null</property>
-        <property name="SearchCenterXGeoLocations" type="string" />
-        <property name="DataProviderJSON" type="string">{"QueryGroupName":"6f9fcc19-aeaa-42f9-9b57-34f0dcd8b8af","QueryPropertiesTemplateUrl":"sitesearch://webroot","IgnoreQueryPropertiesTemplateUrl":false,"SourceID":"8413cd39-2156-4e00-b54d-11efd9abdb89","SourceName":"Local SharePoint Results","SourceLevel":"Ssa","CollapseSpecification":"","QueryTemplate":"path:\"https://kpcu.sharepoint.com/sites/Intranet-Dev/Lists/Happenings/\"  ContentType:KPCU_Happenings RefinableDate01\u003e={Today}","FallbackSort":[{"p":"RefinableDate01","d":0}],"FallbackSortJson":"[{\"p\":\"RefinableDate01\",\"d\":0}]","RankRules":null,"RankRulesJson":"null","AsynchronousResultRetrieval":false,"SendContentBeforeQuery":true,"BatchClientQuery":true,"FallbackLanguage":-1,"FallbackRankingModelID":"","EnableStemming":true,"EnablePhonetic":false,"EnableNicknames":false,"EnableInterleaving":false,"EnableQueryRules":true,"EnableOrderingHitHighlightedProperty":false,"HitHighlightedMultivaluePropertyLimit":-1,"IgnoreContextualScope":true,"ScopeResultsToCurrentSite":false,"TrimDuplicates":false,"Properties":{"TryCache":true,"Scope":"{Site.URL}","UpdateLinksForCatalogItems":true,"EnableStacking":true,"CrossGeoQuery":"false","ListId":"55e27111-388b-411d-87df-351f2b92600f","ListItemId":4},"PropertiesJson":"{\"TryCache\":true,\"Scope\":\"{Site.URL}\",\"UpdateLinksForCatalogItems\":true,\"EnableStacking\":true,\"CrossGeoQuery\":\"false\",\"ListId\":\"55e27111-388b-411d-87df-351f2b92600f\",\"ListItemId\":4}","ClientType":"ContentSearchRegular","ClientFunction":"","ClientFunctionDetails":"","UpdateAjaxNavigate":true,"SummaryLength":180,"DesiredSnippetLength":90,"PersonalizedQuery":false,"FallbackRefinementFilters":null,"IgnoreStaleServerQuery":false,"RenderTemplateId":"DefaultDataProvider","AlternateErrorMessage":null,"Title":""}</property>
-        <property name="ShowAdvancedLink" type="bool">True</property>
-        <property name="ShowDidYouMean" type="bool">False</property>
-        <property name="AllowZoneChange" type="bool">True</property>
-        <property name="ChromeType" type="chrometype">None</property>
-        <property name="GroupTemplateId" type="string">~sitecollection/_catalogs/masterpage/Display Templates/Content Web Parts/Group_Content.js</property>
-        <property name="MissingAssembly" type="string">Cannot import this Web Part.</property>
-        <property name="OverwriteResultPath" type="bool">True</property>
-        <property name="Width" type="string" />
-        <property name="MaxPagesBeforeCurrent" type="int">4</property>
-        <property name="XGeoTenantsInfo" type="string" />
-        <property name="ShowLanguageOptions" type="bool">True</property>
-        <property name="ResultTypeId" type="string" />
-        <property name="AlternateErrorMessage" type="string" null="true" />
-        <property name="Title" type="string">Happenings</property>
-        <property name="RenderTemplateId" type="string">~sitecollection/_catalogs/masterpage/Display Templates/KPCU/control_Happenings.js</property>
-        <property name="EmitStyleReference" type="bool">True</property>
-        <property name="StatesJson" type="string">{}</property>
-        <property name="ShowSortOptions" type="bool">False</property>
-        <property name="CatalogIconImageUrl" type="string" />
-      </properties>
-    </data>
-  </webPart>
-</webParts>`;
+        promises.push(readFile);
+    });
 
-    var voiceOfManagementXml = `<webParts>
-  <webPart xmlns="http://schemas.microsoft.com/WebPart/v3">
-    <metaData>
-      <type name="Microsoft.Office.Server.Search.WebControls.ContentBySearchWebPart, Microsoft.Office.Server.Search, Version=16.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c" />
-      <importErrorMessage>Cannot import this Web Part.</importErrorMessage>
-    </metaData>
-    <data>
-      <properties>
-        <property name="BypassResultTypes" type="bool">True</property>
-        <property name="ItemTemplateId" type="string">~sitecollection/_catalogs/masterpage/Display Templates/Content Web Parts/Item_VoiceOfManagement.js</property>
-        <property name="PropertyMappings" type="string" />
-        <property name="ChromeState" type="chromestate">Normal</property>
-        <property name="IncludeResultTypeConstraint" type="bool">False</property>
-        <property name="StartingItemIndex" type="int">1</property>
-        <property name="ShowDefinitions" type="bool">False</property>
-        <property name="Height" type="string" />
-        <property name="Hidden" type="bool">False</property>
-        <property name="HitHighlightedPropertiesJson" type="string">["Title","Path","Author","SectionNames","SiteDescription"]</property>
-        <property name="ScrollToTopOnRedraw" type="bool">False</property>
-        <property name="UseSharedDataProvider" type="bool">False</property>
-        <property name="RepositionLanguageDropDown" type="bool">False</property>
-        <property name="AlwaysRenderOnServer" type="bool">False</property>
-        <property name="AllowConnect" type="bool">True</property>
-        <property name="ItemBodyTemplateId" type="string" />
-        <property name="ShowAlertMe" type="bool">False</property>
-        <property name="ExportMode" type="exportmode">All</property>
-        <property name="AddSEOPropertiesFromSearch" type="bool">False</property>
-        <property name="ShowUpScopeMessage" type="bool">False</property>
-        <property name="AllowHide" type="bool">True</property>
-        <property name="AllowClose" type="bool">True</property>
-        <property name="UseSimplifiedQueryBuilder" type="bool">False</property>
-        <property name="ShouldHideControlWhenEmpty" type="bool">False</property>
-        <property name="ResultType" type="string" />
-        <property name="LogAnalyticsViewEvent" type="bool">False</property>
-        <property name="MaxPagesAfterCurrent" type="int">1</property>
-        <property name="TitleUrl" type="string" />
-        <property name="EmptyMessage" type="string" />
-        <property name="AdvancedSearchPageAddress" type="string">advanced.aspx</property>
-        <property name="IsXGeo3SForwardingFlighted" type="bool">True</property>
-        <property name="AllowMinimize" type="bool">True</property>
-        <property name="ShowBestBets" type="bool">False</property>
-        <property name="AllowEdit" type="bool">True</property>
-        <property name="NumberOfItems" type="int">1</property>
-        <property name="HelpUrl" type="string" />
-        <property name="ShowPaging" type="bool">True</property>
-        <property name="ShowViewDuplicates" type="bool">False</property>
-        <property name="SelectedPropertiesJson" type="string">["ApprovalStatus","PublishingImage","PictureURL","PictureThumbnailURL","Path","Title","ManagementMessage","ContentAuthor","SecondaryFileExtension","ContentTypeId"]</property>
-        <property name="TargetResultTable" type="string">RelevantResults</property>
-        <property name="HelpMode" type="helpmode">Modeless</property>
-        <property name="ShowXGeoOptions" type="bool">False</property>
-        <property name="IsXGeoFlighted" type="bool">False</property>
-        <property name="ShowPersonalFavorites" type="bool">False</property>
-        <property name="EnableXGeo3SForwarding" type="bool">False</property>
-        <property name="PreloadedItemTemplateIdsJson" type="string">null</property>
-        <property name="Description" type="string">Content Search Web Part will allow you to show items that are results of a search query you specify. When you add it to the page, this Web Part will show recently modified items from the current site. You can change this setting to show items from another site or list by editing the Web Part and changing its search criteria.As new content is discovered by search, this Web Part will display an updated list of items each time the page is viewed.</property>
-        <property name="ShowPreferencesLink" type="bool">True</property>
-        <property name="QueryGroupName" type="string">8a80b56d-84db-4ece-8a90-07a13d352681</property>
-        <property name="ShowResultCount" type="bool">True</property>
-        <property name="TitleIconImageUrl" type="string" />
-        <property name="Direction" type="direction">NotSet</property>
-        <property name="ResultsPerPage" type="int">1</property>
-        <property name="AvailableSortsJson" type="string">null</property>
-        <property name="ShowResults" type="bool">True</property>
-        <property name="ServerIncludeScriptsJson" type="string">null</property>
-        <property name="SearchCenterXGeoLocations" type="string" />
-        <property name="DataProviderJSON" type="string">{"QueryGroupName":"8a80b56d-84db-4ece-8a90-07a13d352681","QueryPropertiesTemplateUrl":"sitesearch://webroot","IgnoreQueryPropertiesTemplateUrl":false,"SourceID":"8413cd39-2156-4e00-b54d-11efd9abdb89","SourceName":"Local SharePoint Results","SourceLevel":"Ssa","CollapseSpecification":"","QueryTemplate":"(contentclass:STS_ListItem OR IsDocument:True) ContentType:\"Voice_of_Management\" Path:getSearchItemsPath","FallbackSort":[{"p":"RefinableString00","d":0},{"p":"LastModifiedTime","d":0}],"FallbackSortJson":"[{\"p\":\"RefinableString00\",\"d\":0},{\"p\":\"LastModifiedTime\",\"d\":0}]","RankRules":null,"RankRulesJson":"null","AsynchronousResultRetrieval":false,"SendContentBeforeQuery":true,"BatchClientQuery":true,"FallbackLanguage":-1,"FallbackRankingModelID":"","EnableStemming":true,"EnablePhonetic":false,"EnableNicknames":false,"EnableInterleaving":false,"EnableQueryRules":true,"EnableOrderingHitHighlightedProperty":false,"HitHighlightedMultivaluePropertyLimit":-1,"IgnoreContextualScope":true,"ScopeResultsToCurrentSite":false,"TrimDuplicates":false,"Properties":{"TryCache":true,"Scope":"{Site.URL}","UpdateLinksForCatalogItems":true,"EnableStacking":true,"ListId":"3b20d6ec-6bba-4b5d-903e-6d1ab7febb71","ListItemId":5,"CrossGeoQuery":"false"},"PropertiesJson":"{\"TryCache\":true,\"Scope\":\"{Site.URL}\",\"UpdateLinksForCatalogItems\":true,\"EnableStacking\":true,\"ListId\":\"3b20d6ec-6bba-4b5d-903e-6d1ab7febb71\",\"ListItemId\":5,\"CrossGeoQuery\":\"false\"}","ClientType":"ContentSearchRegular","ClientFunction":"","ClientFunctionDetails":"","UpdateAjaxNavigate":true,"SummaryLength":180,"DesiredSnippetLength":90,"PersonalizedQuery":false,"FallbackRefinementFilters":null,"IgnoreStaleServerQuery":false,"RenderTemplateId":"DefaultDataProvider","AlternateErrorMessage":null,"Title":""}</property>
-        <property name="ShowAdvancedLink" type="bool">True</property>
-        <property name="ShowDidYouMean" type="bool">False</property>
-        <property name="AllowZoneChange" type="bool">True</property>
-        <property name="ChromeType" type="chrometype">None</property>
-        <property name="GroupTemplateId" type="string">~sitecollection/_catalogs/masterpage/Display Templates/Content Web Parts/Group_Content.js</property>
-        <property name="MissingAssembly" type="string">Cannot import this Web Part.</property>
-        <property name="OverwriteResultPath" type="bool">True</property>
-        <property name="Width" type="string" />
-        <property name="MaxPagesBeforeCurrent" type="int">4</property>
-        <property name="XGeoTenantsInfo" type="string" />
-        <property name="ShowLanguageOptions" type="bool">True</property>
-        <property name="ResultTypeId" type="string" />
-        <property name="AlternateErrorMessage" type="string" null="true" />
-        <property name="Title" type="string">Voice of Mgt CSWP</property>
-        <property name="RenderTemplateId" type="string">~sitecollection/_catalogs/masterpage/Display Templates/Content Web Parts/Control_VoiceOfMgtPaging.js</property>
-        <property name="EmitStyleReference" type="bool">True</property>
-        <property name="StatesJson" type="string">{}</property>
-        <property name="ShowSortOptions" type="bool">False</property>
-        <property name="CatalogIconImageUrl" type="string" />
-      </properties>
-    </data>
-  </webPart>
-</webParts>`; 
-
-    var latestUpdatesWebpart = `<webParts>
-  <webPart xmlns="http://schemas.microsoft.com/WebPart/v3">
-    <metaData>
-      <type name="Microsoft.Office.Server.Search.WebControls.ContentBySearchWebPart, Microsoft.Office.Server.Search, Version=16.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c" />
-      <importErrorMessage>Cannot import this Web Part.</importErrorMessage>
-    </metaData>
-    <data>
-      <properties>
-        <property name="BypassResultTypes" type="bool">True</property>
-        <property name="ItemTemplateId" type="string">~sitecollection/_catalogs/masterpage/Display Templates/Content Web Parts/Item_LatestUpdateHomePage.js</property>
-        <property name="PropertyMappings" type="string" />
-        <property name="ChromeState" type="chromestate">Normal</property>
-        <property name="IncludeResultTypeConstraint" type="bool">False</property>
-        <property name="StartingItemIndex" type="int">1</property>
-        <property name="ShowDefinitions" type="bool">False</property>
-        <property name="Height" type="string" />
-        <property name="Hidden" type="bool">False</property>
-        <property name="HitHighlightedPropertiesJson" type="string">["Title","Path","Author","SectionNames","SiteDescription"]</property>
-        <property name="ScrollToTopOnRedraw" type="bool">False</property>
-        <property name="UseSharedDataProvider" type="bool">False</property>
-        <property name="RepositionLanguageDropDown" type="bool">False</property>
-        <property name="AlwaysRenderOnServer" type="bool">False</property>
-        <property name="AllowConnect" type="bool">True</property>
-        <property name="ItemBodyTemplateId" type="string" />
-        <property name="ShowAlertMe" type="bool">False</property>
-        <property name="ExportMode" type="exportmode">All</property>
-        <property name="AddSEOPropertiesFromSearch" type="bool">False</property>
-        <property name="ShowUpScopeMessage" type="bool">False</property>
-        <property name="AllowHide" type="bool">True</property>
-        <property name="AllowClose" type="bool">True</property>
-        <property name="UseSimplifiedQueryBuilder" type="bool">False</property>
-        <property name="ShouldHideControlWhenEmpty" type="bool">False</property>
-        <property name="ResultType" type="string" />
-        <property name="LogAnalyticsViewEvent" type="bool">False</property>
-        <property name="MaxPagesAfterCurrent" type="int">1</property>
-        <property name="TitleUrl" type="string" />
-        <property name="EmptyMessage" type="string" />
-        <property name="AdvancedSearchPageAddress" type="string">advanced.aspx</property>
-        <property name="IsXGeo3SForwardingFlighted" type="bool">True</property>
-        <property name="AllowMinimize" type="bool">True</property>
-        <property name="ShowBestBets" type="bool">False</property>
-        <property name="AllowEdit" type="bool">True</property>
-        <property name="NumberOfItems" type="int">1</property>
-        <property name="HelpUrl" type="string" />
-        <property name="ShowPaging" type="bool">True</property>
-        <property name="ShowViewDuplicates" type="bool">False</property>
-        <property name="SelectedPropertiesJson" type="string">["ListItemID","StoryCopy","BannerImageOWSIMGE","PublishingImage","PictureURL","PictureThumbnailURL","Path","Title","EmployeeDepartment","BannerImage","SecondaryFileExtension","ContentTypeId"]</property>
-        <property name="TargetResultTable" type="string">RelevantResults</property>
-        <property name="HelpMode" type="helpmode">Modeless</property>
-        <property name="ShowXGeoOptions" type="bool">False</property>
-        <property name="IsXGeoFlighted" type="bool">False</property>
-        <property name="ShowPersonalFavorites" type="bool">False</property>
-        <property name="EnableXGeo3SForwarding" type="bool">False</property>
-        <property name="PreloadedItemTemplateIdsJson" type="string">null</property>
-        <property name="Description" type="string">Content Search Web Part will allow you to show items that are results of a search query you specify. When you add it to the page, this Web Part will show recently modified items from the current site. You can change this setting to show items from another site or list by editing the Web Part and changing its search criteria.As new content is discovered by search, this Web Part will display an updated list of items each time the page is viewed.</property>
-        <property name="ShowPreferencesLink" type="bool">True</property>
-        <property name="QueryGroupName" type="string">35afa177-8ad2-485c-9f84-3eab99ab28c3</property>
-        <property name="ShowResultCount" type="bool">True</property>
-        <property name="TitleIconImageUrl" type="string" />
-        <property name="Direction" type="direction">NotSet</property>
-        <property name="ResultsPerPage" type="int">1</property>
-        <property name="AvailableSortsJson" type="string">null</property>
-        <property name="ShowResults" type="bool">True</property>
-        <property name="ServerIncludeScriptsJson" type="string">null</property>
-        <property name="SearchCenterXGeoLocations" type="string" />
-        <property name="DataProviderJSON" type="string">{"QueryGroupName":"35afa177-8ad2-485c-9f84-3eab99ab28c3","QueryPropertiesTemplateUrl":"sitesearch://webroot","IgnoreQueryPropertiesTemplateUrl":false,"SourceID":"8413cd39-2156-4e00-b54d-11efd9abdb89","SourceName":"Local SharePoint Results","SourceLevel":"Ssa","CollapseSpecification":"","QueryTemplate":"(contentclass:STS_ListItem OR IsDocument:True) ContentType:\"Latest_Updates\" Path:getSearchItemsPath","FallbackSort":[{"p":"RefinableString00","d":0},{"p":"LastModifiedTime","d":1}],"FallbackSortJson":"[{\"p\":\"RefinableString00\",\"d\":0},{\"p\":\"LastModifiedTime\",\"d\":1}]","RankRules":null,"RankRulesJson":"null","AsynchronousResultRetrieval":false,"SendContentBeforeQuery":true,"BatchClientQuery":true,"FallbackLanguage":-1,"FallbackRankingModelID":"","EnableStemming":true,"EnablePhonetic":false,"EnableNicknames":false,"EnableInterleaving":false,"EnableQueryRules":true,"EnableOrderingHitHighlightedProperty":false,"HitHighlightedMultivaluePropertyLimit":-1,"IgnoreContextualScope":true,"ScopeResultsToCurrentSite":false,"TrimDuplicates":false,"Properties":{"TryCache":true,"Scope":"{Site.URL}","UpdateLinksForCatalogItems":true,"EnableStacking":true,"ListId":"3b20d6ec-6bba-4b5d-903e-6d1ab7febb71","ListItemId":5,"CrossGeoQuery":"false"},"PropertiesJson":"{\"TryCache\":true,\"Scope\":\"{Site.URL}\",\"UpdateLinksForCatalogItems\":true,\"EnableStacking\":true,\"ListId\":\"3b20d6ec-6bba-4b5d-903e-6d1ab7febb71\",\"ListItemId\":5,\"CrossGeoQuery\":\"false\"}","ClientType":"ContentSearchRegular","ClientFunction":"","ClientFunctionDetails":"","UpdateAjaxNavigate":true,"SummaryLength":180,"DesiredSnippetLength":90,"PersonalizedQuery":false,"FallbackRefinementFilters":null,"IgnoreStaleServerQuery":false,"RenderTemplateId":"DefaultDataProvider","AlternateErrorMessage":null,"Title":""}</property>
-        <property name="ShowAdvancedLink" type="bool">True</property>
-        <property name="ShowDidYouMean" type="bool">False</property>
-        <property name="AllowZoneChange" type="bool">True</property>
-        <property name="ChromeType" type="chrometype">None</property>
-        <property name="GroupTemplateId" type="string">~sitecollection/_catalogs/masterpage/Display Templates/Content Web Parts/Group_Content.js</property>
-        <property name="MissingAssembly" type="string">Cannot import this Web Part.</property>
-        <property name="OverwriteResultPath" type="bool">True</property>
-        <property name="Width" type="string" />
-        <property name="MaxPagesBeforeCurrent" type="int">4</property>
-        <property name="XGeoTenantsInfo" type="string" />
-        <property name="ShowLanguageOptions" type="bool">True</property>
-        <property name="ResultTypeId" type="string" />
-        <property name="AlternateErrorMessage" type="string" null="true" />
-        <property name="Title" type="string">Latest Updates Home CSWP</property>
-        <property name="RenderTemplateId" type="string">~sitecollection/_catalogs/masterpage/Display Templates/Content Web Parts/Control_LatestUpdates.js</property>
-        <property name="EmitStyleReference" type="bool">True</property>
-        <property name="StatesJson" type="string">{}</property>
-        <property name="ShowSortOptions" type="bool">False</property>
-        <property name="CatalogIconImageUrl" type="string" />
-      </properties>
-    </data>
-  </webPart>
-</webParts>`;
-
-    var latestUpdatesWebPart = limitedWebPartManager.importWebPart(latestUpdatesWebpart).get_webPart();
-
-    var voiceOfManagement = limitedWebPartManager.importWebPart(voiceOfManagementXml).get_webPart();
-
-    var eventsWebPart = limitedWebPartManager.importWebPart(eventsWebPartXml).get_webPart();
-
-    var orgAnnouncementWebPart = limitedWebPartManager.importWebPart(orgAnnouncementWebPartXml).get_webPart();
-
-    var newsWebPart = limitedWebPartManager.importWebPart(newsWebPartXml).get_webPart();
-
-    var pollWebPart = limitedWebPartManager.importWebPart(pollWebPartXml).get_webPart();
-
-    var birthDayWebPart = limitedWebPartManager.importWebPart(birthDayWebPartXml).get_webPart();
-
-    limitedWebPartManager.addWebPart(newsWebPart, 'Zone 1', 1);
-    limitedWebPartManager.addWebPart(orgAnnouncementWebPart, 'Zone 1', 2);
-    limitedWebPartManager.addWebPart(pollWebPart, 'Zone 1', 3);
-    limitedWebPartManager.addWebPart(birthDayWebPart, 'Zone 1', 3);
-    limitedWebPartManager.addWebPart(eventsWebPart, 'Zone 1', 3);
-    limitedWebPartManager.addWebPart(voiceOfManagement, 'Zone 1', 3);
-    limitedWebPartManager.addWebPart(latestUpdatesWebPart, 'Zone 1', 3);
-
-    oFile.checkIn();
-    oFile.publish();
-    context.load(oWebPart);
-    context.load(orgAnnouncementWebPart);
-    context.load(pollWebPart);
-    context.load(birthDayWebPart);
-    context.load(eventsWebPart);
-    context.load(voiceOfManagement);
-    context.load(latestUpdatesWebPart);
-
-    context.executeQueryAsync(Function.createDelegate(this, function onQuerySucceeded() {
-        alert('Web Part added: ' + oWebPart.get_title());
-    }), Function.createDelegate(this, function onQueryFailed(sender, args) {
-        alert('Request failed. ' + args.get_message() + '\n' + args.get_stackTrace());
-    }));
+    $.when.apply($, promises).then(function (result) {
+        $.map(webPartsArray, function (fileName, index) {
+            if (webPartsXml[index]) {
+                limitedWebPartManager = oFile.
+                    getLimitedWebPartManager(SP.WebParts.PersonalizationScope.shared);
+                // var hostWebRelativeUrl = hostWeb.get_serverRelativeUrl();
+                var webPart = limitedWebPartManager
+                    .importWebPart(webPartsXml[index].replace("{site_relative_url}", serverRelativeUrl.replace(/\/$/, "")))
+                    .get_webPart();
+                var zoneID = "xeb4fdf5f1db747c0b7e47d6b2af8a19f";
+                limitedWebPartManager.addWebPart(webPart, zoneID, index);
+                context.load(webPart);
+            }
+        });
+        oFile.checkIn();
+        oFile.publish();
+        context.executeQueryAsync(Function.createDelegate(this, function onQuerySucceeded() {
+            deferred.resolve();
+        }), Function.createDelegate(this, function onQueryFailed(sender, args) {
+            INTRANET.Log(INTRANET.LogType.Error, "Error in adding webparts: " + ex.message);
+        }));
+    })
+    return deferred.promise();
 }
